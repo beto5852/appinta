@@ -33,7 +33,7 @@ class PracticasController extends Controller
         //mostrar algunos Productos
 
         $practicas = Practica::Search($request->search)->orderBy('id','DESC')->paginate(4);
-        return view("admin.practicas.index",['practicas' => $practicas]);
+        return view("admin.practicas.index",compact('practicas'));
     }
     /**
      * Show the form for creating a new resource.
@@ -43,21 +43,13 @@ class PracticasController extends Controller
     public function create()
     {
         //
-        /* $tecnologias = Tecnologia::pluck('nombre_tecnologia','id');
-         $semanas = Semana::pluck('nombre_semana','id');
-         $meses = Mes::pluck('nombre_mes','id');
-         $etapas = Etapa::pluck('nombre_etapa','id');
-         return view('admin.practicas.create', compact('tecnologias','semanas','meses','etapas'));*/
+
         $tecnologias = Tecnologia::orderBy('nombre_tecnologia','ASC')->pluck('nombre_tecnologia','id');
         $tags  = Tag::orderBy('nombre_tags','ASC')->pluck('nombre_tags','id');
 
         $cultivos = Cultivo::orderBy('nombre_cultivo','ASC')->pluck('nombre_cultivo','id');
         return view('admin.practicas.create',compact('tecnologias','tags','cultivos'));
-        /* $tecnologias = Tecnologia::orderBy('nombre_tecnologia','ASC')->pluck('nombre_tecnologia','id');
-         $tags  = Tag::orderBy('nombre_tags','ASC')->pluck('nombre_tags','id');
-         return view('admin.practicas.create')->with('tecnologias',$tecnologias)->with('nombre_tags',$tags);*/
-
-        // return view('admin.practicas.create')->with('tecnologias',$tecnologias)->with('tags',$tags);
+       
     }
     /**
      * Store a newly created resource in storage.
