@@ -32,35 +32,28 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/practicas','PracticasController');
     Route::resource('/cultivos','CultivosController');
     Route::resource('/tags','TagsController');
-    Route::get('mensajes  ',[
-        'uses' => 'MensajesController@index',
-        'as'    => 'enviar',
+
+    Route::get('/mensajes', 'MensajesController@index');
+
+
+
+    Route::post('/mensajes',[
+        'uses' => 'MensajesController@store',
+        'as' => 'enviar.store',
     ]);
+
+
 
 
 
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
-    Route::get('notificaciones', [
-        'uses' => 'NotificacionesController@index',
-        'as'    => 'enviar',
-    ]);
-    Route::post('notificaciones',[
-        'uses' => 'NotificacionesController@store',
-        'as' => 'enviar.store',
-    ]);
+    
     Route::get('/', [
         'uses' => 'FrontController@admin',
         'as'    => 'administrador',
     ]);
-    Route::get('videos', [
-        'uses' => 'YoutubeController@index',
-        'as'   => 'youtube',
-    ]);
-    Route::post('videos',[
-        'uses' => 'YoutubeController@search',
-        'as' => 'youtube.search',
-    ]);
+  
 });
 Route::get('users/{id}',[
     'uses' => "UsersController@destroy",

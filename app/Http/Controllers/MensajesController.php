@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Session;
+use Redirect;
+use App\Mensaje;
 use App\User;
 
 use Illuminate\Http\Request;
@@ -43,6 +46,22 @@ class MensajesController extends Controller
     public function store(Request $request)
     {
         //
+
+        //dd($request->ToArray());
+
+        //$recibe = $request->recibe_id;
+        //dd($recibe);
+
+        Mensaje::create([
+            'envia_id' => auth()->id(),
+            'recibe_id' => $request->recibe_id,
+            'body' => $request->body,
+
+        ]);
+
+        Session::flash('message','Mensaje Enviado');
+        return redirect::to('admin/mensajes');
+
     }
 
     /**
@@ -54,6 +73,9 @@ class MensajesController extends Controller
     public function show($id)
     {
         //
+
+
+
     }
 
     /**

@@ -8,7 +8,6 @@ use App\Http\Requests;
 use App\User;
 use Session;
 use Redirect;
-use App\Http\Requests\UserRequest;
 
 class UsersController extends Controller
 {
