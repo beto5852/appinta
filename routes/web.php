@@ -32,7 +32,14 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/practicas','PracticasController');
     Route::resource('/cultivos','CultivosController');
     Route::resource('/tags','TagsController');
-    Route::resource('/calendar  ','EventosController');
+    Route::get('mensajes  ',[
+        'uses' => 'MensajesController@index',
+        'as'    => 'enviar',
+    ]);
+
+
+
+
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
     Route::get('notificaciones', [
         'uses' => 'NotificacionesController@index',
@@ -92,4 +99,4 @@ Route::resource('login','LoginController');
     DELETE/products/:id elimina el producto
 */
 Auth::routes();
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');

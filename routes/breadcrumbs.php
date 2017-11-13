@@ -2,7 +2,7 @@
 // Home
 Breadcrumbs::register('home', function($breadcrumbs)
 {
-    $breadcrumbs->push('Inicio', url('/'));
+    $breadcrumbs->push('Inicio', url('/admin/'));
 });
 // Home > Users
 Breadcrumbs::register('users', function($breadcrumbs)
@@ -74,4 +74,11 @@ Breadcrumbs::register('cultivos', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Lista de cultivos', url('admin/cultivos/'));
+});
+
+// Home > mensajes
+Breadcrumbs::register('mensajes', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Enviar mensaje', url('admin/mensajes/'));
 });
