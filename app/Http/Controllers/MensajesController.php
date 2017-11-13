@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+
 use Illuminate\Http\Request;
 
 class MensajesController extends Controller
@@ -14,7 +16,12 @@ class MensajesController extends Controller
     public function index()
     {
         //
-        return view('admin.mensajes.index');
+
+        $users = User::Where('id', '!=', auth()->id())->Where('type','=', 'admin')->pluck('name','id');
+
+       // dd($users);
+
+        return view('admin.mensajes.index',compact('users'));
     }
 
     /**
