@@ -33,7 +33,7 @@
             </form>
             <ul class="nav navbar-nav navbar-right">
                 <li class=""><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a></li>
-                <li class=""><a href="{{route('youtube')}}"><i class="fa fa-play" aria-hidden="true"></i> Videos</a></li>
+                <li class=""><a href="#"><i class="fa fa-play" aria-hidden="true"></i> Videos</a></li>
                 <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contacto</a></li>
 
                 @if(Auth::check())
