@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\MensajeEnviado;
 use Session;
 use Redirect;
 use App\Mensaje;
@@ -52,18 +53,25 @@ class MensajesController extends Controller
     public function store(Request $request)
     {
         //
-
+        $this->validate($request,[
+            'body' => 'required',
+            'recibe_id' => 'required|exists:user,id',
+        ]);
         //dd($request->ToArray());
 
         //$recibe = $request->recibe_id;
         //dd($recibe);
 
-        Mensaje::create([
+        $mensaje = Mensaje::create([
             'envia_id' => auth()->id(),
             'recibe_id' => $request->recibe_id,
             'body' => $request->body,
 
         ]);
+
+        $recibe = User::pluck($request->recibe_id);
+
+        $recibe->notify(new MensajeEnviado($mensaje));
 
         Session::flash('message','Mensaje Enviado');
         return redirect::to('admin/mensajes');

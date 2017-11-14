@@ -36,49 +36,42 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('/mensajes', 'MensajesController@index');
 
 
-
     Route::post('/mensajes',[
         'uses' => 'MensajesController@store',
         'as' => 'enviar.store',
     ]);
 
-
-
-
-
-
-    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
+   //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
     
     Route::get('/', [
         'uses' => 'FrontController@admin',
         'as'    => 'administrador',
     ]);
+
+    Route::get('users/{id}',[
+        'uses' => "UsersController@destroy",
+        'as'   =>  "users.destroy"
+    ]);
+    Route::get('tecnologias/{id}',[
+        'uses' => "TecnologiasController@destroy",
+        'as'   =>  "tecnologias.destroy"
+    ]);
+    Route::get('practicas/{id}',[
+        'uses' => "PracticasController@destroy",
+        'as'   =>  "practicas.destroy"
+    ]);
+    Route::get('cultivos/{id}',[
+        'uses' => "CultivosController@destroy",
+        'as'   =>  "cultivos.destroy"
+    ]);
+    Route::get('tags/{id}',[
+        'uses' => "TagsController@destroy",
+        'as'   =>  "tags.destroy"
+    ]);
+
   
 });
-Route::get('users/{id}',[
-    'uses' => "UsersController@destroy",
-    'as'   =>  "users.destroy"
-]);
-Route::get('tecnologias/{id}',[
-    'uses' => "TecnologiasController@destroy",
-    'as'   =>  "tecnologias.destroy"
-]);
-Route::get('practicas/{id}',[
-    'uses' => "PracticasController@destroy",
-    'as'   =>  "practicas.destroy"
-]);
-Route::get('cultivos/{id}',[
-    'uses' => "CultivosController@destroy",
-    'as'   =>  "cultivos.destroy"
-]);
-Route::get('tags/{id}',[
-    'uses' => "TagsController@destroy",
-    'as'   =>  "tags.destroy"
-]);
-Route::get('logout',[
-    'uses'  =>  'LoginController@logout',
-    'as'    =>  'logout'
-] );
+
 Route::resource('login','LoginController');
 //Auth::routes();
 //controlador de recurso
@@ -93,3 +86,8 @@ Route::resource('login','LoginController');
 */
 Auth::routes();
 //Route::get('/home', 'HomeController@index');
+
+Route::get('logout',[
+    'uses'  =>  'LoginController@logout',
+    'as'    =>  'logout'
+] );

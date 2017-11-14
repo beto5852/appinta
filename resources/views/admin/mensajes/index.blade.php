@@ -31,7 +31,7 @@
     {!! Form::open(['url' => 'admin/mensajes', 'method' => 'POST']) !!}
 
             <div class="form-group">
-                {{ Form::label('tecnologia','Tecnológia') }}
+                {{ Form::label('Enviar a:','Enviar a:') }}
                 {{ Form::select('recibe_id',$users,null,['class' => 'form-control'])}}
             </div>
             <div class="form-group">
