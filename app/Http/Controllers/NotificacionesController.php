@@ -6,6 +6,14 @@ use Illuminate\Http\Request;
 
 class NotificacionesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
@@ -14,6 +22,9 @@ class NotificacionesController extends Controller
     public function index()
     {
         //
+        $notificaciones = auth()->user()->notifications;
+        return view('admin.notificaciones.index',compact('notificaciones'));
+
     }
 
     /**

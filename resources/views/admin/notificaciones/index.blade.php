@@ -26,5 +26,7 @@
         </div>
         @endif
 
+<h1>Notificaciones</h1>
+
 
 @endsection

@@ -43,7 +43,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('/notificaciones',[
         'uses' => 'NotificacionesController@index',
-        'as' => 'notificactions.index',
+        'as' => 'notificaciones.index',
     ]);
 
    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
