@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications;
 use Illuminate\Http\Request;
 
 class NotificacionesController extends Controller
@@ -22,8 +23,10 @@ class NotificacionesController extends Controller
     public function index()
     {
         //
-        $notificaciones = auth()->user()->notifications;
-        return view('admin.notificaciones.index',compact('notificaciones'));
+        $unreadNotifications = auth()->user()->unreadNotifications;
+        $readNotifications = auth()->user()->readNotifications;
+
+        return view('admin.notificaciones.index',compact('unreadNotifications','readNotifications'));
 
     }
 
