@@ -36,7 +36,7 @@
                 <li class=""><a href="#"><i class="fa fa-play" aria-hidden="true"></i> Videos</a></li>
                 <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contacto</a></li>
 
-                @if(Auth::check())
+                @if(Auth::user())
                     <li class="dropdown">
                         <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock" aria-hidden="true"></i> Acceder
                             <b class="caret"></b></a>

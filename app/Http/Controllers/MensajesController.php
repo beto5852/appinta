@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\MensajeEnviado;
+
 use Session;
 use Redirect;
-use App\Mensaje;
 use App\User;
-
+use App\Mensaje;
+use App\Notifications\MensajeEnviado;
 use Illuminate\Http\Request;
 
 class MensajesController extends Controller
@@ -15,7 +15,6 @@ class MensajesController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
     }
 
     /**
@@ -55,7 +54,7 @@ class MensajesController extends Controller
         //
         $this->validate($request,[
             'body' => 'required',
-            'recibe_id' => 'required|exists:user,id',
+            'recibe_id' => 'required|exists:users,id',
         ]);
         //dd($request->ToArray());
 
@@ -66,16 +65,15 @@ class MensajesController extends Controller
             'envia_id' => auth()->id(),
             'recibe_id' => $request->recibe_id,
             'body' => $request->body,
-
         ]);
 
-        $recibe = User::pluck($request->recibe_id);
+        $recibe = User::find($request->recibe_id);
 
         $recibe->notify(new MensajeEnviado($mensaje));
 
-        Session::flash('message','Mensaje Enviado');
-        return redirect::to('admin/mensajes');
-
+        Session::flash('message','Tu Mensaje Enviado');
+        return redirect::to('admin');
+         //return back()->with('flash','Tu mensaje fue enviado');
     }
 
     /**

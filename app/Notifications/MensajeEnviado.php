@@ -9,7 +9,11 @@ use Illuminate\Notifications\Messages\MailMessage;
 
 class MensajeEnviado extends Notification
 {
+
+    protected $mensaje;
+
     use Queueable;
+
 
     /**
      * Create a new notification instance.
