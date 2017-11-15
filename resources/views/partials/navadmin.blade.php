@@ -63,7 +63,7 @@
                 <li><a href="{{url('admin/mensajes')}}" ><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar mensaje</a></li>
                 @if(Auth::user()->type == 'admin')
                     <li>
-                        <a href="#"><i class="fa fa-globe" aria-hidden="true"></i> Notificaciones
+                        <a href="{{route('notifications.index')}}"><i class="fa fa-globe" aria-hidden="true"></i> Notificaciones
 
                             @if($contador = auth()->user()->notifications()->groupBy('notifiable_type')->count())
                                 <span class="badge">{{$contador}}</span>
