@@ -36,10 +36,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('/mensajes', 'MensajesController@index');
 
 
+    Route::post('/mensajes/{id}','MensajesController@show');
+
     Route::post('/mensajes',[
         'uses' => 'MensajesController@store',
         'as' => 'enviar.store',
     ]);
+
 
     Route::get('/notificaciones',[
         'uses' => 'NotificacionesController@index',

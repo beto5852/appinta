@@ -59,6 +59,9 @@ class MensajeEnviado extends Notification
      */
     public function toArray($notifiable)
     {
-        return $this->mensaje->ToArray();
+        return[
+            'link' => url('admin/mensajes/'.$this->mensaje->id),
+            'text' => "Has recibido un mendaje de:" . $this->mensaje->sender->name,
+        ];
     }
 }

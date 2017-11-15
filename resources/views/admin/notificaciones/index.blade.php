@@ -34,7 +34,12 @@
 
            <ul class="list-group-item">
                @foreach($unreadNotifications as $unreadNotification)
-                   <li class="list-group-item">{{($unreadNotification->data['body'])}}</li>
+                   <li class="list-group-item">
+
+                       <a href="{{($unreadNotification->data['link'])}}">
+                           {{($unreadNotification->data['text'])}}
+                       </a>
+                      </li>
 
                    @endforeach
            </ul>
@@ -46,7 +51,11 @@
 
             <ul class="list-group-item">
                 @foreach($readNotifications as $readNotifications)
-                    <li class="list-group-item">{{($readNotifications->data)}}</li>
+                    <li class="list-group-item">
+                        <a href="{{($readNotifications->data['link'])}}">
+                            {{($readNotifications->data['text'])}}
+                        </a>
+                    </li>
 
                 @endforeach
             </ul>

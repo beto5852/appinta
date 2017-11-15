@@ -12,5 +12,8 @@ class Mensaje extends Model
     
     protected $fillable =['envia_id','recibe_id','body'];
 
-    
+    public function sender()
+    {
+        return $this->belongsTo('App\User','envia_id');
+    }
 }
