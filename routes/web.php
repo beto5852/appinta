@@ -35,21 +35,32 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('/mensajes', 'MensajesController@index');
 
+    Route::get('mensajes/{id}',[
+        'uses' => 'MensajesController@show',
+        'as' => 'mensajes.show',
+    ]);
 
-    Route::post('/mensajes/{id}','MensajesController@show');
+   // Route::get('/mensajes/{id}','MensajesController@show');
 
-    Route::post('/mensajes',[
+    Route::post('mensajes/',[
         'uses' => 'MensajesController@store',
-        'as' => 'enviar.store',
+        'as' => 'mensajes.store',
     ]);
 
 
-    Route::get('/notificaciones',[
+    Route::get('notificaciones',[
         'uses' => 'NotificacionesController@index',
         'as' => 'notificaciones.index',
     ]);
 
-   //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
+
+    Route::patch('notificaciones/{id}',[
+        'uses' => 'NotificacionesController@read',
+        'as' => 'notificaciones.read',
+    ]);
+
+
+    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
     
     Route::get('/', [
         'uses' => 'FrontController@admin',

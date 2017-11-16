@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Notifications;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\DatabaseNotification;
 
 class NotificacionesController extends Controller
 {
@@ -29,6 +30,32 @@ class NotificacionesController extends Controller
         return view('admin.notificaciones.index',compact('unreadNotifications','readNotifications'));
 
     }
+
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function read($id)
+    {
+        //
+
+        DatabaseNotification::find($id)->markAsRead();
+        return back()->with('flash','Su notificacion fue leida');
+
+    }
+
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

@@ -30,7 +30,7 @@
     <div class="row">
         <div class="col-md-6">
 
-            <h2>Notificaciones Leidas</h2>
+            <h2>Notificaciones no leidas</h2>
 
            <ul class="list-group-item">
                @foreach($unreadNotifications as $unreadNotification)
@@ -39,6 +39,12 @@
                        <a href="{{($unreadNotification->data['link'])}}">
                            {{($unreadNotification->data['text'])}}
                        </a>
+                       <form method="POST" action="{{route('notificaciones.read', $unreadNotification->id)}}" class="pull-right">
+                          {{method_field('PATCH')}}
+                           {{csrf_field()}}
+                           <button class="btn btn-danger btn-xs">x</button>
+                       </form>
+
                       </li>
 
                    @endforeach
@@ -47,7 +53,7 @@
         </div>
         <div class="col-md-6">
 
-            <h2>Notificaciones no leidas</h2>
+            <h2>Notificaciones leidas</h2>
 
             <ul class="list-group-item">
                 @foreach($readNotifications as $readNotifications)

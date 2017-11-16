@@ -59,7 +59,7 @@ class MensajesController extends Controller
         //dd($request->ToArray());
 
         //$recibe = $request->recibe_id;
-        //dd($recibe);
+
 
         $mensaje = Mensaje::create([
             'envia_id' => auth()->id(),
@@ -69,8 +69,9 @@ class MensajesController extends Controller
 
         $recibe = User::find($request->recibe_id);
 
-        $recibe->notify(new MensajeEnviado($mensaje));
+        //dd($recibe);
 
+        $recibe->notify(new MensajeEnviado($mensaje));
         Session::flash('message','Tu Mensaje Enviado');
         return redirect::to('admin');
          //return back()->with('flash','Tu mensaje fue enviado');
@@ -85,11 +86,11 @@ class MensajesController extends Controller
     public function show($id)
     {
         //
-        $mensaje = Mensaje::findOrFail($id);
+        $mensajes = Mensaje::findOrFail($id);
 
-        dd($id);
+      // dd($id);
 
-        return view('admin.mensajes.show',compact('mensaje'));
+        return view('admin.mensajes.show',compact('mensajes'));
 
     }
 

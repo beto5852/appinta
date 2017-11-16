@@ -61,7 +61,7 @@ class MensajeEnviado extends Notification
     {
         return[
             'link' => url('admin/mensajes/'.$this->mensaje->id),
-            'text' => "Has recibido un mendaje de:" . $this->mensaje->sender->name,
+            'text' => "Has recibido un mensaje de:" . $this->mensaje->sender->name,
         ];
     }
 }

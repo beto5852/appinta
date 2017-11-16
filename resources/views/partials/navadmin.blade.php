@@ -65,7 +65,7 @@
                     <li>
                         <a href="{{url('admin/notificaciones/')}}"><i class="fa fa-globe" aria-hidden="true"></i> Notificaciones
 
-                            @if($contador = auth()->user()->notifications()->groupBy('notifiable_type')->count())
+                            @if($contador = auth()->user()->unreadNotifications()->groupBy('notifiable_type')->count())
                                 <span class="badge">{{$contador}}</span>
                             @endif
                         </a>

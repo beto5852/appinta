@@ -10,10 +10,10 @@ class Mensaje extends Model
     protected $table = 'mensajes';
     protected  $guarded = ['id'];
     
-    protected $fillable =['envia_id','recibe_id','body'];
+   // protected $fillable =['envia_id','recibe_id','body'];
 
     public function sender()
     {
-        return $this->belongsTo('App\User','envia_id');
+        return $this->belongsTo(User::class,'envia_id');
     }
 }
