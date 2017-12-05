@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\CrearPractica;
 use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Support\Facades\Storage;
@@ -10,6 +11,14 @@ class Practica extends Model
 {
     protected $table = 'practicas';
     use Sluggable;
+
+    protected $events =[
+        'created' => CrearPractica::class
+    ];
+
+
+
+
     public function sluggable(){
         return [
             'slug' => [

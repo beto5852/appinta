@@ -2,16 +2,15 @@
 
 namespace App\Notifications;
 
+use App\Practica;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class MensajeEnviado extends Notification
+class PracticaPublicada extends Notification
 {
-
-    protected $mensaje;
-
+    protected $practica;
     use Queueable;
 
 
@@ -20,10 +19,9 @@ class MensajeEnviado extends Notification
      *
      * @return void
      */
-    public function __construct($mensaje)
+    public function __construct(Practica $practica)
     {
         //
-        $this->mensaje = $mensaje;
     }
 
     /**
@@ -34,7 +32,7 @@ class MensajeEnviado extends Notification
      */
     public function via($notifiable)
     {
-        return ['database','mail'];
+        return ['mail'];
     }
 
     /**
@@ -45,16 +43,11 @@ class MensajeEnviado extends Notification
      */
     public function toMail($notifiable)
     {
-       /* return (new MailMessage)
-                    ->greeting($notifiable->name.',')
-                    ->subject('Mensaje recibido desde APPINTA')
-                    ->line('Has recibido un mensaje')
-                    ->action('Click aqui para ver el mensaje', url('admin/mensajes/'.$this->mensaje->id))
-                    ->line('Gracias por usar nuestra APPINTA');*/
-        return(new MailMessage)->view('admin.email.notificacion',[
-            'msg' => $this->mensaje,
-            'user' => $notifiable
-        ])->subject('Mensaje recibido desde APPINTA');
+        return (new MailMessage)
+                    ->subject('Nueva Practica publicada')
+                    ->line($notifiable->name.', Hemos publicado una nueva práctica argicola')
+                    ->action($this->practica->nombre_practica, route('admin/practica/show',$this->practica))
+                    ->line('Gracias por actualizarte con nosotros');
     }
 
     /**
@@ -65,9 +58,8 @@ class MensajeEnviado extends Notification
      */
     public function toArray($notifiable)
     {
-        return[
-            'link' => url('admin/mensajes/'.$this->mensaje->id),
-            'text' => "Has recibido un mensaje de:" . $this->mensaje->sender->name,
+        return [
+            //
         ];
     }
 }

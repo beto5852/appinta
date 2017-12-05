@@ -35,6 +35,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('/mensajes', 'MensajesController@index');
 
+    Route::get('/mensajes/create', 'MensajesController@create');
+
+
     Route::get('mensajes/{id}',[
         'uses' => 'MensajesController@show',
         'as' => 'mensajes.show',
