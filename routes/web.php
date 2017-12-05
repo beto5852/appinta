@@ -58,7 +58,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'uses' => 'NotificacionesController@read',
         'as' => 'notificaciones.read',
     ]);
-
+    Route::delete('notificaciones/{id}',[
+        'uses' => 'NotificacionesController@destroy',
+        'as' => 'notificaciones.destroy',
+    ]);
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
     

@@ -42,7 +42,7 @@
                        <form method="POST" action="{{route('notificaciones.read', $unreadNotification->id)}}" class="pull-right">
                           {{method_field('PATCH')}}
                            {{csrf_field()}}
-                           <button class="btn btn-danger btn-xs">x</button>
+                           <button class="btn btn-danger btn-xs">X</button>
                        </form>
 
                       </li>
@@ -56,16 +56,20 @@
             <h2>Notificaciones leidas</h2>
 
             <ul class="list-group-item">
-                @foreach($readNotifications as $readNotifications)
+                @foreach($readNotifications as $readNotification)
                     <li class="list-group-item">
-                        <a href="{{($readNotifications->data['link'])}}">
-                            {{($readNotifications->data['text'])}}
+                        <a href="{{($readNotification->data['link'])}}">
+                            {{($readNotification->data['text'])}}
                         </a>
+                        <form method="POST" action="{{route('notificaciones.destroy', $readNotification->id)}}" class="pull-right">
+                            {{method_field('DELETE')}}
+                            {{csrf_field()}}
+                             <button class="btn btn-danger btn-xs" ><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                        </form>
                     </li>
 
                 @endforeach
             </ul>
-
 
         </div>
     </div>

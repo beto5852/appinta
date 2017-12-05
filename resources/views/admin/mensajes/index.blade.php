@@ -15,7 +15,8 @@
 @endsection
 
 @section('content')
-         @if(count($errors) > 0)
+
+    @if(count($errors) > 0)
          <div class="alert alert-dismissible alert-danger">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <ul>
@@ -24,7 +25,7 @@
                 @endforeach
             </ul>
         </div>
-        @endif
+    @endif
 
         <!--Aqui va el formulario de la practica agricola-->
     {!! Form::open(['url' => 'admin/mensajes', 'method' => 'POST']) !!}
@@ -37,7 +38,6 @@
                 {{ Form::label('Mensaje','Escribe tu mensaje') }}
                 {{ Form::text('body','',['class' => 'form-control','placeholder' => 'Escribe aquí tu mensaje...','required']) }}
             </div>
-
 
     <div class="form-group text-right">
         {{ Form::submit('Enviar mensaje', ['class' => 'btn btn-raised btn-success']) }}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Notifications;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\DatabaseNotification;
+use Session;
+use Redirect;
 
 class NotificacionesController extends Controller
 {
@@ -41,16 +43,9 @@ class NotificacionesController extends Controller
         //
 
         DatabaseNotification::find($id)->markAsRead();
-        return back()->with('flash','Su notificacion fue leida');
-
+        Session::flash('message','Su notificacion fue leida');
+        return redirect::to('admin/notificaciones');
     }
-
-
-
-
-
-
-
 
 
 
@@ -119,6 +114,11 @@ class NotificacionesController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        DatabaseNotification::find($id)->delete();
+        Session::flash('message','Su notificacion ha sido eliminada');
+        return redirect::to('admin/notificaciones');
+
+
     }
 }
