@@ -46,7 +46,7 @@ class PracticaPublicada extends Notification
         return (new MailMessage)
                     ->subject('Nueva Practica publicada')
                     ->line($notifiable->name.', Hemos publicado una nueva práctica argicola')
-                    ->action($this->practica->nombre_practica, route('admin/practica/show',$this->practica))
+                    ->action($this->practica->nombre_practica, url('admin/practica/show',$this->practica))
                     ->line('Gracias por actualizarte con nosotros');
     }
 

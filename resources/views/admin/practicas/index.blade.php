@@ -77,8 +77,7 @@
                 <td>
                     <a href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     <a href="{{url('practicas/'.$practica->id)}}" class="btn btn-raised btn-danger" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-
-
+                    <a href="{{url('admin/practicas/'.$practica->id)}}" class="btn btn-raised btn-info" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
                 </td>
             </tr>
         @endforeach

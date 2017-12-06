@@ -13,7 +13,7 @@ use App\Etapa;
 use Storage;
 use Session;
 use Redirect;
-
+use App\Events\CrearPractica;
 use Illuminate\Http\Request;
 
 class PracticasController extends Controller
@@ -48,6 +48,8 @@ class PracticasController extends Controller
         $tags  = Tag::orderBy('nombre_tags','ASC')->pluck('nombre_tags','id');
 
         $cultivos = Cultivo::orderBy('nombre_cultivo','ASC')->pluck('nombre_cultivo','id');
+
+
         return view('admin.practicas.create',compact('tecnologias','tags','cultivos'));
        
     }
@@ -63,6 +65,9 @@ class PracticasController extends Controller
         $practica->save();
         $practica->tags()->sync($request->pt_id_tags);
         Session::flash('message','Labor agricola registrado correctamente');
+
+        \Event::fire(new CrearPractica($practica));
+
         return redirect::to('admin/practicas');
         //dd($user);
     }
@@ -72,9 +77,15 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Practica $id)
+    public function show($id)
     {
         //Muestra con el id
+
+        //dd($id);
+        $practica = Practica::find($id);
+
+        //dd($practica);
+        return view('admin.practicas.show',compact('practica'));
     }
     /**
      * Show the form for editing the specified resource.

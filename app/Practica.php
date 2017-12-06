@@ -12,14 +12,7 @@ class Practica extends Model
     protected $table = 'practicas';
     use Sluggable;
 
-    protected $events =[
-        'created' => CrearPractica::class
-    ];
-
-
-
-
-    public function sluggable(){
+     public function sluggable(){
         return [
             'slug' => [
                 'source' => 'nombre_practica'
@@ -38,6 +31,10 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica','contenido','path','tags','practica_id_tecnologia','practica_id_usuario'];
     //protected $fillable = ['nombre_practica','contenido','path','tags','slug'];
+
+
+
+
     public function semana()
     {
         return $this->belongsToMany('App\Semana')->withPivot('ps_id_semana')->withTimestamps();

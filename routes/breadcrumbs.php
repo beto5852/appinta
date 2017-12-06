@@ -36,6 +36,13 @@ Breadcrumbs::register('practicas.edit', function($breadcrumbs)
     $breadcrumbs->parent('practicas');
     $breadcrumbs->push('Editar práctica', url('[admin/practicas,$practica]'));
 });
+Breadcrumbs::register('practicas.show', function($breadcrumbs)
+{
+    $breadcrumbs->parent('practicas');
+    $breadcrumbs->push('Ver práctica', url('[admin/practicas/show,$practica]'));
+});
+
+
 // Home > Tecnologias
 Breadcrumbs::register('tecnologias', function($breadcrumbs)
 {
