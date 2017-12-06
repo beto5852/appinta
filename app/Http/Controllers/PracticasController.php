@@ -13,6 +13,7 @@ use App\Etapa;
 use Storage;
 use Session;
 use Redirect;
+
 use App\Events\CrearPractica;
 use Illuminate\Http\Request;
 
@@ -62,11 +63,14 @@ class PracticasController extends Controller
     public function store(Request $request)
     {
         $practica = new Practica($request->all());
-        $practica->save();
+
+        if($practica->save()){
+            \Event::fire(new CrearPractica($practica));
+        }
         $practica->tags()->sync($request->pt_id_tags);
         Session::flash('message','Labor agricola registrado correctamente');
 
-        \Event::fire(new CrearPractica($practica));
+
 
         return redirect::to('admin/practicas');
         //dd($user);

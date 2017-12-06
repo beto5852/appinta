@@ -5,7 +5,7 @@ namespace App\Listeners;
 use App\User;
 use App\Events\CrearPractica;
 use App\Notifications\PracticaPublicada;
-use Illuminate\Notifications\Notification;
+use Notification;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
@@ -33,9 +33,9 @@ class NotificarNuevaPractica implements ShouldQueue
 
         $users = User::all();
 
-        dd($users);
+        //dd($users);
 
-        Notification::send($users, PracticaPublicada($event->practica));
+        Notification::send($users, new PracticaPublicada($event->practica));
 
     }
 }

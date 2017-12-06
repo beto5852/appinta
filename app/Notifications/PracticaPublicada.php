@@ -22,6 +22,7 @@ class PracticaPublicada extends Notification
     public function __construct(Practica $practica)
     {
         //
+        $this->practica = $practica;
     }
 
     /**
@@ -44,9 +45,9 @@ class PracticaPublicada extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->subject('Nueva Practica publicada')
-                    ->line($notifiable->name.', Hemos publicado una nueva práctica argicola')
-                    ->action($this->practica->nombre_practica, url('admin/practica/show',$this->practica))
+                    ->subject('Nueva práctica publicada')
+                    ->line($notifiable->name.', Hemos publicado una nueva práctica argricola')
+                    ->action($this->practica->nombre_practica, route('practicas.show',$this->practica))
                     ->line('Gracias por actualizarte con nosotros');
     }
 
