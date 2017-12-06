@@ -33,7 +33,7 @@ class PracticaPublicada extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -61,6 +61,8 @@ class PracticaPublicada extends Notification
     {
         return [
             //
+            'link' => url('admin/practicas/'.$this->practica->id),
+            'text' => 'Hemos publicado una práctica agricola: '.$this->practica->nombre_practica,
         ];
     }
 }
