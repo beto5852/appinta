@@ -58,18 +58,21 @@
             <ul class="nav navbar-nav navbar-right">
 
                 <!--<li><a href="{{route('home')}}" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i> Ver sitio</a></li>-->
+                <notificaciones> hola</notificaciones>
 
+                <li><a href="{{url('admin/mensajes')}}" ><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar mensaje</a>
 
-                <li><a href="{{url('admin/mensajes')}}" ><i class="fa fa-paper-plane" aria-hidden="true"></i> Enviar mensaje</a></li>
                 @if(Auth::user()->type == 'admin')
-                    <li>
-                        <a href="{{url('admin/notificaciones/')}}"><i class="fa fa-globe" aria-hidden="true"></i> Notificaciones
 
-                            @if($contador = auth()->user()->unreadNotifications()->groupBy('notifiable_type')->count())
-                                <span class="badge">{{$contador}}</span>
-                            @endif
-                        </a>
-                    </li>
+                      <li>
+                          <a href="{{url('admin/notificaciones/')}}"><i class="fa fa-globe" aria-hidden="true"></i> Notificaciones
+
+                              @if($contador = auth()->user()->unreadNotifications()->groupBy('notifiable_type')->count())
+                                  <span class="badge">{{$contador}}</span>
+                              @endif
+                          </a>
+                      </li>
+
                     @endif
                 <li class="dropdown">
                     <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i class="fa fa-user" aria-hidden="true"></i>
