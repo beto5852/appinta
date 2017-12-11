@@ -72,16 +72,22 @@
                         <!-- The user image in the navbar-->
 
 
-
-                        <img src="{{asset('img/no-imagen.jpg')}}" class="user-image" alt="User Image">
+                        @if(Auth::user()->sexo == 'masculino')
+                            <img src="{{asset('img/Users-User-Male-2-icon.png')}}" class="user-image" alt="User Image">
+                        @else(Auth::user()->sexo == 'femenino')
+                            <img src="{{asset('img/female-shadow-circle-512.png')}}" class="user-image" alt="User Image">
+                        @endif
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs"> {!! Auth::user()->name !!}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{asset('img/no-imagen.jpg')}}" class="img-circle" alt="User Image">
-
+                            @if(Auth::user()->sexo == 'masculino')
+                                 <img src="{{asset('img/Users-User-Male-2-icon.png')}}" class="img-circle" alt="User Image">
+                        @else
+                                <img src="{{asset('img/female-shadow-circle-512.png')}}" class="img-circle" alt="User Image">
+                            @endif
                             <p>
                                 {!! Auth::user()->name !!}
                                 <small>{!! Auth::user()->type !!}</small>
