@@ -26,7 +26,7 @@ class Authenticate
                 return response('Unauthorized.', 401);
             }else{
                 //dd($request);
-                return redirect()->guest('login');
+                return redirect()->guest('admin/login');
             }
         }
         return $next($request);

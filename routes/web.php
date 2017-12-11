@@ -109,7 +109,7 @@ Route::resource('login','LoginController');
     PUT/PATCH/:id  =>actualiza el producto
     DELETE/products/:id elimina el producto
 */
-Auth::routes();
+//Auth::routes();
 //Route::get('/home', 'HomeController@index');
 
 Route::get('logout',[

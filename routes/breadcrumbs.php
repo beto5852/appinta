@@ -89,3 +89,12 @@ Breadcrumbs::register('mensajes', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('Enviar mensaje', url('admin/mensajes/'));
 });
+
+// Home > notificaciones
+Breadcrumbs::register('notificaciones', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Leer Notificaciones', url('admin/notificaciones/'));
+});
+
+

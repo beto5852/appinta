@@ -35,21 +35,21 @@ class Practica extends Model
 
 
 
-    public function semana()
+    public function semanas()
     {
-        return $this->belongsToMany('App\Semana')->withPivot('ps_id_semana')->withTimestamps();
+        return $this->belongsToMany(Semana::class);
     }
     public function tecnologia()
     {
-        return $this->belongsTo('App\Tecnologia','practica_id_tecnologia');
+        return $this->belongsTo(Tecnologia::class,'practica_id_tecnologia');
     }
     public function user()
     {
-        return $this->belongsTo('App\User','practica_id_usuario');
+        return $this->belongsTo(User::class,'practica_id_usuario');
     }
     public function tags()
     {
-        return $this->belongsToMany('App\Tag','pt','practica_id','tag_id');
+        return $this->belongsToMany(Tag::class,'pt','practica_id','tag_id');
     }
     public function scopeSearch($query,$nombre_practica){
         return $query->where('nombre_practica','LIKE',"%$nombre_practica%" );

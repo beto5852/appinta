@@ -30,11 +30,11 @@ class User extends Authenticatable
      }*/
 
     public function practicas(){
-        return $this->hasMany('App\Practica');
+        return $this->hasMany(Practica::class);
     }
 
     public function telefonos(){
-        return $this->hasMany('App\Telefono');
+        return $this->hasMany(Telefono::class);
     }
 
     public function scopeSearch($query,$name){

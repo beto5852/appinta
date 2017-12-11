@@ -11,7 +11,7 @@ class Telefono extends Model
     
     public function users()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo(User::class);
     }
 
 }

@@ -13,8 +13,8 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('notificaciones', require('./components/notificaciones.vue'));
+Vue.component('Notificaciones', require('./components/Notificaciones.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: 'body'
 });

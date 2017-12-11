@@ -4,13 +4,11 @@
 
 @section('breadcrumb')
 
-    <section id="breadcrumb">
-        <div class="container">
-            <ol class="breadcrumb">
-                <li class="active">{!! Breadcrumbs::render('mensajes') !!}</li>
-            </ol>
-        </div>
-    </section>
+    <ol class="breadcrumb">
+        <li class="active">{!! Breadcrumbs::render('mensajes') !!}</li>
+    </ol>
+
+
 
 @endsection
 
