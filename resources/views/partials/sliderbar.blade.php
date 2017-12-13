@@ -36,12 +36,12 @@
             <li class="header">MENU</li>
 
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="/admin/"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
-
+            <li {{request()->is('admin') ? 'class=active': ''}}>
+                <a href="/admin/"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
 
             <!--  Menu USUARIOS -->
 
-            <li class="treeview">
+            <li class="treeview" {{request()->is('admin/practicas/') ? 'active': ''}}>
 
                 <a href="#"><i class="fa fa-users"></i>Usuarios</span>
                     <span class="pull-right-container">
@@ -49,8 +49,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/users/create')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear usuarios</a></li>
-                    <li><a href="{{url('admin/users/')}}"><i class="fa fa-users" aria-hidden="true"></i> Listar Usuarios</a></li>
+                    <li {{request()->is('admin/practicas') ? 'class=active': ''}}><a href="{{url('admin/users/create')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear usuarios</a></li>
+                    <li {{request()->is('admin/practicas') ? 'class=active': ''}}><a href="{{url('admin/users/')}}"><i class="fa fa-users" aria-hidden="true"></i> Listar Usuarios</a></li>
                 </ul>
             </li>
 

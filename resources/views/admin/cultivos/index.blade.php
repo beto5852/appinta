@@ -2,7 +2,15 @@
 
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Lista de Tecnologias generadas por el INTA')
+@section('header')
+    <section class="content-header">
+        <h1>
+            Cultivos Agricolas
+            <small>Listado de cultivos</small>
+        </h1>
 
+    </section>
+@endsection
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
         <li>{!! Breadcrumbs::render('cultivos') !!}</li>

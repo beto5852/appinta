@@ -17,6 +17,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
+
+    <link rel="stylesheet" href="{{asset('/adminlte/plugins/datatables/dataTables.bootstrap.css')}}">
+
+
     <link rel="stylesheet" href={{asset("/adminlte/css/AdminLTE.min.css")}}>
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
@@ -63,10 +67,8 @@ desired effect
         <!-- Content Header (Page header) -->
         <section class="content-header">
 
-          <!-- <h1>
-                Page Header
-                <small>Optional description</small>
-            </h1>-->
+            @yield('header')
+
                 @yield('breadcrumb')
 
         </section>
@@ -101,6 +103,12 @@ desired effect
 <!-- Morris.js charts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
 
+<!-- DataTables -->
+<script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('adminlte/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
+
+
+
 <!-- Bootstrap 3.3.6 -->
 <script src={{asset("/adminlte/bootstrap/js/bootstrap.min.js")}}></script>
 <!-- AdminLTE App -->
@@ -110,5 +118,22 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
+
+<!-- page script -->
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
+</script>
+
+
+
 </body>
 </html>

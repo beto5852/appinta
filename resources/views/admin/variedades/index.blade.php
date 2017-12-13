@@ -2,13 +2,20 @@
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Lista de usuarios ')
 
+@section('header')
+    <section class="content-header">
+        <h1>
+            Variedades generadas
+            <small>Listado de las variedades de semillas generadas por el INTA</small>
+        </h1>
 
+    </section>
+@endsection
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
         <li>{!! Breadcrumbs::render('variedades') !!}</li>
     </ul>
 @endsection
-
 
 @section('content')
 
