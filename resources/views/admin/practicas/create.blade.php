@@ -136,6 +136,7 @@
 <!-- bootstrap datepicker -->
 <script src="{{asset('admilte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 <!-- Select2 -->
+
 <script src="{{asset('adminlte/plugins/select2/select2.full.min.js')}}"></script>
 
 <script>
