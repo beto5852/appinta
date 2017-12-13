@@ -94,13 +94,17 @@ desired effect
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
-
 <!-- jQuery 2.2.3 -->
-<script src="/adminlte/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src={{asset("/adminlte/plugins/jQuery/jquery-2.2.3.min.js")}}></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+<!-- Morris.js charts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+
 <!-- Bootstrap 3.3.6 -->
-<script src="/adminlte/bootstrap/js/bootstrap.min.js"></script>
+<script src={{asset("/adminlte/bootstrap/js/bootstrap.min.js")}}></script>
 <!-- AdminLTE App -->
-<script src="/adminlte/js/app.min.js"></script>
+<script src={{asset("/adminlte/js/app.min.js")}}></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the

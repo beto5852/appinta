@@ -9,21 +9,16 @@
     </ol>
 
 
-
 @endsection
 
 @section('content')
 
-    @if(count($errors) > 0)
-         <div class="alert alert-dismissible alert-danger">
+    @if(Session::has('message'))
+        <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <ul>
-                @foreach($errors->all() as $mensaje)
-                    <li>{{$mensaje}}</li>
-                @endforeach
-            </ul>
+            {{Session::get('message')}}
         </div>
-    @endif
+        @endif
 
         <!--Aqui va el formulario de la practica agricola-->
     {!! Form::open(['url' => 'admin/mensajes', 'method' => 'POST']) !!}
@@ -41,6 +36,5 @@
         {{ Form::submit('Enviar mensaje', ['class' => 'btn btn-raised btn-success']) }}
     </div>
     {!! Form::close() !!}
-
 
 @endsection

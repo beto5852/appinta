@@ -30,7 +30,6 @@ class NotificarNuevaPractica implements ShouldQueue
     public function handle(CrearPractica $event)
     {
         //
-
         $users = User::all();
 
         //dd($users);

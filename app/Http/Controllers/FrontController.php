@@ -25,7 +25,7 @@ class FrontController extends Controller
     }
     public function  admin(){
         $totalusers = User::all();
-        $users = User::orderBy('id','DESC')->paginate(5);
+        $users = User::orderBy('id','DESC')->paginate(8);
         $totaltecnologias = Tecnologia::all();
         $totalpracticas = Practica::all();
         $totalcultivos = Practica::all();

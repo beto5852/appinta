@@ -18,13 +18,16 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
+
+                    <!-- Menu Toggle Button -->
+
+
                 <!-- /.messages-menu -->
 
                 <!-- Tasks Menu -->
-                <li class="dropdown tasks-menu">
                     <!-- Menu Toggle Button -->
                 <li><a href="{{url('admin/mensajes')}}" ><i class="fa  fa-send-o" aria-hidden="true"></i> Enviar mensaje</a>
-                </li>
+
 
                 <!-- Notifications Menu -->
 
@@ -42,22 +45,32 @@
                     <ul class="dropdown-menu">
 
                         @if($contador = auth()->user()->unreadNotifications()->groupBy('notifiable_type')->count())
-                            <li class="header">Tu tienes {{$contador}} notificaciones</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications -->
+                                <ul class="menu">
+                                    <li><!-- start notification -->
+                                        <a href="{{url('admin/notificaciones/')}}">
+                                            <i class="fa fa-envelope-o text-aqua"></i> Tienes {{$contador}} notificaciones
+                                        </a>
+                                    </li>
+                                    <!-- end notification -->
+                                </ul>
+                            </li>
                         @else
-                         <li class="header">0 notificaciones</li>
+                            <li>
+                                <!-- Inner Menu: contains the notifications -->
+                                <ul class="menu">
+                                    <li><!-- start notification -->
+                                        <a href="#">
+                                            <i class="fa fa-envelope-o text-aqua"></i> 0 notificaciones
+                                        </a>
+                                    </li>
+                                    <!-- end notification -->
+                                </ul>
+                            </li>
                         @endif
-                         <!--<li>
-                            <!-- Inner Menu: contains the notifications -->
-                            <!--   <ul class="menu">
-                                  <li><!-- start notification -->
-                            <!--        <a href="#">
-                                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                   </a>
-                               </li>
-                               <!-- end notification -->
-                            <!--    </ul>
-                           </li>-->
-                        <li class="footer"><a href="{{url('admin/notificaciones/')}}">Ver todas</a></li>
+
+                        <!-- <li class="footer"><a href="{{url('admin/notificaciones/')}}">Ver todas</a></li>-->
                     </ul>
                 </li>
 
@@ -107,9 +120,9 @@
                     </ul>
                 </li>
                 <!-- Control Sidebar Toggle Button -->
-                <li>
-                    <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                </li>
+                    <li><a href="{{url('/')}}" target="_blank"><i class="glyphicon glyphicon-eye-open" aria-hidden="true" ></i> Ver sitio</a>
+                    </li>
+
             </ul>
         </div>
     </nav>

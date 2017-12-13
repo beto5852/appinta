@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
+    <title>{{ config('app.name', 'APPINTA') }}</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.6 -->
@@ -31,7 +31,14 @@
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
-        <p class="login-box-msg">Inicia tu sessión</p>
+
+        @if(Session::has('message'))
+            <div class="alert alert-dismissible alert-danger">
+                <button type="button" class="close" data-dismiss="alert">×</button>
+                {{Session::get('message')}}
+            </div>
+        @endif
+        <p class="login-box-msg">Inicia sessión</p>
 
         {!! Form::open(['route' => 'login.store','method' => 'POST'], ['class' => 'form-control', 'role' => 'form']) !!}
 
@@ -54,7 +61,7 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Entrar</button>
                 </div>
                 <!-- /.col -->
             </div>

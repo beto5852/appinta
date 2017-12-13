@@ -35,23 +35,104 @@
         <ul class="sidebar-menu">
             <li class="header">MENU</li>
 
-
             <!-- Optionally, you can add icons to the links -->
-            <!-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-            <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li>-->
+            <li class="active"><a href="/admin/"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
 
+
+            <!--  Menu USUARIOS -->
 
             <li class="treeview">
-                <a href="#"><i class="fa fa-link"></i> <span>Multilevel</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+
+                <a href="#"><i class="fa fa-users"></i>Usuarios</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
+                    <li><a href="{{url('admin/users/create')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear usuarios</a></li>
+                    <li><a href="{{url('admin/users/')}}"><i class="fa fa-users" aria-hidden="true"></i> Listar Usuarios</a></li>
                 </ul>
             </li>
+
+            <!--  Menu PRACTICAS AGRICOLAS -->
+
+            <li class="treeview">
+
+                <a href="#"><i class="fa fa-th-list"></i> <span>Prácticas Agricola</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('admin/practicas/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear práctica agricola</a></li>
+                    <li><a href="{{url('admin/practicas/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar prácticas</a></li>
+                </ul>
+
+            </li>
+
+            <!--  Menu TECNOLOGIAS -->
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-wrench"></i> <span>Tecnológias</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('admin/tecnologias/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear tecnologia</li>
+                    <li><a href="{{url('admin/tecnologias/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar tecnologia</a></li>
+                </ul>
+            </li>
+
+            <!--  Menu CULTIVOS -->
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-pagelines"></i> <span>Cultivos</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('admin/cultivos/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Cultivo</a></li>
+                    <li><a href="{{url('admin/cultivos/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar cultivos</a></li>
+                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
+                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>
+                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Caracteristica</a></li>
+                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Caracteristica</a></li>
+
+                </ul>
+
+            </li>
+
+            <!--  Menu ETAPAS -->
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-list-alt"></i> <span>Etapas de Siembra</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar etapa de siembra</a></li>
+                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar etapas de siembra</a></li>
+                </ul>
+            </li>
+
+
+            <!--  Menu TAGS -->
+
+            <li class="treeview">
+                <a href="#"><i class="fa fa-tags"></i> <span> Tags</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
+                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Tags</a></li>
+                </ul>
+            </li>
+
         </ul>
         <!-- /.sidebar-menu -->
     </section>

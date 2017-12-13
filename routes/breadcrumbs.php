@@ -20,6 +20,11 @@ Breadcrumbs::register('users.edit', function($breadcrumbs)
     $breadcrumbs->parent('users');
     $breadcrumbs->push('editar usuario', url('[admin/users,$user]'));
 });
+Breadcrumbs::register('users.show', function($breadcrumbs)
+{
+    $breadcrumbs->parent('users');
+    $breadcrumbs->push('ver usuario', url('[admin/users,$user]'));
+});
 // Home > Practicas
 Breadcrumbs::register('practicas', function($breadcrumbs)
 {
