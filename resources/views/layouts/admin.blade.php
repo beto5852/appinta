@@ -28,11 +28,18 @@ scratch. This page gets rid of all links and provides the needed markup only.
     -->
     <link rel="stylesheet" href={{asset("/adminlte/css/skins/skin-blue.min.css")}}>
 
+
+    <!-- bootstrap datepicker -->
+    @yield('styles')
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
+
+
     <![endif]-->
 </head>
 <!--
@@ -133,7 +140,7 @@ desired effect
     });
 </script>
 
-
+@yield('script')
 
 </body>
 </html>

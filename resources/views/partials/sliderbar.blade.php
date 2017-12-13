@@ -37,11 +37,11 @@
 
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin') ? 'class=active': ''}}>
-                <a href="/admin/"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
+                <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
 
             <!--  Menu USUARIOS -->
 
-            <li class="treeview" {{request()->is('admin/practicas/') ? 'active': ''}}>
+            <li class="treeview" {{request()->is('admin/users*')? 'active': ''}}>
 
                 <a href="#"><i class="fa fa-users"></i>Usuarios</span>
                     <span class="pull-right-container">
@@ -49,14 +49,14 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li {{request()->is('admin/practicas') ? 'class=active': ''}}><a href="{{url('admin/users/create')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear usuarios</a></li>
-                    <li {{request()->is('admin/practicas') ? 'class=active': ''}}><a href="{{url('admin/users/')}}"><i class="fa fa-users" aria-hidden="true"></i> Listar Usuarios</a></li>
+                    <li {{request()->is('admin/users/create') ? 'class=active': ''}}><a href="{{url('admin/users/create')}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear usuarios</a></li>
+                    <li {{request()->is('admin/users/') ? 'class=active': ''}}><a href="{{url('admin/users/')}}"><i class="fa fa-users" aria-hidden="true"></i> Listar Usuarios</a></li>
                 </ul>
             </li>
 
             <!--  Menu PRACTICAS AGRICOLAS -->
 
-            <li class="treeview">
+            <li class="treeview" {{request()->is('admin/practicas*') ? 'active': ''}}>
 
                 <a href="#"><i class="fa fa-th-list"></i> <span>Prácticas Agricola</span>
                     <span class="pull-right-container">
@@ -72,7 +72,7 @@
 
             <!--  Menu TECNOLOGIAS -->
 
-            <li class="treeview">
+            <li class="treeview" {{ request()->is('admin/tecnologias*') ? 'active': ''}}>
                 <a href="#"><i class="fa fa-wrench"></i> <span>Tecnológias</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -86,7 +86,7 @@
 
             <!--  Menu CULTIVOS -->
 
-            <li class="treeview">
+            <li class="treeview" {{request()->is('admin/cultivos*') ? 'active': ''}}>
                 <a href="#"><i class="fa fa-pagelines"></i> <span>Cultivos</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -106,7 +106,7 @@
 
             <!--  Menu ETAPAS -->
 
-            <li class="treeview">
+            <li class="treeview" {{request()->is('admin/etapas') ? 'active': ''}}>
                 <a href="#"><i class="fa fa-list-alt"></i> <span>Etapas de Siembra</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
@@ -121,7 +121,7 @@
 
             <!--  Menu TAGS -->
 
-            <li class="treeview">
+            <li class="treeview" {{request()->is('admin/tags') ? 'active': ''}}>
                 <a href="#"><i class="fa fa-tags"></i> <span> Tags</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
