@@ -13,11 +13,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href={{asset("/adminlte/bootstrap/css/bootstrap.min.css")}}>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href={{asset("/css/font-awesome.min.css")}}>
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
-
     <link rel="stylesheet" href="{{asset('/adminlte/plugins/datatables/dataTables.bootstrap.css')}}">
 
 
@@ -125,7 +124,7 @@ desired effect
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
      fixed layout. -->
-
+@yield('script')
 <!-- page script -->
 <script>
     $(function () {
@@ -140,7 +139,7 @@ desired effect
     });
 </script>
 
-@yield('script')
+
 
 </body>
 </html>

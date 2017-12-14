@@ -14,10 +14,15 @@ Route::get('/', [
     'uses' => 'FrontController@index',
     'as'    => 'home',
 ]);
+
+
 Route::get('practica/{slug}', [
     'uses' => 'FrontController@practica',
     'as'    => 'practica',
 ]);
+
+
+
 Route::get('index/{nombre_practica}', [
     'uses' => 'FrontController@searchPracticas',
     'as'    => 'front.search.practicas',
@@ -32,6 +37,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/practicas','PracticasController');
     Route::resource('/cultivos','CultivosController');
     Route::resource('/tags','TagsController');
+   // Route:resource('');
 
     Route::get('/mensajes', 'MensajesController@index');
 
@@ -73,22 +79,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'    => 'administrador',
     ]);
 
-    Route::get('users/{id}',[
-        'uses' => "UsersController@destroy",
-        'as'   =>  "users.destroy"
-    ]);
-    Route::get('tecnologias/{id}',[
-        'uses' => "TecnologiasController@destroy",
-        'as'   =>  "tecnologias.destroy"
-    ]);
-    Route::get('practicas/{id}',[
-        'uses' => "PracticasController@destroy",
-        'as'   =>  "practicas.destroy"
-    ]);
-    Route::get('cultivos/{id}',[
-        'uses' => "CultivosController@destroy",
-        'as'   =>  "cultivos.destroy"
-    ]);
+    Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
+    Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
+    Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
+    Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
+
+     
+
     Route::get('tags/{id}',[
         'uses' => "TagsController@destroy",
         'as'   =>  "tags.destroy"

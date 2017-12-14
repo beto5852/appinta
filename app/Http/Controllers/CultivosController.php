@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Cultivo;
+use App\Variedad;
+use Storage;
+use Session;
+use Redirect;
 use Illuminate\Http\Request;
 
 class CultivosController extends Controller
@@ -32,6 +36,9 @@ class CultivosController extends Controller
     public function create()
     {
         //
+        $variedades = Variedad::orderBy('nombre_variedad','ASC')->pluck('nombre_variedad','id');
+        
+        return view('admin.cultivos.create',compact('variedades'));
     }
     /**
      * Store a newly created resource in storage.
@@ -82,6 +89,12 @@ class CultivosController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // //
+        $cultivo = Cultivo::find($id);
+        $cultivo->delete();
+
+        Session::flash('message','Cultivo eliminado correctamente');
+        return redirect::to('admin/cultivos');
+        //dd($id);
     }
 }

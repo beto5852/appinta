@@ -88,6 +88,16 @@ Breadcrumbs::register('cultivos', function($breadcrumbs)
     $breadcrumbs->push('Lista de cultivos', url('admin/cultivos/'));
 });
 
+Breadcrumbs::register('cultivos.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('crear cultivo', url('admin/cultivos/'));
+});
+
+
+
+
+
 // Home > mensajes
 Breadcrumbs::register('mensajes', function($breadcrumbs)
 {

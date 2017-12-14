@@ -56,8 +56,12 @@
 
                 <td>
                     <a href="{{url('admin/cultivos/'.$cultivo->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-raised btn-warning" role="button"
-                       onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+                    <form method="POST" action="{{route('admin.cultivos.destroy',$cultivo->id)}}" style="display:inline" >
+                        {{ csrf_field() }} {{method_field('DELETE')}}
+
+                        <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                    </form>
                 </td>
             </tr>
         @endforeach

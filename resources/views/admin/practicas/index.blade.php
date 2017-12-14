@@ -86,8 +86,14 @@
                        @endif
                        <td>
                            <a href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                           <a href="{{url('practicas/'.$practica->id)}}" class="btn btn-raised btn-danger" role="button"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                           <a href="{{url('admin/practicas/'.$practica->id)}}" class="btn btn-raised btn-info" role="button"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+                           <form method="POST" action="{{route('admin.practicas.destroy',$practica->id)}}" style="display:inline" >
+                               {{ csrf_field() }} {{method_field('DELETE')}}
+
+                               <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                           </form>
+                           <a href="{{route('practica',$practica->slug)}}" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                        </td>
                    </tr>
                @endforeach

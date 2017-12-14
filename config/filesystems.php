@@ -49,6 +49,12 @@ return [
             'root' => public_path('img'),
         ],
 
+        'perfil' => [
+            'driver' => 'local',
+            'root' => public_path('perfil'),
+        ],
+        
+        
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

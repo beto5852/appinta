@@ -34,12 +34,12 @@ $factory->defineAs(App\User::class,'miembro', function (Faker\Generator $faker) 
 });
 
 /*****************Telefonos****************************************/
-$factory->define(App\Telefono::class, function (Faker\Generator $faker) {
+/*$factory->define(App\Telefono::class, function (Faker\Generator $faker) {
     return [
         'telefono' => $faker->phoneNumber,
         'telefono_id_usuario'=> App\User::all()->random()->id,
     ];
-});
+});*/
 
 /************************Rubro************************************/
 $factory->define(App\Rubro::class, function (Faker\Generator $faker) {

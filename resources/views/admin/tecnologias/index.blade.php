@@ -35,27 +35,32 @@
         </div>
     </div>
 
-    <table class="table table-striped table-hover" >
-        <thead>
-        <tr >
-            <th>Labor agricola</th>
-            <th>Descripción</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($tecnologias as $tecnologia)
-            <tr class="info">
-                <td>{{  $tecnologia->nombre_tecnologia }}</td>
-                <td >{!! $tecnologia->descripcion_tecnologia !!}</td>
-                <td>
-                    <a href="{{url('admin/tecnologias/'.$tecnologia->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="#" class="btn btn-raised btn-warning" role="button"
-                       onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+
+            <table class="table table-striped table-hover" >
+                <thead>
+                <tr >
+                    <th>Labor agricola</th>
+                    <th>Descripción</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($tecnologias as $tecnologia)
+                    <tr class="info">
+                        <td>{{  $tecnologia->nombre_tecnologia }}</td>
+                        <td >{!! $tecnologia->descripcion_tecnologia !!}</td>
+                        <td>
+                            <a href="{{url('admin/tecnologias/'.$tecnologia->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                            <form method="POST" action="{{route('admin.tecnologias.destroy',$tecnologia->id)}}" style="display:inline" >
+                                {{ csrf_field() }} {{method_field('DELETE')}}
+
+                                <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
     <center>{{ $tecnologias->links() }}</center>
 
 

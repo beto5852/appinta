@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
 
         factory('App\User','admin')->create();
         factory('App\User','miembro',10)->create();
-        factory('App\Telefono',13)->create();
+        //factory('App\Telefono',13)->create();
         factory('App\Rubro',10)->create();
         factory('App\Tecnologia',10)->create();
         factory('App\Cultivo',10)->create();

@@ -58,9 +58,22 @@
                     <td><span class="label label-danger">{{  $user->type}}</span></td>
                 @endif
                 <td>
+                @if(empty($user->img_perfil))
+                    <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                @else
+                    <td><img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                 @endif
+                </td>
+                <td>
                     <a href="{{url('admin/users/'.$user->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="{{url('users/'.$user->id)}}" class="btn btn-raised btn-warning" role="button"
-                       onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                    <form method="POST" action="{{route('admin.users.destroy',$user->id)}}" style="display:inline" >
+                        {{ csrf_field() }} {{method_field('DELETE')}}
+
+                        <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                    </form>
+
                 </td>
             </tr>
         @endforeach

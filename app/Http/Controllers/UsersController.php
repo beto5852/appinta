@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Rubro;
 use App\User;
+use Storage;
 use Session;
 use Redirect;
+
+use Illuminate\Http\Request;
+
 
 class UsersController extends Controller
 {
@@ -35,6 +38,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+                       
         return view("admin.users.create");
         //return 'esta es una prueba';
     }
@@ -47,9 +51,28 @@ class UsersController extends Controller
     public function store(Request $request)
     {
         //
+        $v = \Validator::make($request->all(), [
+
+            'name' => 'required',
+            'email'    => 'required|email',
+            'telefono' => 'required',
+            'sexo' => 'required_if:masculino,femenino',
+            'type' => 'required_if:admin,miembro'
+        ]);
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
+
+
         $user = new User($request->all());
+        
         $user->password = bcrypt($request->password);
+        //dd($user);
+        
         $user->save();
+
         Session::flash('message','Usuario registrado correctamente');
         return redirect::to('admin/users');
         //dd($user);
@@ -64,6 +87,8 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
+       // $rubros = Rubro::orderBy('nombre_rubro','ASC')->pluck('nombre_rubro','id');
+
         return view('admin.users.show',compact('user'));
     }
     /**
@@ -106,6 +131,7 @@ class UsersController extends Controller
         //
         $user = User::find($id);
         $user->delete();
+        
         Session::flash('message','Usuario eliminado correctamente');
         return redirect::to('admin/users');
         //dd($id);

@@ -63,6 +63,7 @@ class PracticasController extends Controller
     public function store(Request $request)
     {
         $practica = new Practica($request->all());
+
         $practica->save();
         /*if($practica->save()){
             \Event::fire(new CrearPractica($practica));
@@ -70,8 +71,6 @@ class PracticasController extends Controller
 
         $practica->tags()->sync($request->pt_id_tags);
         Session::flash('message','Labor agricola registrado correctamente');
-
-
 
         return redirect::to('admin/practicas');
         //dd($user);
@@ -139,6 +138,8 @@ class PracticasController extends Controller
     {
         //elimina la practica con el id que recibe
         $practica = Practica::find($id);
+        
+        
         $practica->delete();
         Session::flash('message','Práctica eliminada correctamente');
         return redirect::to('admin/practicas');

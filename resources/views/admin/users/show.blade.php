@@ -33,13 +33,17 @@
             <div class="box box-primary">
                 <div class="box-body box-profile">
 
-                    @if($user->sexo == 'masculino')
-                        <img class="profile-user-img img-responsive img-circle" src="{{asset('img/Users-User-Male-2-icon.png')}}" alt="User profile picture">
-                    @else
-                        <img class="profile-user-img img-responsive img-circle" src="{{asset('img/female-shadow-circle-512.png')}}" alt="User profile picture">
-                    @endif
 
 
+                        @if(empty($user->img_perfil))
+                            @if($user->sexo == 'masculino'   )
+                                <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/Users-User-Male-2-icon.png')}}" alt="User profile picture"></td>
+                            @else
+                                <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/female-shadow-circle-512.png')}}" alt="User profile picture"></td>
+                            @endif
+                        @else
+                            <td><img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                        @endif
                     <h3 class="profile-username text-center">{{$user->name}}</h3>
 
                     <p class="text-muted text-center">{{$user->type}}</p>
@@ -63,32 +67,30 @@
                     <strong><i class="fa fa-book margin-r-5"></i> Ocupación</strong>
 
                     <p class="text-muted">
-                        B.S. in Computer Science from the University of Tennessee at Knoxville
+                       {{ $user->ocupacion }}
                     </p>
 
                     <hr>
 
                     <strong><i class="fa fa-map-marker margin-r-5"></i> Pais</strong>
 
-                    <p class="text-muted">Malibu, California</p>
+                    <p class="text-muted">{{$user->pais}}</p>
 
                     <hr>
 
                     <strong><i class="fa fa-pencil margin-r-5"></i> Interes</strong>
 
                     <p>
-                        <span class="label label-danger">Ganaderia</span>
-                        <span class="label label-success">Agricultura Urbana</span>
-                        <span class="label label-info">Javascript</span>
-                        <span class="label label-warning">PHP</span>
+
                         <span class="label label-primary">Node.js</span>
+
                     </p>
 
                     <hr>
 
                     <strong><i class="fa fa-file-text-o margin-r-5"></i> Notas</strong>
 
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
+                    <p>{{$user->notas}}</p>
                 </div>
                 <!-- /.box-body -->
             </div>

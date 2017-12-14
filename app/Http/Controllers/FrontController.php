@@ -50,6 +50,9 @@ class FrontController extends Controller
 
         return view('practica',compact('practicas'));;
     }
+    
+
+
     public function searchPracticas($name){
         $practicas = Practica::scopeSearchPractica($name)->get();
         dd($practicas);

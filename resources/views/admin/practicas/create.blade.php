@@ -51,6 +51,7 @@
                     {{ Form::label('tecnologia','Tipo de tecnológia') }}
                     {{ Form::select('practica_id_tecnologia',$tecnologias,null,['class' => 'form-control','required'])}}
                 </div>
+
             </div>
 
 
@@ -90,6 +91,7 @@
                </div>
 
                <div class="form-group">
+
                    <label>Multiple</label>
                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
                        <option>Alabama</option>
@@ -121,13 +123,12 @@
     {!! Form::close() !!}
 </div>
 
-@stop
+@endsection
 
 
 @section('styles')
 
 <link rel="stylesheet" href="{{asset('adminlte/plugins/datepicker/datepicker3.css')}}">
-
 
 @endsection
 

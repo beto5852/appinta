@@ -18,9 +18,14 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('sexo')->nullable();
+            $table->string('ocupacion')->nullable();
+            $table->string('pais')->nullable();
+            $table->text('notas')->nullable();
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('telefono',8)->nullable();
             $table->enum('type',['miembro','admin'])->default('miembro');
+            $table->string('perfil')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

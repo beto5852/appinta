@@ -2,11 +2,24 @@
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear Usuarios')
 
+
+@section('header')
+    <section class="content-header">
+        <h1>
+            Crear usuario
+            <small>Agregue la información del usuario</small>
+        </h1>
+
+    </section>
+@endsection
+
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
         <li>{!! Breadcrumbs::render('users.create') !!}</li>
     </ul>
 @endsection
+
+
 
 @section('content')
     @if(count($errors) > 0)
@@ -19,61 +32,104 @@
                 @endforeach
             </ul>
         </div>
-        @endif
 
+    @endif
 
+    <div class="row">
+        {!! Form::open(['url' => 'admin/users', 'method' => 'POST','files'=> 'true','enctype' => 'multipart/form-data']) !!}
 
+        <div class="col-md-8">
+            <div class="box box-primary">
 
                 <!--Aqui va el formulario de la practica agricola-->
-        {!! Form::open(['url' => 'admin/users', 'method' => 'POST']) !!}
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    {!! Form::label('name','Nombre') !!}
-                    {!! Form::text('name',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
-                </div>
 
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    {!! Form::label('email','Correo electrónico') !!}
-                    {!! Form::email('email',null,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])!!}
-                </div>
-
-            </div>
-        </div>
+                <div class="box-body">
 
 
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    {!! Form::label('password','Contraseña') !!}
-                    {!! Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
+                    <div class="form-group">
+                        {!! Form::label('name','Nombre y Apellido') !!}
+                        {!! Form::text('name',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('email','Correo electrónico') !!}
+                        {!! Form::email('email',null,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])!!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('password','Contraseña') !!}
+                        {!! Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('ocupacion','Ocupación') !!}
+                        {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('pais','Pais') !!}
+                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                    </div>
+
+
                 </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    {{ Form::label('sexo','Sexo') }}
-                    {{ Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control'])}}
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    {{ Form::label('type','Tipo de usuario') }}
-                    {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control'])}}
-                </div>
+
+
+
             </div>
         </div>
 
 
+        <div class="col-md-4">
+            <div class="box box-primary">
 
+                <div class="box-body">
 
-        <div class="form-group text-right">
-            <a href="{{url('admin/users')}}" class="btn btn-raised btn-primary">Lista de usuarios</a>
-            {{ Form::submit('Registrar', ['class' => 'btn btn-raised btn-success']) }}
+                    <div class="form-group">
+                        {!! Form::label('telefono','Telefono') !!}
+                        {!! Form::text('telefono',null,['class' =>'form-control', 'placeholder' =>'+505-9999-9999','required'])!!}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('sexo','Sexo') }}
+                        {{ Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::label('type','Tipo de usuario') }}
+                        {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control'])}}
+                    </div>
+                    <div class="form-group">
+                        {!! Form::label('notas','Acerca de usted:') !!}
+                        {!! Form::text('notas',null,['class' =>'form-control', 'placeholder' =>'Describete para conocerte','required'])!!}
+                    </div>
+
+                    <div class="form-group">
+                        {{ Form::label('perfil','Imagen de perfil') }}
+                        {{ Form::file('perfil')}}
+                    </div>
+
+                </div>
+                <div class="form-group text-right">
+
+                    {{ Form::submit('Registrar', ['class' => 'btn btn-primary btn-block']) }}
+
+                </div>
+            </div>
 
         </div>
         {!! Form::close() !!}
-
+    </div>
 
 @endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
