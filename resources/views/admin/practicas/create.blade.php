@@ -132,7 +132,6 @@
 @endsection
 
 @section('script')
-
 <!-- bootstrap datepicker -->
 <script src="{{asset('admilte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 <!-- Select2 -->
