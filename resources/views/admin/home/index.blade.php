@@ -100,11 +100,11 @@
                             @if(empty(Auth::user()->perfil))
                                 @if(Auth::user()->sexo == 'masculino')
                                     <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                                @elseif(Auth::user()->sexo == 'femenino')
+                                @else
                                     <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                                 @endif
                             @else
-                                <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image">
+                                <img src="{{asset('img/'.$user->img_perfil)}}" class="img-circle" alt="User Image">
                             @endif
 
                             <a class="users-list-name" href="{{url('admin/users/'.$user->id)}}">{{  $user->name}}</a>

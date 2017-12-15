@@ -5,19 +5,22 @@
 
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
+
             <div class="pull-left image">
 
                 @if(empty(Auth::user()->perfil))
-                    @if(Auth::user()->sexo == 'masculino'   )
+                    @if(Auth::user()->sexo == 'masculino')
                         <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                    @else
+                    @elseif(Auth::user()->sexo == 'femenino')
                         <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                     @endif
-                @else
-                    <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image">
+
+                 @else
+                    <img src="{{asset('img/'.$user->img_perfil)}}" class="img-circle" alt="User Image">
                 @endif
 
             </div>
+
             <div class="pull-left info">
                 <p>{!! Auth::user()->name !!}</p>
                 <!-- Status -->
@@ -85,7 +88,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/tecnologias/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear tecnologia</li>
+                    <li><a href="{{url('admin/tecnologias/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear tecnologia
                     <li><a href="{{url('admin/tecnologias/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar tecnologia</a></li>
                 </ul>
             </li>

@@ -89,6 +89,8 @@ class UsersController extends Controller
         $user = User::find($id);
        // $rubros = Rubro::orderBy('nombre_rubro','ASC')->pluck('nombre_rubro','id');
 
+        //dd($user);
+
         return view('admin.users.show',compact('user'));
     }
     /**
