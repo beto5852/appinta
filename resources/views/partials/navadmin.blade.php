@@ -90,7 +90,7 @@
                                 <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image">
                             @endif
                         @else
-                            <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="user-image" alt="User Image">
+                            <img src="{{asset('img/')}}/{{$user->perfil}}" class="user-image" alt="User Image">
                         @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
