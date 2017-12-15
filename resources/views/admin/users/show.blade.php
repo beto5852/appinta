@@ -34,8 +34,7 @@
                 <div class="box-body box-profile">
 
 
-
-                        @if(empty($user->img_perfil))
+                        @if(empty($user->perfil))
                             @if($user->sexo == 'masculino'   )
                                 <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
                             @else

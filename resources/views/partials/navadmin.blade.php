@@ -83,14 +83,14 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        @if(empty(Auth::user()->img_perfil))
-                            @if(Auth::user()->sexo == 'masculino'   )
+                        @if(empty(Auth::user()->perfil))
+                            @if(Auth::user()->sexo == 'masculino')
                                 <img src="{{asset('img/user_masculino.jpg')}}" class="user-image" alt="User Image">
                             @else
                                 <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image">
                             @endif
                         @else
-                            <img src="{{asset('img/')}}/{{$user->perfil}}" class="user-image" alt="User Image">
+                            <img src="{{asset('img')}}/{{$user->perfil}}" class="user-image" alt="User Image">
                         @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->

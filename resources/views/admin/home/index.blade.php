@@ -100,7 +100,7 @@
                             @if(empty(Auth::user()->perfil))
                                 @if(Auth::user()->sexo == 'masculino')
                                     <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                                @else
+                                @elseif(Auth::user()->sexo == 'femenino')
                                     <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                                 @endif
                             @else
@@ -128,6 +128,5 @@
 
         </div>
         <!-- /.row -->
-
 
 @endsection
