@@ -61,11 +61,11 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('ocupacion','Ocupación') !!}
-                        {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                        {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
                     </div>
                     <div class="form-group">
                         {!! Form::label('pais','Pais') !!}
-                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
                     </div>
 
 
@@ -84,7 +84,7 @@
 
                     <div class="form-group">
                         {!! Form::label('telefono','Telefono') !!}
-                        {!! Form::text('telefono',null,['class' =>'form-control', 'placeholder' =>'+505-9999-9999','required'])!!}
+                        {!! Form::text('telefono',null,['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
                     </div>
 
                     <div class="form-group">
@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('notas','Acerca de usted:') !!}
-                        {!! Form::text('notas',null,['class' =>'form-control', 'placeholder' =>'Describete para conocerte','required'])!!}
+                        {!! Form::text('notas',null,['class' =>'form-control', 'placeholder' =>'Describete para conocerte'])!!}
                     </div>
 
                     <div class="form-group">
