@@ -7,14 +7,14 @@
         <div class="user-panel">
             <div class="pull-left image">
 
-                @if(empty(Auth::user()->img_perfil))
+                @if(empty(Auth::user()->perfil))
                     @if(Auth::user()->sexo == 'masculino'   )
-                        <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image"></td>
+                        <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
                     @else
-                        <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image"></td>
+                        <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                     @endif
                 @else
-                    <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image"></td>
+                    <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image">
                 @endif
 
             </div>

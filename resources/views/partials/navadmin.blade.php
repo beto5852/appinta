@@ -85,12 +85,12 @@
                         <!-- The user image in the navbar-->
                         @if(empty(Auth::user()->img_perfil))
                             @if(Auth::user()->sexo == 'masculino'   )
-                                <img src="{{asset('img/user_masculino.jpg')}}" class="user-image" alt="User Image"></td>
+                                <img src="{{asset('img/user_masculino.jpg')}}" class="user-image" alt="User Image">
                             @else
-                                <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image"></td>
+                                <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image">
                             @endif
                         @else
-                            <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="user-image" alt="User Image"></td>
+                            <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="user-image" alt="User Image">
                         @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->

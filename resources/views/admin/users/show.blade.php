@@ -42,7 +42,7 @@
                                 <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
                             @endif
                         @else
-                            <td><img src="{{asset('img)}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                            <td><img src="{{asset('img)}}/{{$user->perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
                         @endif
                     <h3 class="profile-username text-center">{{$user->name}}</h3>
 

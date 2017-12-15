@@ -58,14 +58,14 @@
                     <td><span class="label label-danger">{{  $user->type}}</span></td>
                 @endif
                 <td>
-                @if(empty($user->img_perfil))
+                @if(empty($user->perfil))
                     @if($user->sexo == 'masculino'   )
                         <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
                     @else
                         <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
                     @endif
                 @else
-                    <td><img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                    <td><img src="{{asset('img/')}}/{{$user->perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
                     @endif
                 </td>
                 <td>

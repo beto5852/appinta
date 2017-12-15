@@ -96,11 +96,17 @@
                     <ul class="users-list clearfix">
                         @foreach($users as $user)
                         <li>
-                            @if($user->sexo == 'masculino')
-                                <img src="{{asset('img/Users-User-Male-2-icon.png')}}" alt="User Image">
+
+                            @if(empty(Auth::user()->perfil))
+                                @if(Auth::user()->sexo == 'masculino')
+                                    <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
+                                @else
+                                    <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
+                                @endif
                             @else
-                                <img src="{{asset('img/female-shadow-circle-512.png')}}" alt="User Image">
+                                <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image">
                             @endif
+
                             <a class="users-list-name" href="{{url('admin/users/'.$user->id)}}">{{  $user->name}}</a>
                             <span class="users-list-date">{{  $user->created_at}}</span>
                         </li>
