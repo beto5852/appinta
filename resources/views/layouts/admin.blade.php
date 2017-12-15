@@ -24,7 +24,14 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
+
+
+
     -->
+
+    <link rel="stylesheet" href={{asset("chosen/chosen.css")}}>
+
+
     <link rel="stylesheet" href={{asset("/adminlte/css/skins/skin-blue.min.css")}}>
 
 
@@ -115,6 +122,8 @@ desired effect
 
 <script src={{asset("ckeditor/ckeditor.js")}}></script>
 
+<script src={{asset("chosen/chosen.jquery.js")}}></script>
+
 <!-- Bootstrap 3.3.6 -->
 <script src={{asset("/adminlte/bootstrap/js/bootstrap.min.js")}}></script>
 <!-- AdminLTE App -->
@@ -153,6 +162,9 @@ desired effect
     CKEDITOR.replace('my-editor', options);
 </script>
 
+<script>
+    $(".chosen-select").chosen({width: "95%"});
+</script>
 
 </body>
 </html>

@@ -88,21 +88,6 @@
                    {{ Form::file('path')}}
                </div>
 
-               <div class="form-group">
-
-                   <label>Multiple</label>
-                   <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                       <option>Alabama</option>
-                       <option>Alaska</option>
-                       <option>California</option>
-                       <option>Delaware</option>
-                       <option>Tennessee</option>
-                       <option>Texas</option>
-                       <option>Washington</option>
-                   </select>
-               </div>
-
-
 
                <div class="form-group">
                    {{ Form::label('pt_id_tags','Tags') }}
