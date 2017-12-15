@@ -97,8 +97,9 @@
                         @foreach($users as $user)
                         <li>
 
-                            @if(empty(Auth::user()->perfil))
-                                @if(Auth::user()->sexo == 'masculino')
+                            @if(empty($user->perfil))
+
+                                @if($user->sexo == 'masculino')
                                     <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
                                 @else
                                     <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
