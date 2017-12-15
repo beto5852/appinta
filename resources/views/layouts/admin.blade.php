@@ -113,7 +113,7 @@ desired effect
 <script src="{{asset('adminlte/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('adminlte/plugins/datatables/dataTables.bootstrap.min.js')}}"></script>
 
-
+<script src={{asset("ckeditor/ckeditor.js")}}></script>
 
 <!-- Bootstrap 3.3.6 -->
 <script src={{asset("/adminlte/bootstrap/js/bootstrap.min.js")}}></script>
@@ -139,6 +139,19 @@ desired effect
     });
 </script>
 
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
 
 
 </body>

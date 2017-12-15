@@ -49,7 +49,7 @@
 
 
                 <div class="form-group">
-                    {{  Form::textarea('contenido',$practica->contenido,['class' => 'form-control']) }}
+                    {{  Form::textarea('contenido',$practica->contenido,['id' => 'my-editor','class' => 'my-editor']) }}
 
                 </div>
 

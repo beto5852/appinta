@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             {{ Form::label('descripcion_tecnologia','Descripción de la tecnológia') }}
-            {{ Form::textarea('descripcion_tecnologia','',['class' =>'form-control'])}}
+            {{ Form::textarea('descripcion_tecnologia','',['id' => 'my-editor','class' => 'my-editor'])}}
         </div>
 
         <div class="form-group text-right">

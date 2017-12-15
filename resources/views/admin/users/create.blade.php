@@ -97,7 +97,7 @@
                     </div>
                     <div class="form-group">
                         {!! Form::label('notas','Acerca de usted:') !!}
-                        {!! Form::text('notas',null,['class' =>'form-control', 'placeholder' =>'Describete para conocerte'])!!}
+                        {!! Form::text('notas',null,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])!!}
                     </div>
 
                     <div class="form-group">

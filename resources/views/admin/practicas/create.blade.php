@@ -56,11 +56,9 @@
 
 
             <div class="form-group">
-                {!! Form::textarea('contenido',null,['class' => 'form-control'])!!}
+                {!! Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor'])!!}
 
             </div>
-
-
 
 
         </div>

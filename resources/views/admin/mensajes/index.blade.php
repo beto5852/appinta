@@ -48,7 +48,7 @@
                 </div>
                 <div class="form-group">
                     {{ Form::label('Mensaje','Escribe tu mensaje') }}
-                    {{ Form::textarea('body','',['class' => 'form-control','placeholder' => 'Escribe aquí tu mensaje...','required']) }}
+                    {{ Form::textarea('body','',['id' => 'my-editor','class' => 'my-editor','placeholder' => 'Escribe aquí tu mensaje...','required']) }}
                 </div>
 
                 <div class="form-group text-right">
