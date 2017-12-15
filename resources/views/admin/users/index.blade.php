@@ -59,10 +59,14 @@
                 @endif
                 <td>
                 @if(empty($user->img_perfil))
-                    <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                    @if($user->sexo == 'masculino'   )
+                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
+                    @else
+                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                    @endif
                 @else
                     <td><img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
-                 @endif
+                    @endif
                 </td>
                 <td>
                     <a href="{{url('admin/users/'.$user->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>

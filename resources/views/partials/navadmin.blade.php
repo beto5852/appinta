@@ -83,23 +83,30 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-
-
-                        @if(Auth::user()->sexo == 'masculino')
-                            <img src="{{asset('img/Users-User-Male-2-icon.png')}}" class="user-image" alt="User Image">
-                        @else(Auth::user()->sexo == 'femenino')
-                            <img src="{{asset('img/female-shadow-circle-512.png')}}" class="user-image" alt="User Image">
+                        @if(empty(Auth::user()->img_perfil))
+                            @if(Auth::user()->sexo == 'masculino'   )
+                                <img src="{{asset('img/user_masculino.jpg')}}" class="user-image" alt="User Image"></td>
+                            @else
+                                <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image"></td>
+                            @endif
+                        @else
+                            <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="user-image" alt="User Image"></td>
                         @endif
+                                 
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs"> {!! Auth::user()->name !!}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            @if(Auth::user()->sexo == 'masculino')
-                                 <img src="{{asset('img/Users-User-Male-2-icon.png')}}" class="img-circle" alt="User Image">
-                        @else
-                                <img src="{{asset('img/female-shadow-circle-512.png')}}" class="img-circle" alt="User Image">
+                            @if(empty(Auth::user()->img_perfil))
+                                @if(Auth::user()->sexo == 'masculino'   )
+                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
+                                @else
+                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                                @endif
+                            @else
+                                <img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
                             @endif
                             <p>
                                 {!! Auth::user()->name !!}
