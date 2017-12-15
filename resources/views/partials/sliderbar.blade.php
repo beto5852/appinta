@@ -6,11 +6,17 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                @if(Auth::user()->sexo == 'masculino')
-                    <img src="{{asset('img/Users-User-Male-2-icon.png')}}" class="img-circle" alt="User Image">
+
+                @if(empty(Auth::user()->img_perfil))
+                    @if(Auth::user()->sexo == 'masculino'   )
+                        <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image"></td>
+                    @else
+                        <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image"></td>
+                    @endif
                 @else
-                    <img src="{{asset('img/female-shadow-circle-512.png')}}" class="img-circle" alt="User Image">
+                    <img src="{{asset('img/')}}/{{$user->img_perfil}}" class="img-circle" alt="User Image"></td>
                 @endif
+
             </div>
             <div class="pull-left info">
                 <p>{!! Auth::user()->name !!}</p>
