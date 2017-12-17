@@ -64,14 +64,17 @@ class PracticasController extends Controller
     {
         $practica = new Practica($request->all());
 
-        $practica->save();
-        /*if($practica->save()){
+        //dd($practica);
+
+        //$practica->save();
+        if($practica->save()){
+
             \Event::fire(new CrearPractica($practica));
-        }*/
+        }
 
         $practica->tags()->sync($request->pt_id_tags);
-        Session::flash('message','Labor agricola registrado correctamente');
 
+        Session::flash('message','Labor agricola registrado correctamente');
         return redirect::to('admin/practicas');
         //dd($user);
     }

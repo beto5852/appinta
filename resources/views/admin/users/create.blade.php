@@ -60,19 +60,11 @@
                         {!! Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('ocupacion','Ocupación') !!}
-                        {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
+                        {!! Form::label('notas','Acerca de usted:') !!}
+                        {!! Form::text('notas',null,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])!!}
                     </div>
-                    <div class="form-group">
-                        {!! Form::label('pais','Pais') !!}
-                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
-                    </div>
-
 
                 </div>
-
-
-
             </div>
         </div>
 
@@ -95,10 +87,17 @@
                         {{ Form::label('type','Tipo de usuario') }}
                         {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control'])}}
                     </div>
+
                     <div class="form-group">
-                        {!! Form::label('notas','Acerca de usted:') !!}
-                        {!! Form::text('notas',null,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])!!}
+                        {!! Form::label('ocupacion','Ocupación') !!}
+                        {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
                     </div>
+                    <div class="form-group">
+                        {!! Form::label('pais','Pais') !!}
+                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
+                    </div>
+
+
 
                     <div class="form-group">
                         {{ Form::label('perfil','Imagen de perfil') }}

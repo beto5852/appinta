@@ -139,10 +139,10 @@ desired effect
     $(function () {
         $('#practicas-table').DataTable({
             "paging": false,
-            "lengthChange": false,
+            "lengthChange": true,
             "searching": false,
             "ordering": true,
-            "info": true,
+            "info": false,
             "autoWidth": false
         });
     });

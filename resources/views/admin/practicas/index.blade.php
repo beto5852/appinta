@@ -100,9 +100,10 @@
 
 
                </tbody>
-                <center>{{ $practicas->links() }}</center>
+
 
             </table>
+            <center>{{ $practicas->links() }}</center>
         </div>
         <!-- /.box-body -->
     </div>
