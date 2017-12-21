@@ -12,6 +12,6 @@ class Caracteristica extends Model
 
     public  function variedades()
     {
-        return $this->belongsToMany('App\Variedad','cv')->withPivot('cv_id_variedad','descripcion_caracteristica')->withTimestamps();
+        return $this->belongsToMany(Variedad::class);
     }
 }

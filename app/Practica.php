@@ -29,7 +29,7 @@ class Practica extends Model
              Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica','contenido','path','tags','practica_id_tecnologia','practica_id_usuario'];
+    protected $fillable = ['nombre_practica','contenido','path','tags','tecnologia_id','user_id'];
     //protected $fillable = ['nombre_practica','contenido','path','tags','slug'];
 
 
@@ -41,15 +41,15 @@ class Practica extends Model
     }
     public function tecnologia()
     {
-        return $this->belongsTo(Tecnologia::class,'practica_id_tecnologia');
+        return $this->belongsTo(Tecnologia::class);
     }
     public function user()
     {
-        return $this->belongsTo(User::class,'practica_id_usuario');
+        return $this->belongsTo(User::class);
     }
     public function tags()
     {
-        return $this->belongsToMany(Tag::class,'pt','practica_id','tag_id');
+        return $this->belongsToMany(Tag::class);
     }
     public function scopeSearch($query,$nombre_practica){
         return $query->where('nombre_practica','LIKE',"%$nombre_practica%" );

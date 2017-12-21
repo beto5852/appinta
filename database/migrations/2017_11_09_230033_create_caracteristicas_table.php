@@ -15,8 +15,10 @@ class CreateCaracteristicasTable extends Migration
     {
         Schema::create('caracteristicas', function (Blueprint $tabla) {
             $tabla->engine = 'InnoDB';
+
             $tabla->increments('id');
             $tabla->string('nombre_caracteristica');
+            
             $tabla->timestamps();
         });
     }

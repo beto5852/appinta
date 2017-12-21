@@ -81,11 +81,11 @@
 
                     <div class="form-group">
                         {{ Form::label('sexo','Sexo') }}
-                        {{ Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control'])}}
+                        {{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}
                     </div>
                     <div class="form-group">
                         {{ Form::label('type','Tipo de usuario') }}
-                        {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control'])}}
+                        {{ Form::select('type',['' => 'Seleccione el tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control chosen-select'])}}
                     </div>
 
                     <div class="form-group">
@@ -93,12 +93,11 @@
                         {!! Form::text('ocupacion',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
                     </div>
                     <div class="form-group">
-                        {!! Form::label('pais','Pais') !!}
-                        {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
-                    </div>
+                         {!! Form::label('pais','Pais') !!} 
 
+                        {!! Form::text('pais',null,['class' =>'form-control chosen-select', 'placeholder' =>'Nombre Completo'])!!}
 
-
+                        
                     <div class="form-group">
                         {{ Form::label('perfil','Imagen de perfil') }}
                         {{ Form::file('perfil')}}
@@ -121,6 +120,46 @@
 
 
 
+@section('script')
+
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
+
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
+
+<script>
+    $(".chosen-select").chosen({width: "100%"});
+</script>
+
+<script>
+    //Date picker
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
+</script>
+@endsection
 
 
 

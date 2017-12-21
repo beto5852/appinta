@@ -18,8 +18,10 @@ class CreateCultivosTable extends Migration
             
             $table->increments('id');
             $table->string('nombre_cultivo');
-            $table->integer('cultivos_id_rubro')->unsigned()->nullable();
-            $table->foreign('cultivos_id_rubro')->references('id')->on('rubros')->onDelete('set null');
+
+            $table->integer('rubro_id')->unsigned()->nullable();
+            $table->foreign('rubro_id')->references('id')->on('rubros')->onDelete('set null');
+            
             $table->timestamps();
         });
     }

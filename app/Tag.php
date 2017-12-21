@@ -8,9 +8,10 @@ class Tag extends Model
 {
     public $table = 'tags';
     protected $fillable = ['nombre_tags'];
+    
     public function practicas()
     {
-        return $this->belongsToMany(Practica::class,'pt','tag_id','practica_id');
+        return $this->belongsToMany(Practica::class);
     }
     public function scopeSearch($query,$nombre_tags){
         return $query->where('nombre_tags','LIKE',"%$nombre_tags%" );

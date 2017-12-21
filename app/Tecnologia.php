@@ -8,8 +8,10 @@ class Tecnologia extends Model
 {
     protected $table = 'tecnologias';
     protected $fillable =['nombre_tecnologia','descripcion_tecnologia'];
+    
+
     public function practicas(){
-        return $this->hasMany('APP\Practica');
+        return $this->hasMany(Practica::class);
     }
     public function rubros()
     {

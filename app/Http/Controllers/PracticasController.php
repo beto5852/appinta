@@ -48,7 +48,7 @@ class PracticasController extends Controller
         $tecnologias = Tecnologia::orderBy('nombre_tecnologia','ASC')->pluck('nombre_tecnologia','id');
         $tags  = Tag::orderBy('nombre_tags','ASC')->pluck('nombre_tags','id');
 
-        $cultivos = Cultivo::orderBy('nombre_cultivo','ASC')->pluck('nombre_cultivo','id');
+        $cultivos = Cultivo::orderBy('nombre_cultivo','DESC')->pluck('nombre_cultivo','id');
 
 
         return view('admin.practicas.create',compact('tecnologias','tags','cultivos'));
@@ -62,7 +62,18 @@ class PracticasController extends Controller
      */
     public function store(Request $request)
     {
-        $practica = new Practica($request->all());
+       
+
+       $this->validate($request,[
+            'nombre_practica' => 'required',
+            'contenido'       => 'required',
+            'tecnologia_id'       => 'required', 
+
+       ]);
+
+
+
+       $practica = new Practica($request->all());
 
         //dd($practica);
 
@@ -72,7 +83,7 @@ class PracticasController extends Controller
             \Event::fire(new CrearPractica($practica));
         }
 
-        $practica->tags()->sync($request->pt_id_tags);
+        $practica->tags()->sync($request->tag_id);
 
         Session::flash('message','Labor agricola registrado correctamente');
         return redirect::to('admin/practicas');
@@ -127,7 +138,7 @@ class PracticasController extends Controller
         // dd($practica);
         $practica->save();
         // dd($request->pt_id_tags);
-        $practica->tags()->sync($request->pt_id_tags);
+        $practica->tags()->sync($request->tag_id);
         Session::flash('message','Práctica actualizado correctamente');
         return redirect::to('admin/practicas');
     }

@@ -10,14 +10,14 @@ class Cultivo extends Model
     protected $fillable =['nombre_cultivo'];
     public function etapas()
     {
-        return $this->belongsToMany('App\Etapa','ce')->withTimestamps();
+        return $this->belongsToMany(Etapa::class);
     }
     public function rubro()
     {
-        return $this->belongsTo('App\Rubro');
+        return $this->belongsTo(Rubro::class);
     }
-    public  function variedad()
+    public  function variedades()
     {
-        return $this->hasMany('App\Variedad');
+        return $this->hasMany(variedad::class);
     }
 }

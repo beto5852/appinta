@@ -12,9 +12,9 @@ class MsTableSeeder extends Seeder
     public function run()
     {
         for($i = 0; $i<10; $i++) {
-            \DB::table('ms')->insert(array(
-                'ms_id_mes' => App\Mes::all()->random()->id,
-                'ms_id_semana' => App\Semana::all()->random()->id
+            \DB::table('mes_semana')->insert(array(
+                'mes_id' => App\Mes::all()->random()->id,
+                'semana_id' => App\Semana::all()->random()->id
             ));
         }
     }

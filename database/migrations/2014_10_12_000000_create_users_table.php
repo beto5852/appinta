@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->string('name');
             $table->string('sexo')->nullable();
@@ -23,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->text('notas')->nullable();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('telefono',8)->nullable();
+            $table->string('telefono')->nullable();
             $table->enum('type',['miembro','admin'])->default('miembro');
             $table->string('perfil')->nullable();
             $table->rememberToken();

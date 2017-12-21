@@ -36,7 +36,7 @@
                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practica->user->name}}
                     </div>
                     <div class="col-md-4">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practica->created_at}}
+                        <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practica->created_at->format('M')}}
                     </div>
                 </div>
                 <br>

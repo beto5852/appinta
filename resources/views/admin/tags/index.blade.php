@@ -55,8 +55,14 @@
                     <td>{{  $tag->nombre_tags}}</td>
                     <td>
                         <a href="{{url('admin/tags/'.$tag->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                        <a href="{{url('tags/'.$tag->id)}}" class="btn btn-raised btn-warning" role="button"
-                           onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
+                         <form method="POST" action="{{route('admin.tags.destroy',$tag->id)}}" style="display:inline" >
+                               {{ csrf_field() }} {{method_field('DELETE')}}
+
+                               <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar el tag')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                           </form>
+
                     </td>
                 </tr>
             @endforeach

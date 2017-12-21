@@ -9,7 +9,9 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
-class CrearPractica implements ShouldQueue
+//class CrearPractica implements ShouldQueue se elimino este shouldqueque
+
+class CrearPractica 
 {
     use InteractsWithSockets, SerializesModels;
 

@@ -29,7 +29,7 @@
         <div class="col-md-6">
 
             <h2>Mensajes</h2>
-            <p>{{$mensajes->body}}</p>
+            <p>{!! $mensajes->body !!}</p>
             <small>Enviado por {{$mensajes->sender->name}}</small>
 
         </div>

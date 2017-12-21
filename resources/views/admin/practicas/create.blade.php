@@ -44,19 +44,15 @@
 
                 <div class="form-group">
                     {{ Form::label('Practica','Tema de la práctica agrícola') }}
-                    {{ Form::text('nombre_practica','',['class' => 'form-control','placeholder' => 'Tema aquí...','required']) }}
+                    {{ Form::text('nombre_practica','',['class' => 'form-control','placeholder' => 'Tema aquí...','value' => 'old(nombre_practica)' ]) }}
                 </div>
 
-                <div class="form-group">
-                    {{ Form::label('tecnologia','Tipo de tecnológia') }}
-                    {{ Form::select('practica_id_tecnologia',$tecnologias,null,['class' => 'form-control','required'])}}
-                </div>
 
             </div>
 
 
             <div class="form-group">
-                {!! Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor'])!!}
+                {!! Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor','value' => 'old(contenido)'])!!}
 
             </div>
 
@@ -74,25 +70,39 @@
                    <div class="input-group-addon">
                        <i class="fa fa-calendar"></i>
                    </div>
-                   {{ Form::text('publish_at','',['class' => 'form-control pull-right', 'id' => 'datepicker',]) }}
+                   {{ Form::text('created_at','',['class' => 'form-control pull-rigth', 'id' => 'datepicker','value' => 'old(created_at)'] )}}
                </div>
                <!-- /.input group -->
            </div>
 
            <div class="box-body">
+
+                <div class="form-group">
+                    {{ Form::label('Tecnologia','Tipo de tecnológia') }}
+                    {{ Form::select('tecnologia_id',$tecnologias,null,['class' => 'form-control chosen-select','value' => 'old(tecnologia_id) == $tecnologias->id ? selected :'])}}
+                </div>
+
                <div class="form-group">
-                   {{ Form::hidden('practica_id_usuario',Auth::user()->id,null,['class' => 'form-control'])}}
+                   {{ Form::hidden('usuario_id',Auth::user()->id,null,['class' => 'form-control'])}}
                </div>
                <div class="form-group">
                    {{ Form::label('path','Imagen de la práctica') }}
                    {{ Form::file('path')}}
                </div>
 
+               <div class="form-group">
+                   {{ Form::label('tag_id','Etiquetas agropecuarias') }}
+                   {{ Form::select('tag_id[]',$tags,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old(tag_id[])']) }}
+               </div>
+
 
                <div class="form-group">
-                   {{ Form::label('pt_id_tags','Tags') }}
-                   {{ Form::select('pt_id_tags[]',$tags,null,['class'=>'form-control chosen-select','multiple','required']) }}
+                   <div  class="dropzone">
+                 
+                   </div>
                </div>
+
+
                <div class="form-group text-right">
 
                    {{ Form::submit('Guardar Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
@@ -109,25 +119,57 @@
 @endsection
 
 
-@section('styles')
-
-<link rel="stylesheet" href="{{asset('adminlte/plugins/datepicker/datepicker3.css')}}">
-
-@endsection
-
 @section('script')
-<!-- bootstrap datepicker -->
-<script src="{{asset('admilte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
-<!-- Select2 -->
 
-<script src="{{asset('adminlte/plugins/select2/select2.full.min.js')}}"></script>
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
+
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
+
+<script>
+    $(".chosen-select").chosen({width: "100%"});
+</script>
 
 <script>
     //Date picker
     $('#datepicker').datepicker({
         autoclose: true
     });
+
+   var accept = ".png";
+   
+   var myDropzone = new Dropzone('.dropzone',{
+        url : '/admin/practicas/',
+        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
+
+    });
+
+    Dropzone.autoDiscover = false;
+
+    
+
+
 </script>
-
 @endsection
-

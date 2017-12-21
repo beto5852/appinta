@@ -55,7 +55,6 @@ class UsersController extends Controller
 
             'name' => 'required',
             'email'    => 'required|email',
-            'telefono' => 'required',
             'sexo' => 'required_if:masculino,femenino',
             'type' => 'required_if:admin,miembro'
         ]);

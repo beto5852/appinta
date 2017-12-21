@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePtTable extends Migration
+class CreatePracticaTag extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreatePtTable extends Migration
      */
     public function up()
     {
-        Schema::create('pt', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
-
+        Schema::create('practica_tag', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('practica_id')->unsigned()->nullable();
+
+             $table->integer('practica_id')->unsigned()->nullable();
             $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
+            
             $table->integer('tag_id')->unsigned()->nullable();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
+
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ class CreatePtTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pt');
+        Schema::dropIfExists('practica_tag');
     }
 }

@@ -73,7 +73,7 @@ class MensajesController extends Controller
 
         $recibe->notify(new MensajeEnviado($mensaje));
         
-        Session::flash('message','Tu Mensaje Enviado');
+        Session::flash('message','Tu Mensaje ha sido enviado');
         return redirect::to('admin/mensajes');
          //return back()->with('flash','Tu mensaje fue enviado');
     }

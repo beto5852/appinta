@@ -28,9 +28,7 @@
             {{Session::get('message')}}
         </div>
     @endif
-
-
-
+ <div class="row">
     <div class="col-md-8">
         <div class="box box-primary">
 
@@ -44,7 +42,7 @@
 
                 <div class="form-group">
                     {{ Form::label('Enviar a:','Enviar a:') }}
-                    {{ Form::select('recibe_id',$users,null,['class' => 'form-control'])}}
+                    {{ Form::select('recibe_id',$users,null,['class' => 'form-control','required'])}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('Mensaje','Escribe tu mensaje') }}
@@ -60,18 +58,6 @@
             </div>
         </div>
     </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
+    </div>
 
 @endsection

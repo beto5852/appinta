@@ -10,6 +10,6 @@ class Etapa extends Model
     protected $fillable =['nombre_etapa','descripcion_etapa'];
     public function cultivos()
     {
-        return $this->belongsToMany('App\Cultivo','ce')->withPivot('ce_id_cultivo')->withTimestamps();
+        return $this->belongsToMany(Cultivo::class);
     }
 }

@@ -13,9 +13,9 @@ class PsTableSeeder extends Seeder
     {
         /*$faker = Faker::create();*/
         for($i = 0; $i<10; $i++) {
-            \DB::table('ps')->insert(array(
-                'ps_id_practica' => App\Practica::all()->random()->id,
-                'ps_id_semana' => App\Semana::all()->random()->id
+            \DB::table('practica_semana')->insert(array(
+                'practica_id' => App\Practica::all()->random()->id,
+                'semana_id' => App\Semana::all()->random()->id
             ));
         }
     }

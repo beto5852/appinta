@@ -12,10 +12,10 @@ class Variedad extends Model
     
     public  function caracteristicas()
     {
-        return $this->belongsToMany('App\Caracteristica','cv')->withPivot('cv_id_caracteristica','descripcion_caracteristica')->withTimestamps();
+        return $this->belongsToMany(Caracteristica::class);
     }
-    public function cultivos()
+    public function cultivo()
     {
-        return $this->belongsTo('App\Cultivo');
+        return $this->belongsTo(Cultivo::class);
     }
 }

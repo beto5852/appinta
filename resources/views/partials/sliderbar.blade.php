@@ -16,7 +16,7 @@
                     @endif
 
                  @else
-                    <img src="{{asset('img/'.$user->img_perfil)}}" class="img-circle" alt="User Image">
+                    <img src="#" class="img-circle" alt="User Image">
                 @endif
 
             </div>
@@ -52,7 +52,7 @@
 
             <li class="treeview" {{request()->is('admin/users*')? 'active': ''}}>
 
-                <a href="#"><i class="fa fa-users"></i>Usuarios</span>
+                <a href="#"><i class="fa fa-users"></i><span>Usuarios</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>
                     </span>
@@ -95,7 +95,7 @@
 
             <!--  Menu CULTIVOS -->
 
-            <li class="treeview" {{request()->is('admin/cultivos*') ? 'active': ''}}>
+            <li class="treeview" {{request()->is('admin/cultivos*') ? 'class=active': ''}}>
                 <a href="#"><i class="fa fa-pagelines"></i> <span>Cultivos</span>
                     <span class="pull-right-container">
                       <i class="fa fa-angle-left pull-right"></i>

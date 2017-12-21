@@ -15,10 +15,10 @@ class CvTableSeeder extends Seeder
         //
         $faker = Faker::create();
         for($i = 0; $i<10; $i++) {
-            \DB::table('cv')->insert(array(
+            \DB::table('caracteristica_variedad')->insert(array(
                 'descripcion_caracteristica' => $faker->sentence(20),
-                'cv_id_caracteristica' => App\Caracteristica::all()->random()->id,
-                'cv_id_variedad' => App\Variedad::all()->random()->id
+                'caracteristica_id' => App\Caracteristica::all()->random()->id,
+                'variedad_id' => App\Variedad::all()->random()->id
             ));
         }
     }

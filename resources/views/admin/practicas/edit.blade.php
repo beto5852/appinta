@@ -25,65 +25,60 @@
 
     @endif
 
-    <div class="row">
-        {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
+    
+<div class="row">
+   {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
+    <div class="col-md-8">
+        <div class="box box-primary">
 
-        <div class="col-md-8">
-            <div class="box box-primary">
+            <!--Aqui va el formulario de la practica agricola-->
 
-                <!--Aqui va el formulario de la practica agricola-->
-
-                <div class="box-body">
-
-
-                    <div class="form-group">
-                        {{ Form::label('nombre_practica','Nombre de la labor agricola') }}
-                        {{ Form::text('nombre_practica',$practica->nombre_practica,['class' =>'form-control', 'placeholder' =>'Nombre practica','required'])}}
-                    </div>
-
-                    <div class="form-group">
-                        {{ Form::label('tecnologia','Tecnológia') }}
-                        {{ Form::select('practica_id_tecnologia',$tecnologias,$practica->tecnologia->id,['class' => 'form-control'])}}
-                    </div>
-                </div>
-
+            <div class="box-body">
 
                 <div class="form-group">
-                    {{  Form::textarea('contenido',$practica->contenido,['id' => 'my-editor','class' => 'my-editor']) }}
-
+                   {{ Form::label('nombre_practica','Nombre de la labor agricola') }}
+                        {{ Form::text('nombre_practica',$practica->nombre_practica,['class' =>'form-control', 'placeholder' =>'Nombre practica'])}}
                 </div>
+            </div>
+            <div class="form-group">
 
-
-
+             {{  Form::textarea('contenido',$practica->contenido,['id' => 'my-editor','class' => 'my-editor']) }}
 
             </div>
+
+
         </div>
-        <div class="col-md-4">
-            <div class="box box-primary">
+    </div>
+    <div class="col-md-4">
+       <div class="box box-primary">
 
-                <!-- Date -->
+           <!-- Date -->
+           <div class="form-group">
+               <label>Fecha de publicación:</label>
+
+               <div class="input-group date">
+                   <div class="input-group-addon">
+                       <i class="fa fa-calendar"></i>
+                   </div>
+                   {{ Form::text('created_at','',['class' => 'form-control pull-rigth', 'id' => 'datepicker','value' => 'old(created_at)'] )}}
+               </div>
+               <!-- /.input group -->
+           </div>
+
+           <div class="box-body">
+
+                 <div class="form-group">
+                        {{ Form::label('user','Cambiar editor') }}
+                        {{ Form::select('practica_id_usuario',$users,null,['class' => 'form-control chosen-select'])}}
+                 </div>
+
                 <div class="form-group">
-                    <label>Fecha de publicación:</label>
-
-                    <div class="input-group date">
-                        <div class="input-group-addon">
-                            <i class="fa fa-calendar"></i>
-                        </div>
-
-                        <input type="text" class="form-control pull-right" id="datepicker">
-
-                        {{ Form::text('publish_at','',['class' => 'form-control pull-right', 'id' => 'datepicker',]) }}
-                    </div>
-                    <!-- /.input group -->
+                    {{ Form::label('tecnologia','Tecnológia') }}
+                        {{ Form::select('Ttecnologia_id',$tecnologias,$practica->tecnologia->id,['class' => 'form-control chosen-select'])}}
                 </div>
 
-                <div class="box-body">
-                    <div class="form-group">
-                        {{ Form::label('user','Cambiar editor') }}
-                        {{ Form::select('practica_id_usuario',$users,null,['class' => 'form-control'])}}
-                    </div>
 
-                    @if(empty($practica->path))
+                @if(empty($practica->path))
                         <img src="{{asset('img/no-imagen.jpg')}}" alt="" style="width: 100px;" />
                     @else
                         <img src="{{asset('img/')}}/{{$practica->path}}" alt="" style="width: 100px;" />
@@ -92,66 +87,84 @@
                         {{ Form::label('imagen','Imagen de la práctica') }}
                         {{ Form::file('path')}}
                     </div>
-
-                <!--    <div class="form-group">
-
-                        <label>Multiple</label>
-                    <select class="form-control select2" multiple="multiple" data-placeholder="Select a State" style="width: 100%;">
-                        <option>Alabama</option>
-                        <option>Alaska</option>
-                        <option>California</option>
-                        <option>Delaware</option>
-                        <option>Tennessee</option>
-                        <option>Texas</option>
-                        <option>Washington</option>
-                    </select>
-                  </div>-->
-
+                    
                     <div class="form-group">
-
-                        {{ Form::label('pt_id_tags','Tags') }}
-                        {{ Form::select('pt_id_tags[]',$tags,$my_tags,['class'=>'form-control select2', 'multiple','style' => '100%', 'required' ]) }}
-
-
-                    </div>
-                    <div class="form-group text-right">
-
-                        {{ Form::submit('Actualizar Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
-
+                        {{ Form::label('tag_id','Tags') }}
+                        {{ Form::select('tag_id[]',$tags,$my_tags,['class'=>'form-control chosen-select', 'multiple','style' => '100%', 'required' ]) }}
                     </div>
 
-                </div>
-            </div>
 
-        </div>
-        {!! Form::close() !!}
+               <div class="form-group">
+                   <div  class="dropzone">
+                 
+                   </div>
+               </div>
+
+
+               <div class="form-group text-right">
+
+                   {{ Form::submit('Guardar Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
+
+               </div>
+
+           </div>
+       </div>
+
     </div>
+    {!! Form::close() !!}
+</div>
 
 @endsection
 
 
-@section('styles')
+@section('script')
 
-    <link rel="stylesheet" href="{{asset('adminlte/plugins/datepicker/datepicker3.css')}}">
-
-    @endsection
-
-    @section('script')
-            <!-- bootstrap datepicker -->
-    <script src="adminlte/plugins/datepicker/bootstrap-datepicker.js"></script>
-    <!-- Select2 -->
-
-    <script src="{{asset('adminlte/plugins/select2/select2.full.min.js')}}"></script>
-
-    <script>
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
         });
-    </script>
+    });
+</script>
 
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
+
+<script>
+    $(".chosen-select").chosen({width: "100%"});
+</script>
+
+<script>
+    //Date picker
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
+
+   new Dropzone('.dropzone',{
+        url : '/admin/practicas/fotos',
+        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
+    });
+
+    Dropzone.autoDiscover = false;
+
+</script>
 @endsection
-
 
 
 

@@ -13,7 +13,7 @@ class PtTableSeeder extends Seeder
     {
         //
         for($i = 0; $i<10; $i++) {
-            \DB::table('pt')->insert(array(
+            \DB::table('practica_tag')->insert(array(
                 'practica_id' => App\Practica::all()->random()->id,
                 'tag_id' => App\Tag::all()->random()->id
             ));

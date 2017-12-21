@@ -21,11 +21,12 @@ class CreatePracticasTable extends Migration
             $tabla->text('contenido');
             $tabla->string('slug')->nullable();
             $tabla->string('path')->nullable();
-            $tabla->integer('practica_id_tecnologia')->unsigned()->nullable();
-            $tabla->foreign('practica_id_tecnologia')->references('id')->on('tecnologias')->onDelete('set null');
+            
+            $tabla->integer('tecnologia_id')->unsigned()->nullable();
+            $tabla->foreign('tecnologia_id')->references('id')->on('tecnologias')->onDelete('set null');
 
-            $tabla->integer('practica_id_usuario')->unsigned()->nullable();
-            $tabla->foreign('practica_id_usuario')->references('id')->on('users')->onDelete('set null');
+            $tabla->integer('user_id')->unsigned()->nullable();
+            $tabla->foreign('user_id')->references('id')->on('users')->onDelete('set null');
             $tabla->timestamps();
         });
     }

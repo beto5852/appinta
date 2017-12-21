@@ -83,8 +83,10 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
     Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
     Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
+    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
 
-     
+     Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
+
 
     Route::get('tags/{id}',[
         'uses' => "TagsController@destroy",

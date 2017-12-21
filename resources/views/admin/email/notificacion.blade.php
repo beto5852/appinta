@@ -8,9 +8,19 @@
 
 </head>
 <body>
+
+<div class="row"> 
+
+	<div class="box-body no-padding">
+							
+			
+            
     <h1>{{$user->name}}</h1>
     <p>Has recibido un mensaje</p>
     <a href="{{url('admin/mensajes/'.$msg->id)}}"> Click aquí para ver el mensaje</a>
     <p>Gracias por usar APPINTA</p>
+
+</div>
+
 </body>
 </html>

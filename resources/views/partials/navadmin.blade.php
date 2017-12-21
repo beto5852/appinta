@@ -90,7 +90,7 @@
                                 <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image">
                             @endif
                         @else
-                            <img src="{{asset('img')}}/{{$user->perfil}}" class="user-image" alt="User Image">
+                            <img src="#" class="user-image" alt="User Image">
                         @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -106,7 +106,7 @@
                                     <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
                                 @endif
                             @else
-                                <img src="{{asset('img/')}}/{{$user->img_perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                                <img src="#" style = "width: 100px;" class="img-circle" alt="User Image"></td>
                             @endif
                             <p>
                                 {!! Auth::user()->name !!}
