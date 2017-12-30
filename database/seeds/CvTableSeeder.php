@@ -18,7 +18,7 @@ class CvTableSeeder extends Seeder
             \DB::table('caracteristica_variedad')->insert(array(
                 'descripcion_caracteristica' => $faker->sentence(20),
                 'caracteristica_id' => App\Caracteristica::all()->random()->id,
-                'variedad_id' => App\Variedad::all()->random()->id
+                'variedade_id' => App\Variedad::all()->random()->id
             ));
         }
     }

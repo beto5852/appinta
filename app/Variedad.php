@@ -6,16 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Variedad extends Model
 {
+
+    protected $primary = 'cultivo_id';
+
     protected $table = 'variedades';
-    
-    protected $fillable =['nombre_variedad'];
-    
-    public  function caracteristicas()
+
+    protected $fillable = ['nombre_variedad', 'cultivo_id'];
+
+    public function caracteristicas()
     {
         return $this->belongsToMany(Caracteristica::class);
     }
     public function cultivo()
     {
-        return $this->belongsTo(Cultivo::class);
+        return $this->belongsTo(Cultivo::class, 'cultivo_id');
     }
+
 }

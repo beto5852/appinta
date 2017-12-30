@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SemanasTableSeeder::class);
         // $this->call(PracticaTableSeeder::class);
         $this->call(TrTableSeeder::class);          
-        $this->call(PsTableSeeder::class);
+       // $this->call(PsTableSeeder::class);
         $this->call(MsTableSeeder::class);
         $this->call(CeTableSeeder::class);
         $this->call(CvTableSeeder::class);

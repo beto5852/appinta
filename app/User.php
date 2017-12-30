@@ -17,10 +17,12 @@ class User extends Authenticatable
      *
      * @var array
      */
+    protected $guarded=[];
+    
     protected $table = 'users';
 
 
-    public function setPathAttribute($perfil){
+    public function setPerfilAttribute($perfil){
         if (!empty($perfil)){
 
             $nombre = $perfil->getClientOriginalName();

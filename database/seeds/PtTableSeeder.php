@@ -12,10 +12,10 @@ class PtTableSeeder extends Seeder
     public function run()
     {
         //
-        for($i = 0; $i<10; $i++) {
+        for ($i = 1; $i < 10; $i++) {
             \DB::table('practica_tag')->insert(array(
                 'practica_id' => App\Practica::all()->random()->id,
-                'tag_id' => App\Tag::all()->random()->id
+                'tag_id'      => App\Tag::all()->random()->id,
             ));
         }
     }

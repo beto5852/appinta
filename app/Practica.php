@@ -2,42 +2,45 @@
 
 namespace App;
 
-use App\Events\CrearPractica;
-use Illuminate\Database\Eloquent\Model;
 use Cviebrock\EloquentSluggable\Sluggable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
 class Practica extends Model
 {
-    protected $table = 'practicas';
+
+    protected $guarded = [];
+    protected $table   = 'practicas';
     use Sluggable;
 
-     public function sluggable(){
+    public function sluggable()
+    {
         return [
             'slug' => [
-                'source' => 'nombre_practica'
-            ]
+                'source' => 'nombre_practica',
+            ],
         ];
     }
-    public function setPathAttribute($path){
-        if (!empty($path)){
+    public function setPathAttribute($path)
+    {
+        if (!empty($path)) {
             // dd($path);
-            $nombre = $path->getClientOriginalName();
+            $nombre                   = $path->getClientOriginalName();
             $this->attributes['path'] = $nombre;
             Storage::disk('img')->put($nombre, \File::get($path));
             /* $nombre_route = time().'_'.$path->getClientOriginalName();
-             Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
+        Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica','contenido','path','tags','tecnologia_id','user_id'];
-    //protected $fillable = ['nombre_practica','contenido','path','tags','slug'];
+    protected $fillable = ['nombre_practica', 'contenido', 'path', 'tags', 'tecnologia_id', 'user_id'];
 
-
-
-
+    public function meses()
+    {
+        return $this->belongsToMany(Mes::class, 'mese_practica_semana');
+    }
     public function semanas()
     {
-        return $this->belongsToMany(Semana::class);
+        return $this->belongsToMany(Semana::class, 'mese_practica_semana');
     }
     public function tecnologia()
     {
@@ -51,7 +54,8 @@ class Practica extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
-    public function scopeSearch($query,$nombre_practica){
-        return $query->where('nombre_practica','LIKE',"%$nombre_practica%" );
+    public function scopeSearch($query, $nombre_practica)
+    {
+        return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
     }
 }

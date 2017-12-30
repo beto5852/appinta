@@ -90,7 +90,7 @@
                                 <img src="{{asset('img/user_femenino.jpg')}}" class="user-image" alt="User Image">
                             @endif
                         @else
-                            <img src="#" class="user-image" alt="User Image">
+                            <img src="{{asset('img/'.Auth::user()->perfil)}}" class="user-image" alt="User Image">
                         @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
@@ -99,14 +99,14 @@
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            @if(empty(Auth::user()->img_perfil))
+                            @if(empty(Auth::user()->perfil))
                                 @if(Auth::user()->sexo == 'masculino'   )
-                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
+                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture">
                                 @else
-                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                                    <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture">
                                 @endif
                             @else
-                                <img src="#" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                                <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.Auth::user()->perfil)}}" alt="User profile picture">
                             @endif
                             <p>
                                 {!! Auth::user()->name !!}

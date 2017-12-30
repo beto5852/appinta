@@ -48,6 +48,17 @@ $factory->define(App\Rubro::class, function (Faker\Generator $faker) {
         'descripcion_rubro' => $faker->paragraph,
     ];
 });
+
+
+/***************************variedad**********************************************************/
+$factory->define(App\Variedad::class, function (Faker\Generator $faker) {
+    return [
+        'nombre_variedad' => $faker->sentence,
+        'cultivo_id' => App\Cultivo::all()->random()->id,
+    ];
+});
+
+
 /************************Tecnologia************************************/
 $factory->define(App\Tecnologia::class, function (Faker\Generator $faker) {
     return [
@@ -55,11 +66,14 @@ $factory->define(App\Tecnologia::class, function (Faker\Generator $faker) {
         'descripcion_tecnologia' => $faker->paragraph,
     ];
 });
+
 /************************Cultivos************************************/
 $factory->define(App\Cultivo::class, function (Faker\Generator $faker) {
     return [
         'nombre_cultivo' => $faker->sentence,
+        'descripcion_cultivo' => $faker->paragraph,
         'rubro_id' => App\Rubro::all()->random()->id,
+        
     ];
 });
 /************************Etapas************************************/
@@ -69,13 +83,7 @@ $factory->define(App\Etapa::class, function (Faker\Generator $faker) {
         'descripcion_etapa' => $faker->paragraph,
     ];
 });
-/***************************variedad**********************************************************/
-$factory->define(App\Variedad::class, function (Faker\Generator $faker) {
-    return [
-        'nombre_variedad' => $faker->sentence,
-        'cultivo_id'=> App\Cultivo::all()->random()->id,
-    ];
-});
+
 /***************************Caracteristica**********************************************************/
 $factory->define(App\Caracteristica::class, function (Faker\Generator $faker) {
     return [

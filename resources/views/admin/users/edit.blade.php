@@ -25,8 +25,7 @@
  <div class="row">
         
           <!--Aqui va el formulario de la practica agricola-->
-        {!! Form::open(['url' => ['admin/users',$user], 'method' => 'PUT']) !!}
-
+        {!! Form::open(['url' => ['admin/users',$user], 'method' => 'PUT','files'=> 'true','enctype' => 'multipart/form-data']) !!}
 
         <div class="col-md-8">
             <div class="box box-primary">
@@ -79,6 +78,22 @@
                              {{ Form::text('pais',$user->pais,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])}}
                            
                          </div>
+
+                        @if(empty(Auth::user()->perfil))
+                            @if(Auth::user()->sexo == 'masculino')
+                                <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
+                            @elseif(Auth::user()->sexo == 'femenino')
+                                <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
+                             @endif
+                       @else
+                       <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                       @endif
+                    <div class="form-group">
+                        {{ Form::label('imagen','Imagen de perfil') }}
+                        {{ Form::file('perfil')}}
+                    </div>
+
+
                     <div class="form-group text-right">
 
                         {{ Form::submit('Actualizar Registro', ['class' => 'btn btn-primary btn-block']) }}
@@ -129,6 +144,7 @@
 <script>
     //Date picker
     $('#datepicker').datepicker({
+        lenguage:'esp', 
         autoclose: true
     });
 </script>

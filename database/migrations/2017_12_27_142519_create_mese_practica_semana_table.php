@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-class CreateMesSemanaTable extends Migration
+class CreateMesePracticaSemanaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,17 @@ class CreateMesSemanaTable extends Migration
      */
     public function up()
     {
-        Schema::create('mes_semana', function (Blueprint $table) {
+        Schema::create('mese_practica_semana', function (Blueprint $table) {
             $table->increments('id');
-
 
             $table->integer('mes_id')->unsigned()->nullable();
             $table->foreign('mes_id')->references('id')->on('meses')->onDelete('set null');
 
+            $table->integer('practica_id')->unsigned()->nullable();
+            $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
+
             $table->integer('semana_id')->unsigned()->nullable();
             $table->foreign('semana_id')->references('id')->on('semanas')->onDelete('set null');
-            
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateMesSemanaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mes_semana');
+        Schema::dropIfExists('mese_practica_semana');
     }
 }

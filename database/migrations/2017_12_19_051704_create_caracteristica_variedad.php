@@ -17,13 +17,13 @@ class CreateCaracteristicaVariedad extends Migration
 
             $table->increments('id');
 
-            $table->string('descripcion_caracteristica')->nullable();
+            $table->text('descripcion_caracteristica')->nullable();
 
             $table->integer('caracteristica_id')->unsigned()->nullable();
             $table->foreign('caracteristica_id')->references('id')->on('caracteristicas')->onDelete('set null');
             
-            $table->integer('variedad_id')->unsigned()->nullable();
-            $table->foreign('variedad_id')->references('id')->on('variedades')->onDelete('set null');
+            $table->integer('variedade_id')->unsigned()->nullable();
+            $table->foreign('variedade_id')->references('id')->on('variedades')->onDelete('set null');
 
             $table->timestamps();
         });

@@ -42,7 +42,7 @@
 
                 <div class="form-group">
                     {{ Form::label('Enviar a:','Enviar a:') }}
-                    {{ Form::select('recibe_id',$users,null,['class' => 'form-control','required'])}}
+                    {{ Form::select('recibe_id',$users,null,['class' => 'form-control chosen-select','required'])}}
                 </div>
                 <div class="form-group">
                     {{ Form::label('Mensaje','Escribe tu mensaje') }}
@@ -59,5 +59,40 @@
         </div>
     </div>
     </div>
+
+@endsection
+
+@section('script')
+
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
+
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
+<script>
+    $(".chosen-select").chosen({width: "100%"});
+</script>
+
 
 @endsection

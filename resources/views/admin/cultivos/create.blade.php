@@ -14,8 +14,8 @@
 
         <div class="alert alert-dismissible alert-danger">
             <button type="button" class="close" data-dismiss="alert">×</button>
-            <ul>
-                @foreach($errors->all() as $mensaje)
+            <ul> 
+              @foreach($errors->all() as $mensaje)
                     <li>{{$mensaje}}</li>
                 @endforeach
             </ul>
@@ -27,6 +27,7 @@
         {!! Form::open(['url' => 'admin/cultivos', 'method' => 'POST']) !!}
 
         <div class="col-md-8">
+
             <div class="box box-primary">
 
                 <!--Aqui va el formulario de la practica agricola-->
@@ -41,7 +42,7 @@
 
                     <div class="form-group">
                         {!! Form::label('descripcion_cultivo','Descripción de la tecnológia') !!}
-                        {!! Form::textarea('descripcion_cultivo',null,['class' => 'form-control'])!!}
+                        {!! Form::textarea('descripcion_cultivo',null,['id' => 'my-editor','class' => 'my-editor','value' => 'old(descripcion_cultivo)'])!!}
                     </div>
                 </div>
 
@@ -58,8 +59,9 @@
 
                 <div class="box-body">
                            <div class="form-group">
-                                {{ Form::label('variedad_id','Variedades') }}
-                                {{ Form::select('variedad_id[]',$variedades,null,['class'=>'form-control chosen-select','multiple','required']) }}
+                                {{ Form::label('cultivo_id','Variedades') }}
+                                {{ Form::select('cultivo_id[]',$variedades,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega variedad','value' => 'old(cultivo_id[])']) }}
+               </div>
                              </div>
                 </div>
                 <div class="form-group text-right">
@@ -75,3 +77,57 @@
 
 @endsection
 
+@section('script')
+
+<script>
+    $(function () {
+        $('#practicas-table').DataTable({
+            "paging": false,
+            "lengthChange": true,
+            "searching": false,
+            "ordering": true,
+            "info": false,
+            "autoWidth": false
+        });
+    });
+</script>
+
+<script>
+    var options = {
+        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+    };
+</script>
+
+
+<script>
+    CKEDITOR.replace('my-editor', options);
+</script>
+
+<script>
+    $(".chosen-select").chosen({width: "100%"});
+</script>
+
+<script>
+    //Date picker
+    $('#datepicker').datepicker({
+        autoclose: true
+    });
+
+   var accept = ".png";
+   
+   var myDropzone = new Dropzone('.dropzone',{
+        url : '/admin/practicas/',
+        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
+
+    });
+
+    Dropzone.autoDiscover = false;
+
+    
+
+
+</script>
+@endsection

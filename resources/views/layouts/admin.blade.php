@@ -31,9 +31,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
 
     -->
+    @yield('css')    
 
     <link rel="stylesheet" href="{{asset('/chosen/chosen.css')}}">
-
 
     <link rel="stylesheet" href="{{asset('/adminlte/css/skins/skin-blue.min.css')}}">
 
@@ -145,10 +145,10 @@ desired effect
 <script src="{{asset('/adminlte/js/app.min.js')}}"></script>
 
 <!-- bootstrap datepicker -->
-<script src="{{asset('adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+<script src="{{asset('/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
 <!-- Select2 -->
 
-<script src="{{asset('adminlte/plugins/select2/select2.full.min.js')}}"></script>
+<script src="{{asset('/adminlte/plugins/select2/select2.full.min.js')}}"></script>
 
 <script src="{{asset('/dropzone/dropzone.js')}}"></script>
 

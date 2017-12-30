@@ -16,8 +16,7 @@
                     @endif
 
                  @else
-                    <img src="#" class="img-circle" alt="User Image">
-                @endif
+               <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">    @endif
 
             </div>
 
@@ -47,6 +46,11 @@
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin') ? 'class=active': ''}}>
                 <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
+
+
+             <!-- Optionally, you can add icons to the links -->
+            <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
+                <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
             <!--  Menu USUARIOS -->
 

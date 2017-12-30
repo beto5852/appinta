@@ -33,7 +33,7 @@
                 <div class="row">
                     <div class="col-md-8">
                         <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practica->tecnologia->nombre_tecnologia}}
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practica->user->name}}
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                     </div>
                     <div class="col-md-4">
                         <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practica->created_at->format('M')}}

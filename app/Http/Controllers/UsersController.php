@@ -54,16 +54,16 @@ class UsersController extends Controller
         $v = \Validator::make($request->all(), [
 
             'name' => 'required',
+            'password' => 'required',
             'email'    => 'required|email',
             'sexo' => 'required_if:masculino,femenino',
             'type' => 'required_if:admin,miembro'
         ]);
 
-        if ($v->fails())
-        {
-            return redirect()->back()->withInput()->withErrors($v->errors());
-        }
-
+        // if ($v->fails())
+        // {
+        //     return redirect()->back()->withInput()->withErrors($v->errors());
+        // }
 
         $user = new User($request->all());
         
@@ -117,6 +117,8 @@ class UsersController extends Controller
         //
         $user = User::find($id);
         $user->fill($request->all());
+        $user->password = bcrypt($request->password);
+        $user->update(['perfil']);
         $user->save();
         Session::flash('message','Usuario actualizado correctamente');
         return redirect::to('admin/users');

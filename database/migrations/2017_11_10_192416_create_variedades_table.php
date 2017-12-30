@@ -15,10 +15,13 @@ class CreateVariedadesTable extends Migration
     {
         Schema::create('variedades', function (Blueprint $table) {
             $table->engine = 'InnoDB';
+            
             $table->increments('id');
             $table->string('nombre_variedad');
+
             $table->integer('cultivo_id')->unsigned()->nullable();
             $table->foreign('cultivo_id')->references('id')->on('cultivos')->onDelete('set null');
+            
             $table->timestamps();
         });
     }

@@ -36,6 +36,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/tecnologias','TecnologiasController');
     Route::resource('/practicas','PracticasController');
     Route::resource('/cultivos','CultivosController');
+    Route::resource('/variedades','VariedadesController');
     Route::resource('/tags','TagsController');
    // Route:resource('');
 
@@ -79,13 +80,17 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'    => 'administrador',
     ]);
 
+    Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
+
+
+
     Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
     Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
     Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
     Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
     Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
 
-     Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
+    Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
 
 
     Route::get('tags/{id}',[

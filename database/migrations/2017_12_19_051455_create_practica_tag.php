@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 class CreatePracticaTag extends Migration
 {
@@ -16,9 +16,9 @@ class CreatePracticaTag extends Migration
         Schema::create('practica_tag', function (Blueprint $table) {
             $table->increments('id');
 
-             $table->integer('practica_id')->unsigned()->nullable();
+            $table->integer('practica_id')->unsigned()->nullable();
             $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
-            
+
             $table->integer('tag_id')->unsigned()->nullable();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
 

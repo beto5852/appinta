@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications;
-use App\Tecnologia;
+use Activity;
 use App\Practica;
+use App\Tecnologia;
 use App\User;
-use App\Cultivo;
-use Cache;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -20,40 +18,68 @@ class FrontController extends Controller
     public function index()
     {
         //
-        $practicas = Practica::OrderBy('id','DESC')->paginate(3);
+        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+
         return view('index', compact('practicas'));
     }
-    public function  admin(){
-        $totalusers = User::all();
-        $users = User::orderBy('id','DESC')->paginate(8);
+
+    public function timeline()
+    {
+        //
+        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+
+        return view('admin.home.timeline');
+    }
+
+    public function admin()
+    {
+
+        $activities = Activity::users()->get();
+
+//         $activities = Activity::users(1)->get();   // Last 1 minute
+        //         $activities = Activity::users(10)->get();  // Last 10 minutes
+        //         $activities = Activity::users(60)->get();  // Last 60 minutes
+        //         $activities = Activity::usersBySeconds(30)->get();  // Get active users within the last 30 seconds
+        //         $activities = Activity::usersByMinutes(10)->get();  // Get active users within the last 10 minutes
+        //         $activities = Activity::usersByHours(1)->get();     // Get active users within the last 1 hour
+
+// $numberOfUsers = Activity::users()->count();        // Count the number of active users
+        //         $activities = Activity::users()->mostRecent()->get();   // Get active users and sort them by most recent
+        //         $activities = Activity::users()->leastRecent()->get();  // Get active users and sort them by least recent
+        //         // $numberOfGuests = Activity::guests()->count();
+        $totalusers       = User::all();
+        $users            = User::orderBy('id', 'DESC')->paginate(8);
         $totaltecnologias = Tecnologia::all();
-        $totalpracticas = Practica::all();
-        $totalcultivos = Practica::all();
-        //d( $totalusers->count());
+        $totalpracticas   = Practica::all();
+        $totalcultivos    = Practica::all();
+        // dd( $activities);
         /* $variable = nameModelo::find($id);
-         if(Cache::has($id)==false){
-             Cache::add($id,'contador',0.30);
-             $variable->total_visitas++;
-             $variable->save();
-         }
+        if(Cache::has($id)==false){
+        Cache::add($id,'contador',0.30);
+        $variable->total_visitas++;
+        $variable->save();
+        }
          */
 
-        $practicas = Practica::OrderBy('id','DESC')->paginate(5);
-        $tecnologias = Tecnologia::OrderBy('id','DESC')->paginate(5);
-        return view('admin.home.index',compact('practicas','totalusers','totaltecnologias','totalpracticas','totalcultivos','users','tecnologias'));
+        $practicas   = Practica::OrderBy('id', 'DESC')->paginate(3);
+        $tecnologias = Tecnologia::OrderBy('id', 'DESC')->paginate(3);
+
+        // dd($practicas);
+        return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities'));
     }
-    public function  practica($slug){
+
+    public function practica($slug)
+    {
         //$practicas = Practica::find($slug);
-        $practicas = Practica::where('slug',$slug)->first();
+        $practicas = Practica::where('slug', $slug)->first();
         //dd($practicas);
         //$practicas = Practica::find()->pluck('slug');
 
-        return view('practica',compact('practicas'));;
+        return view('practica', compact('practicas'));
     }
-    
 
-
-    public function searchPracticas($name){
+    public function searchPracticas($name)
+    {
         $practicas = Practica::scopeSearchPractica($name)->get();
         dd($practicas);
     }

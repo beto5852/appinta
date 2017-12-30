@@ -6,8 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Cultivo extends Model
 {
+
+    protected $guarded = [];
+
+    protected $primary = 'rubro_id';
+
     protected $table = 'cultivos';
-    protected $fillable =['nombre_cultivo'];
+
+    protected $fillable = ['nombre_cultivo'];
+
     public function etapas()
     {
         return $this->belongsToMany(Etapa::class);
@@ -16,8 +23,8 @@ class Cultivo extends Model
     {
         return $this->belongsTo(Rubro::class);
     }
-    public  function variedades()
+    public function variedades()
     {
-        return $this->hasMany(variedad::class);
+        return $this->hasMany(Variedad::class, 'variedade_id');
     }
 }
