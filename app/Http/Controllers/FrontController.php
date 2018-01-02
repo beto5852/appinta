@@ -33,12 +33,9 @@ class FrontController extends Controller
 
     public function timelinemore($slug)
     {
-        //$practicas = Practica::find($slug);
         $practicas = Practica::where('slug', $slug)->first();
-        //dd($practicas);
-        //$practicas = Practica::find()->pluck('slug');
-
-        return view('admin.home.practica', compact('practicas'));
+        
+        return view('admin.home.timelinemore', compact('practicas'));
     }
 
 

@@ -33,6 +33,7 @@ class PracticasController extends Controller
         //mostrar algunos Productos
 
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
+
         return view("admin.practicas.index", compact('practicas'));
     }
     /**
@@ -64,7 +65,7 @@ class PracticasController extends Controller
 
         $this->validate($request, [
             'nombre_practica' => 'required',
-            'contenido'       => 'required',
+            'contenido'       => 'required|ma',
             'tecnologia_id'   => 'required',
             'mes_id'          => 'required',
             'semana_id'       => 'required',
@@ -82,12 +83,17 @@ class PracticasController extends Controller
             \Event::fire(new CrearPractica($practica));
         }
 
-
         for ($i = 0; $i < count($request->semana_id); $i++) {
 
             $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
         }
-        $practica->tags()->sync($request->tag_id);
+
+
+        for ($i = 0; $i < count($request->tag_id); $i++) {
+
+            $practica->tags()->attach($request->tag_id[$i]);
+        }
+
 
         Session::flash('message', 'Labor agricola registrado correctamente');
         return redirect::to('admin/practicas/create');
@@ -147,16 +153,21 @@ class PracticasController extends Controller
         $practica->slug = null;
         $practica->update(['nombre_practica']);
 
-        // $practica->meses()->detach();
+        // $practica->tags()->detach();
         // $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
 
         // dd($practica->mps()->get('m_p_s_id'));
         $practica->save();
 
-        // $practica->mps()->sync($practica->id);
-        
+        $practica->meses()->sync($request->mes_id);
+
+        $practica->semanas()->sync($request->semana_id);
 
         $practica->tags()->sync($request->tag_id);
+       
+      
+
+        
 
         Session::flash('message', 'Práctica actualizado correctamente');
         return redirect::to('admin/practicas');
@@ -171,7 +182,7 @@ class PracticasController extends Controller
     {
         //elimina la practica con el id que recibe
         $practica = Practica::findOrFail($id);
-
+        $practica->tags()->detach();
         $practica->meses()->detach();
         $practica->semanas()->detach();
         

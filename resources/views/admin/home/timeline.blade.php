@@ -34,44 +34,16 @@
  <!-- row -->
       <div class="row">
 
-  <div class="jumbotron col-md-8">
-
-        @foreach($practicas as $practica)
-            <article>
-                <h3>{{$practica->nombre_practica}}</h3>
-                <div class="row">
-                    <div class="col-md-8">
-                        <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practica->tecnologia->nombre_tecnologia}}
-                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
-                    </div>
-                    <div class="col-md-4">
-                        <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practica->created_at->format('M')}}
-                    </div>
-                </div>
-                <br>
-                @if(empty($practica->path))
-                    <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
-                @else
-                    <a  href="{{'practica'}}/{{$practica->slug}}"> <img src="{{asset('img/')}}/{{$practica->path}}" class="img-responsive" width="100%"></a>
-                @endif
-                <br>
-                <p>{!! substr($practica->contenido,0,200) !!} </p>
-                <p class="text-right"><a class="btn btn-raised btn-primary" href="{{'practica'}}/{{$practica->slug}}">Leer más..</a></p>
-
-            </article>
-        @endforeach
-        <center>{{ $practicas->links()}}</center>
-
-    </div>
-
-
         <div class="col-md-12">
           <!-- The time line -->
-          @foreach($practicas as $practica)
-       
-               <ul class="timeline">
-                   @foreach($practica->meses as $mes)
-                      
+           
+    
+               <ul class="timeline">  
+         @foreach($practicas as $practica)
+
+           @foreach($practica->meses as $mes)
+                           
+
                     <!-- timeline time label -->
                  {{-- @if($mes->nombre_mes == 'admin') --}}
                 
@@ -84,7 +56,7 @@
                     <!-- /.timeline-label -->
                     <!-- timeline item -->
                     <li>
-                      <i class="fa fa-envelope bg-blue"></i>
+                      <i class="fa  fa-calendar-check-o bg-blue"></i>
 
                       <div class="timeline-item">
                          @foreach($practica->semanas as $semana)
@@ -108,15 +80,13 @@
                     <!-- END timeline item -->
                     <!-- timeline item -->
                     
-                 
-                  
+                                   
                    @endforeach
                    @endforeach
                      <li>
                       <i class="fa fa-clock-o bg-gray"></i>
                     </li>
-                  </ul>                 
-        
+              </ul>        
 
         </div>
 <center>{{ $practicas->links()}}</center>

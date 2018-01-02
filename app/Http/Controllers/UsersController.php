@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
+        $this->middleware('admin',['only' => ['index','show','update','create','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -57,13 +57,14 @@ class UsersController extends Controller
             'password' => 'required',
             'email'    => 'required|email',
             'sexo' => 'required_if:masculino,femenino',
-            'type' => 'required_if:admin,miembro'
+            'type' => 'required_if:admin,miembro',
+            'perfil' => 'dimensions:min_width=100,min_heigth:100'
         ]);
 
-        // if ($v->fails())
-        // {
-        //     return redirect()->back()->withInput()->withErrors($v->errors());
-        // }
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
 
         $user = new User($request->all());
         
@@ -114,6 +115,23 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $v = \Validator::make($request->all(), [
+
+            'name' => 'required',
+            'password' => 'required',
+            'email'    => 'required|email',
+            'sexo' => 'required_if:masculino,femenino',
+            'type' => 'required_if:admin,miembro',
+            'perfil' => 'dimensions:min_width=100,min_heigth:100'
+        ]);
+
+        $re
+
+        if ($v->fails())
+        {
+            return redirect()->back()->withInput()->withErrors($v->errors());
+        }
         //
         $user = User::find($id);
         $user->fill($request->all());

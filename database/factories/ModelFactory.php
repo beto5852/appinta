@@ -15,6 +15,7 @@
 $factory->defineAs(App\User::class,'admin', function (Faker\Generator $faker) {
     return [
         'name' => 'Alberto Calero Obando',
+        'sexo' => 'masculino',
         'email' => 'alexo2407@gmail.com',
         'password' => bcrypt('secret'),
         'type'=> 'admin',

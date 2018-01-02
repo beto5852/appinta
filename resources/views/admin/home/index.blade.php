@@ -11,6 +11,7 @@
 
 @section('content')
 
+@if(Auth::user()->type == 'admin')
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">
@@ -186,5 +187,70 @@
 
       </div>
         <!-- /.row -->
+@else
+<!-- row -->
+      <div class="row">
+
+        <div class="col-md-12">
+          <!-- The time line -->
+           
+    
+               <ul class="timeline">  
+         @foreach($practicas as $practica)
+
+           @foreach($practica->meses as $mes)
+                           
+
+                    <!-- timeline time label -->
+                 {{-- @if($mes->nombre_mes == 'admin') --}}
+                
+                    <li class="time-label">
+                          <span class="bg-red">
+                            {{$mes->nombre_mes}}
+                          </span>
+                    </li>
+                     
+                    <!-- /.timeline-label -->
+                    <!-- timeline item -->
+                    <li>
+                      <i class="fa  fa-calendar-check-o bg-blue"></i>
+
+                      <div class="timeline-item">
+                         @foreach($practica->semanas as $semana)
+                        <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
+                         @endforeach
+                        <h3 class="timeline-header"><a href="#">{{$practica->nombre_practica}}</a></h3>
+
+                        <div class="timeline-body">
+                          {!! substr($practica->contenido,0,200) !!}
+                        </div>
+                        @foreach( $practica->tags as $tag)
+                        <span class="time"><i class="fa fa-tags"></i> {{$tag->nombre_tags}}</span>
+                        @endforeach
+                        <div class="timeline-footer">
+                          <a href="{{'admin/timelinemore'}}/{{$practica->slug}}" class="btn btn-primary btn-xs">Leer mas</a>
+                          {{-- <a class="btn btn-danger btn-xs">Delete</a> --}}
+                        </div>
+
+                      </div>
+                    </li>
+                    <!-- END timeline item -->
+                    <!-- timeline item -->
+                    
+                                   
+                   @endforeach
+                   @endforeach
+                     <li>
+                      <i class="fa fa-clock-o bg-gray"></i>
+                    </li>
+              </ul>        
+
+        </div>
+<center>{{ $practicas->links()}}</center>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+@endif
+
 
 @endsection
