@@ -14,9 +14,10 @@ class CreateRubroTecnologiaTable extends Migration
     public function up()
     {
         Schema::create('rubro_tecnologia', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
 
-              $table->integer('rubro_id')->unsigned()->nullable();
+            $table->integer('rubro_id')->unsigned()->nullable();
             $table->foreign('rubro_id')->references('id')->on('rubros')->onDelete('set null');
 
             $table->integer('tecnologia_id')->unsigned()->nullable();

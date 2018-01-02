@@ -12,7 +12,7 @@ class MPS extends Model
 
     public function meses()
     {
-        return $this->belongsToMany(Mes::class);
+        return $this->belongsTo(Mes::class);
     }
 
     public function practicas()

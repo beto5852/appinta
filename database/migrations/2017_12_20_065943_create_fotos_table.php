@@ -14,6 +14,7 @@ class CreateFotosTable extends Migration
     public function up()
     {
         Schema::create('fotos', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->timestamps();
         });

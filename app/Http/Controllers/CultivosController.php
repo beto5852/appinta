@@ -63,7 +63,7 @@ class CultivosController extends Controller
 
         //$variedades = new Variedad($cultivo_id);
 
-        dd($cultivo[0]->cultivo);
+//        dd($cultivo[0]->cultivo);
         // dd($cultivo_id);
 
         $cultivo->nombre_cultivo      = $request->get('nombre_cultivo');

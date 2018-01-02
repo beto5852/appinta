@@ -63,35 +63,37 @@ class PracticasController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-            'nombre_practica' => 'required',
-            'contenido'       => 'required|ma',
-            'tecnologia_id'   => 'required',
-            'mes_id'          => 'required',
-            'semana_id'       => 'required',
-            'tag_id'          => 'required',
-        ]);
+        $this->validate($request , [
+                'nombre_practica' => 'required',
+                'contenido'       => 'required|ma',
+                'tecnologia_id'   => 'required',
+                'mes_id'          => 'required',
+                'semana_id'       => 'required',
+                'tag_id'          => 'required',
+            ]
+        );
 
-        $practica = new Practica($request->all());
+        $practica = new Practica;
 
-        $meses = array_values($request->input('mes_id'));
+        $practica->nombre_practica = $request->get('nombre_practica');
+        $practica->contenido = $request->get('contenido');
+        $practica->tecnologia_id = $request->get('tecnologia_id');
+        $practica->path = $request->get('path');
+        $practica->user_id = $request->get('user_id');
+
+        $practica->save();
+
+//       $meses = array_values($request->input('mes_id'));
 
         // dd($meses);
-        // $practica->save();
-        if ($practica->save()) {
 
-            \Event::fire(new CrearPractica($practica));
-        }
+
+        $practica->tags()->attach($request->get('tag_id'));
+
 
         for ($i = 0; $i < count($request->semana_id); $i++) {
 
             $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
-        }
-
-
-        for ($i = 0; $i < count($request->tag_id); $i++) {
-
-            $practica->tags()->attach($request->tag_id[$i]);
         }
 
 
@@ -148,26 +150,35 @@ class PracticasController extends Controller
     public function update(Request $request, $id)
     {
         //actualiza lo que se envio en edit$id
-        $practica = Practica::findOrFail($id);
-        $practica->update($request->all());
+        $practica = Practica::find($id);
+        $practica->fill($request->all());
         $practica->slug = null;
         $practica->update(['nombre_practica']);
 
-        // $practica->tags()->detach();
-        // $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
+//       dd($practica);
 
-        // dd($practica->mps()->get('m_p_s_id'));
         $practica->save();
+//
+        $practica->tags()->detach();
+        $practica->meses()->detach();
+        $practica->semanas()->detach();
 
-        $practica->meses()->sync($request->mes_id);
+//
+////         $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
+//
+//         dd($request->mes_id);
+//
+//
+//        for ($i = 0; $i < count($request->mes_id); $i++) {
+//
+//            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
+//        }
 
-        $practica->semanas()->sync($request->semana_id);
-
+//        $practica->meses()->sync($request->mes_id);
+//        $practica->semanas()->sync($request->semana_id);
         $practica->tags()->sync($request->tag_id);
        
-      
 
-        
 
         Session::flash('message', 'Práctica actualizado correctamente');
         return redirect::to('admin/practicas');

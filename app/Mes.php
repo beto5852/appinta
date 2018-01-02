@@ -11,17 +11,17 @@ class Mes extends Model
 
     public function mps()
     {
-        return $this->belongsToMany(MPS::class,'mese_practica_semana');
+        return $this->hasMany(MPS::class,'mese_practica_semana');
     }
 
-    public function practicas()
-    {
-        return $this->belongsToMany(Practica::class,'mese_practica_semana');
-    }
-    public function semanas()
-    {
-        return $this->belongsToMany(Semana::class, 'mese_practica_semana');
-    }
+//    public function practicas()
+//    {
+//        return $this->belongsToMany(Practica::class,'mese_practica_semana');
+//    }
+//    public function semanas()
+//    {
+//        return $this->belongsToMany(Semana::class, 'mese_practica_semana');
+//    }
  
 
 }

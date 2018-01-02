@@ -32,21 +32,22 @@ class Practica extends Model
         Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica', 'contenido', 'path', 'tags', 'tecnologia_id', 'user_id'];
+    protected $fillable = ['nombre_practica', 'contenido', 'path','tecnologia_id', 'user_id'];
 
-    // public function mps()
-    // {
-    //     return $this->belongsToMany(MPS::class,'mese_practica_semana');
-    // }
-
+     public function mps()
+     {
+         return $this->hasMany(MPS::class,'mese_practica_semana');
+     }
+//
     public function meses()
     {
-        return $this->belongsToMany(Mes::class, 'mese_practica_semana');
+        return $this->belongsToMany(Mes::class,'mese_practica_semana');
     }
     public function semanas()
     {
-        return $this->belongsToMany(Semana::class, 'mese_practica_semana');
+        return $this->belongsToMany(Semana::class,'mese_practica_semana');
     }
+
     public function tecnologia()
     {
         return $this->belongsTo(Tecnologia::class);
