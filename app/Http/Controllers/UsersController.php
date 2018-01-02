@@ -126,8 +126,6 @@ class UsersController extends Controller
             'perfil' => 'dimensions:min_width=100,min_heigth:100'
         ]);
 
-        $re
-
         if ($v->fails())
         {
             return redirect()->back()->withInput()->withErrors($v->errors());
