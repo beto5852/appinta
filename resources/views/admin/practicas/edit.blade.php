@@ -88,7 +88,7 @@
                    <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>
                   </thead>
                   <tbody>
-                @for ($i = 1; $i < count($my_mes); $i++)
+                @for ($i = 0; $i < count($my_mes); $i++)
                     <tr>
                        <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i],['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
                         <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i],['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>

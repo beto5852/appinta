@@ -28,8 +28,19 @@ class FrontController extends Controller
         //
         $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
 
-        return view('admin.home.timeline');
+        return view('admin.home.timeline',compact('practicas'));
     }
+
+    public function timelinemore($slug)
+    {
+        //$practicas = Practica::find($slug);
+        $practicas = Practica::where('slug', $slug)->first();
+        //dd($practicas);
+        //$practicas = Practica::find()->pluck('slug');
+
+        return view('admin.home.practica', compact('practicas'));
+    }
+
 
     public function admin()
     {
@@ -77,6 +88,8 @@ class FrontController extends Controller
 
         return view('practica', compact('practicas'));
     }
+
+
 
     public function searchPracticas($name)
     {

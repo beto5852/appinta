@@ -17,13 +17,13 @@ class CreateMesePracticaSemanaTable extends Migration
             $table->increments('id');
 
             $table->integer('mes_id')->unsigned()->nullable();
-            $table->foreign('mes_id')->references('id')->on('meses')->onDelete('set null');
+            $table->foreign('mes_id')->references('id')->on('meses')->onDelete('cascade');
 
             $table->integer('practica_id')->unsigned()->nullable();
-            $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
+            $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('cascade');
 
             $table->integer('semana_id')->unsigned()->nullable();
-            $table->foreign('semana_id')->references('id')->on('semanas')->onDelete('set null');
+            $table->foreign('semana_id')->references('id')->on('semanas')->onDelete('cascade');
             $table->timestamps();
         });
     }

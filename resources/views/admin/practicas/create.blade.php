@@ -148,22 +148,6 @@
 
 @section('script')
 
-<!-- date-range-picker -->
-{{-- <script src="{{asset('/js/moment.min.js')}}"></script> --}}
-
-<!-- bootstrap color picker -->
-{{-- <script src="{{asset('/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js')}}"></script> --}}
-{{-- <script src="{{asset('/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script> --}}
-
-<!-- bootstrap datepicker -->
-{{-- <script src="{{asset('/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script> --}}
-
-<!-- bootstrap time picker -->
-{{-- <script src="{{asset('/adminlte/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script> --}}
-<!-- SlimScroll 1.3.0 -->
-{{-- <script src="{{asset('/adminlte/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script> --}}
-
-
 <script>
     $(function () {
         $('#practicas-table').DataTable({

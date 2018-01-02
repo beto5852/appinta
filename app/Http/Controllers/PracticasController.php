@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cultivo;
 use App\Mes;
+use App\MPS;
 use App\Practica;
 use App\Semana;
 use App\Tag;
@@ -72,24 +73,21 @@ class PracticasController extends Controller
 
         $practica = new Practica($request->all());
 
-        // dd($request->ToArray());
-        $practica->save();
+        $meses = array_values($request->input('mes_id'));
+
+        // dd($meses);
+        // $practica->save();
         if ($practica->save()) {
 
             \Event::fire(new CrearPractica($practica));
         }
 
+
         for ($i = 0; $i < count($request->semana_id); $i++) {
 
             $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
         }
-
-        for ($i = 0; $i < count($request->tag_id); $i++) {
-
-            $practica->tags()->attach($request->tag_id[$i]);
-        }
-
-
+        $practica->tags()->sync($request->tag_id);
 
         Session::flash('message', 'Labor agricola registrado correctamente');
         return redirect::to('admin/practicas/create');
@@ -120,7 +118,7 @@ class PracticasController extends Controller
     public function edit($id)
     {
         //edita con id
-        $practica    = Practica::find($id);
+        $practica    = Practica::findOrFail($id);
         $users       = User::pluck('name', 'id');
         $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
         $tags        = Tag::pluck('nombre_tags');
@@ -144,19 +142,19 @@ class PracticasController extends Controller
     public function update(Request $request, $id)
     {
         //actualiza lo que se envio en edit$id
-        $practica = Practica::find($id);
-        $practica->fill($request->all());
+        $practica = Practica::findOrFail($id);
+        $practica->update($request->all());
         $practica->slug = null;
         $practica->update(['nombre_practica']);
 
-        // dd($request->mes_id);
+        // $practica->meses()->detach();
+        // $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
+
+        // dd($practica->mps()->get('m_p_s_id'));
         $practica->save();
-        // dd($request->semana_id);
 
-        for ($i = 0; $i < count($request->mes_id); $i++) {
-
-            $practica->meses()->sync($request->mes_id[$i],[$request->semana_id[$i]]);
-        }
+        // $practica->mps()->sync($practica->id);
+        
 
         $practica->tags()->sync($request->tag_id);
 
@@ -172,9 +170,14 @@ class PracticasController extends Controller
     public function destroy($id)
     {
         //elimina la practica con el id que recibe
-        $practica = Practica::find($id);
+        $practica = Practica::findOrFail($id);
 
+        $practica->meses()->detach();
+        $practica->semanas()->detach();
+        
         $practica->delete();
+
+
         Session::flash('message', 'Práctica eliminada correctamente');
         return redirect::to('admin/practicas');
         //dd($id);

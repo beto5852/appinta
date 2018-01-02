@@ -20,7 +20,7 @@ class CreatePracticaTag extends Migration
             $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
 
             $table->integer('tag_id')->unsigned()->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 
             $table->timestamps();
         });

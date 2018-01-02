@@ -34,6 +34,11 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica', 'contenido', 'path', 'tags', 'tecnologia_id', 'user_id'];
 
+    // public function mps()
+    // {
+    //     return $this->belongsToMany(MPS::class,'mese_practica_semana');
+    // }
+
     public function meses()
     {
         return $this->belongsToMany(Mes::class, 'mese_practica_semana');

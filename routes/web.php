@@ -22,7 +22,6 @@ Route::get('practica/{slug}', [
 ]);
 
 
-
 Route::get('index/{nombre_practica}', [
     'uses' => 'FrontController@searchPracticas',
     'as'    => 'front.search.practicas',
@@ -82,6 +81,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
 
+     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
+
 
 
     Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
@@ -98,6 +99,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'   =>  "tags.destroy"
     ]);
 
+ ;
   
 });
 
