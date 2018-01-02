@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Activity;
 use App\Practica;
 use App\Tecnologia;
@@ -10,6 +11,8 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +29,22 @@ class FrontController extends Controller
     public function timeline()
     {
         //
-        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+//        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+
+        $practicas = Practica::with(['meses' => function ($query) {
+            $query->whereNotNull('nombre_mes')
+                    ->where('nombre_mes' ,'=', 'Enero')
+                    ->latest('created_at' );
+        }])->get();
+
+
+        $date = Date::now();
+
+        dd($date);
+
+//        $practicas = Practica::with('Mes', function ($query) {
+//            $query->whereNotNull("nombre_practica");
+//        });
 
         return view('admin.home.timeline',compact('practicas'));
     }

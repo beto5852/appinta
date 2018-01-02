@@ -93,7 +93,7 @@
                   <thead>
                    <th>Mes</th>
                    <th>Semana</th>
-                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>
+                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th>
                   </thead>
                   <tbody>
                     <tr>

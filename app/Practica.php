@@ -34,18 +34,18 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica', 'contenido', 'path','tecnologia_id', 'user_id'];
 
-     public function mps()
-     {
-         return $this->hasMany(MPS::class,'mese_practica_semana');
-     }
+//     public function mps()
+//     {
+//         return $this->hasMany(MPS::class,'mese_practica_semana');
+//     }
 //
     public function meses()
     {
-        return $this->belongsToMany(Mes::class,'mese_practica_semana');
+        return $this->belongsToMany(Mes::class,'mese_practica_semana')->withPivot('semana_id');
     }
     public function semanas()
     {
-        return $this->belongsToMany(Semana::class,'mese_practica_semana');
+        return $this->belongsToMany(Semana::class,'mese_practica_semana')->withPivot('mes_id');
     }
 
     public function tecnologia()
@@ -64,4 +64,15 @@ class Practica extends Model
     {
         return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
     }
+
+    public function scopePublicado($query, $nombre_practica)
+    {
+        return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
+    }
+
+
+
+
+
+
 }

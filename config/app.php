@@ -90,7 +90,7 @@ return [
     |
      */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'es',
 
     /*
     |--------------------------------------------------------------------------
@@ -173,6 +173,7 @@ return [
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Kim\Activity\ActivityServiceProvider::class,
+        Jenssegers\Date\DateServiceProvider::class,
 
         //
 
@@ -240,6 +241,7 @@ return [
         'Breadcrumbs'  => DaveJamesMiller\Breadcrumbs\Facade::class,
         'Image'        => Intervention\Image\Facades\Image::class,
         'Activity'     => Kim\Activity\ActivityFacade::class,
+        'Date' => Jenssegers\Date\Date::class,
 
     ],
 

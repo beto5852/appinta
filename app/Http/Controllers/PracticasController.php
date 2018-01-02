@@ -10,6 +10,7 @@ use App\Semana;
 use App\Tag;
 use App\Tecnologia;
 use App\User;
+use App\Traits\DatesTraslator;
 use App\Events\CrearPractica;
 use Illuminate\Http\Request;
 use Redirect;
@@ -18,6 +19,9 @@ use Storage;
 
 class PracticasController extends Controller
 {
+
+    use DatesTraslator;
+    
     public function __construct()
     {
         $this->middleware('auth');

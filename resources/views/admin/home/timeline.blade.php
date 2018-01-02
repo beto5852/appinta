@@ -46,10 +46,12 @@
 
                     <!-- timeline time label -->
                  {{-- @if($mes->nombre_mes == 'admin') --}}
+
                 
                     <li class="time-label">
                           <span class="bg-red">
-                            {{$mes->nombre_mes}}
+
+                             {{$mes->nombre_mes}}
                           </span>
                     </li>
                      
@@ -89,7 +91,7 @@
               </ul>        
 
         </div>
-<center>{{ $practicas->links()}}</center>
+{{--<center>{{ $practicas->links()}}</center>--}}
         <!-- /.col -->
       </div>
       <!-- /.row -->
