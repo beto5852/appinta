@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Carbon\Carbon;
+//use Jenssegers\Date\Date;
+//use Carbon\Carbon;
 use Activity;
 use App\Practica;
 use App\Tecnologia;
@@ -11,8 +11,6 @@ use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
-
-    
     /**
      * Display a listing of the resource.
      *
@@ -37,10 +35,10 @@ class FrontController extends Controller
                     ->latest('created_at' );
         }])->get();
 
-
-        $date = Date::now();
-
-        dd($date);
+//
+//        $date = Date('M');
+//
+//        dd($date);
 
 //        $practicas = Practica::with('Mes', function ($query) {
 //            $query->whereNotNull("nombre_practica");

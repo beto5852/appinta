@@ -22,14 +22,16 @@ class Mes extends Model
     {
         return $this->belongsToMany(Semana::class, 'mese_practica_semana')->withPivot('practica_id');
     }
-    public function scopePublished($query)
-    {
-        return $query->whereNotNull('nombre_mes');
-    }
-    public function mesesPublished()
-    {
-        return $this->belongsToMany('Mes')->published();
-        // or this way:
-        // return $this->posts()->published();
-    }
+//    public function scopePublished($query)
+//    {
+//        return $query->whereNotNull('nombre_mes');
+//    }
+//    public function mesesPublished()
+//    {
+//        return $this->belongsToMany('Mes')->published();
+//        // or this way:
+//        // return $this->posts()->published();
+//    }
+
+    
 }
