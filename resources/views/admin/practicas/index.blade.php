@@ -33,16 +33,16 @@
     @endif
 
     <div class="row">
-        <div class="col-xs-8">
-            <div class="form-group">
-                <a href="{{url('admin/practicas/create')}}" class="btn btn-raised btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</a>
-            </div>
-        </div>
+        {{--<div class="col-xs-8">--}}
+            {{--<div class="form-group">--}}
+                {{--<a href="{{url('admin/practicas/create')}}" class="btn btn-raised btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</a>--}}
+            {{--</div>--}}
+        {{--</div>--}}
         <div class="col-xs-2">
             {!! Form::open(['url' => ['admin/practicas'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
 
 
-            <div class="input-group">
+            <div class="input-group pull-right">
                 {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','aria-describedby' => 'search'])!!}
                 <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
             </div>
@@ -53,9 +53,10 @@
     </div>
 
 
-    <div class="box">
+    <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">Listado de prácticas agricolas</h3>
+            <a href="{{url('admin/practicas/create')}}" class="btn btn-raised btn-success pull-right"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
