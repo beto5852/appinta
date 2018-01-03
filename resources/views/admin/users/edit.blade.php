@@ -2,6 +2,18 @@
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Editar Usuario')
 
+@section('css')
+
+        <!-- daterange picker -->
+<link rel="stylesheet" href="{{asset('/adminlte/plugins/daterangepicker/daterangepicker.css')}}">
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{asset('/adminlte/plugins/datepicker/datepicker3.css')}}">
+<!-- Bootstrap Color Picker -->
+<link rel="stylesheet" href="{{asset('/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css')}}">
+<!-- Bootstrap time Picker -->
+<link rel="stylesheet" href="{{asset('/adminlte/plugins/timepicker/bootstrap-timepicker.min.css')}}">
+
+@endsection
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
@@ -39,6 +51,26 @@
                         {{ Form::label('email','Correo electrónico') }}
                         {{ Form::email('email',$user->email,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
                     </div>
+                   <div class="form-group">
+                       {!! Form::label('nacimiento','Fecha de nacimiento') !!}
+
+                       <div class="input-group date">
+                           <div class="input-group-addon">
+                               <i class="fa fa-calendar"></i>
+                           </div>
+                           @if(empty($user->nacimiento))
+
+                           {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+
+                           @else
+
+                           {!! Form::text('nacimiento',$user->nacimiento,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+
+                            @endif
+
+                       </div>
+                       <!-- /.input group -->
+                   </div>
                     <div class="form-group">
                         {{ Form::label('password','Contraseña') }}
                         {{ Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required']) }}
@@ -108,44 +140,60 @@
 @endsection
 
 
+
 @section('script')
 
-<script>
-    $(function () {
-        $('#practicas-table').DataTable({
-            "paging": false,
-            "lengthChange": true,
-            "searching": false,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false
+
+        <!-- bootstrap color picker -->
+    <script src="{{asset('/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js')}}"></script>
+    <script src="{{asset('/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script>
+
+    <!-- bootstrap datepicker -->
+    <script src="{{asset('/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
+
+    <!-- bootstrap time picker -->
+    <script src="{{asset('/adminlte/plugins/timepicker/bootstrap-timepicker.min.js')}}"></script>
+    <!-- SlimScroll 1.3.0 -->
+    <script src="{{asset('/adminlte/plugins/slimScroll/jquery.slimscroll.min.js')}}"></script>
+
+    <script>
+        $(function () {
+            $('#practicas-table').DataTable({
+                "paging": false,
+                "lengthChange": true,
+                "searching": false,
+                "ordering": true,
+                "info": false,
+                "autoWidth": false
+            });
         });
-    });
-</script>
+    </script>
 
-<script>
-    var options = {
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-    };
-</script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+    </script>
 
 
-<script>
-    CKEDITOR.replace('my-editor', options);
-</script>
+    <script>
+        CKEDITOR.replace('my-editor', options);
+    </script>
 
-<script>
-    $(".chosen-select").chosen({width: "100%"});
-</script>
+    <script>
+        $(".chosen-select").chosen({width: "100%"});
+    </script>
 
-<script>
-    //Date picker
-    $('#datepicker').datepicker({
-        lenguage:'esp', 
-        autoclose: true
-    });
-</script>
+    <script>
+
+
+        $('.datepicker').datepicker({
+              autoclose: true
+        });
+
+    </script>
+
 @endsection

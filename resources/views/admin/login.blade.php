@@ -26,8 +26,9 @@
 </head>
 <body class="hold-transition login-page">
 <div class="login-box">
-    <div class="login-logo">
-        <a href="../../index2.html"><b>Acceso a prácticas </b>tecnologicas</a>
+    <div class="login-logo" >
+        <a href="{{asset('/')}}"><b>Acceso a prácticas </b>tecnológicas <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
+
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
@@ -69,7 +70,7 @@
 
         {!! Form::close() !!}
 
-<!--
+                <!-- /.social-auth-links -->
         <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
@@ -77,12 +78,12 @@
             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
                 Google+</a>
         </div>
-        <!-- /.social-auth-links -->
 
-     <!--   <a class="btn btn-link" href="{{ url('/password/reset') }}">
+
+    <a class="btn btn-link" href="{{ url('/password/reset') }}">
             Forgot Your Password?
         </a><br>
-        <a href="register.html" class="text-center">Register a new membership</a> -->
+        <a href="register.html" class="text-center">Register a new membership</a>
 
     </div>
     <!-- /.login-box-body -->

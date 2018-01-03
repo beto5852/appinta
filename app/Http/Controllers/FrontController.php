@@ -31,7 +31,7 @@ class FrontController extends Controller
 
         $practicas = Practica::with(['meses' => function ($query) {
             $query->whereNotNull('nombre_mes')
-                    ->where('nombre_mes' ,'=', 'Enero')
+                    
                     ->latest('created_at' );
         }])->get();
 

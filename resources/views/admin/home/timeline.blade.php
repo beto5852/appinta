@@ -64,7 +64,7 @@
                          @foreach($practica->semanas as $semana)
                         <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
                          @endforeach
-                        <h3 class="timeline-header"><a href="#">{{$practica->nombre_practica}}</a></h3>
+                        <h3 class="timeline-header"><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h3>
 
                         <div class="timeline-body">
                           {!! substr($practica->contenido,0,200) !!}
