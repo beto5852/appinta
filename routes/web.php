@@ -29,15 +29,47 @@ Route::get('index/{nombre_practica}', [
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
-    //Notification::send($user, new PostNewNotification($post));
+    Route::get('/', [
+        'uses' => 'FrontController@admin',
+        'as'    => 'administrador',
+    ]);
+
+    Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
+
+    Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
+
 
     Route::resource('/users','UsersController');
+    Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
+
+
     Route::resource('/tecnologias','TecnologiasController');
+    Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
+
+
+
     Route::resource('/practicas','PracticasController');
+    Route::get('practicas/create','PracticasController@create')->name("admin.practicas.create");
+    Route::post('practicas/{id}','PracticasController@edit')->name("admin.practicas.edit");
+    Route::put('practicas/{id}','PracticasController@update')->name("admin.practicas.update");
+    Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
+
+
+    Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
+
+
+
     Route::resource('/cultivos','CultivosController');
+    Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
+
+
     Route::resource('/variedades','VariedadesController');
+
+
     Route::resource('/tags','TagsController');
-   // Route:resource('');
+    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
+
+    // Route:resource('');
 
     Route::get('/mensajes', 'MensajesController@index');
 
@@ -73,25 +105,13 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
-    
-    Route::get('/', [
-        'uses' => 'FrontController@admin',
-        'as'    => 'administrador',
-    ]);
-
-    Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
-
-     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
 
 
 
-    Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
-    Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
-    Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
-    Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
-    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
 
-    Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
+
+
+
 
 
     Route::get('tags/{id}',[
@@ -99,7 +119,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'   =>  "tags.destroy"
     ]);
 
- ;
+
   
 });
 

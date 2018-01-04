@@ -21,12 +21,13 @@ class PracticasController extends Controller
 {
 
 //    use DatesTraslator;
-    
+
     public function __construct()
     {
         $this->middleware('auth');
         $this->middleware('admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -40,6 +41,7 @@ class PracticasController extends Controller
 
         return view("admin.practicas.index", compact('practicas'));
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -50,61 +52,97 @@ class PracticasController extends Controller
         //
 
         $tecnologias = Tecnologia::orderBy('nombre_tecnologia', 'ASC')->pluck('nombre_tecnologia', 'id');
-        $tags        = Tag::orderBy('nombre_tags', 'ASC')->pluck('nombre_tags', 'id');
-        $semanas     = Semana::orderBy('id', 'ASC')->pluck('nombre_semana', 'id');
-        $meses       = Mes::orderBy('id', 'ASC')->pluck('nombre_mes', 'id');
-        $cultivos    = Cultivo::orderBy('nombre_cultivo', 'DESC')->pluck('nombre_cultivo', 'id');
+        $tags = Tag::orderBy('nombre_tags', 'ASC')->pluck('nombre_tags', 'id');
+        $semanas = Semana::orderBy('id', 'ASC')->pluck('nombre_semana', 'id');
+        $meses = Mes::orderBy('id', 'ASC')->pluck('nombre_mes', 'id');
+        $cultivos = Cultivo::orderBy('nombre_cultivo', 'DESC')->pluck('nombre_cultivo', 'id');
 
         return view('admin.practicas.create', compact('tecnologias', 'tags', 'cultivos', 'meses', 'semanas'));
 
     }
+
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
+        $this->validate($request , ['nombre_practica' => 'required']);
 
-        $this->validate($request , [
-                'nombre_practica' => 'required',
-                'contenido'       => 'required|ma',
-                'tecnologia_id'   => 'required',
-                'mes_id'          => 'required',
-                'semana_id'       => 'required',
-                'tag_id'          => 'required',
-            ]
-        );
-
-        $practica = new Practica;
-
-        $practica->nombre_practica = $request->get('nombre_practica');
-        $practica->contenido = $request->get('contenido');
-        $practica->tecnologia_id = $request->get('tecnologia_id');
-        $practica->path = $request->get('path');
-        $practica->user_id = $request->get('user_id');
-
-        $practica->save();
-
-//       $meses = array_values($request->input('mes_id'));
-
-        // dd($meses);
-
-
-        $practica->tags()->attach($request->get('tag_id'));
-
-
-        for ($i = 0; $i < count($request->semana_id); $i++) {
-
-            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
-        }
-
+        $practica = Practica::create(['nombre_practica'=> $request->get('nombre_practica')]);
 
         Session::flash('message', 'Labor agricola registrado correctamente');
-        return redirect::to('admin/practicas/create');
-        //dd($user);
+
+        return redirect()->route('practicas.edit',compact('practica'));
+
     }
+
+    public function edit($id)
+    {
+        //edita con id
+
+        $practica    = Practica::findOrFail($id);
+        $users       = User::pluck('name', 'id');
+        $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
+        $tags        = Tag::pluck('nombre_tags');
+        $meses       = Mes::pluck('nombre_mes');
+        $semanas     = Semana::pluck('nombre_semana');
+
+        $my_tags   = $practica->tags->pluck('id')->ToArray();
+        $my_semana = $practica->semanas->pluck('id')->ToArray();
+        $my_mes    = $practica->meses->pluck('id')->ToArray();
+
+//        dd($practica);
+
+        // dd(count($my_mes));
+        return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));
+    }
+
+
+
+//    public function store(Request $request)
+//    {
+//
+//        $this->validate($request , [
+//                'nombre_practica' => 'required',
+//                'contenido'       => 'required',
+//                'tecnologia_id'   => 'required',
+//                'mes_id'          => 'required',
+//                'semana_id'       => 'required',
+//                'tag_id'          => 'required',
+//            ]
+//        );
+//
+//        $practica = new Practica;
+//
+//        $practica->nombre_practica = $request->get('nombre_practica');
+//        $practica->contenido = $request->get('contenido');
+//        $practica->tecnologia_id = $request->get('tecnologia_id');
+//        $practica->path = $request->get('path');
+//        $practica->user_id = $request->get('user_id');
+//
+//        $practica->save();
+//
+////       $meses = array_values($request->input('mes_id'));
+//
+//        // dd($meses);
+//
+//
+//        $practica->tags()->attach($request->get('tag_id'));
+//
+//
+//        for ($i = 0; $i < count($request->semana_id); $i++) {
+//
+//            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
+//        }
+//
+//
+//        Session::flash('message', 'Labor agricola registrado correctamente');
+//        return redirect::to('admin/practicas/create');
+//        //dd($user);
+//    }
     /**
      * Display the specified resource.
      *
@@ -118,7 +156,7 @@ class PracticasController extends Controller
         //dd($id);
         $practica = Practica::find($id);
 
-        //dd($practica);
+        dd($practica);
         return view('admin.practicas.show', compact('practica'));
     }
     /**
@@ -127,23 +165,23 @@ class PracticasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //edita con id
-        $practica    = Practica::findOrFail($id);
-        $users       = User::pluck('name', 'id');
-        $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
-        $tags        = Tag::pluck('nombre_tags');
-        $meses       = Mes::pluck('nombre_mes');
-        $semanas     = Semana::pluck('nombre_semana');
-
-        $my_tags   = $practica->tags->pluck('id')->ToArray();
-        $my_semana = $practica->semanas->pluck('id')->ToArray();
-        $my_mes    = $practica->meses->pluck('id')->ToArray();
-
-        // dd(count($my_mes));
-        return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));
-    }
+//    public function edit($id)
+//    {
+//        //edita con id
+//        $practica    = Practica::findOrFail($id);
+//        $users       = User::pluck('name', 'id');
+//        $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
+//        $tags        = Tag::pluck('nombre_tags');
+//        $meses       = Mes::pluck('nombre_mes');
+//        $semanas     = Semana::pluck('nombre_semana');
+//
+//        $my_tags   = $practica->tags->pluck('id')->ToArray();
+//        $my_semana = $practica->semanas->pluck('id')->ToArray();
+//        $my_mes    = $practica->meses->pluck('id')->ToArray();
+//
+//        // dd(count($my_mes));
+//        return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));
+//    }
     /**
      * Update the specified resource in storage.
      *
@@ -154,6 +192,17 @@ class PracticasController extends Controller
     public function update(Request $request, $id)
     {
         //actualiza lo que se envio en edit$id
+
+        $this->validate($request , [
+                'nombre_practica' => 'required',
+                'contenido'       => 'required',
+                'tecnologia_id'   => 'required',
+                'mes_id'          => 'required',
+                'semana_id'       => 'required',
+                'tag_id'          => 'required',
+            ]
+        );
+
         $practica = Practica::find($id);
         $practica->fill($request->all());
         $practica->slug = null;
@@ -163,9 +212,9 @@ class PracticasController extends Controller
 
         $practica->save();
 //
-        $practica->tags()->detach();
-        $practica->meses()->detach();
-        $practica->semanas()->detach();
+//        $practica->tags()->detach();
+//        $practica->meses()->detach();
+//        $practica->semanas()->detach();
 
 //
 ////         $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
@@ -175,12 +224,12 @@ class PracticasController extends Controller
 //
 //        for ($i = 0; $i < count($request->mes_id); $i++) {
 //
-//            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
+//            $practica->meses()->sync((array)$request->mes_id[$i],['semana_id' => $request->semana_id[$i]]);
 //        }
 
-//        $practica->meses()->sync($request->mes_id);
-//        $practica->semanas()->sync($request->semana_id);
-        $practica->tags()->sync($request->tag_id);
+        $practica->meses()->sync(array($request->get('mes_id')));
+        $practica->semanas()->sync(array($request->get('semana_id')));
+        $practica->tags()->sync((array($request->tag_id)));
        
 
 

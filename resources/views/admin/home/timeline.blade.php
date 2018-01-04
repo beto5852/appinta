@@ -67,7 +67,7 @@
                         <h3 class="timeline-header"><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h3>
 
                         <div class="timeline-body">
-                          {!! substr($practica->contenido,0,200) !!}
+                          {!! substr($practica->contenido,0,800) !!}
                         </div>
                         @foreach( $practica->tags as $tag)
                         <span class="time"><i class="fa fa-tags"></i> {{$tag->nombre_tags}}</span>
@@ -91,7 +91,7 @@
               </ul>        
 
         </div>
-{{--<center>{{ $practicas->links()}}</center>--}}
+<center>{{ $practicas->links()}}</center>
         <!-- /.col -->
       </div>
       <!-- /.row -->

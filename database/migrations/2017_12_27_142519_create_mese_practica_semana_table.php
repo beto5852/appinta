@@ -26,7 +26,7 @@ class CreateMesePracticaSemanaTable extends Migration
             $table->integer('semana_id')->unsigned()->nullable();
             $table->foreign('semana_id')->references('id')->on('semanas')->onUpdate('set null');
             
-            $table->timestamps();
+    
         });
     }
 

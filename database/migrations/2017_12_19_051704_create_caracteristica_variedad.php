@@ -27,7 +27,7 @@ class CreateCaracteristicaVariedad extends Migration
             $table->integer('variedade_id')->unsigned()->nullable();
             $table->foreign('variedade_id')->references('id')->on('variedades')->onUpdate('set null');
 
-            $table->timestamps();
+
         });
     }
 

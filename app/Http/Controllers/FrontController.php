@@ -27,24 +27,102 @@ class FrontController extends Controller
     public function timeline()
     {
         //
-//        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
-
-        $practicas = Practica::with(['meses' => function ($query) {
-            $query->whereNotNull('nombre_mes')
-                    
-                    ->latest('created_at' );
-        }])->get();
-
-//
-//        $date = Date('M');
-//
-//        dd($date);
-
-//        $practicas = Practica::with('Mes', function ($query) {
-//            $query->whereNotNull("nombre_practica");
-//        });
-
+        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
         return view('admin.home.timeline',compact('practicas'));
+
+//        $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+//            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+//
+//        $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
+//            'Miercoles', 'Jueves', 'Viernes', 'Sabado');
+//
+//        $mesactual = $arrayMeses[date('m')-1];
+
+
+//      dd();
+
+//        if ($mesactual = 'Enero') {
+//
+//            $practicas->load('meses', 'semanas')
+//                ->where('mes', 'like', '%Marzo%');
+//
+//            dd($practicas);
+//
+//            return view('admin.home.timeline',compact('practicas'));
+//        }
+//
+////
+//        if($mesactual = 'Enero'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('mes_id')
+//                    ->where('nombre_mes','=','Enero')
+//                    ->orderBy('created_at', 'ASC');
+//            }])->paginate(6);
+//
+//            return view('admin.home.timeline',compact('practicas'));
+//
+//        }elseif ($mesactual = 'Febrero'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Febrero')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Marzo'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Marzo')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Abril'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Abril')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Mayo'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Mayo')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Junio'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Junio')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Agosto'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Agosto')
+//                    ->latest('created_at' );
+//            }])->paginate(3);
+//        }elseif ($mesactual = 'Septiembre'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Septiembre')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }elseif ($mesactual = 'Octubre'){
+//
+//            $practicas = Practica::with(['meses' => function ($query) {
+//                $query->whereNotNull('nombre_mes')
+//                    ->where('nombre_mes','=','Octubre')
+//                    ->latest('created_at' );
+//            }])->paginate(4);
+//        }
+
+//      dd($practicas);
+        
+
     }
 
     public function timelinemore($slug)

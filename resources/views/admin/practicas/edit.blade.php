@@ -58,15 +58,16 @@
 
             <div class="box-body">
 
-                <div class="form-group">
+                <div class="form-group {{$errors->has('nombre_practica') ? 'has-error' : ''}}">
                    {{ Form::label('nombre_practica','Nombre de la labor agricola') }}
                         {{ Form::text('nombre_practica',$practica->nombre_practica,['class' =>'form-control', 'placeholder' =>'Nombre practica'])}}
+                    {!! $errors->first('nombre_practica','<span class="help-block">:message</span>') !!}
                 </div>
             </div>
-            <div class="form-group">
+            <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
 
              {{  Form::textarea('contenido',$practica->contenido,['id' => 'my-editor','class' => 'my-editor']) }}
-
+                {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
             </div>
 
 
@@ -90,8 +91,8 @@
                   <tbody>
                 @for ($i = 0; $i < count($my_mes); $i++)
                     <tr>
-                       <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i],['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
-                        <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i],['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
+                       <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i] ? $my_mes[$i] : null ,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
+                        <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i]  ? $my_semana[$i] : null ,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
                         <td style="display:inline;"><button name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</button></td>
                         </tr>
                  @endfor   
@@ -108,7 +109,7 @@
 
                 <div class="form-group">
                     {{ Form::label('tecnologia','Tecnológia') }}
-                        {{ Form::select('Ttecnologia_id',$tecnologias,$practica->tecnologia->id,['class' => 'form-control chosen-select'])}}
+                        {{ Form::select('tecnologia_id',$tecnologias,null ,['class' => 'form-control chosen-select'])}}
                 </div>
 
 
@@ -122,9 +123,10 @@
                         {{ Form::file('path')}}
                     </div>
                     
-                    <div class="form-group">
+                    <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
                         {{ Form::label('tag_id','Tags') }}
-                        {{ Form::select('tag_id[]',$tags,$my_tags,['class'=>'form-control chosen-select', 'multiple','style' => '100%', 'required' ]) }}
+                        {{ Form::select('tag_id[]',$tags,$my_tags,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old(tag_id)']) }}
+                        {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
                     </div>
 
 

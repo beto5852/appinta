@@ -24,7 +24,7 @@ class CreatePracticaTag extends Migration
             $table->integer('tag_id')->unsigned()->nullable();
             $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('set null');
 
-            $table->timestamps();
+          
         });
     }
 
