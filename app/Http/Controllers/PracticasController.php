@@ -35,9 +35,14 @@ class PracticasController extends Controller
     {
         //mostrar algunos Productos
 
+        $tecnologias = Tecnologia::orderBy('nombre_tecnologia', 'ASC')->pluck('nombre_tecnologia', 'id');
+        $tags        = Tag::orderBy('nombre_tags', 'ASC')->pluck('nombre_tags', 'id');
+        $semanas     = Semana::orderBy('id', 'ASC')->pluck('nombre_semana', 'id');
+        $meses       = Mes::orderBy('id', 'ASC')->pluck('nombre_mes', 'id');
+        $cultivos    = Cultivo::orderBy('nombre_cultivo', 'DESC')->pluck('nombre_cultivo', 'id');
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
 
-        return view("admin.practicas.index", compact('practicas'));
+        return view("admin.practicas.index", compact('practicas','tecnologias', 'tags', 'cultivos', 'meses', 'semanas'));
     }
     /**
      * Show the form for creating a new resource.
