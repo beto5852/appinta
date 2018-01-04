@@ -35,8 +35,11 @@ class FotoController extends Controller
     public function store(Request $request)
     {
         //
-
-        return 'procesando imagen...';
+        $this->validate($request ,[
+                'foto' => 'image',
+            ]
+        );
+        $foto =  request()->file('foto');
     }
 
     /**

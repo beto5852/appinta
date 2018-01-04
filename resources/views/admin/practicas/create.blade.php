@@ -189,8 +189,9 @@
    
     new Dropzone('.dropzone',{
         url : '/admin/practicas/{{Auth::user()->id}}/fotos',
-        acceptedFiles : 'image/*',
+//        acceptedFiles : 'image/*',
         maxFilesize: 2,
+        paramName: 'foto',
         headers:{
           'X-CSRF-TOKEN':'{{csrf_token()}}'
         },
