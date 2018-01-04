@@ -1,17 +1,5 @@
 @extends('layouts.admin')
 
-@section('css')
-
-<!-- daterange picker -->
-  <link rel="stylesheet" href="{{asset('/adminlte/plugins/daterangepicker/daterangepicker.css')}}">
-  <!-- bootstrap datepicker -->
-  <link rel="stylesheet" href="{{asset('/adminlte/plugins/datepicker/datepicker3.css')}}">
-   <!-- Bootstrap Color Picker -->
-  <link rel="stylesheet" href="{{asset('/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.css')}}">
-  <!-- Bootstrap time Picker -->
-  <link rel="stylesheet" href="../../plugins/timepicker/bootstrap-timepicker.min.css">
-
-@endsection
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear práctica agricola')
 
@@ -199,11 +187,17 @@
 
    var accept = ".png";
    
-   var myDropzone = new Dropzone('.dropzone',{
-        url : '/admin/practicas/',
+    new Dropzone('.dropzone',{
+        url : '/admin/practicas/{{Auth::user()->id}}/fotos',
+        acceptedFiles : 'image/*',
+        maxFilesize: 2,
+        headers:{
+          'X-CSRF-TOKEN':'{{csrf_token()}}'
+        },
         dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
 
     });
+
     Dropzone.autoDiscover = false;    
 
 </script>
