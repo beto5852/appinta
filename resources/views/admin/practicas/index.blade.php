@@ -56,7 +56,7 @@
     <div class="box box-primary">
         <div class="box-header">
             <h3 class="box-title">Listado de prácticas agricolas</h3>
-            <button class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</button>
+            <a href="{{url('admin/practicas/create')}}" class="btn btn-raised btn-success pull-right"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -86,7 +86,7 @@
                            <td><img src="{{asset('img/')}}/{{$practica->path}}" style = "width: 100px;"></td>
                        @endif
                        <td>
-                           <button href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+                           <a href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
 
                            <form method="POST" action="{{route('admin.practicas.destroy',$practica->id)}}" style="display:inline" >
                                {{ csrf_field() }} {{method_field('DELETE')}}
@@ -109,71 +109,6 @@
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
-
-
-
-@endsection
-
-
-@section('script')
-
-    <script>
-        $(function () {
-            $('#practicas-table').DataTable({
-                "paging": false,
-                "lengthChange": true,
-                "searching": false,
-                "ordering": true,
-                "info": false,
-                "autoWidth": false
-            });
-        });
-    </script>
-
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-        };
-    </script>
-
-
-    <script>
-        CKEDITOR.replace('my-editor', options);
-    </script>
-
-    <script>
-        $(".chosen-select").chosen({width: "100%"});
-    </script>
-
-    <!-- Modal -->
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        {!! Form::open(['url' => 'admin/practicas','method' => 'POST']) !!}
-        {{csrf_field()}}
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">Agregue el tema de la práctica agrícola</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group {{$errors->has('nombre_practica') ? 'has-error' : ''}}" >
-                        {{--{{ Form::label('Practica','Tema de la práctica agrícola') }}--}}
-                        {{ Form::text('nombre_practica','',['class' => 'form-control','placeholder' => 'Tema aquí...','value' => 'old(nombre_practica)' ]) }}
-
-                        {!! $errors->first('nombre_practica','<span class="help-block">:message</span>') !!}
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
-                    <button  class="btn btn-primary">Crear práctica agricola</button>
-                </div>
-            </div>
-        </div>
-        {!! Form::close() !!}
-    </div>
 
 
 

@@ -72,16 +72,16 @@
 
 
             <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
-                {{ Form::label('Agregue el contenido','Agregue el contenido') }}
+                 {{ Form::label('Agregue el contenido','Agregue el contenido') }}
                 {{ Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor','value' => 'old(contenido)'])}}
-                {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
+                 {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
             </div>
 
 
         </div>
     </div>
     <div class="col-md-4">
-    <div class="box box-primary">      
+    <div class="box box-primary">
           <div class="box box-body">
 
              <!-- Date and time range -->
@@ -103,10 +103,10 @@
 
                     </tr>
                   </tbody>
-                </table>              
+                </table>
 
               </div>
-             
+
            </div>
 
            <div class="box-body">
@@ -124,7 +124,7 @@
                    {{ Form::file('path')}}
                </div>
 
-               <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
+               <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
                    {{ Form::label('tag_id','Etiquetas agropecuarias') }}
                    {{ Form::select('tag_id[]',$tags,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old(tag_id[])']) }}
                    {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
