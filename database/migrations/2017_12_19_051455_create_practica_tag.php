@@ -19,10 +19,10 @@ class CreatePracticaTag extends Migration
             $table->increments('id');
 
             $table->integer('practica_id')->unsigned()->nullable();
-            $table->foreign('practica_id')->references('id')->on('practicas')->onUpdate('set null');
+            $table->foreign('practica_id')->references('id')->on('practicas')->onDelete('set null');
 
             $table->integer('tag_id')->unsigned()->nullable();
-            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('set null');
+            $table->foreign('tag_id')->references('id')->on('tags')->onDelete('set null');
 
           
         });

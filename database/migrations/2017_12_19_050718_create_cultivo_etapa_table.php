@@ -18,10 +18,10 @@ class CreateCultivoEtapaTable extends Migration
             $table->increments('id');
 
             $table->integer('cultivo_id')->unsigned()->nullable();
-            $table->foreign('cultivo_id')->references('id')->on('cultivos')->onUpdate('set null');
+            $table->foreign('cultivo_id')->references('id')->on('cultivos')->onDelete('set null');
 
             $table->integer('etapa_id')->unsigned()->nullable();
-            $table->foreign('etapa_id')->references('id')->on('etapas')->onUpdate('set null');
+            $table->foreign('etapa_id')->references('id')->on('etapas')->onDelete('set null');
 
             $table->timestamps();
         });

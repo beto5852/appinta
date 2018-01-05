@@ -73,6 +73,8 @@
           <div class="box box-body">
 
              <!-- Date and time range -->
+
+
               <div class="form-group">
 
                 {{ Form::label('Fechas de la practica','Fechas de la practica') }}
@@ -81,12 +83,12 @@
                   <thead>
                    <th>Mes</th>
                    <th>Semana</th>
-                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th>
+                   {{--<th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th>--}}
                   </thead>
                   <tbody>
                     <tr>
-                     <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
-                      <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
+                     <td class="col-sm-4">{!! Form::select('mes_id',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id) == $meses->id ? selected :'])!!}</td>
+                      <td class="col-sm-5">{!! Form::select('semana_id',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id) == $semanas->id ? selected :'])!!}</td>
              {{--          <td style="display:inline;"><a href="#" class="btn btn-danger remove" ><i class="fa fa-trash-o" aria-hidden="true" ></a></td> --}}
 
                     </tr>
@@ -105,7 +107,7 @@
                 </div>
 
                <div class="form-group">
-                   {{ Form::hidden('usuario_id',Auth::user()->id,null,['class' => 'form-control'])}}
+                   {{ Form::hidden('user_id',Auth::user()->id,null,['class' => 'form-control'])}}
                </div>
                <div class="form-group">
                    {{ Form::label('path','Imagen de la práctica') }}

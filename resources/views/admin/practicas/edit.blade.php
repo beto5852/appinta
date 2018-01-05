@@ -85,16 +85,16 @@
                   <thead>
                    <th>Mes</th>
                    <th>Semana</th>
-                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>
+                   {{--<th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>--}}
                   </thead>
                   <tbody>
-                @for ($i = 0; $i < count($my_mes); $i++)
+
                     <tr>
-                       <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i],['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
-                        <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i],['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
-                        <td style="display:inline;"><button name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</button></td>
+                       <td class="col-sm-4">{!! Form::select('mes_id',$meses,$my_mes,['class' => 'form-control chosen-select','value' => 'old(mes_id) == $meses->id ? selected :'])!!}</td>
+                        <td class="col-sm-5">{!! Form::select('semana_id',$semanas,$my_semana,['class' => 'form-control chosen-select','value' => 'old(semana_id) == $semanas->id ? selected :'])!!}</td>
+                        {{--<td style="display:inline;"><button name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</button></td>--}}
                         </tr>
-                 @endfor
+
                   </tbody>
                 </table>
 
@@ -103,7 +103,7 @@
 
                  <div class="form-group">
                         {{ Form::label('user','Cambiar editor') }}
-                        {{ Form::select('user_id',$users,null,['class' => 'form-control chosen-select'])}}
+                        {{ Form::select('user_id',$users,$practica->user->name,['class' => 'form-control chosen-select'])}}
                  </div>
 
                 <div class="form-group">
@@ -130,7 +130,7 @@
 
                <div class="form-group">
                    <div  class="dropzone">
-                 
+
                    </div>
                </div>
 
@@ -205,59 +205,68 @@
         autoclose: true
     });
 
-   new Dropzone('.dropzone',{
-        url : '/admin/practicas/fotos',
-        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
+    var accept = ".png";
+
+    new Dropzone('.dropzone',{
+        url : '/admin/practicas/{{Auth::user()->id}}/fotos',
+//        acceptedFiles : 'image/*',
+        maxFilesize: 2,
+        paramName: 'foto',
+        headers:{
+            'X-CSRF-TOKEN':'{{csrf_token()}}'
+        },
+        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
+
     });
 
     Dropzone.autoDiscover = false;
 
 </script>
 
-<script type="text/javascript">
-  
- //agregar columnas dinamicas
+{{--<script type="text/javascript">--}}
 
-$(document).ready(function() {
-    
+ {{--//agregar columnas dinamicas--}}
 
-
- $('.addRow').on('click', function() {
-   /* Act on the event */
-    addRow();
- });
-
- function addRow()
- {
-
-             var i = {{ $i }};
-             var tr='<tr id="row'+i+'">'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="display:inline;"><button name="remove" id="'+i+'" class="btn btn-danger btn-remove">X</button></td>'+
-                  '</tr>';
+{{--$(document).ready(function() {--}}
 
 
-       $('tbody').append(tr);            
- }
+
+ {{--$('.addRow').on('click', function() {--}}
+   {{--/* Act on the event */--}}
+    {{--addRow();--}}
+ {{--});--}}
+
+ {{--function addRow()--}}
+ {{--{--}}
+
+            {{----}}
+             {{--var tr='<tr id="row'+i+'">'+--}}
+                  {{--'<td style="text-align: center;">'+--}}
+                  {{--'{{ Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}'+--}}
+                  {{--'</td>'+--}}
+                  {{--'<td style="text-align: center;">'+--}}
+                  {{--'{{ Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}'+--}}
+                  {{--'</td>'+--}}
+                  {{--'<td style="display:inline;"><button name="remove" id="'+i+'" class="btn btn-danger btn-remove">X</button></td>'+--}}
+                  {{--'</tr>';--}}
 
 
- $(document).on('click','.btn-remove' ,function() {
-   /* Act on the event */
-   var button_id= $(this).attr("id");
-   $("#row"+button_id+"").remove();
-
- });
-
-});   
- 
+       {{--$('tbody').append(tr);            --}}
+ {{--}--}}
 
 
-</script>
+ {{--$(document).on('click','.btn-remove' ,function() {--}}
+   {{--/* Act on the event */--}}
+   {{--var button_id= $(this).attr("id");--}}
+   {{--$("#row"+button_id+"").remove();--}}
+
+ {{--});--}}
+
+{{--});   --}}
+ {{----}}
+
+
+{{--</script>--}}
 
 @endsection
 

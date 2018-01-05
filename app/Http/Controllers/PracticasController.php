@@ -35,14 +35,13 @@ class PracticasController extends Controller
     {
         //mostrar algunos Productos
 
-        $tecnologias = Tecnologia::orderBy('nombre_tecnologia', 'ASC')->pluck('nombre_tecnologia', 'id');
-        $tags        = Tag::orderBy('nombre_tags', 'ASC')->pluck('nombre_tags', 'id');
-        $semanas     = Semana::orderBy('id', 'ASC')->pluck('nombre_semana', 'id');
-        $meses       = Mes::orderBy('id', 'ASC')->pluck('nombre_mes', 'id');
-        $cultivos    = Cultivo::orderBy('nombre_cultivo', 'DESC')->pluck('nombre_cultivo', 'id');
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
+        $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
+        $tags        = Tag::pluck('nombre_tags');
+        $meses       = Mes::pluck('nombre_mes');
+        $semanas     = Semana::pluck('nombre_semana');
 
-        return view("admin.practicas.index", compact('practicas','tecnologias', 'tags', 'cultivos', 'meses', 'semanas'));
+        return view("admin.practicas.index", compact('practicas','meses','semanas','tecnologias','tags'));
     }
     /**
      * Show the form for creating a new resource.
@@ -81,28 +80,23 @@ class PracticasController extends Controller
             ]
         );
 
-        $practica = new Practica;
+        $practica = new Practica($request->all());
 
-        $practica->nombre_practica = $request->get('nombre_practica');
-        $practica->contenido = $request->get('contenido');
-        $practica->tecnologia_id = $request->get('tecnologia_id');
-        $practica->path = $request->get('path');
-        $practica->user_id = $request->get('user_id');
+//        dd($request);
 
-        $practica->save();
+        //$practica->save();
+        if($practica->save()){
 
-//       $meses = array_values($request->input('mes_id'));
-
-        // dd($meses);
+            \Event::fire(new CrearPractica($practica));
 
 
-        $practica->tags()->attach($request->get('tag_id'));
-
-
-        for ($i = 0; $i < count($request->semana_id); $i++) {
-
-            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
         }
+        $practica->meses()->attach($request->mes_id);
+        $practica->semanas()->attach($request->semana_id);
+
+        $practica->tags()->sync($request->tag_id);
+
+
 
 
         Session::flash('message', 'Labor agricola registrado correctamente');
@@ -145,7 +139,7 @@ class PracticasController extends Controller
         $my_semana = $practica->semanas->pluck('id')->ToArray();
         $my_mes    = $practica->meses->pluck('id')->ToArray();
 
-        // dd(count($my_mes));
+
         return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));
     }
     /**
@@ -166,24 +160,18 @@ class PracticasController extends Controller
 //       dd($practica);
 
         $practica->save();
-//
-        $practica->tags()->detach();
-        $practica->meses()->detach();
-        $practica->semanas()->detach();
 
-//
-////         $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
-//
-//         dd($request->mes_id);
-//
-//
-//        for ($i = 0; $i < count($request->mes_id); $i++) {
-//
-//            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
-//        }
+//        $practica->meses()->detach();
+//        $practica->semanas()->detach();
 
-//        $practica->meses()->sync($request->mes_id);
-//        $practica->semanas()->sync($request->semana_id);
+        $mes = [];
+        $mes[] = $request->get('mes_id');
+
+        $semana = [];
+        $semana[] = $request->get('semana_id');
+
+        $practica->meses()->sync($mes);
+        $practica->semanas()->sync($semana);
         $practica->tags()->sync($request->tag_id);
        
 

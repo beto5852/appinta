@@ -29,6 +29,9 @@ Route::get('index/{nombre_practica}', [
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
+    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+
+
     Route::get('/', [
         'uses' => 'FrontController@admin',
         'as'    => 'administrador',
