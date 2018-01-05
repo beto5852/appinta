@@ -161,8 +161,7 @@ class PracticasController extends Controller
 
         $practica->save();
 
-//        $practica->meses()->detach();
-//        $practica->semanas()->detach();
+//
 
         $mes = [];
         $mes[] = $request->get('mes_id');
