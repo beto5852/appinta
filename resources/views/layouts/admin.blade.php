@@ -121,6 +121,8 @@ desired effect
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
+
+@yield('redes')
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -157,8 +159,8 @@ desired effect
      user experience. Slimscroll is required when using the
      fixed layout. -->
 <!-- page script -->
-@yield('script')
 
-
+        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>
 </body>
 </html>

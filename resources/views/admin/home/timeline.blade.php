@@ -67,21 +67,25 @@
                          @endforeach
                         <h3 class="timeline-header"><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h3>
 
+
                         <div class="timeline-body">
                           {!! substr($practica->contenido,0,800) !!}
 
                         </div>
-                             <a href="https://www.facebook.com/sharer.php?u={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-facebook" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                             <a href="https://plus.google.com/share?url={{request()->fullUrl()}}" class="btn btn-social-icon btn-google" title="Compartir en Google+" target="_blank"><i class="fa fa-google-plus"></i></a>
-                             <a href="https://twitter.com/intent/tweet?url={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-twitter" title="Compartir en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+
+                             {{--<a href="https://www.facebook.com/sharer.php?u={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-facebook" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
+                             {{--<a href="https://plus.google.com/share?url={{request()->fullUrl()}}" class="btn btn-social-icon btn-google" title="Compartir en Google+" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
+                             {{--<a href="https://twitter.com/intent/tweet?url={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-twitter" title="Compartir en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
                         @foreach( $practica->tags as $tag)
                         <span class="time"><i class="fa fa-tags"></i> {{$tag->nombre_tags}}</span>
                         @endforeach
+
+
                         <div class="timeline-footer">
 
 
 
-                          <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-primary btn-xs">Leer mas</a>
+                          <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-primary">Leer mas</a>
 
                           {{-- <a class="btn btn-danger btn-xs">Delete</a> --}}
                         </div>
@@ -92,20 +96,24 @@
                     <!-- timeline item -->
                     
                                    
-                   @endforeach
+                     @endforeach
                    @endforeach
                      <li>
                       <i class="fa fa-clock-o bg-gray"></i>
                     </li>
-              </ul>        
+              </ul>
 
         </div>
 <center>{{ $practicas->links()}}</center>
         <!-- /.col -->
       </div>
       <!-- /.row -->
-
 @endsection
+
+@section('redes')
+    <code>
+@endsection
+
 
 
 @section('script')
@@ -126,6 +134,10 @@
         });
     });
 </script>
+
+
+
+
 
 <script>
     var options = {

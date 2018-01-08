@@ -19,50 +19,35 @@
 @endsection
 @section('content')
 
-{{-- 
-<div class="row">
-    <div class="jumbotron col-md-8"><h1>Labores Agrícolas de la semana</h1>
 
-        <article>
-            <h2>{{$practicas->nombre_practica}}</h2>
-            <div class="row">
-                <div class="col-md-8">
-                    <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
-                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
-                </div>
-                <div class="col-md-4">
-                    <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
-                </div>
-            </div>
-            <br>
-            @if(empty($practicas->path))
-                <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
-            @else
-                <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
-            @endif
-            <br>
-            <p>{!! substr($practicas->contenido,0,10000) !!} </p>
-
-        </article>
-
-    </div>
-   
-
-</div> --}}
 
  <!-- Main content -->
         <div class="content body">
 
-<section id="introduction">
-  <h2 class="page-header"><a href="#introduction">{{$practicas->nombre_practica}}</a></h2>
-  <p class="lead">
-    {!! $practicas->contenido !!} 
-  </p>
-</section><!-- /#introduction -->
+            <section id="introduction">
+              <h2 class="page-header"><a href="#introduction">{{$practicas->nombre_practica}}</a></h2>
+                <article>
+                    {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
+                    <div class="row">
+                        <div class="col-md-8">
+                            <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
+                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
+                        </div>
+                        <div class="col-md-4">
+                            <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
+                        </div>
+                    </div>
+                    <br>
+                    @if(empty($practicas->path))
+                        <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
+                    @else
+                        <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
+                    @endif
+                    <br>
+                    <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
 
-
-
-
+                </article>
+            </section><!-- /#introduction -->
 
         </div><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -70,7 +55,9 @@
 @endsection
 
 
+
 @section('script')
+
 
 <script>
     $(function () {
