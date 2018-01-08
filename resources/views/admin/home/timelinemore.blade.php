@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('meta-title',$practicas->nombre_practica)
+@section('meta-content',substr($practicas->contenido,0,100))
 @section('header')
     <section class="content-header">
         <h1>

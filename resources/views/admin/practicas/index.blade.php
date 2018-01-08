@@ -3,6 +3,7 @@
 
 @section('meta-title','Lista de Practicas')
 
+
 @section('header')
     <section class="content-header">
         <h1>

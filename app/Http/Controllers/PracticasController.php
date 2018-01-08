@@ -155,7 +155,7 @@ class PracticasController extends Controller
 
         $this->validate($request , [
                 'nombre_practica' => 'required',
-                'contenido'       => 'required',
+                'contenido'       => 'required|min:100|max:3000',
                 'tecnologia_id'   => 'required',
                 'mes_id'          => 'required',
                 'semana_id'       => 'required',
