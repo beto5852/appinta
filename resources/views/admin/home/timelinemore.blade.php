@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
-@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear práctica agricola')
-
+@section('meta-title',$practicas->nombre_practica)
 @section('header')
     <section class="content-header">
         <h1>

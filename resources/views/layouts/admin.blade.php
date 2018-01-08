@@ -7,9 +7,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>{{ config('app.name', 'APPINTA') }}</title>
+    <title>@yield('meta-title','Prácticas | INTA')</title>
+
 
     <!-- Tell the browser to be responsive to screen width -->
+    <meta name="description" content="@yield('meta-content','Esta es la aplicación de prácticas agricolas')">
+
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link href="{{asset('/css/app.css')}}" rel="stylesheet" type="text/css" >
@@ -121,8 +124,6 @@ desired effect
          immediately after the control sidebar -->
     <div class="control-sidebar-bg"></div>
 </div>
-
-@yield('redes')
 <!-- ./wrapper -->
 
 <!-- REQUIRED JS SCRIPTS -->
@@ -159,8 +160,10 @@ desired effect
      user experience. Slimscroll is required when using the
      fixed layout. -->
 <!-- page script -->
+@yield('script')
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>
+ó
 </body>
 </html>

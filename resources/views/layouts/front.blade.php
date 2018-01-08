@@ -8,7 +8,11 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'APPINTA') }}</title>
+    <title>@yield('meta-title','Prácticas | INTA')</title>
+
+
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="description" content="@yield('meta-content','Esta es la aplicación de prácticas agricolas')">
 
     <!-- Styles -->
     <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" >

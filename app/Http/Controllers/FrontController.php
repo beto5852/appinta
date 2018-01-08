@@ -28,14 +28,14 @@ class FrontController extends Controller
     {
         //
         
-
-       $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-
-       $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
-           'Miercoles', 'Jueves', 'Viernes', 'Sabado');
-
-       $mesactual = $arrayMeses[date('m')-1];
+//
+//       $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+//           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+//
+//       $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
+//           'Miercoles', 'Jueves', 'Viernes', 'Sabado');
+//
+//       $mesactual = $arrayMeses[date('m')-1];
 
         // dd(date('m'));
 

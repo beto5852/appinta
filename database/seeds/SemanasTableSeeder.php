@@ -13,7 +13,7 @@ class SemanasTableSeeder extends Seeder
     {
         for ($j = 1; $j < 5; $j++) {
             \DB::table('semanas')->insert(array(
-                'nombre_semana' => 'Semana'.''.$j,
+                'nombre_semana' => 'Semana'.' '.$j,
 
             ));
         }

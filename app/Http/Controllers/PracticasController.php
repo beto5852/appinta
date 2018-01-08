@@ -97,12 +97,6 @@ class PracticasController extends Controller
         $practica->semanas()->attach($request->get('semana_id'));
 
 
-
-        // for ($i = 0; $i < count($request->semana_id); $i++) {
-
-        //     $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
-        // }
-
         Session::flash('message', 'Labor agricola registrado correctamente');
         return redirect::to('admin/practicas/create');
         //dd($user);
