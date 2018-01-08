@@ -185,7 +185,6 @@ class PracticasController extends Controller
 //        $practica->meses()->sync($request->mes_id);
 //        $practica->semanas()->sync($request->semana_id);
         $practica->tags()->sync($request->tag_id);
-       
 
 
         Session::flash('message', 'Práctica actualizado correctamente');
@@ -204,7 +203,7 @@ class PracticasController extends Controller
         $practica->tags()->detach();
         $practica->meses()->detach();
         $practica->semanas()->detach();
-        
+
         $practica->delete();
 
 
