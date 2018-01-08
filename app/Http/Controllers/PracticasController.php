@@ -148,9 +148,9 @@ class PracticasController extends Controller
         $meses       = Mes::pluck('nombre_mes');
         $semanas     = Semana::pluck('nombre_semana');
 
-//        $my_tags   = $practica->tags->pluck('id')->ToArray();
-//        $my_mes    = $practica->meses->pluck('id')->ToArray();
-//        $my_semana = $practica->semanas->pluck('id')->ToArray();
+        $my_tags   = $practica->tags->pluck('id')->ToArray();
+        $my_mes    = $practica->meses->pluck('id')->ToArray();
+        $my_semana = $practica->semanas->pluck('id')->ToArray();
 
 
         // dd($my_mes);

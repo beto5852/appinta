@@ -62,12 +62,12 @@
 
                     <div class="form-group {{$errors->has('nombre_practica') ? 'has-error' : ''}}" >
                         {{ Form::label('nombre_practica','Nombre de la labor agricola') }}
-                        {{ Form::text('nombre_practica',$practica->nombre_practica,['class' =>'form-control', 'value' => 'old(nombre_practica,$practica->nombre_practica)'])}}
+                        {{ Form::text('nombre_practica',$practica->nombre_practica,['class' =>'form-control', 'value' => '{old(nombre_practica,$practica->nombre_practica)}'])}}
                         {!! $errors->first('nombre_practica','<span class="help-block">:message</span>') !!}
                     </div>
                     <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
                         {{ Form::label('Agregue el contenido','Agregue el contenido') }}
-                        {{ Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor','value' => 'old(contenido)'])}}
+                        {{ Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor','value' => "old(contenido,$practica->contenido)"])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
@@ -93,12 +93,12 @@
                         <tr>
 
                             <td class="col-sm-4">
-                                {!! Form::select('mes_id',$meses,null,['class' => 'form-control chosen-select'])!!}
+                                {!! Form::select('mes_id',$meses,null,['class' => 'form-control chosen-select','value' => 'old($my_mes)'])!!}
 
                             </td>
 
                             <td class="col-sm-5">
-                                {!! Form::select('semana_id',$semanas,null,['class' => 'form-control chosen-select'])!!}
+                                {!! Form::select('semana_id',$semanas,null,['class' => 'form-control chosen-select','value' => 'old($my_semana)'])!!}
                             </td>
 
                             {{--    <td style="display:inline;"><a name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</a>
@@ -135,7 +135,7 @@
 
                     <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
                         {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('tag_id[]',$tags,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old(tag_id[])']) }}
+                        {{ Form::select('tag_id',$tags,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
                         {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
                     </div>
 
