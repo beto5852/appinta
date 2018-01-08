@@ -16,11 +16,16 @@ class CreateCaracteristicaVariedad extends Migration
         Schema::create('caracteristica_variedad', function (Blueprint $table) {
 
             $table->engine = 'InnoDB';
+
             $table->increments('id');
+
             $table->text('descripcion_caracteristica')->nullable();
-            $table->unsignedInteger('caracteristica_id');
-            $table->unsignedInteger('variedade_id');
-            $table->timestamps();
+
+            $table->integer('caracteristica_id')->unsigned()->nullable();
+            $table->foreign('caracteristica_id')->references('id')->on('caracteristicas')->onUpdate('set null');
+            
+            $table->integer('variedade_id')->unsigned()->nullable();
+            $table->foreign('variedade_id')->references('id')->on('variedades')->onUpdate('set null');
 
 
         });

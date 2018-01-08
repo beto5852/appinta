@@ -176,6 +176,7 @@ return [
         Intervention\Image\ImageServiceProvider::class,
         Kim\Activity\ActivityServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
+        Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
 
         //
 

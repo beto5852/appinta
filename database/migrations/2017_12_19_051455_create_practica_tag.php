@@ -17,9 +17,13 @@ class CreatePracticaTag extends Migration
 
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->unsignedInteger('practica_id');
-            $table->unsignedInteger('tag_id');
-            $table->timestamps();
+
+            $table->integer('practica_id')->unsigned()->nullable();
+            $table->foreign('practica_id')->references('id')->on('practicas')->onUpdate('set null');
+
+            $table->integer('tag_id')->unsigned()->nullable();
+            $table->foreign('tag_id')->references('id')->on('tags')->onUpdate('set null');
+
           
         });
     }

@@ -86,22 +86,24 @@ class PracticasController extends Controller
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->contenido = $request->get('contenido');
         $practica->tecnologia_id = $request->get('tecnologia_id');
-        $practica->path = $request->path;
+        $practica->path = $request->get('path');
         $practica->user_id = $request->get('user_id');
-        // dd($request->get('path'));
 
         $practica->save();
 
+//       $meses = array_values($request->input('mes_id'));
+
+        // dd($meses);
+
+
         $practica->tags()->attach($request->get('tag_id'));
-        $practica->meses()->attach($request->get('mes_id'));
-        $practica->semanas()->attach($request->get('semana_id'));
 
 
+        for ($i = 0; $i < count($request->semana_id); $i++) {
 
-        // for ($i = 0; $i < count($request->semana_id); $i++) {
+            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
+        }
 
-        //     $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
-        // }
 
         Session::flash('message', 'Labor agricola registrado correctamente');
         return redirect::to('admin/practicas/create');
@@ -140,12 +142,10 @@ class PracticasController extends Controller
         $semanas     = Semana::pluck('nombre_semana');
 
         $my_tags   = $practica->tags->pluck('id')->ToArray();
-        $my_mes    = $practica->meses->pluck('id')->ToArray();
         $my_semana = $practica->semanas->pluck('id')->ToArray();
+        $my_mes    = $practica->meses->pluck('id')->ToArray();
 
-
-        // dd($my_mes);
-
+        // dd(count($my_mes));
         return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));
     }
     /**
@@ -158,17 +158,6 @@ class PracticasController extends Controller
     public function update(Request $request, $id)
     {
         //actualiza lo que se envio en edit$id
-
-      $this->validate($request , [
-                'nombre_practica' => 'required',
-                'contenido'       => 'required',
-                'tecnologia_id'   => 'required',
-                'mes_id'          => 'required',
-                'semana_id'       => 'required',
-                'tag_id'          => 'required',
-            ]
-        );
-
         $practica = Practica::find($id);
         $practica->fill($request->all());
         $practica->slug = null;
@@ -178,10 +167,26 @@ class PracticasController extends Controller
 
         $practica->save();
 //
-         $practica->tags()->sync($request->tag_id);
-        $practica->meses()->sync($request->mes_id);
-        $practica->semanas()->sync($request->semana_id);
-              
+        $practica->tags()->detach();
+        $practica->meses()->detach();
+        $practica->semanas()->detach();
+
+//
+////         $varmps = MPS::orderBy('id', 'ASC')->pluck('id');
+//
+//         dd($request->mes_id);
+//
+//
+//        for ($i = 0; $i < count($request->mes_id); $i++) {
+//
+//            $practica->meses()->attach($request->mes_id[$i], ['semana_id' => $request->semana_id[$i]]);
+//        }
+
+//        $practica->meses()->sync($request->mes_id);
+//        $practica->semanas()->sync($request->semana_id);
+        $practica->tags()->sync($request->tag_id);
+       
+
 
         Session::flash('message', 'Práctica actualizado correctamente');
         return redirect::to('admin/practicas');

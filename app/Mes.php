@@ -16,14 +16,12 @@ class Mes extends Model
 
     public function practicas()
     {
-        return $this->belongsToMany(Practica::class,'mes_practica')->w;
+        return $this->belongsToMany(Practica::class,'mese_practica_semana')->withPivot('semana_id');
     }
-
-    // public function semanas()
-    // {
-    //     return $this->belongsToMany(Semana::class, 'mes_practica_semana')->withPivot('practica_id');
-    // }
-    
+    public function semanas()
+    {
+        return $this->belongsToMany(Semana::class, 'mese_practica_semana')->withPivot('practica_id');
+    }
 //    public function scopePublished($query)
 //    {
 //        return $query->whereNotNull('nombre_mes');
