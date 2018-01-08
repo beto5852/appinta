@@ -23,14 +23,14 @@ class FotoController extends Controller
             ]
         );
 
-        $foto =  request()->file('foto')->store('public');;
+        $foto =  request()->file('foto')->store('public');
 
-        
+        return $foto;
 
-        Foto::create([
-            'url' => Storage::url($foto),
-            'practica_id' => $id,
-        ]);
+//        Foto::create([
+//            'url' => Storage::url($foto),
+//            'practica_id' => $id,
+//        ]);
     }
 
     

@@ -192,7 +192,7 @@
         var myDropzone =   new Dropzone('.dropzone',{
             url : '/admin/practicas/{{Auth::user()->id}}/fotos',
             acceptedFiles : 'image/*',
-            maxFilesize: 2,
+            maxFilesize: 5,
             maxFiles:1,
             paramName: 'foto',
             headers:{
