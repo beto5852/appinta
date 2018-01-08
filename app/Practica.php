@@ -35,19 +35,16 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica', 'contenido', 'path','tecnologia_id', 'user_id'];
 
-    public function mps()
+     public function meses()
     {
-        return $this->belongsToMany(MPS::class, 'mese_practica_semana');
+        return $this->belongsToMany(Mes::class,'mes_practica');
     }
-//
-    public function meses()
-    {
-        return $this->belongsToMany(Mes::class, 'mese_practica_semana')->withPivot('semana_id');
-    }
+
     public function semanas()
     {
-        return $this->belongsToMany(Semana::class, 'mese_practica_semana')->withPivot('mes_id');
+        return $this->belongsToMany(Semana::class,'practica_semana');
     }
+
 
     public function tecnologia()
     {
@@ -59,7 +56,7 @@ class Practica extends Model
     }
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class,'practica_tag');
     }
     public function scopeSearch($query, $nombre_practica)
     {

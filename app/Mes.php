@@ -8,22 +8,14 @@ class Mes extends Model
 {
     protected $table    = 'meses';
     protected $fillable = ['nombre_mes'];
-//
-//    public function mps()
-//    {
-//        return $this->hasMany(MPS::class,'mese_practica_semana');
-//    }
+
 
     public function practicas()
     {
-        return $this->belongsToMany(Practica::class, 'mese_practica_semana')->withPivot('semana_id');
+        return $this->belongsToMany(Practica::class,'mes_practica');
     }
-
-    public function semanas()
-    {
-        return $this->belongsToMany(Semana::class, 'mese_practica_semana')->withPivot('practica_id');
-    }
-//    public function scopePublished($query)
+    
+//    function scopePublished($query)
 //    {
 //        return $query->whereNotNull('nombre_mes');
 //    }
