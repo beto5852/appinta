@@ -57,7 +57,7 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success pull-left" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</button>
+            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</button>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -139,6 +139,9 @@
                         {{ Form::text('nombre_practica','',['class' => 'form-control','placeholder' => 'Tema aquí...','value' => 'old(nombre_practica)' ]) }}
 
                         {!! $errors->first('nombre_practica','<span class="help-block">:message</span>') !!}
+                    </div>
+                    <div class="form-group">
+                        {{ Form::hidden('user_id',Auth::user()->id,null,['class' => 'form-control'])}}
                     </div>
 
                 </div>

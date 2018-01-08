@@ -37,7 +37,7 @@ class FrontController extends Controller
 //
 //       $mesactual = $arrayMeses[date('m')-1];
 
-        // dd(date('m'));
+//         dd($numeroSemana = date("W"));
 
            $practicas = Practica::with(['meses' => function ($query) {
                $query->whereNotNull('mes_id')

@@ -53,7 +53,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::resource('/practicas','PracticasController');
     Route::get('practicas/create','PracticasController@create')->name("admin.practicas.create");
-    Route::post('practicas/{id}','PracticasController@edit')->name("admin.practicas.edit");
+    Route::get('practicas/{id}/edit','PracticasController@edit')->name("admin.practicas.edit");
     Route::put('practicas/{id}','PracticasController@update')->name("admin.practicas.update");
     Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
 

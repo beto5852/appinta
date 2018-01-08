@@ -110,17 +110,14 @@
       <!-- /.row -->
 @endsection
 
-@section('redes')
-    <code>
-@endsection
-
 
 
 @section('script')
 
 
-        <!-- FastClick -->
-        <script src="{{asset('/adminlte/plugins/fastclick/fastclick.js')}}"></script>
+<!-- FastClick -->
+
+<script src="{{asset('/adminlte/plugins/fastclick/fastclick.js')}}"></script>
 
 <script>
     $(function () {

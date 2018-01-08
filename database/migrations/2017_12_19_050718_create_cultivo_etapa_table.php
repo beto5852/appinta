@@ -16,13 +16,8 @@ class CreateCultivoEtapaTable extends Migration
         Schema::create('cultivo_etapa', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-
-            $table->integer('cultivo_id')->unsigned()->nullable();
-            $table->foreign('cultivo_id')->references('id')->on('cultivos')->onUpdate('set null');
-
-            $table->integer('etapa_id')->unsigned()->nullable();
-            $table->foreign('etapa_id')->references('id')->on('etapas')->onUpdate('set null');
-
+            $table->unsignedInteger('cultivo_id');
+            $table->unsignedInteger('etapa_id');
             $table->timestamps();
         });
     }
