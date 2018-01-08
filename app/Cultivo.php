@@ -17,14 +17,14 @@ class Cultivo extends Model
 
     public function etapas()
     {
-        return $this->belongsToMany(Etapa::class);
+        return $this->belongsTo(Etapa::class);
     }
     public function rubro()
     {
         return $this->belongsTo(Rubro::class);
     }
     public function variedades()
-    {
+    {   
         return $this->hasMany(Variedad::class, 'variedade_id');
     }
 }

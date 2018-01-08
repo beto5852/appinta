@@ -55,7 +55,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
 
 
-    Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.destroy");
+    Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.store");
 
 
 

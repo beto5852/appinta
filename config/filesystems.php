@@ -44,14 +44,14 @@ return [
     'disks' => [
 
 
-        'img' => [
+       'img' => [
             'driver' => 'local',
             'root' => public_path('img'),
         ],
 
         'perfil' => [
             'driver' => 'local',
-            'root' => public_path('img_perfil'),
+            'root' => public_path('perfil'),
         ],
         
         
@@ -63,6 +63,7 @@ return [
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),
+            // 'url' => env('APP_URL').'/storage',
             'visibility' => 'public',
         ],
 

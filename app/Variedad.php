@@ -15,11 +15,11 @@ class Variedad extends Model
 
     public function caracteristicas()
     {
-        return $this->belongsToMany(Caracteristica::class);
+        return $this->belongsToMany(Caracteristica::class,'caracteristica_variedad');
     }
     public function cultivo()
     {
-        return $this->belongsTo(Cultivo::class, 'cultivo_id');
+        return $this->belongsTo(Cultivo::class);
     }
 
 }

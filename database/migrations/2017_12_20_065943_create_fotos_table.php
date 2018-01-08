@@ -16,6 +16,8 @@ class CreateFotosTable extends Migration
         Schema::create('fotos', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->unsignedInteger('practica_id');
+            $table->string('url');
             $table->timestamps();
         });
     }

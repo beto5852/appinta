@@ -15,6 +15,6 @@ class Tecnologia extends Model
     }
     public function rubros()
     {
-        return $this->belongsToMany(Rubro::class);
+        return $this->belongsToMany(Rubro::class,'rubro_tecnologia');
     }
 }

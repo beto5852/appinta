@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class MPS extends Model
 {
-    protected $table    = 'mese_practica_semana';
+    protected $table    = 'mes_practica_semana';
 
     protected $fillable = ['mes_id','practica_id','semana_id'];
 
     public function meses()
     {
-        return $this->belongsToMany(Mes::class);
+        return $this->belongsTo(Mes::class);
     }
 
     public function practicas()

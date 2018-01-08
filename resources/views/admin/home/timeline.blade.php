@@ -1,3 +1,4 @@
+{{-- {{ dd($practicas->meses->nombre_mes) }} --}}
 @extends('layouts.admin')
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear práctica agricola')
@@ -43,16 +44,15 @@
 
            @foreach($practica->meses as $mes)
                            
-
                     <!-- timeline time label -->
                  {{-- @if($mes->nombre_mes == 'admin') --}}
-
-                
+               
                     <li class="time-label">
                           <span class="bg-red">
 
                              {{$mes->nombre_mes}}
                           </span>
+                          
                     </li>
                      
                     <!-- /.timeline-label -->

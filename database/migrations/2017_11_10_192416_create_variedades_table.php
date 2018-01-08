@@ -18,10 +18,7 @@ class CreateVariedadesTable extends Migration
             
             $table->increments('id');
             $table->string('nombre_variedad');
-
-            $table->integer('cultivo_id')->unsigned()->nullable();
-            $table->foreign('cultivo_id')->references('id')->on('cultivos')->onDelete('set null');
-            
+            $table->unsignedInteger('cultivo_id');
             $table->timestamps();
         });
     }

@@ -14,13 +14,12 @@ class CreateMensajesTable extends Migration
     public function up()
     {
         Schema::create('mensajes', function (Blueprint $table) {
+           
             $table->engine = 'InnoDB';
-
             $table->increments('id');
             $table->unsignedInteger('envia_id');
             $table->unsignedInteger('recibe_id');
             $table->text('body');
-
             $table->timestamps();
         });
     }

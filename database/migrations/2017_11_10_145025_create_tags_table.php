@@ -14,8 +14,8 @@ class CreateTagsTable extends Migration
     public function up()
     {
         Schema::create('tags', function (Blueprint $table) {
-            $table->engine = 'InnoDB';
             
+            $table->engine = 'InnoDB';      
             $table->increments('id');
             $table->string('nombre_tags');
             $table->timestamps();

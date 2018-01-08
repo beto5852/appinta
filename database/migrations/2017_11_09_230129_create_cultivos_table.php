@@ -14,15 +14,12 @@ class CreateCultivosTable extends Migration
     public function up()
     {
         Schema::create('cultivos', function (Blueprint $table) {
+          
             $table->engine = 'InnoDB';
-            
             $table->increments('id');
             $table->string('nombre_cultivo');
             $table->text('descripcion_cultivo');
-
-            $table->integer('rubro_id')->unsigned()->nullable();
-            $table->foreign('rubro_id')->references('id')->on('rubros')->onDelete('set null');
-                
+            $table->unsignedInteger('rubro_id');
             
             $table->timestamps();
         });

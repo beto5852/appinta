@@ -11,7 +11,7 @@ class Tag extends Model
     
     public function practicas()
     {
-        return $this->belongsToMany(Practica::class,'practicas');
+        return $this->belongsToMany(Practica::class,'practica_tag');
     }
     public function scopeSearch($query,$nombre_tags){
         return $query->where('nombre_tags','LIKE',"%$nombre_tags%" );

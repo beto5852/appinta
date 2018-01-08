@@ -12,6 +12,6 @@ class Caracteristica extends Model
 
     public  function variedades()
     {
-        return $this->belongsToMany(Variedad::class);
+        return $this->belongsToMany(Variedad::class,'caracteristica_variedad');
     }
 }

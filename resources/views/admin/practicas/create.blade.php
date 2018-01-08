@@ -1,3 +1,5 @@
+{{-- {{ dd(Auth::user()->id) }} --}}
+
 @extends('layouts.admin')
 
 
@@ -81,12 +83,12 @@
                   <thead>
                    <th>Mes</th>
                    <th>Semana</th>
-                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th>
+              {{--      <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th> --}}
                   </thead>
                   <tbody>
                     <tr>
-                     <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
-                      <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
+                     <td class="col-sm-4">{!! Form::select('mes_id',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id) == $meses->id ? selected :'])!!}</td>
+                      <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id) == $semanas->id ? selected :'])!!}</td>
              {{--          <td style="display:inline;"><a href="#" class="btn btn-danger remove" ><i class="fa fa-trash-o" aria-hidden="true" ></a></td> --}}
 
                     </tr>
@@ -105,7 +107,7 @@
                 </div>
 
                <div class="form-group">
-                   {{ Form::hidden('usuario_id',Auth::user()->id,null,['class' => 'form-control'])}}
+                   {{ Form::hidden('user_id',Auth::user()->id,null,['class' => 'form-control'])}}
                </div>
                <div class="form-group">
                    {{ Form::label('path','Imagen de la práctica') }}
@@ -187,10 +189,11 @@
 
    var accept = ".png";
    
-    new Dropzone('.dropzone',{
+    var myDropzone =   new Dropzone('.dropzone',{
         url : '/admin/practicas/{{Auth::user()->id}}/fotos',
-//        acceptedFiles : 'image/*',
+       acceptedFiles : 'image/*',
         maxFilesize: 2,
+        maxFiles:1, 
         paramName: 'foto',
         headers:{
           'X-CSRF-TOKEN':'{{csrf_token()}}'
@@ -199,55 +202,17 @@
 
     });
 
+    myDropzone.on('error' ,function (file ,res) {
+      /* Act on the event */
+      var msg = res.foto[0];
+      $('.dz-error-message:last() > span ').text(msg);
+
+    });
+
     Dropzone.autoDiscover = false;    
 
 </script>
 
-
-<script type="text/javascript">
-  
- //agregar columnas dinamicas
-
-$(document).ready(function() {
-    
-
-
- $('.addRow').on('click', function() {
-   /* Act on the event */
-    addRow();
- });
-
- function addRow()
- {
-
-             var i = 1;
-             var tr='<tr id="row'+i+'">'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="display:inline;"><button name="remove" id="'+i+'" class="btn btn-danger btn-remove">X</button></td>'+
-                  '</tr>';
-
-
-       $('tbody').append(tr);            
- }
-
-
- $(document).on('click','.btn-remove' ,function() {
-   /* Act on the event */
-   var button_id= $(this).attr("id");
-   $("#row"+button_id+"").remove();
-
- });
-
-});   
- 
-
-
-</script>
 
 
 @endsection
