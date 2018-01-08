@@ -15,20 +15,21 @@ class FotoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request, $id)
     {
         //
         $this->validate($request ,[
                 'foto' => 'required|image|max:2048',
             ]
         );
+
         $foto =  request()->file('foto')->store('public');;
 
         
 
         Foto::create([
             'url' => Storage::url($foto),
-            'practica_id'   => 
+            'practica_id' => $id,
         ]);
     }
 

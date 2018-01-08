@@ -103,7 +103,7 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-        
+
         return view('admin.users.edit',compact('user'));
         //dd($user);
     }

@@ -248,13 +248,13 @@
 
         var accept = ".png";
 
-        new Dropzone('.dropzone',{
-            url : '/admin/practicas/{{Auth::user()->id}}/fotos',
+        new Dropzone('.dropzone', {
+            url: '/admin/practicas/{{Auth::user()->id}}/fotos',
 //        acceptedFiles : 'image/*',
             maxFilesize: 2,
             paramName: 'foto',
-            headers:{
-                'X-CSRF-TOKEN':'{{csrf_token()}}'
+            headers: {
+                'X-CSRF-TOKEN': '{{csrf_token()}}'
             },
             dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
 

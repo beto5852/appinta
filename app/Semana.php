@@ -16,10 +16,10 @@ class Semana extends Model
 
     public function meses()
     {
-        return $this->belongsTo(Mes::class,'mese_practica_semana')->withPivot('practica_id');
+        return $this->belongsTo(Mes::class, 'mese_practica_semana')->withPivot('practica_id');
     }
     public function practicas()
     {
-        return $this->belongsToMany(Practica::class,'mese_practica_semana')->withPivot('meses_id');
+        return $this->belongsToMany(Practica::class, 'mese_practica_semana')->withPivot('meses_id');
     }
 }

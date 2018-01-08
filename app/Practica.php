@@ -21,11 +21,12 @@ class Practica extends Model
             ],
         ];
     }
+
     public function setPathAttribute($path)
     {
         if (!empty($path)) {
             // dd($path);
-            $nombre                   = $path->getClientOriginalName();
+            $nombre = $path->getClientOriginalName();
             $this->attributes['path'] = $nombre;
             Storage::disk('img')->put($nombre, \File::get($path));
             /* $nombre_route = time().'_'.$path->getClientOriginalName();
@@ -34,18 +35,18 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica', 'contenido', 'path','tecnologia_id', 'user_id'];
 
-     public function mps()
-     {
-         return $this->belongsToMany(MPS::class,'mese_practica_semana');
-     }
+    public function mps()
+    {
+        return $this->belongsToMany(MPS::class, 'mese_practica_semana');
+    }
 //
     public function meses()
     {
-        return $this->belongsToMany(Mes::class,'mese_practica_semana')->withPivot('semana_id');
+        return $this->belongsToMany(Mes::class, 'mese_practica_semana')->withPivot('semana_id');
     }
     public function semanas()
     {
-        return $this->belongsToMany(Semana::class,'mese_practica_semana')->withPivot('mes_id');
+        return $this->belongsToMany(Semana::class, 'mese_practica_semana')->withPivot('mes_id');
     }
 
     public function tecnologia()

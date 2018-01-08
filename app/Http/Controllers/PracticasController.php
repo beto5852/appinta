@@ -143,7 +143,7 @@ class PracticasController extends Controller
 
         $my_tags   = $practica->tags->pluck('id')->ToArray();
         $my_semana = $practica->semanas->pluck('id')->ToArray();
-        $my_mes    = $practica->meses->pluck('id')->ToArray();
+        $my_mes = $practica->meses->pluck('id')->ToArray();
 
         // dd(count($my_mes));
         return view('admin.practicas.edit', compact('users', 'tecnologias', 'practica', 'tags', 'meses', 'semanas', 'my_tags', 'my_mes', 'my_semana'));

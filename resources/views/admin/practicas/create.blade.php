@@ -81,12 +81,13 @@
                   <thead>
                    <th>Mes</th>
                    <th>Semana</th>
-                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></i></a></th>
+                   <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus"
+                                                                 aria-hidden="true"></i></a></th>
                   </thead>
                   <tbody>
                     <tr>
-                     <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
-                      <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
+                        <td class="col-sm-4">{!! Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>
+                        <td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>
              {{--          <td style="display:inline;"><a href="#" class="btn btn-danger remove" ><i class="fa fa-trash-o" aria-hidden="true" ></a></td> --}}
 
                     </tr>
@@ -186,8 +187,8 @@
     });
 
    var accept = ".png";
-   
-    new Dropzone('.dropzone',{
+
+    new Dropzone('.dropzone', {
         url : '/admin/practicas/{{Auth::user()->id}}/fotos',
 //        acceptedFiles : 'image/*',
         maxFilesize: 2,
@@ -205,46 +206,43 @@
 
 
 <script type="text/javascript">
-  
- //agregar columnas dinamicas
 
-$(document).ready(function() {
-    
+    //agregar columnas dinamicas
 
-
- $('.addRow').on('click', function() {
-   /* Act on the event */
-    addRow();
- });
-
- function addRow()
- {
-
-             var i = 1;
-             var tr='<tr id="row'+i+'">'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="text-align: center;">'+
-                  '{{ Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}'+
-                  '</td>'+
-                  '<td style="display:inline;"><button name="remove" id="'+i+'" class="btn btn-danger btn-remove">X</button></td>'+
-                  '</tr>';
+    $(document).ready(function () {
 
 
-       $('tbody').append(tr);            
- }
+        $('.addRow').on('click', function () {
+            /* Act on the event */
+            addRow();
+        });
+
+        function addRow() {
+
+            var i = 1;
+            var tr = '<tr id="row' + i + '">' +
+                    '<td style="text-align: center;">' +
+                    '{{ Form::select('mes_id[]',$meses,null,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}' +
+                    '</td>' +
+                    '<td style="text-align: center;">' +
+                    '{{ Form::select('semana_id[]',$semanas,null,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}' +
+                    '</td>' +
+                    '<td style="display:inline;"><button name="remove" id="' + i + '" class="btn btn-danger btn-remove">X</button></td>' +
+                    '</tr>';
 
 
- $(document).on('click','.btn-remove' ,function() {
-   /* Act on the event */
-   var button_id= $(this).attr("id");
-   $("#row"+button_id+"").remove();
+            $('tbody').append(tr);
+        }
 
- });
 
-});   
- 
+        $(document).on('click', '.btn-remove', function () {
+            /* Act on the event */
+            var button_id = $(this).attr("id");
+            $("#row" + button_id + "").remove();
+
+        });
+
+    });
 
 
 </script>
