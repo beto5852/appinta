@@ -66,8 +66,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Práctica</th>
-                    <th>creado por:</th>
-                    <th>Tecnológia</th>
+                    {{--<th>creado por:</th>--}}
+                    {{--<th>Tecnológia</th>--}}
                     <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
@@ -79,8 +79,8 @@
                        <td>{{  $practica->id }}</td>
                        <td>{{  $practica->nombre_practica}}</td>
                        <!--  <td>{!! $practica->contenido !!}</td>-->
-                       <td>{{  $practica->user['name']}}</td>
-                       <td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>
+                       {{--<td>{{  $practica->user['name']}}</td>--}}
+                       {{--<td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>--}}
                        @if(empty($practica->path))
                            <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>
                        @else
@@ -164,7 +164,7 @@
                 "paging": false,
                 "lengthChange": true,
                 "searching": false,
-                "ordering": true,
+                "ordering": false,
                 "info": false,
                 "autoWidth": false
             });

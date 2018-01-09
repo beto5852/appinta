@@ -21,6 +21,8 @@ class FrontController extends Controller
         //
         $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
 
+//        dd($practicas);
+
         return view('index', compact('practicas'));
     }
 

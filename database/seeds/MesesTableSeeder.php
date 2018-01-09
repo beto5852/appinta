@@ -11,9 +11,19 @@ class MesesTableSeeder extends Seeder
      */
     public function run()
     {
-        $meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
 
-        for ($i = 0; $i < 12; $i++) {
+
+        $meses =array('Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre');
+
+//        foreach($meses as $key => $mes){
+//
+//            \DB::table('meses')->insert(array(
+//                'nombre_mes' => $mes[$key],
+//            ));
+//
+//        }
+
+        for ($i = 1 ; $i < 14 ; $i++) {
             \DB::table('meses')->insert(array(
                 'nombre_mes' => $meses[$i],
             ));

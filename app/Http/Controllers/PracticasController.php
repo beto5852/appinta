@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cultivo;
 use App\Mes;
-use App\MPS;
-use App\Practica;
+    use App\Practica;
 use App\Semana;
 use App\Tag;
 use App\Tecnologia;
@@ -35,14 +34,11 @@ class PracticasController extends Controller
     {
         //mostrar algunos Productos
 
-        $tecnologias = Tecnologia::orderBy('nombre_tecnologia', 'ASC')->pluck('nombre_tecnologia', 'id');
-        $tags        = Tag::orderBy('nombre_tags', 'ASC')->pluck('nombre_tags', 'id');
-        $semanas     = Semana::orderBy('id', 'ASC')->pluck('nombre_semana', 'id');
-        $meses       = Mes::orderBy('id', 'ASC')->pluck('nombre_mes', 'id');
-        $cultivos    = Cultivo::orderBy('nombre_cultivo', 'DESC')->pluck('nombre_cultivo', 'id');
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
 
-        return view("admin.practicas.index", compact('practicas','tecnologias', 'tags', 'cultivos', 'meses', 'semanas'));
+
+
+        return view("admin.practicas.index", compact('practicas'));
     }
     /**
      * Show the form for creating a new resource.
@@ -152,10 +148,10 @@ class PracticasController extends Controller
         $my_mes    = $practica->meses->pluck('id')->ToArray();
         $my_semana = $practica->semanas->pluck('id')->ToArray();
 
+//        $mesactual = [date('m')];
+//         dd($my_mes);
 
-        // dd($my_mes);
-
-        return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias'));
+        return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana','my_tecno'));
     }
 
 
@@ -195,14 +191,14 @@ class PracticasController extends Controller
 
         $this->validate($request , [
                 'nombre_practica' => 'required',
-                'contenido'       => 'required|min:100|max:3000',
+                'contenido'       => 'required|min:100|max:100000',
                 'tecnologia_id'   => 'required',
                 'mes_id'          => 'required',
                 'semana_id'       => 'required',
                 'tag_id'          => 'required',
             ]
         );
-
+//        dd($request->tag_id);
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->contenido = $request->get('contenido');
         $practica->tecnologia_id = $request->get('tecnologia_id');
@@ -214,9 +210,9 @@ class PracticasController extends Controller
 
 
 
-        $practica->tags()->attach($request->get('tag_id'));
-        $practica->meses()->attach($request->get('mes_id'));
-        $practica->semanas()->attach($request->get('semana_id'));
+        $practica->tags()->sync($request->get('tag_id'));
+        $practica->meses()->sync($request->get('mes_id'));
+        $practica->semanas()->sync($request->get('semana_id'));
 //
         return back()->with('flash','Tu práctica ha sido actualizada correctamente');
 

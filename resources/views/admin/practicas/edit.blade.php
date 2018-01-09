@@ -67,7 +67,7 @@
                     </div>
                     <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
                         {{ Form::label('Agregue el contenido','Agregue el contenido') }}
-                        {{ Form::textarea('contenido',null,['id' => 'my-editor','class' => 'my-editor','value' => "old(contenido,$practica->contenido)"])}}
+                        {{ Form::textarea('contenido',old('contenido',$practica->contenido),['id' => 'my-editor','class' => 'my-editor','placeholder' => ''])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
@@ -93,12 +93,12 @@
                         <tr>
 
                             <td class="col-sm-4">
-                                {!! Form::select('mes_id',$meses,null,['class' => 'form-control chosen-select','value' => 'old($my_mes)'])!!}
+                                {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select'])!!}
 
                             </td>
 
                             <td class="col-sm-5">
-                                {!! Form::select('semana_id',$semanas,null,['class' => 'form-control chosen-select','value' => 'old($my_semana)'])!!}
+                                {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select'])!!}
                             </td>
 
                             {{--    <td style="display:inline;"><a name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</a>
@@ -114,12 +114,12 @@
 
                     <div class="form-group">
                         {{ Form::label('user_id','Cambiar editor') }}
-                        {{ Form::select('user_id',$users,null,['class' => 'form-control chosen-select'])}}
+                        {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control chosen-select'])}}
                     </div>
 
                     <div class="form-group">
                         {{ Form::label('tecnologia','Tecnológia') }}
-                        {{ Form::select('tecnologia_id',$tecnologias,null,['class' => 'form-control chosen-select'])}}
+                        {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control chosen-select'])}}
                     </div>
 
 
@@ -133,9 +133,20 @@
                         {{ Form::file('path')}}
                     </div>
 
-                    <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
+                    {{--<div class="form-group" {{$errors->has('tag_id') ? 'has-error' : ''}}>--}}
+                        {{--<label>Etiquetas agropecuarias</label>--}}
+                        {{--<select name="tag_id[]" class="form-control chosen-select" multiple="multiple" data-placeholder="Agrega los tags para tu práctica agricola" style="width: 100%;">--}}
+                            {{--@foreach($tags as $tag)--}}
+                            {{--<option {{collect(old('tags',$practica->$tags->pluck('id')))->contains($tag->id) ? 'selected' : '' }} value="{{ $tag->id }}" >{{$tag->name}}</option>--}}
+                            {{--@endforeach--}}
+                        {{--</select>--}}
+                        {{--{!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}--}}
+                    {{--</div>--}}
+
+
+                    <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
                         {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('tag_id',$tags,null,['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
+                        {{ Form::select('tag_id[]',$tags,old('tags',$my_tags),['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
                         {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
                     </div>
 
