@@ -49,6 +49,12 @@
 
     @endif
 
+    @if(Session::has('message'))
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{Session::get('message')}}
+        </div>
+    @endif
 
     <div class="row">
         {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
@@ -76,41 +82,46 @@
         <div class="col-md-4">
             <div class="box box-primary">
 
-                <!-- Date -->
-                <!-- Date and time range -->
-                <div class="form-group">
 
-                    {{ Form::label('Fechas de la practica','Fechas de la practica') }}
-
-                    <table class="table table-bordered">
-                        <thead>
-                        <th>Mes</th>
-                        <th>Semana</th>
-                        {{--  <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th> --}}
-                        </thead>
-                        <tbody>
-
-                        <tr>
-
-                            <td class="col-sm-4">
-                                {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select'])!!}
-
-                            </td>
-
-                            <td class="col-sm-5">
-                                {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select'])!!}
-                            </td>
-
-                            {{--    <td style="display:inline;"><a name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</a>
-                             </td>
-                            --}}
-                        </tr>
-
-                        </tbody>
-                    </table>
-
-                </div>
                 <div class="box-body">
+
+                    <!-- Date -->
+                    <!-- Date and time range -->
+                    <div class="form-group">
+
+                        {{ Form::label('Fechas de la practica','Fechas de la practica') }}
+
+                        <table class="table table-bordered">
+                            <thead>
+                            <th>Mes</th>
+                            <th>Semana</th>
+                            {{--  <th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th> --}}
+                            </thead>
+                            <tbody>
+
+                            <tr>
+
+                                <td class="col-sm-4">
+                                    {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select'])!!}
+
+                                </td>
+
+                                <td class="col-sm-5">
+                                    {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select'])!!}
+                                </td>
+
+                                {{--    <td style="display:inline;"><a name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</a>
+                                 </td>
+                                --}}
+                            </tr>
+
+                            </tbody>
+                        </table>
+
+                    </div>
+
+
+
 
                     <div class="form-group">
                         {{ Form::label('user_id','Cambiar editor') }}

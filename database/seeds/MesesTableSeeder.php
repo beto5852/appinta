@@ -13,17 +13,14 @@ class MesesTableSeeder extends Seeder
     {
 
 
-        $meses =array('Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre');
+        $meses =['Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre'];
 
-//        foreach($meses as $key => $mes){
-//
-//            \DB::table('meses')->insert(array(
-//                'nombre_mes' => $mes[$key],
-//            ));
-//
-//        }
 
-        for ($i = 1 ; $i < 14 ; $i++) {
+//        $datos = array_dot(['Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre']);
+        
+//        $meses = array_except($datos, ['0']);
+        
+        for ($i = 0 ; $i < 13 ; $i++) {
             \DB::table('meses')->insert(array(
                 'nombre_mes' => $meses[$i],
             ));

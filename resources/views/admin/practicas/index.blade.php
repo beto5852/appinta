@@ -79,8 +79,8 @@
                        <td>{{  $practica->id }}</td>
                        <td>{{  $practica->nombre_practica}}</td>
                        <!--  <td>{!! $practica->contenido !!}</td>-->
-                       {{--<td>{{  $practica->user['name']}}</td>--}}
-                       {{--<td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>--}}
+                       <td>{{  $practica->user['name']}}</td>
+                       <td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>
                        @if(empty($practica->path))
                            <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>
                        @else
@@ -161,14 +161,48 @@
 
         $(function () {
             $('#practicas-table').DataTable({
-                "paging": false,
+                "paging": true,
                 "lengthChange": true,
-                "searching": false,
+                "searching": true,
                 "ordering": false,
                 "info": false,
-                "autoWidth": false
-            });
-        });
+                "autoWidth": false,
+                "processing": true,
+                "serverSide":true,
+                "pageLength":20,
+                {{--"language": {--}}
+                    {{--"url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'--}}
+                {{--},--}}
+                {{--"ajax":'{{url('admin/practicas')}}',--}}
+                {{--"columns": [--}}
+
+                    {{--@foreach($practicas as $practica)--}}
+                    {{--{--}}
+                    {{--{'data': '{{ $practica->id }}',"name": 'id'},--}}
+                    {{--'':'{{ $practica->nombre_practica}}', "name":'nombre_practica',--}}
+                    {{--"data":'{{ $practica->path }}', "":'path'--}}
+                    {{--},--}}
+                        {{--@endforeach--}}
+
+{{--//                    {data: '{{ $practica->id }}',name: id},--}}
+{{--//                    {data:'{{ $practica->nombre_practica}}', name:'nombre_practica'},--}}
+{{--//                    {data:'{{ $practica->path }}', name:'path'}--}}
+
+                {{--]--}}
+
+            {{--});--}}
+        })
+
+
+
+
+
+
+
+
+
+
+
     </script>
 
     <script>

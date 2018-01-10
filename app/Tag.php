@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+    protected $guarded = [];
     public $table = 'tags';
     protected $fillable = ['nombre_tags'];
     

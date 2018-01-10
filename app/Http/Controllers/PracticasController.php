@@ -35,7 +35,9 @@ class PracticasController extends Controller
         //mostrar algunos Productos
 
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
-
+        
+//        $datos = array_dot(['Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre']);
+//        dd($datos = array_except($datos, ['0']));
 
 
         return view("admin.practicas.index", compact('practicas'));
@@ -70,6 +72,7 @@ class PracticasController extends Controller
         $this->validate($request , [
                 'nombre_practica' => 'required|min:10|max:100',
          ]);
+
         $practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')]);
 
         return redirect()->route('admin.practicas.edit',$practica);
@@ -210,14 +213,14 @@ class PracticasController extends Controller
 
 
 
-        $practica->tags()->sync($request->get('tag_id'));
-        $practica->meses()->sync($request->get('mes_id'));
-        $practica->semanas()->sync($request->get('semana_id'));
+        $practica->tags()->attach($request->get('tag_id'));
+        $practica->meses()->attach($request->get('mes_id'));
+        $practica->semanas()->attach($request->get('semana_id'));
 //
-        return back()->with('flash','Tu práctica ha sido actualizada correctamente');
+//        return back()->with('flash','Tu práctica ha sido actualizada correctamente');
 
-//        Session::flash('message', 'Tu práctica ha sido actualizada correctamente');
-//        return redirect::to('admin/practicas');
+        Session::flash('message', 'Tu práctica ha sido actualizada correctamente');
+        return redirect::to('admin/practicas/'.$practica->id.'/edit');
     }
 
 

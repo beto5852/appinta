@@ -41,7 +41,7 @@ class FrontController extends Controller
 
 //         dd($numeroSemana = date("W"));
 
-//        dd(Carbon::now()->format('m')-1);
+//        dd(Carbon::now()->format('m'));
 
            $practicas = Practica::with(['meses' => function ($query) {
                $query->whereNotNull('mes_id')

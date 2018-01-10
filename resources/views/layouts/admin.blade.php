@@ -107,6 +107,9 @@ desired effect
         <!-- Main content -->
         <section class="content">
 
+            @if(session()->has('flahs'))
+                    <div class="alert alert-success">{{session('flash')}}</div>
+            @endif
                       <!-- Your Page Content Here -->
             @yield('content')
 

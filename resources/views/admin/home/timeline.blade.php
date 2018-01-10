@@ -71,13 +71,14 @@
                         <div class="timeline-body">
                           {!! substr($practica->contenido,0,800) !!}
 
-                        </div>
+                        </div><br>
 
                              {{--<a href="https://www.facebook.com/sharer.php?u={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-facebook" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
                              {{--<a href="https://plus.google.com/share?url={{request()->fullUrl()}}" class="btn btn-social-icon btn-google" title="Compartir en Google+" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
                              {{--<a href="https://twitter.com/intent/tweet?url={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-twitter" title="Compartir en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
-                        @foreach( $practica->tags as $tag)
-                        <span class="time"><i class="fa fa-tags"></i> {{$tag->nombre_tags}}</span>
+
+                         @foreach( $practica->tags as $tag)
+                        <span class="time pull-right" ><i class="fa fa-tags"></i>{{$tag->nombre_tags}}</span>
                         @endforeach
 
 
