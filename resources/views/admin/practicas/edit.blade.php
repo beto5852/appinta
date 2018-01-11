@@ -100,14 +100,22 @@
                         {{ Form::textarea('contenido',old('contenido',$practica->contenido),['id' => 'my-editor','class' => 'my-editor','placeholder' => ''])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
-                    <div class="form-group {{$errors->has('video') ? 'has-error' : ''}}">
-                        {{ Form::label('Agregue el Video','Agregue Video') }}
-                        {{ Form::textarea('video',old('contenido',$practica->contenido),['rows' => '2','class' => 'form-control','placeholder' => ''])}}
-                        {!! $errors->first('video','<span class="help-block">:message</span>') !!}
-                    </div>
+
 
                 </div>
             </div>
+
+                <div class="box box-primary">
+                    <div class="box-body">
+                        <div class="form-group {{$errors->has('video') ? 'has-error' : ''}}">
+                            {{ Form::label('Agregue el Video','Agregue Video') }}
+                            {{ Form::textarea('video',old('video',$practica->video),['rows' => '2','class' => 'form-control','placeholder' => ''])}}
+                            {!! $errors->first('video','<span class="help-block">:message</span>') !!}
+                        </div>
+                    </div>
+                </div>
+
+
         </div>
         <div class="col-md-4">
             <div class="box box-primary">
@@ -201,8 +209,9 @@
 
                 </div>
             </div>
-
         </div>
+
+
         {!! Form::close() !!}
 
 
@@ -254,7 +263,7 @@
 
     <script>
         CKEDITOR.replace('my-editor', options);
-        CKEDITOR.config.height = 450;
+        CKEDITOR.config.height = 400;
     </script>
 
     <script>
