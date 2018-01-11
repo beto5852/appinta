@@ -10,9 +10,10 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar etiquetas agropecuarias</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        {!! Form::label('nombre_tags','Nombre del Tags') !!}
-                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Nombre','required'])!!}
+                    <div class="form-group {{$errors->has('nombre_tags') ? 'has-error' : ''}}">
+                        {!! Form::label('nombre_tags','Nombre la etiqueta') !!}
+                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Escriba en nombre de la etiqueta ejemplo: cultivo','required','value' => '{old(nombre_tags)}'])!!}
+                        {!! $errors->first('nombre_tags','<span class="help-block">:message</span>') !!}
                     </div>
 
                 </div>

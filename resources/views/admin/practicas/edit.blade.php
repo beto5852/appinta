@@ -236,12 +236,32 @@
     <script>
         //Date picker
         $('#datepicker').datepicker({
-            autoclose: true
+            format: "dd/mm/yyyy",
+            lenguage: 'es',
+            autoclose: true,
+
         });
 
-        new Dropzone('.dropzone',{
-            url : '/admin/practicas/fotos',
-            dictDefaultMessage: 'Arrastra las fotos aqui para subirlas'
+        var accept = ".png";
+
+        var myDropzone =   new Dropzone('.dropzone',{
+            url : '/admin/practicas/{{$practica->id}}/fotos',
+            acceptedFiles : 'image/*',
+            maxFilesize: 2,
+            maxFiles: 5,
+            paramName: 'foto',
+            headers:{
+                'X-CSRF-TOKEN':'{{csrf_token()}}'
+            },
+            dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
+
+        });
+
+        myDropzone.on('error' ,function (file ,res) {
+            /* Act on the event */
+            var msg = res.foto[0];
+            $('.dz-error-message:last > span ').text(msg);
+
         });
 
         Dropzone.autoDiscover = false;

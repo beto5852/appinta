@@ -207,20 +207,19 @@ class PracticasController extends Controller
         $practica->tecnologia_id = $request->get('tecnologia_id');
         $practica->path = $request->path;
         $practica->user_id = $request->get('user_id');
-        $practica->update(['nombre_practica']);
+        $practica->slug = null;
+        $practica->update(['nombre_practica' => $request->get('nombre_practica')]);
         $practica->save();
         // dd($request->get('path'));
 
-
-
-        $practica->tags()->attach($request->get('tag_id'));
-        $practica->meses()->attach($request->get('mes_id'));
-        $practica->semanas()->attach($request->get('semana_id'));
+        $practica->tags()->sync($request->get('tag_id'));
+        $practica->meses()->sync($request->get('mes_id'));
+        $practica->semanas()->sync($request->get('semana_id'));
 //
-//        return back()->with('flash','Tu práctica ha sido actualizada correctamente');
+        return redirect()->route('admin.practicas.edit',$practica)->with('flash','Tu práctica ha sido actualizada correctamente');
 
-        Session::flash('message', 'Tu práctica ha sido actualizada correctamente');
-        return redirect::to('admin/practicas/'.$practica->id.'/edit');
+//        Session::flash('message', 'Tu práctica ha sido actualizada correctamente');
+//        return redirect::to('admin/practicas/'.$practica->id.'/edit');
     }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Practicas;
+use App\Practica;
 use App\Foto;
 use Illuminate\Http\Request;
 use Storage;
@@ -25,12 +25,12 @@ class FotoController extends Controller
 
         $foto =  request()->file('foto')->store('public');
 
-        return $foto;
+//        return $foto;
 
-//        Foto::create([
-//            'url' => Storage::url($foto),
-//            'practica_id' => $id,
-//        ]);
+        Foto::create([
+            'url' => Storage::url($foto),
+            'practica_id' => $id,
+        ]);
     }
 
     

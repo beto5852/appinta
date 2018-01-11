@@ -19,59 +19,65 @@
         </div>
     @endif
 
-    <div class="row">
-
-        <<div class="box-header">
+    <div class="box box-primary">
+        <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear etiquetas agropecuarias</button>
-        </div>
+            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-tag" aria-hidden="true"></i> Crear etiquetas</button>
+            <div class="col-xs-2">
+                {!! Form::open(['url' => ['admin/tags'], 'method' => 'GET', 'class' => 'navbar-form navbar-rigth']) !!}
 
-        <div class="col-xs-2">
-            {!! Form::open(['url' => ['admin/tags'], 'method' => 'GET', 'class' => 'navbar-form navbar-rigth']) !!}
+                <div class="input-group">
+                    {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','aria-describedby' => 'search'])!!}
+                    <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                </div>
 
-            <div class="input-group">
-                {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','aria-describedby' => 'search'])!!}
-                <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+                {!! Form::close() !!}
             </div>
 
-            {!! Form::close() !!}
         </div>
-    </div>
-
-    <div class="row">
-
-        <table class="table table-striped table-hover" >
-
-            <thead class="col-md-6">
-            <tr >
-                <th>ID</th>
-                <th>Nombre Tag</th>
-            </tr>
-            </thead>
-
-            <tbody>
-            @foreach($tags  as $tag)
-                <tr class="info">
-                    <td>{{  $tag->id}}</td>
-                    <td>{{  $tag->nombre_tags}}</td>
-                    <td>
-                        <a href="{{url('admin/tags/'.$tag->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                         <form method="POST" action="{{route('admin.tags.destroy',$tag->id)}}" style="display:inline" >
-                               {{ csrf_field() }} {{method_field('DELETE')}}
-
-                               <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar el tag')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
-                           </form>
-
-                    </td>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="practicas-table" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre Tag</th>
                 </tr>
-            @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+
+                @foreach($tags  as $tag)
+                    <tr class="info">
+                        <td>{{  $tag->id}}</td>
+                        <td>{{  $tag->nombre_tags}}</td>
+                        <td>
+                            <a href="{{url('admin/tags/'.$tag->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+
+                            <form method="POST" action="{{route('admin.tags.destroy',$tag->id)}}" style="display:inline" >
+                                {{ csrf_field() }} {{method_field('DELETE')}}
+
+                                <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar el tag')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+
+                            </form>
+
+                        </td>
+                    </tr>
+                @endforeach
+
+
+                </tbody>
+
+
+            </table>
+
+        </div>
+        <!-- /.box-body -->
     </div>
+    <!-- /.box -->
 
     <ul class="pager"><center>{{ $tags->links() }}</center></ul>
+
+
 
 
 @endsection
@@ -90,9 +96,10 @@
                     <h4 class="modal-title" id="myModalLabel">Agregar etiquetas agropecuarias</h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        {!! Form::label('nombre_tags','Nombre del Tags') !!}
-                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Nombre','required'])!!}
+                    <div class="form-group {{$errors->has('nombre_tags') ? 'has-error' : ''}}">
+                        {!! Form::label('nombre_tags','Nombre la etiqueta agropecuaria') !!}
+                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Escriba en nombre de la etiqueta ejemplo: cultivo','required', 'value' => '{old(nombre_tags)}'])!!}
+                        {!! $errors->first('nombre_tags','<span class="help-block">:message</span>') !!}
                     </div>
 
                 </div>

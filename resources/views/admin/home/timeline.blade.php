@@ -133,10 +133,6 @@
     });
 </script>
 
-
-
-
-
 <script>
     var options = {
         filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',

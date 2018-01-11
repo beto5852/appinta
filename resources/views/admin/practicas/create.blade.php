@@ -13,7 +13,7 @@
 
                 <div class="form-group {{$errors->has('nombre_practica') ? 'has-error' : ''}}" >
                     {{ Form::label('Practica','Tema de la práctica agrícola') }}
-                    {{ Form::text('nombre_practica','',['class' => 'form-control','placeholder' => 'Tema aquí...','value' => 'old(nombre_practica)' ]) }}
+                    {{ Form::text('nombre_practica',null,['class' => 'form-control','placeholder' => 'Tema aquí...','value' => 'old(nombre_practica)' ,'Required']) }}
 
                     {!! $errors->first('nombre_practica','<span class="help-block">:message</span>') !!}
                 </div>

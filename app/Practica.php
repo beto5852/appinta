@@ -33,7 +33,12 @@ class Practica extends Model
         Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica', 'contenido', 'path','tecnologia_id', 'user_id'];
+    protected $fillable = ['nombre_practica','contenido','slug','path','tecnologia_id', 'user_id'];
+
+    public function fotos()
+    {
+        return $this->hasMany(Foto::class);
+    }
 
      public function meses()
     {
@@ -58,6 +63,7 @@ class Practica extends Model
     {
         return $this->belongsToMany(Tag::class,'practica_tag');
     }
+
     public function scopeSearch($query, $nombre_practica)
     {
         return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
