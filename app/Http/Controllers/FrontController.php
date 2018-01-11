@@ -45,7 +45,7 @@ class FrontController extends Controller
 
            $practicas = Practica::with(['meses' => function ($query) {
                $query->whereNotNull('mes_id')
-                   ->where('mes_id','=',Carbon::now()->format('m')+1)
+                   ->where('nombre_mes','=','Enero')
                    ->orderBy('id', 'DESC');
            }])->paginate(10);
 

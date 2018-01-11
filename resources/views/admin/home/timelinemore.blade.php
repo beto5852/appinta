@@ -137,27 +137,19 @@
 
 
     @else
-
         <div class="col-md-12">
-
             <div class="box box-primary">
-
-
                 <div class="box-body">
-
                     <div class="form-group ">
                         <section class="content-header">
                             <h1>
                                 {{$practicas->nombre_practica}}
-                                {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
                             </h1><br>
 
                         </section>
 
-                        <section >
-                            {{--<h2 class="page-header">{{$practicas->nombre_practica}}</h2>--}}
+                        <section>
                             <article>
-                                {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
                                 <div class="row">
                                     <div class="col-md-8">
                                         <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
@@ -178,23 +170,13 @@
                                 <br>
 
                             </article>
-                        </section><!-- /#introduction -->
-
+                        </section>
                     </div>
-
                 </div>
             </div>
-
         </div>
-
-
     @endif
-
-
-
 </div>
-
-
 @endsection
 
 
