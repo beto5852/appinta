@@ -37,7 +37,7 @@ class Practica extends Model
 
     public function fotos()
     {
-        return $this->hasMany(Foto::class);
+        return $this->hasMany(Foto::class,'practica_id');
     }
 
      public function meses()

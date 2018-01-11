@@ -11,6 +11,7 @@
         </h1>
 
     </section>
+
 @endsection
 
 @section('breadcrumb')
@@ -54,18 +55,73 @@
                           </span>
                           
                     </li>
-                     
+
+
+                   <li>
+                       <i class="fa fa-camera bg-purple"></i>
+
                     <!-- /.timeline-label -->
                     <!-- timeline item -->
-                    <li>
-                      <i class="fa  fa-calendar-check-o bg-blue"></i>
+                   <i class="fa  fa-calendar-check-o bg-blue"></i>
 
-                      <div class="timeline-item">
 
-                         @foreach($practica->semanas as $semana)
-                        <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
-                         @endforeach
-                        <h3 class="timeline-header"><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h3>
+
+                        <div class="timeline-item">
+
+                            @if($practica->fotos->count() === 1)
+
+                                <div class="timeline-item">
+
+                                    <div class="timeline-body">
+
+                                        <div class="row margin-bottom">
+                                            <div class="col-sm-6">
+                                                <img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">
+                                            </div>
+
+                                        </div>
+
+
+                                        @elseif($practica->fotos->count() > 1)
+                                            <div class="timeline-item">
+                                            @foreach($practica->fotos as $key => $foto)
+
+                                                <section>
+                                                    <div class="container gal-container">
+                                                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                                                            <div class="box">
+                                                                <a href="#" data-toggle="modal" data-target="{{$key}}">
+                                                                    <img src="{{$foto->url}}">
+                                                                </a>
+                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                            <div class="modal-body">
+                                                                                <img src="{{$foto->url}}">
+                                                                            </div>
+                                                                            <div class="col-md-12 description">
+                                                                                <h4>This is the first one on my Gallery</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </section>
+                                                @endforeach
+
+                                                    @endif
+
+                            <h1 ><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h1>
+                            <br>
+
+
+
+
+
 
 
                         <div class="timeline-body">
@@ -76,6 +132,10 @@
                              {{--<a href="https://www.facebook.com/sharer.php?u={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-facebook" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
                              {{--<a href="https://plus.google.com/share?url={{request()->fullUrl()}}" class="btn btn-social-icon btn-google" title="Compartir en Google+" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
                              {{--<a href="https://twitter.com/intent/tweet?url={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-twitter" title="Compartir en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
+
+                          @foreach($practica->semanas as $semana)
+                              <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
+                          @endforeach
 
                          @foreach( $practica->tags as $tag)
                         <span class="time pull-right" ><i class="fa fa-tags"></i>{{$tag->nombre_tags}}</span>
@@ -120,56 +180,6 @@
 
 <script src="{{asset('/adminlte/plugins/fastclick/fastclick.js')}}"></script>
 
-<script>
-    $(function () {
-        $('#practicas-table').DataTable({
-            "paging": false,
-            "lengthChange": true,
-            "searching": false,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false
-        });
-    });
-</script>
-
-<script>
-    var options = {
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-    };
-</script>
-
-
-<script>
-    CKEDITOR.replace('my-editor', options);
-</script>
-
-<script>
-    $(".chosen-select").chosen({width: "100%"});
-</script>
-
-<script>
-    //Date picker
-    $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-        lenguage: "es"
-        autoclose: true,
-
-    });
-
-   var accept = ".png";
-   
-   var myDropzone = new Dropzone('.dropzone',{
-        url : '/admin/practicas/',
-        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
-
-    });
-    Dropzone.autoDiscover = false;    
-
-</script>
 @endsection
 
 

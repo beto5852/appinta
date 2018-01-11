@@ -45,6 +45,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <!-- Dropzone-->
     <link rel="stylesheet" href="{{asset('/dropzone/dropzone.css')}}">
+    <!-- Dropzone-->
+    <link rel="stylesheet" href="{{asset('/css/fotos.css')}}">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
