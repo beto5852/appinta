@@ -14,7 +14,7 @@ body{
     overflow: hidden;
 }
 .box img{
-    height: 100%;
+    height: auto;
     width: 100%;
     object-fit:cover;
     -o-object-fit:cover;
@@ -129,10 +129,10 @@ body{
 i.red{
     color:#BC0213;
 }
-/*.gal-container{*/
-    /*padding-top :0px;*/
-    /*padding-bottom:0px;*/
-/*}*/
+.gal-container{
+    padding-top :75px;
+    padding-bottom:75px;
+}
 footer{
     font-family: 'Quicksand', sans-serif;
 }

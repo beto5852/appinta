@@ -57,6 +57,30 @@
     @endif
 
     <div class="row">
+
+        @if($practica->fotos->count())
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div class="row">
+                        @foreach($practica->fotos as $foto)
+                            <form  method="POST" action="{{route('admin.fotos.destroy',$foto->id)}}">
+                                {{method_field('DELETE')}}{{csrf_field()}}
+                                <div class="col-md-1 col-sm-12 co-xs-12 gal-item">
+                                    <button class="btn-danger btn-xs pull-right" style="position: absolute">
+                                        <i class="fa fa-remove"></i>
+                                    </button>
+                                    <img src="{{$foto->url}}" class="img-responsive">
+                                </div>
+                            </form>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
+
         {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
         {{csrf_field()}}
         <div class="col-md-8">
@@ -76,15 +100,14 @@
                         {{ Form::textarea('contenido',old('contenido',$practica->contenido),['id' => 'my-editor','class' => 'my-editor','placeholder' => ''])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
+
+
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="box box-primary">
-
-
                 <div class="box-body">
-
                     <!-- Date -->
                     <!-- Date and time range -->
                     <div class="form-group">
@@ -119,9 +142,6 @@
                         </table>
 
                     </div>
-
-
-
 
                     <div class="form-group">
                         {{ Form::label('user_id','Cambiar editor') }}
@@ -180,6 +200,9 @@
 
         </div>
         {!! Form::close() !!}
+
+
+
     </div>
 
     @endsection
@@ -227,6 +250,7 @@
 
     <script>
         CKEDITOR.replace('my-editor', options);
+        CKEDITOR.config.height = 450;
     </script>
 
     <script>

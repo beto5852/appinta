@@ -22,7 +22,7 @@
 @endsection
 @section('content')
 
-    <div class="row">
+<div class="row">
 
 
         <div class="col-md-8">
@@ -41,7 +41,7 @@
 
                         </section>
 
-                        <section id="introduction">
+                        <section >
                             {{--<h2 class="page-header">{{$practicas->nombre_practica}}</h2>--}}
                             <article>
                                 {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
@@ -54,6 +54,8 @@
                                         <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
                                     </div>
                                 </div>
+
+                                <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
                                 <br>
                                 @if(empty($practicas->path))
                                     <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
@@ -61,7 +63,6 @@
                                     <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
                                 @endif
                                 <br>
-                                <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
 
                             </article>
                         </section><!-- /#introduction -->
@@ -73,67 +74,62 @@
 
         </div>
 
+
         <div class="col-md-4">
 
             <div class="box box-primary">
 
-
                 <div class="box-body">
-                    <h2 class="page-header">Galeria de fotos</a></h2>
-                    <div class="form-group">
 
+                    <div class="form-group ">
                         @if($practicas->fotos->count() === 1)
+                            <section class="content-header">
 
-                            <div class="timeline-item">
-                                <div class="timeline-body">
+                                <h1>
+                                    Galeria de fotos
+                                    {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
+                                </h1>
+                                <div class="row margin-bottom">
+                                    <div class="col-sm-6">
+                                        <img width="100%" src="{{$practicas->fotos->first()->url }}" alt="Photo">
+                                    </div>
+                                </div>
 
-                                   <div class="row margin-bottom">
-                                        <div class="col-sm-6">
-                                            <img width="100%" src="{{$practicas->fotos->first()->url }}" alt="Photo">
-                                        </div>
-
-                                  </div>
-
-
+                            </section>
                         @elseif($practicas->fotos->count() > 1)
-                                        <div class="timeline-item">
+                            <h2 class="page-header">Galeria de fotos</h2>
 
+                            <section>
+                                <div class="container gal-container">
+                                    @foreach($practicas->fotos as $key => $foto)
+                                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                                            <div class="box">
+                                                <a href="#" data-toggle="modal" data-target="#{{$key}}">
 
-                                                <section>
-                                                    <div class="container gal-container">
-                                                        @foreach($practicas->fotos as $key => $foto)
-                                                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-                                                            <div class="box">
-                                                                <a href="#" data-toggle="modal" data-target="#{{$key}}">
+                                                    <img src="{{$foto->url}}" class="img-responsive" width="100%">
 
-                                                                    <img src="{{$foto->url}}" class="img-responsive" width="100%">
-
-                                                                </a>
-                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                                            <div class="modal-body">
-                                                                                <img src="{{$foto->url}}" class="img-responsive" width="100%">
-                                                                            </div>
-                                                                            <div class="col-md-12 description">
-                                                                                <h4>{{$practicas->nombre_practica}}</h4>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
+                                                </a>
+                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                            <div class="modal-body">
+                                                                <img src="{{$foto->url}}" class="img-responsive" width="100%">
+                                                            </div>
+                                                            <div class="col-md-12 description">
+                                                                <h4>{{$practicas->nombre_practica}}</h4>
                                                             </div>
                                                         </div>
-                                                        @endforeach
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
 
-                                                </section>
+                            </section>
 
-
-                                            @endif
-
-
-
+                          @endif
 
                     </div>
 
@@ -143,30 +139,10 @@
         </div>
 
 
-    </div>
 
 
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
- <!-- Main content -->
-        <div class="content body">
-
-
-
-        </div><!-- /.content -->
-      </div><!-- /.content-wrapper -->
 
 @endsection
 

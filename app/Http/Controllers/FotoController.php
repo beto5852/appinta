@@ -33,5 +33,17 @@ class FotoController extends Controller
         ]);
     }
 
+    public function destroy(Foto $foto){
+
+        $foto->delete();
+
+        $fotoPath = str_replace('storage','public',$foto->url);
+
+        Storage::delete($fotoPath);
+
+        return back()->with('flash','Foto Eliminada');
+
+    }
+
     
 }

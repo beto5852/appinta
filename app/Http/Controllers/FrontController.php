@@ -47,7 +47,7 @@ class FrontController extends Controller
                $query->whereNotNull('mes_id')
                    ->where('mes_id','=',Carbon::now()->format('m')+1)
                    ->orderBy('id', 'DESC');
-           }])->paginate(6);
+           }])->paginate(10);
 
 //        dd($practicas));
         // $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
