@@ -1,7 +1,8 @@
 @extends('layouts.admin')
 
 @section('meta-title',$practicas->nombre_practica)
-@section('meta-content',substr($practicas->contenido,0,100))
+@section('meta-content','substr($practicas->contenido,0,100)')
+
 
 
 @section('header')
@@ -55,7 +56,8 @@
                                     </div>
                                 </div>
 
-                                <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
+                                <p class="lead">
+                                    {!! $practicas->contenido !!} </p>
                                 <br>
                                 @if(empty($practicas->path))
                                     <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
