@@ -2,6 +2,8 @@
 
 @section('meta-title',$practicas->nombre_practica)
 @section('meta-content',substr($practicas->contenido,0,100))
+
+
 @section('header')
     <section class="content-header">
         <h1>
@@ -12,6 +14,7 @@
     </section>
 @endsection
 
+
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
         <li>{!! Breadcrumbs::render('practicas.create') !!}</li>
@@ -19,101 +22,154 @@
 @endsection
 @section('content')
 
+    <div class="row">
+
+
+        <div class="col-md-8">
+
+            <div class="box box-primary">
+
+
+                <div class="box-body">
+
+                    <div class="form-group ">
+                        <section class="content-header">
+                            <h1>
+                                {{$practicas->nombre_practica}}
+                                {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
+                            </h1><br>
+
+                        </section>
+
+                        <section id="introduction">
+                            {{--<h2 class="page-header">{{$practicas->nombre_practica}}</h2>--}}
+                            <article>
+                                {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
+                                    </div>
+                                    <div class="col-md-4">
+                                        <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
+                                    </div>
+                                </div>
+                                <br>
+                                @if(empty($practicas->path))
+                                    <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
+                                @else
+                                    <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
+                                @endif
+                                <br>
+                                <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
+
+                            </article>
+                        </section><!-- /#introduction -->
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="box box-primary">
+
+
+                <div class="box-body">
+                    <h2 class="page-header">Galeria de fotos</a></h2>
+                    <div class="form-group">
+
+                        @if($practicas->fotos->count() === 1)
+
+                            <div class="timeline-item">
+                                <div class="timeline-body">
+
+                                   <div class="row margin-bottom">
+                                        <div class="col-sm-6">
+                                            <img width="100%" src="{{$practicas->fotos->first()->url }}" alt="Photo">
+                                        </div>
+
+                                  </div>
+
+
+                        @elseif($practicas->fotos->count() > 1)
+                                        <div class="timeline-item">
+
+
+                                                <section>
+                                                    <div class="container gal-container">
+                                                        @foreach($practicas->fotos as $key => $foto)
+                                                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                                                            <div class="box">
+                                                                <a href="#" data-toggle="modal" data-target="#{{$key}}">
+
+                                                                    <img src="{{$foto->url}}" class="img-responsive" width="100%">
+
+                                                                </a>
+                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                                            <div class="modal-body">
+                                                                                <img src="{{$foto->url}}" class="img-responsive" width="100%">
+                                                                            </div>
+                                                                            <div class="col-md-12 description">
+                                                                                <h4>{{$practicas->nombre_practica}}</h4>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                </section>
+
+
+                                            @endif
+
+
+
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  <!-- Main content -->
         <div class="content body">
 
-            <section id="introduction">
-              <h2 class="page-header"><a href="#introduction">{{$practicas->nombre_practica}}</a></h2>
-                <article>
-                    {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
-                    <div class="row">
-                        <div class="col-md-8">
-                            <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
-                            <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
-                        </div>
-                        <div class="col-md-4">
-                            <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
-                        </div>
-                    </div>
-                    <br>
-                    @if(empty($practicas->path))
-                        <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
-                    @else
-                        <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
-                    @endif
-                    <br>
-                    <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
 
-                </article>
-            </section><!-- /#introduction -->
 
         </div><!-- /.content -->
       </div><!-- /.content-wrapper -->
 
 @endsection
 
-
-@section('script')
-
-
-         <!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>
-
-
-
-<script>
-    $(function () {
-        $('#practicas-table').DataTable({
-            "paging": false,
-            "lengthChange": true,
-            "searching": false,
-            "ordering": true,
-            "info": false,
-            "autoWidth": false
-        });
-    });
-</script>
-
-<script>
-    var options = {
-        filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-        filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-        filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-        filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-    };
-</script>
-
-
-<script>
-    CKEDITOR.replace('my-editor', options);
-</script>
-
-<script>
-    $(".chosen-select").chosen({width: "100%"});
-</script>
-
-<script>
-    //Date picker
-    $('.datepicker').datepicker({
-        format: "dd/mm/yyyy",
-        lenguage: "es"
-        autoclose: true,
-
-    });
-
-   var accept = ".png";
-   
-   var myDropzone = new Dropzone('.dropzone',{
-        url : '/admin/practicas/',
-        dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
-
-    });
-    Dropzone.autoDiscover = false;    
-
-</script>
-@endsection
 
 
 

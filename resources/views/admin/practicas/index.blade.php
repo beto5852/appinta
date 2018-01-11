@@ -61,7 +61,7 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="practicas-table" class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>

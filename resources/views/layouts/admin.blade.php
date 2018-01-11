@@ -34,6 +34,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           apply the skin class to the body tag so the changes take effect.
 
     -->
+
     @yield('css')    
 
     <link rel="stylesheet" href="{{asset('/chosen/chosen.css')}}">
@@ -46,8 +47,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Dropzone-->
     <link rel="stylesheet" href="{{asset('/dropzone/dropzone.css')}}">
     <!-- Dropzone-->
-    <link rel="stylesheet" href="{{asset('/css/fotos.css')}}">
 
+    <link rel="stylesheet" href="{{asset('/css/fotos.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -124,6 +125,9 @@ desired effect
 @include('partials.footer')
         <!-- Control Sidebar -->
 @include('partials.sliderbar')
+
+
+
     <!-- /.control-sidebar -->
     <!-- Add the sidebar's background. This div must be placed
          immediately after the control sidebar -->

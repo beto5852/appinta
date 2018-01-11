@@ -3,6 +3,7 @@
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear práctica agricola')
 
+
 @section('header')
     <section class="content-header">
         <h1>
@@ -68,52 +69,52 @@
 
                         <div class="timeline-item">
 
-                            @if($practica->fotos->count() === 1)
+                            {{--@if($practica->fotos->count() === 1)--}}
 
-                                <div class="timeline-item">
+                                {{--<div class="timeline-item">--}}
 
-                                    <div class="timeline-body">
+                                    {{--<div class="timeline-body">--}}
 
-                                        <div class="row margin-bottom">
-                                            <div class="col-sm-6">
-                                                <img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">
-                                            </div>
+                                        {{--<div class="row margin-bottom">--}}
+                                            {{--<div class="col-sm-6">--}}
+                                                {{--<img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">--}}
+                                            {{--</div>--}}
 
-                                        </div>
+                                        {{--</div>--}}
 
 
-                                        @elseif($practica->fotos->count() > 1)
-                                            <div class="timeline-item">
-                                            @foreach($practica->fotos as $key => $foto)
+                                        {{--@elseif($practica->fotos->count() > 1)--}}
+                                            {{--<div class="timeline-item">--}}
+                                            {{--@foreach($practica->fotos as $key => $foto)--}}
 
-                                                <section>
-                                                    <div class="container gal-container">
-                                                        <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-                                                            <div class="box">
-                                                                <a href="#" data-toggle="modal" data-target="{{$key}}">
-                                                                    <img src="{{$foto->url}}">
-                                                                </a>
-                                                                <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
-                                                                    <div class="modal-dialog" role="document">
-                                                                        <div class="modal-content">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                                                                            <div class="modal-body">
-                                                                                <img src="{{$foto->url}}">
-                                                                            </div>
-                                                                            <div class="col-md-12 description">
-                                                                                <h4>This is the first one on my Gallery</h4>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                {{--<section>--}}
+                                                    {{--<div class="container gal-container">--}}
+                                                        {{--<div class="col-md-8 col-sm-12 co-xs-12 gal-item">--}}
+                                                            {{--<div class="box">--}}
+                                                                {{--<a href="#" data-toggle="modal" data-target="#{{$key}}">--}}
+                                                                    {{--<img src="{{$foto->url}}">--}}
+                                                                {{--</a>--}}
+                                                                {{--<div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">--}}
+                                                                    {{--<div class="modal-dialog" role="document">--}}
+                                                                        {{--<div class="modal-content">--}}
+                                                                            {{--<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>--}}
+                                                                            {{--<div class="modal-body">--}}
+                                                                                {{--<img src="{{$foto->url}}">--}}
+                                                                            {{--</div>--}}
+                                                                            {{--<div class="col-md-12 description">--}}
+                                                                                {{--<h4>This is the first one on my Gallery</h4>--}}
+                                                                            {{--</div>--}}
+                                                                        {{--</div>--}}
+                                                                    {{--</div>--}}
+                                                                {{--</div>--}}
+                                                            {{--</div>--}}
+                                                        {{--</div>--}}
+                                                    {{--</div>--}}
 
-                                                </section>
-                                                @endforeach
+                                                {{--</section>--}}
+                                                {{--@endforeach--}}
 
-                                                    @endif
+                                         {{--@endif--}}
 
                             <h1 ><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h1>
                             <br>
