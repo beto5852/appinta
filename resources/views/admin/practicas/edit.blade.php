@@ -100,7 +100,11 @@
                         {{ Form::textarea('contenido',old('contenido',$practica->contenido),['id' => 'my-editor','class' => 'my-editor','placeholder' => ''])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
-
+                    <div class="form-group {{$errors->has('video') ? 'has-error' : ''}}">
+                        {{ Form::label('Agregue el Video','Agregue Video') }}
+                        {{ Form::textarea('video',old('contenido',$practica->contenido),['rows' => '2','class' => 'form-control','placeholder' => ''])}}
+                        {!! $errors->first('video','<span class="help-block">:message</span>') !!}
+                    </div>
 
                 </div>
             </div>

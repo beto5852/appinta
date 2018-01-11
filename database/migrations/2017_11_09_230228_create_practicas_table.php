@@ -19,6 +19,7 @@ class CreatePracticasTable extends Migration
             $tabla->increments('id');
             $tabla->string('nombre_practica');
             $tabla->text('contenido')->nullable();
+            $tabla->mediumText('video')->nullable();
             $tabla->string('slug');
             $tabla->string('path')->nullable();
             $tabla->unsignedInteger('tecnologia_id')->nullable();
