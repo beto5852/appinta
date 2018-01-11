@@ -77,7 +77,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear práctica agricola</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModalPracticas"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear práctica agricola</a></li>
                     <li><a href="{{url('admin/practicas/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar prácticas</a></li>
                 </ul>
 
@@ -141,7 +141,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
+                     <li><a href="#" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
                     <li><a href="{{url('admin/tags/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Tags</a></li>
                 </ul>
             </li>

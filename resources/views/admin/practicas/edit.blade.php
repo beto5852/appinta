@@ -185,7 +185,7 @@
     @endsection
 
 
-    @section('script')
+    @section('practicas')
 
             <!-- date-range-picker -->
     <script src="{{asset('/js/moment.min.js')}}"></script>

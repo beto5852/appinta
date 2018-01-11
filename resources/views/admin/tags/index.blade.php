@@ -20,11 +20,12 @@
     @endif
 
     <div class="row">
-        <div class="col-xs-8">
-            <div class="form-group">
-                <a href="{{url('admin/tags/create')}}" class="btn btn-raised btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Tags</a>
-            </div>
+
+        <<div class="box-header">
+            {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
+            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear etiquetas agropecuarias</button>
         </div>
+
         <div class="col-xs-2">
             {!! Form::open(['url' => ['admin/tags'], 'method' => 'GET', 'class' => 'navbar-form navbar-rigth']) !!}
 
@@ -73,4 +74,35 @@
     <ul class="pager"><center>{{ $tags->links() }}</center></ul>
 
 
+@endsection
+
+
+@section('tags')
+    <!-- Modal -->
+    <div class="modal fade" id="myModalTags" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+           {!! Form::open(['url' => 'admin/tags', 'method' => 'POST']) !!}
+
+            {{csrf_field()}}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar etiquetas agropecuarias</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {!! Form::label('nombre_tags','Nombre del Tags') !!}
+                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Nombre','required'])!!}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                    {{ Form::submit('Crear Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+
+    </div>
 @endsection

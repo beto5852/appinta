@@ -1,40 +1,27 @@
-@extends('layouts.admin')
+<!-- Modal -->
+    <div class="modal fade" id="myModalTags" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+           {!! Form::open(['url' => 'admin/tags', 'method' => 'POST']) !!}
 
-@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Crear tecnológia INTA')
+            {{csrf_field()}}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar etiquetas agropecuarias</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        {!! Form::label('nombre_tags','Nombre del Tags') !!}
+                        {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Nombre','required'])!!}
+                    </div>
 
-@section('breadcrumb')
-    <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('tags.create') !!}</li>
-    </ul>
-@endsection
-
-
-@section('content')
-    @if(count($errors) > 0)
-
-        <div class="alert alert-dismissible alert-danger">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <ul>
-                @foreach($errors->all() as $mensaje)
-                    <li>{{$mensaje}}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-
-                <!--Aqui va el formulario de la practica agricola-->
-        {!! Form::open(['url' => 'admin/tags', 'method' => 'POST']) !!}
-        <div class="form-group">
-            {!! Form::label('nombre_tags','Nombre del Tags') !!}
-            {!! Form::text('nombre_tags',null,['class' =>'form-control', 'placeholder' =>'Nombre','required'])!!}
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                    {{ Form::submit('Crear Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
+                </div>
+            </div>
+            {!! Form::close() !!}
         </div>
 
-        <div class="form-group text-right">
-            <a href="{{url('admin/tags')}}" class="btn btn-raised btn-primary">ver lista de tecnologias</a>
-            {{ Form::submit('Registrar', ['class' => 'btn btn-raised btn-success']) }}
-
-        </div>
-        {!! Form::close() !!}
-
-
-@endsection
+    </div>

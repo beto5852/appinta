@@ -57,7 +57,7 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</button>
+            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalPracticas"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Práctica</button>
         </div>
         <!-- /.box-header -->
         <div class="box-body">
@@ -118,7 +118,7 @@
 
 
 
-@section('script')
+@section('practicas')
 
 
         <!-- Modal -->

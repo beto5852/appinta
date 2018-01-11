@@ -71,7 +71,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/variedades','VariedadesController');
 
 
-    Route::resource('/tags','TagsController');
+   Route::resource('tags','TagsController');
+   Route::get('tags/create','TagsController@create')->name("admin.tags.create");
+
     Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
 
     // Route:resource('');
@@ -110,20 +112,6 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
-
-
-
-
-
-
-
-
-
-    Route::get('tags/{id}',[
-        'uses' => "TagsController@destroy",
-        'as'   =>  "tags.destroy"
-    ]);
-
 
   
 });
