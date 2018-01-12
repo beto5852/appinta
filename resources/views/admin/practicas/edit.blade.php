@@ -189,7 +189,7 @@
 
                     <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
                         {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('tag_id[]',$tags,old('tag_id',$my_tags),['tabindex'=>'1','class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
+                        {{ Form::select('tag_id[]',$tags,old('tag_id',$my_tags),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola']) }}
                         {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
                     </div>
 
@@ -227,7 +227,7 @@
     <script src="{{asset('/js/moment.min.js')}}"></script>
 
     <!-- bootstrap color picker -->
-    {{-- <script src="{{asset('/adminlte/plugins/colorpicker/bootstrap-colorpicker.min.js')}}"></script> --}}
+     <script src="{{asset('/adminlte/plugins/select2/select2.full.min.js')}}"></script>
     {{-- <script src="{{asset('/adminlte/plugins/daterangepicker/daterangepicker.js')}}"></script> --}}
 
             <!-- bootstrap datepicker -->
@@ -267,7 +267,8 @@
     </script>
 
     <script>
-        $(".chosen-select").chosen({width: "100%"});
+        $(".chosen-select").chosen();
+        $(".select2").select2();
     </script>
 
     <script>

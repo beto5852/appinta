@@ -27,6 +27,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('/adminlte/plugins/datatables/dataTables.bootstrap.css')}}">
 
+    <link rel="stylesheet" href="{{asset('/adminlte/plugins/select2/select2.min.css')}}">
+
 
     <link rel="stylesheet" href="{{asset('/adminlte/css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
