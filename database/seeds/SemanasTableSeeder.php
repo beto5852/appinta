@@ -12,12 +12,12 @@ class SemanasTableSeeder extends Seeder
     public function run()
     {
 
-        $semanas =['Seleccione una semana','semana 1','semana 2','semana 3','semana 4'];
+        // $semanas =['semana 1','semana 2','semana 3','semana 4'];
 
 
-        for ($j = 0; $j < 5; $j++) {
+        for ($j = 1; $j < 5; $j++) {
             \DB::table('semanas')->insert(array(
-                'nombre_semana' => $semanas[$j],
+                'nombre_semana' => 'Semana '.$j,
 
             ));
         }

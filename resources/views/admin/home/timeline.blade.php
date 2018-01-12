@@ -69,39 +69,11 @@
 
                         <div class="timeline-item">
 
-                            @if($practica->fotos->count() === 1)
-
-                                   <div class="col-sm-6">
-                                             <img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">
-                                    </div>
-
-                            @elseif($practica->fotos->count() > 1)
-                                            <div class="timeline-body">
-                                            @foreach($practica->fotos as $key => $foto)
-                                                  <img src="{{$foto->url }}" style = "width: 100px;" >
-                                             @endforeach
-                                             </div>
-                                         @endif
+                          
 
                             <h1 ><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h1>
                             <br>
-
-
-
-
-
-
-
-                        <div class="timeline-body">
-                          {!! substr($practica->contenido,0,800) !!}
-
-                        </div><br>
-
-                             {{--<a href="https://www.facebook.com/sharer.php?u={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-facebook" title="Compartir en Facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
-                             {{--<a href="https://plus.google.com/share?url={{request()->fullUrl()}}" class="btn btn-social-icon btn-google" title="Compartir en Google+" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
-                             {{--<a href="https://twitter.com/intent/tweet?url={{request()->fullUrl()}}&text={{$practica->nombre_practica}}" class="btn btn-social-icon btn-twitter" title="Compartir en Twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
-
-                          @foreach($practica->semanas as $semana)
+ @foreach($practica->semanas as $semana)
                               <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
                           @endforeach
 
@@ -109,14 +81,30 @@
                         <span class="time pull-right" ><i class="fa fa-tags"></i>{{$tag->nombre_tags}}</span>
                         @endforeach
 
+                        <div class="timeline-body">
+                          
+                          <p>{!! substr($practica->contenido,0,800) !!}</p><br>
+
+                         @if($practica->fotos->count() === 1)
+
+                                   <div class="col-sm-6 ">
+                                             <img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">
+                                    </div>
+
+                           @elseif($practica->fotos->count() > 1)
+                                            <div class="timeline-body pull-right">
+                                            @foreach($practica->fotos as $key => $foto)
+                                                  <img src="{{$foto->url }}" style = "width: 100px;" >
+                                             @endforeach
+                                             </div>
+                          @endif
+                        </div><br><br><br>
+
+                         
+
 
                         <div class="timeline-footer">
-
-
-
                           <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-primary">Leer mas</a>
-
-                          {{-- <a class="btn btn-danger btn-xs">Delete</a> --}}
                         </div>
 
                       </div>

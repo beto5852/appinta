@@ -189,7 +189,7 @@
 
                     <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
                         {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('tag_id[]',$tags,old('tags',$my_tags),['class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
+                        {{ Form::select('tag_id[]',$tags,old('tag_id',$my_tags),['tabindex'=>'1','class'=>'form-control chosen-select','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola','value' => 'old($my_tag)']) }}
                         {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
                     </div>
 

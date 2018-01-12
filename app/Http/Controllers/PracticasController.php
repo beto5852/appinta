@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Cultivo;
+use App\Practica;
 use App\Mes;
-    use App\Practica;
+
 use App\Semana;
 use App\Tag;
 use App\Tecnologia;
@@ -70,15 +71,15 @@ class PracticasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request , [
-                'nombre_practica' => 'required|min:10|max:100',
+                'nombre_practica' => 'required|min:10|max:100|unique:practicas',
          ]);
 
         $practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')]);
 
+        Session::flash('message','Practica ya existe');
         return redirect()->route('admin.practicas.edit',$practica);
+
     }
-
-
 
 
 //    public function store(Request $request)
@@ -152,9 +153,9 @@ class PracticasController extends Controller
         $my_semana = $practica->semanas->pluck('id')->ToArray();
 
 //        $mesactual = [date('m')];
-//         dd($my_mes);
+        // dd($my_tags);    
 
-        return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana','my_tecno'));
+        return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana'));
     }
 
 
@@ -196,12 +197,12 @@ class PracticasController extends Controller
                 'nombre_practica' => 'required',
                 'contenido'       => 'required|min:100|max:100000',
                 'tecnologia_id'   => 'required',
-                'mes_id'          => 'required',
-                'semana_id'       => 'required',
-                'tag_id'          => 'required',
+                // 'mes_id'          => 'required',
+                // 'semana_id'       => 'required',
+                // 'tag_id'          => 'required',
             ]
         );
-//        dd($request->tag_id);
+       // dd($request->tag_id);
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->contenido = $request->get('contenido');
         $practica->tecnologia_id = $request->get('tecnologia_id');
@@ -216,7 +217,7 @@ class PracticasController extends Controller
         $practica->meses()->sync($request->get('mes_id'));
         $practica->semanas()->sync($request->get('semana_id'));
 //
-        return redirect()->route('admin.practicas.edit',$practica)->with('flash','Tu práctica ha sido actualizada correctamente');
+        return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
 
 //        Session::flash('message', 'Tu práctica ha sido actualizada correctamente');
 //        return redirect::to('admin/practicas/'.$practica->id.'/edit');

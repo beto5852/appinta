@@ -102,7 +102,7 @@
                                 <div class="container gal-container">
                                     @foreach($practicas->fotos as $key => $foto)
                                         <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
-                                            <div class="box">
+                                            <div class="col-md-5">
                                                 <a href="#" data-toggle="modal" data-target="#{{$key}}">
 
                                                     <img src="{{$foto->url}}" class="img-responsive" width="100%">

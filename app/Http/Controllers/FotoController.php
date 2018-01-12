@@ -41,7 +41,7 @@ class FotoController extends Controller
 
         Storage::delete($fotoPath);
 
-        return back()->with('flash','Foto Eliminada');
+        return back()->with('message','Foto Eliminada');
 
     }
 
