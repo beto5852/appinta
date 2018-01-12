@@ -15,8 +15,8 @@ class CreateMesPracticaTable extends Migration
     {
         Schema::create('mes_practica', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('mes_id');
             $table->unsignedInteger('practica_id');
+            $table->unsignedInteger('mes_id');
             $table->timestamps();
         });
     }

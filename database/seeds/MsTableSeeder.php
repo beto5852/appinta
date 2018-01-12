@@ -13,8 +13,8 @@ class MsTableSeeder extends Seeder
     {
         for ($i = 1; $i < 10; $i++) {
             \DB::table('mes_practica')->insert(array(
-                'mes_id'      => App\Mes::all()->random()->id,
                 'practica_id' => App\Practica::all()->random()->id,
+                'mes_id'      => App\Mes::all()->random()->id,
             ));     
         
         }
