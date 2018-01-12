@@ -34,7 +34,7 @@
                 <div class="box-body">
 
                     <div class="form-group ">
-                        <section class="content-header">
+                        <section>
                             <h1>
                                 {{$practicas->nombre_practica}}
                                 {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
@@ -75,7 +75,7 @@
             </div>
 
         </div>
-        <div class="col-md-4">
+        <div class="col-md-3">
 
             <div class="box box-primary">
 
@@ -97,8 +97,12 @@
 
                             </section>
                         @elseif($practicas->fotos->count() > 1)
-                            <h2 class="page-header">Galeria de fotos</h2>
+
                             <section>
+                                <h1>
+                                    Galeria de fotos
+                                    {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
+                                </h1>
                                 <div class="container gal-container">
                                     @foreach($practicas->fotos as $key => $foto)
                                         <div class="col-md-8 col-sm-12 co-xs-12 gal-item">

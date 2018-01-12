@@ -33,7 +33,7 @@ class Practica extends Model
         Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica','contenido','slug','path','tecnologia_id', 'user_id'];
+    protected $fillable = ['id','nombre_practica','contenido','slug','path','tecnologia_id', 'user_id'];
 
     public function fotos()
     {

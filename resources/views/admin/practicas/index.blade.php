@@ -74,51 +74,20 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table class="table table-bordered table-striped">
+            <table id="practicas-table" class="table table-bordered table-striped" style="width: 100% !important;">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Práctica</th>
-                    {{--<th>creado por:</th>--}}
-                    {{--<th>Tecnológia</th>--}}
+                    <th>creado por:</th>
+                    <th>Tecnológia</th>
                     <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
-               <tbody>
-
-               @foreach($practicas as $practica)
-                   <tr class="info">
-                       <td>{{  $practica->id }}</td>
-                       <td>{{  $practica->nombre_practica}}</td>
-                       <!--  <td>{!! $practica->contenido !!}</td>-->
-                       <td>{{  $practica->user['name']}}</td>
-                       <td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>
-                       @if(empty($practica->path))
-                           <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>
-                       @else
-                           <td><img src="{{asset('img/')}}/{{$practica->path}}" style = "width: 100px;"></td>
-                       @endif
-                       <td>
-                           <a href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                           <form method="POST" action="{{route('admin.practicas.destroy',$practica->id)}}" style="display:inline" >
-                               {{ csrf_field() }} {{method_field('DELETE')}}
-
-                               <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
-                           </form>
-                           <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                       </td>
-                   </tr>
-               @endforeach
-
-
+                <tbody>
                </tbody>
-
-
             </table>
-            <center>{{ $practicas->links() }}</center>
         </div>
         <!-- /.box-body -->
     </div>
@@ -172,94 +141,62 @@
 
     <script>
 
-        $(function () {
-            $('#practicas-table').DataTable({
-                "paging": true,
-                "lengthChange": true,
-                "searching": true,
-                "ordering": false,
-                "info": false,
-                "autoWidth": false,
-                "processing": true,
-                "serverSide":true,
-                "pageLength":20,
-                {{--"language": {--}}
-                    {{--"url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'--}}
-                {{--},--}}
-                {{--"ajax":'{{url('admin/practicas')}}',--}}
-                {{--"columns": [--}}
-
-                    {{--@foreach($practicas as $practica)--}}
-                    {{--{--}}
-                    {{--{'data': '{{ $practica->id }}',"name": 'id'},--}}
-                    {{--'':'{{ $practica->nombre_practica}}', "name":'nombre_practica',--}}
-                    {{--"data":'{{ $practica->path }}', "":'path'--}}
-                    {{--},--}}
-                        {{--@endforeach--}}
-
-{{--//                    {data: '{{ $practica->id }}',name: id},--}}
-{{--//                    {data:'{{ $practica->nombre_practica}}', name:'nombre_practica'},--}}
-{{--//                    {data:'{{ $practica->path }}', name:'path'}--}}
-
-                {{--]--}}
-
-            {{--});--}}
-        })
 
 
+$(function() {
+         $('#practicas-table').DataTable({
+             processing: true,
+             serverSide: true,
+             paging: true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+             "info": true,
+             "autoWidth": true,
+             "pageLength": 10,
+             language : {
+                 "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
+             },
+             ajax: '{!! route('admin.practicas.datos.index') !!}',
+             headers:{
+                 'X-CSRF-TOKEN':'{{csrf_token()}}'
+             },
+             columns: [
+                 { data: 'id', name: 'id'},
+                 { data: 'nombre_practica', name: 'nombre_practica' },
+                 { data: 'name', name: 'name' },
+                 { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
+                 { data: 'path', render: function (data, type ,row) {
+
+                     {{--return '<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'--}}
+
+                     return  '@if(empty($practica->path))'+
+                             '<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'+
+                             '@else'+
+                             '<td><img src="{{asset('img/')}}/'+data.path+'" style = "width: 100px;"></td>'+
+                             '@endif'
+
+                 }},
+                 { data: null, render: function (data, type ,row) {
+
+//                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
+                        return  '<td>'+
+                             '<a href="{{url("admin/practicas/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+                             '<form method="POST" action="{{url("admin/practicas")}}/'+data.id+'" style="display:inline" >'+
+                             '{{ csrf_field() }} {{method_field("DELETE")}}'+
+                             '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                             '</form>'+
+                             '<a href="{{"timelinemore"}}/'+data.slug+'" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>'+
+                             '</td>'
+
+                 }},
 
 
 
-
-
-
-
-
-
+             ]
+         });
+     });
     </script>
-
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-        };
-    </script>
-
-
-    <script>
-        CKEDITOR.replace('my-editor', options);
-    </script>
-
-    <script>
-        $(".chosen-select").chosen({width: "100%"});
-    </script>
-
-    <script>
-        //Date picker
-        $('#datepicker').datepicker({
-            autoclose: true
-        });
-
-        var accept = ".png";
-
-        new Dropzone('.dropzone', {
-            url: '/admin/practicas/{{Auth::user()->id}}/fotos',
-//        acceptedFiles : 'image/*',
-            maxFilesize: 2,
-            paramName: 'foto',
-            headers: {
-                'X-CSRF-TOKEN': '{{csrf_token()}}'
-            },
-            dictDefaultMessage: 'Arrastra las fotos aqui para subirlas',
-
-        });
-
-        Dropzone.autoDiscover = false;
-
-    </script>
-
 
 
 

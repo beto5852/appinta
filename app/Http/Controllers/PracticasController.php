@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Cultivo;
 use App\Practica;
 use App\Mes;
-
+use Illuminate\Support\Facades\DB;
 use App\Semana;
 use App\Tag;
 use App\Tecnologia;
 use App\User;
+use Yajra\Datatables\Datatables;
 use App\Traits\DatesTraslator;
 use App\Events\CrearPractica;
 use Illuminate\Http\Request;
@@ -31,18 +32,37 @@ class PracticasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //mostrar algunos Productos
 
-        $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
-        
-//        $datos = array_dot(['Seleccione un mes','Enero','Febrero', 'Marzo','Abril','Mayo', 'Junio','Julio', 'Agosto','Septiembre','Octubre', 'Noviembre','Diciembre']);
-//        dd($datos = array_except($datos, ['0']));
+//        $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
 
+//        dd(Datatables::of( DB::table('practicas')
+//            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
+//            ->join('users', 'practicas.user_id', '=', 'users.id')
+//            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
+//            ->get())->make(true));
 
-        return view("admin.practicas.index", compact('practicas'));
+          return view("admin.practicas.index");
     }
+
+    public function datos_practicas(){
+
+        return Datatables::of( DB::table('practicas')
+            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
+            ->join('users', 'practicas.user_id', '=', 'users.id')
+            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
+            ->get())->make(true);
+
+//       DB::table('practicas')
+//            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
+//            ->join('users', 'practicas.user_id', '=', 'users.id')
+//            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
+//            ->get();
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *

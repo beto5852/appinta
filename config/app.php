@@ -177,7 +177,7 @@ return [
         Kim\Activity\ActivityServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
-        // Yajra\DataTables\DataTablesServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
 //        Yajra\Datatables\ButtonsServiceProvider::class,
         //
 
@@ -246,7 +246,7 @@ return [
         'Image'        => Intervention\Image\Facades\Image::class,
         'Activity'     => Kim\Activity\ActivityFacade::class,
         'Date' => Jenssegers\Date\Date::class,
-        // 'DataTables' => Yajra\DataTables\Facades\DataTables::class,
+       'Datatables' => Yajra\Datatables\Datatables::class,
     ],
 
 ];
