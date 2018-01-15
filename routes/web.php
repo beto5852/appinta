@@ -57,11 +57,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/practicas','PracticasController');
 
     Route::get('practicas','PracticasController@index')->name("admin.practicas.index");
-    Route::get('practicas_datos','PracticasController@datos_practicas')->name("admin.practicas.datos.index");
+    Route::get('listado_practicas_data','PracticasController@datos_practicas')->name("admin.practicas.datos.index");
 
 
     Route::get('practicas/create','PracticasController@create')->name("admin.practicas.create");
-    Route::get('practicas/edit/{id}','PracticasController@edit')->name("admin.practicas.edit");
+    Route::get('practicas/edit/{practica}','PracticasController@edit')->name("admin.practicas.edit");
     Route::put('practicas/{practica}','PracticasController@update')->name("admin.practicas.update");
     Route::DELETE('practicas/{id}','PracticasController@destroy')->name("admin.practicas.destroy");
 

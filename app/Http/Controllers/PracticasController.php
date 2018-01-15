@@ -156,11 +156,6 @@ class PracticasController extends Controller
         $semanas     = Semana::pluck('nombre_semana');
 
         $my_tags   = $practica->tags->pluck('id')->ToArray();
-//        $my_tags =[ '' => 'Choose a Subreddit'] + $my_tags;
-
-//        $my_tags = array_merge ( $empty, $my_tags );
-
-
         $my_mes    = $practica->meses->pluck('id')->ToArray();
         $my_semana = $practica->semanas->pluck('id')->ToArray();
 

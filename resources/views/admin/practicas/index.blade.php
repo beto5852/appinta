@@ -146,8 +146,8 @@ $(function() {
              processing: true,
              serverSide: true,
              paging: true,
-              "lengthChange": true,
-              "searching": true,
+             "lengthChange": true,
+             "searching": true,
               "ordering": true,
              "info": true,
              "autoWidth": false,
@@ -177,23 +177,18 @@ $(function() {
                  }},
                  { data: null, render: function (data, type ,row) {
 
-//                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
-                        return  '<td>'+
-                             '<a href="{{url("admin/practicas/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
-                             '<form method="POST" action="{{url("admin/practicas")}}/'+data.id+'" style="display:inline" >'+
-                             '{{ csrf_field() }} {{method_field("DELETE")}}'+
-                             '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
-                             '</form>'+
-                             '<a href="{{"timelinemore"}}/'+data.slug+'" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>'+
-                             '</td>'
-
+                 return  '<td>'+
+                         '<a href="{{url("admin/practicas/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+                         '<form method="POST" action="{{url("admin/practicas")}}/'+data.id+'" style="display:inline" >'+
+                         '{{ csrf_field() }} {{method_field("DELETE")}}'+
+                         '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                         '</form>'+
+                         '<a href="{{"timelinemore"}}/'+data.slug+'" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>'+
+                         '</td>'
                  }},
-
-
-
-             ]
-         });
-     });
+                ]
+             });
+            });
     </script>
 
 
