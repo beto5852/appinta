@@ -8,7 +8,7 @@ class Tag extends Model
 {
     protected $guarded = [];
     public $table = 'tags';
-    protected $fillable = ['nombre_tags'];
+    protected $fillable = ['id','nombre_tags'];
     
     public function practicas()
     {

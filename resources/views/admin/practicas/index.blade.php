@@ -139,9 +139,7 @@
 
 
 
-    <script>
-
-
+<script>
 
 $(function() {
          $('#practicas-table').DataTable({
@@ -152,7 +150,7 @@ $(function() {
               "searching": true,
               "ordering": true,
              "info": true,
-             "autoWidth": true,
+             "autoWidth": false,
              "pageLength": 10,
              language : {
                  "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'

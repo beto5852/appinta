@@ -140,3 +140,7 @@ footer{
 footer a,footer a:hover{
     color: #88C425;
 }
+
+.video iframe{
+    height: 247;
+}

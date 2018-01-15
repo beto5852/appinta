@@ -71,19 +71,19 @@
         {!! Form::close() !!}
 
                 <!-- /.social-auth-links -->
-        <div class="social-auth-links text-center">
+        {{-- <div class="social-auth-links text-center">
             <p>- OR -</p>
             <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign in using
                 Facebook</a>
             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Sign in using
                 Google+</a>
-        </div>
+        </div> --}}
 
 
-    <a class="btn btn-link" href="{{ url('/password/reset') }}">
-            Forgot Your Password?
-        </a><br>
-        <a href="register.html" class="text-center">Register a new membership</a>
+    <a href="{{ url('/password/reset') }}">Olvido su contraseña?</a><br>
+    <a href="{{ URL('register') }}" class="text-center">Registrarse aquí</a>  
+
+    
 
     </div>
     <!-- /.login-box-body -->

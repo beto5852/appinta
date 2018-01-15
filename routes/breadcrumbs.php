@@ -113,3 +113,14 @@ Breadcrumbs::register('notificaciones', function($breadcrumbs)
 });
 
 
+// Home > Timeline
+Breadcrumbs::register('timeline', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Todas las practicas', url('admin/timeline/'));
+});
+Breadcrumbs::register('timelinemore', function($breadcrumbs)
+{   
+    $breadcrumbs->parent('timeline');
+    $breadcrumbs->push('Practica', url('admin/timelinemore/'));
+});

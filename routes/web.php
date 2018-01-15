@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Auth::routes();
+// Route::get('/', 'HomeController@index');
+
 Route::get('/', [
     'uses' => 'FrontController@index',
     'as'    => 'home',
@@ -57,8 +60,6 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('practicas_datos','PracticasController@datos_practicas')->name("admin.practicas.datos.index");
 
 
-
-
     Route::get('practicas/create','PracticasController@create')->name("admin.practicas.create");
     Route::get('practicas/edit/{id}','PracticasController@edit')->name("admin.practicas.edit");
     Route::put('practicas/{practica}','PracticasController@update')->name("admin.practicas.update");
@@ -78,9 +79,14 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 
    Route::resource('tags','TagsController');
-   Route::get('tags/create','TagsController@create')->name("admin.tags.create");
 
-    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
+    Route::get('tags','TagsController@index')->name("admin.tags.index");
+   Route::get('tags_datos','TagsController@datos_tags')->name("admin.tags.datos.index");
+
+   Route::get('tags/create','TagsController@create')->name("admin.tags.create");
+   Route::get('tags/edit/{id}','TagsController@edit')->name("admin.tags.edit");
+   Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
+  
 
     // Route:resource('');
 
@@ -134,8 +140,7 @@ Route::resource('login','LoginController');
     PUT/PATCH/:id  =>actualiza el producto
     DELETE/products/:id elimina el producto
 */
-//Auth::routes();
-//Route::get('/home', 'HomeController@index');
+
 
 Route::get('logout',[
     'uses'  =>  'LoginController@logout',

@@ -8,8 +8,8 @@
 @section('header')
     <section class="content-header">
         <h1>
-            Calendario de las Practicas Agricolas
-            <small>Revisa el timeline segun la epoca de siembra</small>
+            Práctica Agricola
+            <small>{{ $practicas->nombre_practica }}</small>
         </h1>
 
     </section>
@@ -18,13 +18,15 @@
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('practicas.create') !!}</li>
+        <li>{!! Breadcrumbs::render('timelinemore') !!}</li>
     </ul>
 @endsection
+
 @section('content')
 
 <div class="row">
 
+     
     @if($practicas->fotos->count())
         <div class="col-md-8">
 
@@ -47,17 +49,25 @@
                             <article>
                                 {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
                                 <div class="row">
-                                    <div class="col-md-8">
+                                   {{--  <div class="col-md-8">
                                         <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
-                                    </div>
+                                    </div> --}}
                                     <div class="col-md-4">
-                                        <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
+                                       
+                                         <span class="time pull-right" ><i class="fa fa-tags"></i>
+                                        @foreach( $practicas->tags as $tag)
+                                            #{{$tag->nombre_tags}}
+                                          @endforeach 
+                                         </span>
+                                   
                                     </div>
+                                    
+
                                 </div>
 
                                 <p class="lead">
-                                    {!! $practicas->contenido !!} </p>
+                                    {!! $practicas->textomedio !!} </p>
                                 <br>
                                 @if(empty($practicas->path))
                                     <img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">
@@ -65,17 +75,29 @@
                                     <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
                                 @endif
                                 <br>
+                                <p class="lead">
+                                    {!! $practicas->contenido !!} </p>
+                                <br>
 
                             </article>
                         </section><!-- /#introduction -->
 
                     </div>
 
+                      @if(!empty($practicas->video))
+
+                       <div class="form-group ">
+                           <div class="video">
+                            <iframe width="100%" height="470" src="{!! $practicas->video !!}" frameborder="0" allowfullscreen></iframe>
+                           </div>   
+                        </div>  
+                    @endif 
+
                 </div>
             </div>
 
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
 
             <div class="box box-primary">
 
@@ -141,6 +163,7 @@
 
         </div>
 
+                  
 
     @else
         <div class="col-md-12">
@@ -160,10 +183,16 @@
                                     <div class="col-md-8">
                                         <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
+
+                                       
+
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-5">
                                         <i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practicas->created_at}}
+
                                     </div>
+
+
                                 </div>
 
                                 <p class="lead">{!! substr($practicas->contenido,0,10000) !!} </p>
@@ -183,6 +212,7 @@
         </div>
     @endif
 </div>
+
 @endsection
 
 

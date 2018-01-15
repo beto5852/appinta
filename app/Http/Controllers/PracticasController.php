@@ -34,15 +34,9 @@ class PracticasController extends Controller
      */
     public function index()
     {
-        //mostrar algunos Productos
+        //mostrar algunas practicas
 
-//        $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
-
-//        dd(Datatables::of( DB::table('practicas')
-//            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
-//            ->join('users', 'practicas.user_id', '=', 'users.id')
-//            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
-//            ->get())->make(true));
+       // $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
 
           return view("admin.practicas.index");
     }
@@ -54,13 +48,6 @@ class PracticasController extends Controller
             ->join('users', 'practicas.user_id', '=', 'users.id')
             ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
             ->get())->make(true);
-
-//       DB::table('practicas')
-//            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
-//            ->join('users', 'practicas.user_id', '=', 'users.id')
-//            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
-//            ->get();
-
     }
 
     /**
@@ -91,12 +78,12 @@ class PracticasController extends Controller
     public function store(Request $request)
     {
         $this->validate($request , [
-                'nombre_practica' => 'required|min:10|max:100|unique:practicas',
+                'nombre_practica' => 'required|min:10|max:100',
          ]);
 
         $practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')]);
 
-        Session::flash('message','Practica ya existe');
+        Session::flash('message','Practica Creada');
         return redirect()->route('admin.practicas.edit',$practica);
 
     }
@@ -158,10 +145,10 @@ class PracticasController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Practica $practica)
+    public function edit($id)
     {
         //edita con id
-//        $practica    = Practica::findOrFail($id);
+        $practica    = Practica::findOrFail($id);
         $users       = User::pluck('name', 'id');
         $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
         $tags        = Tag::pluck('nombre_tags');
@@ -220,19 +207,22 @@ class PracticasController extends Controller
 
         $this->validate($request , [
                 'nombre_practica' => 'required',
-                'contenido'       => 'required|min:100|max:100000',
+                'textomedio'       => 'required|min:100|max:900',
+                'contenido'       => 'required|max:100000',
                 'tecnologia_id'   => 'required',
-                // 'mes_id'          => 'required',
-                // 'semana_id'       => 'required',
-                // 'tag_id'          => 'required',
+                'mes_id'          => 'required',
+                'semana_id'       => 'required',
+                'tag_id'          => 'required',
             ]
         );
        // dd($request->tag_id);
         $practica->nombre_practica = $request->get('nombre_practica');
+        $practica->textomedio = $request->get('textomedio');
         $practica->contenido = $request->get('contenido');
         $practica->tecnologia_id = $request->get('tecnologia_id');
         $practica->path = $request->path;
         $practica->user_id = $request->get('user_id');
+        $practica->video = $request->get('video');
         $practica->slug = null;
         $practica->update(['nombre_practica' => $request->get('nombre_practica')]);
         $practica->save();

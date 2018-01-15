@@ -7,6 +7,8 @@ use Activity;
 use App\Practica;
 use App\Tecnologia;
 use App\User;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 use Illuminate\Http\Request;
 
 class FrontController extends Controller
@@ -29,6 +31,8 @@ class FrontController extends Controller
     public function timeline()
     {
         //
+        // dd($practicas); 
+        // $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
         
 //
 //       $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
@@ -43,13 +47,24 @@ class FrontController extends Controller
 
        // dd(Carbon::now()->format('m'));
 
-           $practicas = Practica::with(['meses' => function ($query) {
+        // $practica = DB::table('practicas')
+        //             ->join('mes_practica','practicas.id','mes_practica.practica_id')
+        //             ->join('meses','mes_practica.mes_id','meses.id')
+        //             ->select('practicas.*','meses.nombre_mes')
+        //             ->where('nombre_mes', '=', 'Enero')
+        //             ->get();
+
+
+
+
+        //  dd($practica);           
+
+     $practicas = Practica::with(['meses' => function ($query) {
                $query->whereNotNull('mes_id')
                    ->where('mes_id','=',Carbon::now()->format('m')+1);
-           }])->paginate(10);
+           }])->paginate(2);
 
-//        dd($practicas));
-        // $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+       
         return view('admin.home.timeline',compact('practicas'));
 
     }

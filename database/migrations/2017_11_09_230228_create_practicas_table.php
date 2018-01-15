@@ -18,6 +18,7 @@ class CreatePracticasTable extends Migration
             $tabla->engine = 'InnoDB';
             $tabla->increments('id');
             $tabla->string('nombre_practica');
+            $tabla->mediumText('textomedio')->nullable();
             $tabla->text('contenido')->nullable();
             $tabla->mediumText('video')->nullable();
             $tabla->string('slug');

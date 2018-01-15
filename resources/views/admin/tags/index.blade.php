@@ -37,16 +37,17 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="practicas-table" class="table table-bordered table-striped">
+            <table id="tags-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Nombre Tag</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
 
-                @foreach($tags  as $tag)
+               {{--  @foreach($tags  as $tag)
                     <tr class="info">
                         <td>{{  $tag->id}}</td>
                         <td>{{  $tag->nombre_tags}}</td>
@@ -63,23 +64,14 @@
                         </td>
                     </tr>
                 @endforeach
-
-
+ --}}
                 </tbody>
-
-
             </table>
-
         </div>
         <!-- /.box-body -->
     </div>
     <!-- /.box -->
-
-    <ul class="pager"><center>{{ $tags->links() }}</center></ul>
-
-
-
-
+    {{-- <ul class="pager"><center>{{ $tags->links() }}</center></ul> --}}
 @endsection
 
 
@@ -112,4 +104,52 @@
         </div>
 
     </div>
+
+
+<script>
+
+$(function() {
+         $('#tags-table').DataTable({
+              "processing": true,
+              "serverSide": true,
+              "paging": true,
+              "lengthChange": true,
+              "searching": true,
+              "ordering": true,
+             "info": true,
+             "autoWidth": false,
+             "pageLength": 10,
+             language : {
+                 "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
+             },
+             ajax: '{!! route('admin.tags.datos.index') !!}',
+             headers:{
+                 'X-CSRF-TOKEN':'{{csrf_token()}}'
+             },
+             columns: [
+                 { data: 'id', name: 'id'},
+                 { data: 'nombre_tags', name: 'nombre_tags' },
+                 { data: null, render: function (data, type ,row) {
+
+//                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
+                        return  '<td>'+
+                             '<a href="{{url("admin/tags/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+                             '<form method="POST" action="{{url("admin/tags")}}/'+data.id+'" style="display:inline" >'+
+                             '{{ csrf_field() }} {{method_field("DELETE")}}'+
+                             '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                             '</form>'+
+                              '</td>'
+
+                 }},
+
+
+
+             ]
+         });
+     });
+ </script>
+
+
+
+
 @endsection

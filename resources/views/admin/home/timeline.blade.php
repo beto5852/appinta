@@ -17,10 +17,12 @@
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('practicas.create') !!}</li>
+        <li>{!! Breadcrumbs::render('timeline') !!}</li>
     </ul>
 @endsection
+
 @section('content')
+
     @if(count($errors) > 0)
 
         <div class="alert alert-dismissible alert-danger">
@@ -32,7 +34,7 @@
             </ul>
         </div>
 
-        @endif
+   @endif
 
  <!-- row -->
       <div class="row">
@@ -73,17 +75,18 @@
 
                             <h1 ><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h1>
                             <br>
- @foreach($practica->semanas as $semana)
+                          @foreach($practica->semanas as $semana)
                               <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
                           @endforeach
 
                          @foreach( $practica->tags as $tag)
                         <span class="time pull-right" ><i class="fa fa-tags"></i>{{$tag->nombre_tags}}</span>
                         @endforeach
+                        <br>
 
                         <div class="timeline-body">
                           
-                          <p>{!! substr($practica->contenido,0,800) !!}</p><br>
+                          <p>{!! $practica->textomedio!!}</p><br>
 
                          @if($practica->fotos->count() === 1)
 
@@ -125,6 +128,7 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      
 @endsection
 
 

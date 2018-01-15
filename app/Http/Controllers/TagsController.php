@@ -6,6 +6,8 @@ use App\Tag;
 use Illuminate\Http\Request;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
 class TagsController extends Controller
 {
@@ -20,12 +22,26 @@ class TagsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        //
-        $tags = Tag::Search($request->search)->orderBy('id','DESC')->paginate(6);
-        return view('admin.tags.index',compact('tags'));
+
+        // $tag = Datatables::of( DB::table('tags')->select('id','nombre_tags')->get())->make(true);
+
+        // dd($tag);
+
+        // $tags = Tag::Search($request->search)->orderBy('id','DESC')->paginate(6);
+
+        return view('admin.tags.index');
     }
+    public function datos_tags(){
+
+      return Datatables::of( DB::table('tags')->select('id','nombre_tags')->get())->make(true);
+         
+    }
+
+
+
+
     /**
      * Show the form for creating a new resource.
      *
@@ -69,6 +85,12 @@ class TagsController extends Controller
     public function edit($id)
     {
         //
+//edita con id
+        $tags    = Tag::findOrFail($id);
+       
+        return view('admin.tags.edit', compact('tags'));
+
+
     }
     /**
      * Update the specified resource in storage.
