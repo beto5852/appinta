@@ -31,7 +31,7 @@ class CheckRoles
             return $next($request);
         }
 
-        return redirect('/');
+        return redirect('/admin');
 
     }
 }
