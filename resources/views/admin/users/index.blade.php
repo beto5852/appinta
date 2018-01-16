@@ -52,11 +52,24 @@
             <tr class="info">
                 <td>{{  $user->name}}</td>
                 <td>{{  $user->email}}</td>
-                @if($user->type == 'admin')
-                    <td><span class="label label-primary">{{  $user->type}}</span></td>
-                @else
-                    <td><span class="label label-danger">{{  $user->type}}</span></td>
-                @endif
+
+
+                <td>
+                    @foreach($user->roles as $role)
+                        @if($role->display_name == 'administrador')
+                            <span class="label label-primary">{{  $role->display_name }}</span>
+                        @elseif($role->display_name == 'miembro')
+                            <span class="label label-danger">{{  $role->display_name }}</span>
+                        @endif
+                    @endforeach
+                </td>
+
+
+                {{--@if($user->hasRoles(['admin']))--}}
+                    {{--<td><span class="label label-primary">{{  $user->type}}</span></td>--}}
+                {{--@elseif($user->hasRoles(['miembro']))--}}
+                    {{--<td><span class="label label-danger">{{  $user->type}}</span></td>--}}
+                {{--@endif--}}
                 <td>
                 @if(empty($user->perfil))
                     @if($user->sexo == 'masculino'   )

@@ -1,3 +1,4 @@
+{{--{{dd(auth()->user()->roles->toArray())}}--}}
 @extends('layouts.admin')
 
 @section('title','<i class="fa fa-home" aria-hidden="true"></i>'.' '.'Bienvenido')
@@ -11,7 +12,7 @@
 
 @section('content')
 
-@if(Auth::user()->type == 'admin')
+@if(Auth::user()->hasRoles(['admin']))
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">

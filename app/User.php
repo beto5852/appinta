@@ -50,6 +50,35 @@ class User extends Authenticatable
          return $this->hasMany('App\Notificacion');
      }*/
 
+    // esta es la relacion donde el usuario esta asiganado a muchos roles
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class,'role_user');
+    }
+
+
+    // forzamos para que pase como arreglo el parametro
+    public function hasRoles(array $roles){
+
+        // para acceder a esta funcion de  verificacio al usuario realiza esto if(auth()->user()->hasRoles('admin')) en tu blade
+
+        foreach ($roles as $role){
+
+            //recorremos el arreglo si el role es igual retorna verdadero en este caso verifica si el
+            //parametro name del modelo Role::claas es verdadero, despues hace el otro recorrido y verifica si es verdadero
+
+            foreach ($this->roles as $userRole){
+
+                if($userRole->name == $role)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
     public function practicas(){
         return $this->hasMany(Practica::class);
     }

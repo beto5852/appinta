@@ -14,6 +14,7 @@ class CreatePracticaSemanaTable extends Migration
     public function up()
     {
         Schema::create('practica_semana', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('practica_id');
             $table->unsignedInteger('semana_id');

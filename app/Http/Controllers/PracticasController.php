@@ -24,8 +24,8 @@ class PracticasController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+        $this->middleware(['auth','roles:admin']);
+        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -154,6 +154,7 @@ class PracticasController extends Controller
         $tags        = Tag::pluck('nombre_tags');
         $meses       = Mes::pluck('nombre_mes');
         $semanas     = Semana::pluck('nombre_semana');
+        
 
         $my_tags   = $practica->tags->pluck('id')->ToArray();
         $my_mes    = $practica->meses->pluck('id')->ToArray();

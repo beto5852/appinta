@@ -91,7 +91,7 @@
     //Date picker
     $('.datepicker').datepicker({
         format: "dd/mm/yyyy",
-        lenguage: "es"
+        lenguage: "es",
         autoclose: true,
 
     });

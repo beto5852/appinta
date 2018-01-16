@@ -14,8 +14,8 @@ class CultivosController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('admin', ['only' => ['index', 'show', 'edit', 'update', 'create', 'destroy']]);
+        $this->middleware(['auth','roles:admin']);
+        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
     }
     /**
      * Display a listing of the resource.

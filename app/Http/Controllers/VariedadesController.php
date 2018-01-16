@@ -6,6 +6,13 @@ use Illuminate\Http\Request;
 
 class VariedadesController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware(['auth','roles:admin']);
+        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+    }
+    
     /**
      * Display a listing of the resource.
      *

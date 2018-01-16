@@ -14,6 +14,7 @@ class CreateMesPracticaTable extends Migration
     public function up()
     {
         Schema::create('mes_practica', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->increments('id');
             $table->unsignedInteger('practica_id');
             $table->unsignedInteger('mes_id');

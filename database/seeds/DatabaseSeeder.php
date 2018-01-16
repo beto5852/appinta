@@ -34,6 +34,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CeTableSeeder::class);
         $this->call(CvTableSeeder::class);
         $this->call(PtTableSeeder::class);
+        $this->call(RolesTableSeeder::class);
         
         Model::unguard();
 
