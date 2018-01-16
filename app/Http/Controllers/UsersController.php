@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\Role;
 use App\Rubro;
 use App\User;
 use Storage;
@@ -103,6 +104,9 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
+        $roles       = Role::pluck('name');
+
+        dd($roles);
 
         return view('admin.users.edit',compact('user'));
         //dd($user);
