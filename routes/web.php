@@ -1,4 +1,15 @@
 <?php
+//
+//DB::listen(function($query){
+//    echo "<pre>{$query->time}</pre>";
+//});
+
+
+//DB::listen(function($query){
+//    echo "<pre>{$query->sql}</pre>";
+//});
+//
+
 
 /*
 |--------------------------------------------------------------------------

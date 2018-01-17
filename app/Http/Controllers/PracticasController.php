@@ -148,20 +148,22 @@ class PracticasController extends Controller
     public function edit($id)
     {
         //edita con id
+//        $practica = Practica::with(['users','tecnologias','tags','meses','semanas'])->get();
+
         $practica    = Practica::findOrFail($id);
         $users       = User::pluck('name', 'id');
         $tecnologias = Tecnologia::pluck('nombre_tecnologia', 'id');
-        $tags        = Tag::pluck('nombre_tags');
-        $meses       = Mes::pluck('nombre_mes');
-        $semanas     = Semana::pluck('nombre_semana');
-        
+        $tags        = Tag::pluck('nombre_tags','id');
+        $meses       = Mes::pluck('nombre_mes','id');
+        $semanas     = Semana::pluck('nombre_semana','id');
 
-        $my_tags   = $practica->tags->pluck('id')->ToArray();
-        $my_mes    = $practica->meses->pluck('id')->ToArray();
-        $my_semana = $practica->semanas->pluck('id')->ToArray();
+
+        $my_tags   = $practica->tags->pluck('nombre_tags','id');
+        $my_mes    = $practica->meses->pluck('nombre_mes','id');
+        $my_semana = $practica->semanas->pluck('nombre_semana','id');
 
 //        $mesactual = [date('m')];
-//         dd($my_tags);
+//         dd($meses);
 
         return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana'));
     }
@@ -211,7 +213,8 @@ class PracticasController extends Controller
                 'tag_id'          => 'required',
             ]
         );
-       // dd($request->tag_id);
+
+        return $request->all();
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->textomedio = $request->get('textomedio');
         $practica->contenido = $request->get('contenido');
@@ -224,9 +227,9 @@ class PracticasController extends Controller
         $practica->save();
         // dd($request->get('path'));
 
-        $practica->tags()->sync($request->get('tag_id'));
-        $practica->meses()->sync($request->get('mes_id'));
-        $practica->semanas()->sync($request->get('semana_id'));
+        $practica->tags()->sync($request->tag_id);
+        $practica->meses()->sync($request->mes_id);
+        $practica->semanas()->sync($request->semana_id);
 //
         return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
 

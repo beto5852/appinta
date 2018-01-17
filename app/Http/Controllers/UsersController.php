@@ -9,6 +9,8 @@ use App\User;
 use Storage;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 
 use Illuminate\Http\Request;
 
@@ -104,11 +106,11 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-        $roles       = Role::pluck('name');
+        $roles       = Role::pluck('display_name','id');
 
-        dd($roles);
+//        dd($roles);
 
-        return view('admin.users.edit',compact('user'));
+        return view('admin.users.edit',compact('user','roles'));
         //dd($user);
     }
     /**
@@ -136,11 +138,14 @@ class UsersController extends Controller
             return redirect()->back()->withInput()->withErrors($v->errors());
         }
         //
+//        return $request->all();
         $user = User::find($id);
         $user->fill($request->all());
         $user->password = bcrypt($request->password);
         $user->update(['perfil']);
         $user->save();
+        $user->roles()->sync($request->roles);
+
         Session::flash('message','Usuario actualizado correctamente');
         return redirect::to('admin/users');
     }

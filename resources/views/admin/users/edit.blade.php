@@ -97,8 +97,29 @@
                         {!! Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],$user->sexo,['class' => 'form-control chosen-select']) !!}
                         </div>
                         <div class="form-group">
-                              {{ Form::label('type','Tipo de usuario') }}
-                            {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],$user->type,['class' => 'form-control chosen-select'])}}
+
+                            {{ Form::label('type','Tipo de usuario') }}
+                            <div class="checkbox">
+
+                              @foreach($roles as $id => $name)
+                                    <label>
+                                        <input
+                                                type="checkbox"
+                                               value="{{$id}}"
+                                                {{$user->roles->pluck('id')->contains($id) ? 'checked' : ''}}
+                                               name="roles[]">
+                                          {{$name}}
+                                    </label>
+
+                              @endforeach
+
+                            </div>
+
+
+{{--                              {{ Form::label('type','Tipo de usuario') }}--}}
+{{--                            {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],$user->type,['class' => 'form-control chosen-select'])}}--}}
+
+
                         </div>
 
                         <div class="form-group">

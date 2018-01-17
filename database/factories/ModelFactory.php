@@ -94,6 +94,7 @@ $factory->define(App\Caracteristica::class, function (Faker\Generator $faker) {
 $factory->define(App\Practica::class, function (Faker\Generator $faker) {
     return [
         'nombre_practica' => $faker->sentence,
+        'textomedio' => $faker->sentence,
         'contenido' => $faker->paragraph,
         'tecnologia_id'=> App\Tecnologia::all()->random()->id,
         'user_id' => App\User::all()->random()->id,
