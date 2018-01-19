@@ -21,7 +21,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('activate/{token}','ActivationTokenController@activate');
  Auth::routes();
+
  // Authentication Routes...
 //        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 //        Route::post('login', 'Auth\LoginController@login');
@@ -36,7 +38,7 @@
 //        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 //        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 //        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-    
+//
 
 // Route::get('/', 'HomeController@index');
 
@@ -155,7 +157,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
   
 });
 
-Route::resource('login','LoginController');
+//Route::resource('login','LoginController');
 //Auth::routes();
 //controlador de recurso
 /* rutas que se generarian

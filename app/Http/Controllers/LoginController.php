@@ -39,8 +39,12 @@ class LoginController extends Controller
         //
         if(Auth::attempt(['email'=>$request['email'],'password' =>  $request['password']])){
             //return redirect()->intended('dashboard');
+
+
             return Redirect::to('admin/');
         }
+
+                
         Session::flash('message','Los datos son incorrectos');
         return redirect::to('login');
     }
@@ -91,5 +95,12 @@ class LoginController extends Controller
         Auth::logout();
         return redirect('/login');
     }
+    protected function credentials(Request $request)
+    {
+        $credentials = $request->only($this->username(), 'password');
 
+        $credentials['active'] = true;
+
+        return $credentials;
+    }
 }
