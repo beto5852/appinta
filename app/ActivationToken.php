@@ -12,5 +12,9 @@ class ActivationToken extends Model
     protected $dates = ['created_at'];
     public $incrementing = false;
     public $timestamps = false;
-    
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
 }
