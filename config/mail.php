@@ -29,7 +29,7 @@ return [
     |
     */
 
-    'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
+    'host' => env('MAIL_HOST', 'smtp.gmail.com'),
 
     /*
     |--------------------------------------------------------------------------
@@ -41,6 +41,13 @@ return [
     | stay compatible with the Mailgun e-mail application by default.
     |
     */
+    'stream' => [
+        'ssl' => [
+            'allow_self_signed' => true,
+            'verify_peer' => false,
+            'verify_peer_name' => false,
+        ],
+    ],
 
     'port' => env('MAIL_PORT', 587),
 
@@ -56,7 +63,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'alexo2407@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'intanicaraguense@gmail.com'),
         'name' => env('MAIL_FROM_NAME', 'Webmaster'),
     ],
 
