@@ -19,8 +19,9 @@ class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','roles:admin']);
+        $this->middleware(['auth','roles:admin,miembro']);
         $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+        // $this->middleware('roles:miembro', ['only' => ['edit', 'update']]);
     }
     /**
      * Display a listing of the resource.

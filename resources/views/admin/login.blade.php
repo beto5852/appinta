@@ -44,7 +44,7 @@
         {!! Form::open(['route' => 'login.store','method' => 'POST'], ['class' => 'form-control', 'role' => 'form']) !!}
 
         <div class="form-group has-feedback">
-            {!! Form::email('email',null,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])!!}
+            {!! Form::email('email',old('email'),['class' =>'form-control','value' => '{old(email)}','placeholder' =>'example@gmail.com','required'])!!}
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
 

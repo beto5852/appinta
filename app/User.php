@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
+use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -86,4 +87,8 @@ class User extends Authenticatable
     public function scopeSearch($query,$name){
         return $query->where('name','LIKE',"%$name%" );
     }
+
+    // public function sendPasswordResetNotification($token){
+    //     $this->notify(new ResetPasswordNotification($token));
+    // }
 }
