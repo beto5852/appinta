@@ -61,7 +61,6 @@ class UsersController extends Controller
             'password' => 'required',
             'email'    => 'required|email',
             'sexo' => 'required_if:masculino,femenino',
-            'type' => 'required_if:admin,miembro',
             'perfil' => 'dimensions:min_width=100,min_heigth:100'
         ]);
 

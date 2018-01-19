@@ -10,6 +10,7 @@
         "davejamesmiller/laravel-breadcrumbs": "^3.0",
         "doctrine/dbal": "2.5.1",
         "fzaninotto/faker": "^1.7",
+        "guzzlehttp/guzzle": "^6.3",
         "jenssegers/date": "^3.2",
         "kim/activity": "^1.1",
         "laravel/framework": "5.3.*",
