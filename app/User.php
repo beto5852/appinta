@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use App\Notifications\ResetPasswordNotification;
+//use App\Notifications\ResetPasswordNotification;
 use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,7 +36,7 @@ class User extends Authenticatable
     }
 
        
-    protected $fillable = ['name', 'email', 'sexo','ocupacion','pais','notas', 'telefono','password','type','perfil'];
+    protected $fillable = ['name', 'email', 'sexo','ocupacion','pais','notas', 'telefono','password','type','perfil','active'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -88,7 +88,7 @@ class User extends Authenticatable
         return $query->where('name','LIKE',"%$name%" );
     }
 
-    // public function sendPasswordResetNotification($token){
-    //     $this->notify(new ResetPasswordNotification($token));
-    // }
+//     public function sendPasswordResetNotification($token){
+//         $this->notify(new ResetPasswordNotification($token));
+//     }
 }

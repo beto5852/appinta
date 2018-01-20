@@ -28,6 +28,7 @@ class CreateUsersTable extends Migration
             $table->string('telefono')->nullable();
 //            $table->enum('type',['miembro','admin'])->default('miembro');
             $table->string('perfil')->nullable();
+            $table->boolean('active')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });
