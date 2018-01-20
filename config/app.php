@@ -178,6 +178,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
 //        Yajra\Datatables\ButtonsServiceProvider::class,
         //
 
