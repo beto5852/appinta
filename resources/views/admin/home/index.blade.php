@@ -12,6 +12,28 @@
 
 @section('content')
 
+    @if(count($errors) > 0)
+
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <ul>
+                @foreach($errors->all() as $mensaje)
+                    <li>{{$mensaje}}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+
+
+    @if(Session::has('message'))
+        <div class="alert alert-dismissible alert-info">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{Session::get('message')}}
+        </div>
+        @endif
+
+
 @if(Auth::user()->hasRoles(['admin']))
         <!-- Small boxes (Stat box) -->
         <div class="row">

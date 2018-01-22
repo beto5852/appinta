@@ -34,13 +34,13 @@ class RolesTableSeeder extends Seeder
         ));
 
         
-        for ($i = 0 ; $i < 4 ; $i++) {
-            \DB::table('role_user')->insert(array(
-                'role_id' => App\Role::all()->random()->id,
-                'user_id'      => App\User::all()->random()->id,
-            ));
-
-        }
+//        for ($i = 0 ; $i < 4 ; $i++) {
+//            \DB::table('role_user')->insert(array(
+//                'role_id' => App\Role::all()->random()->id,
+//                'user_id'      => App\User::all()->random()->id,
+//            ));
+//
+//        }
 
 
 
