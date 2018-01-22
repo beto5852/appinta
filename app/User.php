@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Http\Controllers\ActivationTokenController;
+use Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 //use App\Notifications\ResetPasswordNotification;
@@ -87,6 +89,23 @@ class User extends Authenticatable
     public function scopeSearch($query,$name){
         return $query->where('name','LIKE',"%$name%" );
     }
+
+    public function activate($token){
+        $this->update(['active' => true]);
+        Auth::login($this);
+        $this->token->delete();
+    }
+    public function token(){
+        return $this->hasOne(ActivationToken::class);
+    }
+
+    public function generartoken(){
+        $this->token()->create([
+            'token'  => str_random(60),
+        ]);
+        return $this;
+    }
+
 
 //     public function sendPasswordResetNotification($token){
 //         $this->notify(new ResetPasswordNotification($token));

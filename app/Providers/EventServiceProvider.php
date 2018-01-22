@@ -17,6 +17,10 @@ class EventServiceProvider extends ServiceProvider
         CrearPractica::class => [
             'App\Listeners\NotificarNuevaPractica',
         ],
+        'Illuminate\Auth\Events\Registered' => [
+            'App\Listeners\SendActivationLink',
+        ],
+
     ];
 
     /**

@@ -21,7 +21,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('activate/{token}','ActivationTokenController@activate');
+Route::get('activate/{token}','ActivationTokenController@activate')->name('activation');
  Auth::routes();
 
  // Authentication Routes...
