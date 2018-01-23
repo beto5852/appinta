@@ -102,7 +102,7 @@ class FrontController extends Controller
 
         $chartArray["xAxis"] = array("categories" => $categoryArray);
         $chartArray["yAxis"] = array("title" => array("text" => "Total de Personas"));
-//        dd($chartArray);
+//        dd(json_encode($chartArray));
 
 //     dd($canti);
 

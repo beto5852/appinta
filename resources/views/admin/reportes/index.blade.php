@@ -107,7 +107,7 @@
                 <div class="box-header">
                 </div>
 
-                <div id="sexo">
+                <div class="box-body" id="div_grafica_pie">
                 </div>
 
                 <div class="box-footer">
