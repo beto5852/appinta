@@ -15,7 +15,6 @@
 
     </div>
 
-
     <div class="col-md-6">
         <label>Mes</label>
         <select class="form-control" id="mes_sel" onchange="cambiar_fecha_grafica();" >
@@ -36,55 +35,61 @@
         </select>
 
     </div>
-</div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
 
-<div  class="row" >
-    <br/>
-    <div class="box box-primary">
-        <div class="box-header">
+            <div class="box-body" id="div_grafica_barras">
+            </div>
+
+            <div class="box-footer">
+            </div>
         </div>
 
-        <div class="box-body" id="div_grafica_barras">
-        </div>
-
-        <div class="box-footer">
-        </div>
     </div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
 
+            <div class="box-body" id="div_grafica_lineas">
+            </div>
 
-
-    <br/>
-    <div class="box box-primary">
-        <div class="box-header">
+            <div class="box-footer">
+            </div>
         </div>
 
-        <div class="box-body" id="div_grafica_lineas">
-        </div>
-
-        <div class="box-footer">
-        </div>
     </div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header">
+            </div>
 
+            <div class="box-body" id="div_grafica_pie">
+            </div>
 
-    <br/>
-    <div class="box box-primary">
-        <div class="box-header">
+            <div class="box-footer">
+            </div>
         </div>
 
-        <div class="box-body" id="div_grafica_pie">
-        </div>
-
-        <div class="box-footer">
-        </div>
     </div>
-
 
 </div>
 
-<script>
-    cargar_grafica_barras(<?= $anio; ?>,<?= intval($mes); ?>);
-    cargar_grafica_lineas(<?= $anio; ?>,<?= intval($mes); ?>);
-    cargar_grafica_pie();
 
-</script>
+</div>
+
+
+<!-- /.box-header -->
+<div class="box-body">
+
+    {{--@include('admin.reportes.listado_graficas')--}}
+
+</div>
+<!-- /.box-body -->
+</div>
+<!-- /.box -->
+{{-- <ul class="pager"><center>{{ $tags->links() }}</center></ul> --}}
+
 

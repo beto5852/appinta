@@ -1,13 +1,3 @@
-function  sexo() {
-
-    $(function() {
-        $('#container').highcharts(
-            json_encode($chartArray)
-        )
-    });
-
-}
-
 
 function cambiar_fecha_grafica(){
 
@@ -178,7 +168,7 @@ var options={
                 type: 'pie'
             },
             title: {
-                text: 'Grafica publicaciones'
+                text: 'Grafica de Tecnologias'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -194,7 +184,7 @@ var options={
                 }
             },
             series: [{
-                name: 'Brands',
+                name: 'Total',
                 colorByPoint: true,
                 data: []
             }]
@@ -206,15 +196,15 @@ $("#div_grafica_pie").html( $("#cargador_empresa").html() );
 var url = "grafica_publicaciones";
 
 
-$.get(url,function(resul){
-var datos= jQuery.parseJSON(resul);
+$.get(url,function(result){
+var datos= jQuery.parseJSON(result);
 var tipos=datos.tipos;
 var totattipos=datos.totaltipos;
-var numeropublicaciones=datos.numerodepubli;
+var numeropublicaciones=datos.numerodepract;
 
     for(i=0;i<=totattipos-1;i++){  
     var idTP=parseInt(tipos[i].id);
-    var objeto= {name: tipos[i].titulo, y:numeropublicaciones[idTP] };     
+    var objeto= {name: tipos[i].nombre_tecnologia, y:numeropublicaciones[idTP] };
     options.series[0].data.push( objeto );  
     }
  //options.title.text="aqui e podria cambiar el titulo dinamicamente";

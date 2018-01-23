@@ -22,7 +22,7 @@
     <div class="box box-primary">
         <div class="box-header">
 
-         </div>
+        </div>
 
         <?php  $nombremes=array("","ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO","AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"); ?>
 
@@ -107,7 +107,7 @@
                 <div class="box-header">
                 </div>
 
-                <div class="box-body" id="div_grafica_pie">
+                <div id="sexo">
                 </div>
 
                 <div class="box-footer">
@@ -119,13 +119,13 @@
     </div>
 
 
-        <!-- /.box-header -->
-        <div class="box-body">
+    <!-- /.box-header -->
+    <div class="box-body">
 
         {{--@include('admin.reportes.listado_graficas')--}}
 
-        </div>
-        <!-- /.box-body -->
+    </div>
+    <!-- /.box-body -->
     </div>
     <!-- /.box -->
     {{-- <ul class="pager"><center>{{ $tags->links() }}</center></ul> --}}
@@ -140,13 +140,7 @@
         cargar_grafica_lineas(<?= $anio; ?>,<?= intval($mes); ?>);
         cargar_grafica_pie();
 
-        $(function() {
-            $('#sexo').highcharts(
-                    {{json_encode($chartArray)}}
-            )
-        });
-
-    </script>
+      </script>
 
 
 

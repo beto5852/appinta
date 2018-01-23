@@ -77,36 +77,32 @@ class FrontController extends Controller
     }
     public function reportes()
     {
+
         $anio=date("Y");
         $mes=date("m");
-        $canti = DB::table('users')
-            ->select(DB::raw('sexo as sexo, count(sexo) as cantidad'))
-            ->groupBy('sexo')
-            ->get();
 
-        //propiedades necesarias para crear la gráfica
-        $chartArray["chart"] = array("type" => "column");
-        $chartArray["title"] = array("text" => "Relación de Sexos - Femenino/Masculino");
-        $chartArray["subtitle"] = array("text" => "Exposición");
-        $chartArray["credits"] = array("enabled" => false);
-        $chartArray["navigation"] = array("buttonOptions" => array("align" => "left"));
-        $chartArray["series"] = array();
-        $chartArray["xAxis"] = array("categories" => array());
-        foreach ($canti as $user)
-        {
-            $categoryArray[] = $user->sexo;
-            $chartArray["series"][] = array("name" => $user->sexo, "data" => array(doubleval($user->cantidad)) );
-//            $chartArray["series"][] = array("name" => $user->sexo, "data" => array(count($user->sexo)) );
+//        $tipotecnologia=Tecnologia::all();
+//        $ctp=count($tipotecnologia);
+//        $practicas=Practica::all();
+//        $ct =count($practicas);
+//
+//        for($i=0;$i<=$ctp-1;$i++){
+//            $idTP=$tipotecnologia[$i]->id;
+//            $numerodepract[$idTP]=0;
+//        }
+//
+////        dd($idTP);
+//        for($j=0;$j<=$ct-1;$j++){
+//            $idTP=$practicas[$j]->tecnologia_id;
+//            $numerodepract[$idTP]++;
+//        }
+//
+//        dd($numerodepract);
+//
+//        $data=array("totaltipos"=>$ctp,"tipos"=>$tipotecnologia, "numerodepract"=>$numerodepract);
+//        return json_encode($data);
 
-        }
-
-        $chartArray["xAxis"] = array("categories" => $categoryArray);
-        $chartArray["yAxis"] = array("title" => array("text" => "Total de Personas"));
-//        dd(json_encode($chartArray));
-
-//     dd($canti);
-
-      return view('admin.reportes.index',compact('anio','mes','chartArray'));
+      return view('admin.reportes.index',compact('anio','mes'));
     }
 
 

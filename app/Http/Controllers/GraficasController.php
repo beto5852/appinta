@@ -42,26 +42,46 @@ class GraficasController extends Controller
 
 
     public function total_publicaciones(){
-        $tipospublicacion=Tecnologia::all();
-//        $tipospublicacion->toArray();
-        $ctp=count($tipospublicacion);
-        $publicaciones=Practica::all();
-//        $tipospublicacion->toArray();
-        $numerodepubli = [];
-        $ct =count($publicaciones);
 
-        for($i=0;$i<=$ctp-1;$i++){
-            $idTP=$tipospublicacion[$i]->id;
-            $numerodepubli[$idTP]=0;
-        }
-
-//        for($i=0;$i<=$ct-1;$i++){
-//            $idTP=$publicaciones[$i]->idTipopublicacion;
+//        $tipospublicacion=Tecnologia::all();
+//        $ctp=count($tipospublicacion);
+//        $publicaciones=Practica::all();
+//        $numerodepubli = [];
+//        $ct =count($publicaciones);
+//
+//        for($i=0;$i<=$ctp-1;$i++){
+//            $idTP=$tipospublicacion[$i]->id;
+//            $numerodepubli[$idTP]=0;
+//        }
+//
+//        for($j=0;$j<=$ct-1;$j++){
+//            $idTP=$publicaciones[$j]->idTipopublicacion;
 //            $numerodepubli[$idTP]++;
 //        }
+//
+//        $data=array("totaltipos"=>$ctp,"tipos"=>$tipospublicacion, "numerodepubli"=>$numerodepubli);
+//        return json_encode($data);
 
-        $data=array("totaltipos"=>$ctp,"tipos"=>$tipospublicacion, "numerodepubli"=>$numerodepubli);
+        $tipotecnologia=Tecnologia::all();
+        $ctp=count($tipotecnologia);
+        $practicas=Practica::all();
+        $ct =count($practicas);
+
+        for($i=0;$i<=$ctp-1;$i++){
+            $idTP=$tipotecnologia[$i]->id;
+            $numerodepract[$idTP]=0;
+        }
+
+//        dd($idTP);
+        for($j=0;$j<=$ct-1;$j++){
+            $idTP=$practicas[$j]->tecnologia_id;
+            $numerodepract[$idTP]++;
+        }
+
+        
+        $data=array("totaltipos"=>$ctp,"tipos"=>$tipotecnologia, "numerodepract"=>$numerodepract);
         return json_encode($data);
+
     }
 
 
