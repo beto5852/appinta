@@ -111,9 +111,10 @@
                         {{ Form::label('sexo','Sexo') }}
                         {{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}
                     </div>
-                    <div class="form-group">
-                        {{ Form::label('type','Tipo de usuario') }}
-                        {{ Form::select('type',['' => 'Seleccione el tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control chosen-select'])}}
+                    <div class="form-group {{$errors->has('role_id') ? 'has-error' : ''}}">
+                        {{ Form::label('role_id','Etiquetas agropecuarias') }}
+                        {{ Form::select('role_id[]',$roles,old('role_id'),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los rol']) }}
+                        {!! $errors->first('role_id','<span class="help-block">:message</span>') !!}
                     </div>
 
                     <div class="form-group">
@@ -124,8 +125,10 @@
                          {!! Form::label('pais','Pais') !!} 
 
                         {!! Form::text('pais',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])!!}
-
-                        
+                     </div>
+                    <div class="form-group">
+                        {{ Form::hidden('active',1,null,['class' => 'form-control'])}}
+                    </div>
                     <div class="form-group">
                         {{ Form::label('perfil','Imagen de perfil') }}
                         {{ Form::file('perfil')}}
@@ -189,9 +192,13 @@
                 CKEDITOR.replace('my-editor', options);
             </script>
 
-            <script>
-                $(".chosen-select").chosen({width: "100%"});
-            </script>
+       <script>
+            $(".chosen-select").chosen();
+            $(".select2").select2({
+                tags: true
+            });
+
+        </script>
 
             <script>
 

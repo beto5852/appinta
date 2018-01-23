@@ -74,6 +74,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
 
 
+
+
     Route::resource('/users','UsersController');
     Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
 
@@ -153,6 +155,11 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     ]);
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
+    Route::get('reportes','FrontController@reportes')->name("admin.reportes.index");
+
+    Route::get('listado_graficas', 'GraficasController@index');
+    Route::get('grafica_registros/{anio}/{mes}', 'GraficasController@registros_mes');
+    Route::get('grafica_publicaciones', 'GraficasController@total_publicaciones')->name("total_publicaciones");
 
   
 });

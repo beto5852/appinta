@@ -75,12 +75,47 @@ class FrontController extends Controller
         
         return view('admin.home.timelinemore', compact('practicas'));
     }
+    public function reportes()
+    {
+        $anio=date("Y");
+        $mes=date("m");
+        $canti = DB::table('users')
+            ->select(DB::raw('sexo as sexo, count(sexo) as cantidad'))
+            ->groupBy('sexo')
+            ->get();
+
+        //propiedades necesarias para crear la gráfica
+        $chartArray["chart"] = array("type" => "column");
+        $chartArray["title"] = array("text" => "Relación de Sexos - Femenino/Masculino");
+        $chartArray["subtitle"] = array("text" => "Exposición");
+        $chartArray["credits"] = array("enabled" => false);
+        $chartArray["navigation"] = array("buttonOptions" => array("align" => "left"));
+        $chartArray["series"] = array();
+        $chartArray["xAxis"] = array("categories" => array());
+        foreach ($canti as $user)
+        {
+            $categoryArray[] = $user->sexo;
+            $chartArray["series"][] = array("name" => $user->sexo, "data" => array(doubleval($user->cantidad)) );
+//            $chartArray["series"][] = array("name" => $user->sexo, "data" => array(count($user->sexo)) );
+
+        }
+
+        $chartArray["xAxis"] = array("categories" => $categoryArray);
+        $chartArray["yAxis"] = array("title" => array("text" => "Total de Personas"));
+//        dd($chartArray);
+
+//     dd($canti);
+
+      return view('admin.reportes.index',compact('anio','mes','chartArray'));
+    }
 
 
     public function admin()
     {
-
+        $anio=date("Y");
+        $mes=date("m");
         $activities = Activity::users()->get();
+        $tipospublicacion=Tecnologia::all();
 
 //         $activities = Activity::users(1)->get();   // Last 1 minute
         //         $activities = Activity::users(10)->get();  // Last 10 minutes
@@ -111,7 +146,7 @@ class FrontController extends Controller
         $tecnologias = Tecnologia::OrderBy('id', 'DESC')->paginate(3);
 
         // dd($practicas);
-        return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities'));
+        return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities','anio','mes'));
     }
 
     public function practica($slug)

@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
         factory('App\User','admin')->create();
-//        factory('App\User','miembro',10)->create();
+        factory('App\User','miembro',10)->create();
         //factory('App\Telefono',13)->create();
         factory('App\Rubro',5)->create();
         factory('App\Tecnologia',5)->create();

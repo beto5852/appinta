@@ -157,10 +157,10 @@ class PracticasController extends Controller
         $meses       = Mes::pluck('nombre_mes','id');
         $semanas     = Semana::pluck('nombre_semana','id');
 
-
-        $my_tags   = $practica->tags->pluck('nombre_tags','id');
-        $my_mes    = $practica->meses->pluck('nombre_mes','id');
-        $my_semana = $practica->semanas->pluck('nombre_semana','id');
+    
+        $my_tags   = $practica->tags->pluck('id')->toArray();
+        $my_mes    = $practica->meses->pluck('id')->toArray();
+        $my_semana = $practica->semanas->pluck('id')->toArray();
 
 //        $mesactual = [date('m')];
 //         dd($meses);
@@ -214,7 +214,7 @@ class PracticasController extends Controller
             ]
         );
 
-        return $request->all();
+//        return $request->all();
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->textomedio = $request->get('textomedio');
         $practica->contenido = $request->get('contenido');
