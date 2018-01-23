@@ -17,14 +17,23 @@ class DatabaseSeeder extends Seeder
         factory('App\User','admin')->create();
         factory('App\User','miembro',10)->create();
         //factory('App\Telefono',13)->create();
-        factory('App\Rubro',5)->create();
-        factory('App\Tecnologia',5)->create();
-        factory('App\Cultivo',5)->create();
-        factory('App\Etapa',5)->create();
-        factory('App\Variedad',5)->create();
+//        factory('App\Rubro',5)->create();
+//        factory('App\Tecnologia',5)->create();
+//        factory('App\Cultivo',5)->create();
+//        factory('App\Etapa',5)->create();
+//        factory('App\Variedad',5)->create();
+      
+//        factory('App\Tag',5)->create();
+        
+        
+        $this->call(RubroTableSeeder::class);
+        $this->call(TecnologiaTableSeeder::class);
+        $this->call(CultivoTableSeeder::class);
+        $this->call(EtapaTableSeeder::class);
+        $this->call(VariedadTableSeeder::class);
         factory('App\Caracteristica',5)->create();
         factory('App\Practica',5)->create();
-        factory('App\Tag',5)->create();
+        $this->call(TagsTableSeeder::class);
         $this->call(MesesTableSeeder::class);
         $this->call(SemanasTableSeeder::class);
         // $this->call(PracticaTableSeeder::class);
