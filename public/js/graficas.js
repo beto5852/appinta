@@ -168,7 +168,7 @@ var options={
                 type: 'pie'
             },
             title: {
-                text: 'Grafica de Tecnologias'
+                text: 'Tecnológias usadas en prácticas agricolas'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

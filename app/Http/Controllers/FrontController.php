@@ -77,30 +77,8 @@ class FrontController extends Controller
     }
     public function reportes()
     {
-
         $anio=date("Y");
         $mes=date("m");
-
-//        $tipotecnologia=Tecnologia::all();
-//        $ctp=count($tipotecnologia);
-//        $practicas=Practica::all();
-//        $ct =count($practicas);
-//
-//        for($i=0;$i<=$ctp-1;$i++){
-//            $idTP=$tipotecnologia[$i]->id;
-//            $numerodepract[$idTP]=0;
-//        }
-//
-////        dd($idTP);
-//        for($j=0;$j<=$ct-1;$j++){
-//            $idTP=$practicas[$j]->tecnologia_id;
-//            $numerodepract[$idTP]++;
-//        }
-//
-//        dd($numerodepract);
-//
-//        $data=array("totaltipos"=>$ctp,"tipos"=>$tipotecnologia, "numerodepract"=>$numerodepract);
-//        return json_encode($data);
 
       return view('admin.reportes.index',compact('anio','mes'));
     }
