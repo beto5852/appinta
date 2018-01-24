@@ -132,15 +132,17 @@
                            
                          </div>
 
-                        @if(empty(Auth::user()->perfil))
-                            @if(Auth::user()->sexo == 'masculino')
-                                <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
-                            @elseif(Auth::user()->sexo == 'femenino')
-                                <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
-                             @endif
-                       @else
-                       <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
-                       @endif
+                    @if(empty($user->perfil))
+                        @if($user->sexo == 'masculino'   )
+                            <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
+                        @else
+                            <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
+                        @endif
+                    @else
+                        <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                    @endif
+
+
                     <div class="form-group">
                         {{ Form::label('imagen','Imagen de perfil') }}
                         {{ Form::file('perfil')}}

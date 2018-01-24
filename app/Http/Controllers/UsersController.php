@@ -42,8 +42,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-                       
-        return view("admin.users.create");
+        $roles  = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');              
+        return view("admin.users.create",compact('roles'));
         //return 'esta es una prueba';
     }
     /**
@@ -75,6 +75,9 @@ class UsersController extends Controller
         //dd($user);
         
         $user->save();
+        
+        $user->roles()->sync($request->role_id);
+        
 
         Session::flash('message','Usuario registrado correctamente');
         return redirect::to('admin/users');

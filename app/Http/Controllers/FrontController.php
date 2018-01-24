@@ -75,12 +75,21 @@ class FrontController extends Controller
         
         return view('admin.home.timelinemore', compact('practicas'));
     }
+    public function reportes()
+    {
+        $anio=date("Y");
+        $mes=date("m");
+
+      return view('admin.reportes.index',compact('anio','mes'));
+    }
 
 
     public function admin()
     {
-
+        $anio=date("Y");
+        $mes=date("m");
         $activities = Activity::users()->get();
+        $tipospublicacion=Tecnologia::all();
 
 //         $activities = Activity::users(1)->get();   // Last 1 minute
         //         $activities = Activity::users(10)->get();  // Last 10 minutes
@@ -111,7 +120,7 @@ class FrontController extends Controller
         $tecnologias = Tecnologia::OrderBy('id', 'DESC')->paginate(3);
 
         // dd($practicas);
-        return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities'));
+        return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities','anio','mes'));
     }
 
     public function practica($slug)
