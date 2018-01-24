@@ -18,50 +18,148 @@
         </div>
     @endif
 
-    <div class="row">
-        <div class="col-xs-8">
-            <div class="form-group">
-                <a href="{{url('admin/tecnologias/create')}}" class="btn btn-raised btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear tecnológia</a>
-            </div>
+    <div class="box box-primary">
+        <div class="box-header">
+            {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
+            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear cultivo</button>
+
         </div>
-        <div class="col-xs-2">
-            {!! Form::open(['url' => ['admin/tecnologias'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
-
-            <div class="form-group">
-                {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','required'])!!}
-            </div>
-
-            {!! Form::close() !!}
-        </div>
-    </div>
-
-
-            <table class="table table-striped table-hover" >
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="tags-table" class="table table-bordered table-striped">
                 <thead>
-                <tr >
-                    <th>Labor agricola</th>
-                    <th>Descripción</th>
+                <tr>
+                    <th>ID</th>
+                    <th>Tecnológias</th>
+                    <th>Rubro al que pertenece</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($tecnologias as $tecnologia)
-                    <tr class="info">
-                        <td>{{  $tecnologia->nombre_tecnologia }}</td>
-                        <td >{!! $tecnologia->descripcion_tecnologia !!}</td>
-                        <td>
-                            <a href="{{url('admin/tecnologias/'.$tecnologia->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                            <form method="POST" action="{{route('admin.tecnologias.destroy',$tecnologia->id)}}" style="display:inline" >
-                                {{ csrf_field() }} {{method_field('DELETE')}}
 
-                                <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
-                            </form>
-                        </td>
-                    </tr>
-                @endforeach
                 </tbody>
             </table>
-    <center>{{ $tecnologias->links() }}</center>
+        </div>
+        <!-- /.box-body -->
+    </div>
+@endsection
 
+@section('cultivos')
+            <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModalTecnologias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['url' => 'admin/tecnologias', 'method' => 'POST']) !!}
+
+            {{csrf_field()}}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar etiquetas agropecuarias</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group {{$errors->has('nombre_tecnologia') ? 'has-error' : ''}}">
+                        {!! Form::label('nombre_tecnologia','Nombre de la tecnológia') !!}
+                        {!! Form::text('nombre_tecnologia',null,['class' =>'form-control', 'placeholder' =>'Nombre de la tecnológia','required'])!!}
+                        {!! $errors->first('nombre_tecnologia','<span class="help-block">:message</span>') !!}
+                    </div>
+
+                    <div class="form-group">
+                        {!! Form::label('descripcion_tecnologia','Descripción de la tecnológia') !!}
+                        {!! Form::textarea('descripcion_tecnologia',null,['class' => 'form-control','placeholder' => ''])!!}
+                    </div>
+                    <div class="form-group {{$errors->has('rubro_id') ? 'has-error' : ''}}">
+                        {{ Form::label('rubro_id','Rubros  a los que se aplica esta tecnológia') }}
+                        {{ Form::select('rubro_id[]',$rubro,old('rubro_id',$rubro),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los rubros para tu práctica agricola']) }}
+                        {!! $errors->first('rubro_id','<span class="help-block">:message</span>') !!}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
+                    {{ Form::submit('Guardar tecnológia', ['class' => 'btn btn-primary btn-block']) }}
+                </div>
+            </div>
+            {!! Form::close() !!}
+        </div>
+
+
+    </div>
+
+
+
+    <script>
+
+        $(function() {
+            $('#tags-table').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+                "pageLength": 10,
+                language : {
+                    "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
+                },
+                ajax: '{!! route('admin.tecnologias.datos.index') !!}',
+                headers:{
+                    'X-CSRF-TOKEN':'{{csrf_token()}}'
+                },
+                columns: [
+                    { data: 'id', name: 'id'},
+                    { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
+                    { data: 'nombre_rubro', name: 'nombre_rubro'},
+                    { data: null, render: function (data, type ,row) {
+
+//                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
+                        return  '<td>'+
+                                '<a href="{{url("admin/tecnologias/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+                                '<form method="POST" action="{{url("admin/tecnologias")}}/'+data.id+'" style="display:inline" >'+
+                                '{{ csrf_field() }} {{method_field("DELETE")}}'+
+                                '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                                '</form>'+
+                                '</td>'
+
+                    }},
+
+
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+
+        CKEDITOR.replace('my-editor1', options);
+        CKEDITOR.config.height = 150;
+
+
+    </script>
+
+
+    <script>
+        $(".select2").select2({
+            tags: true,
+            width:'100%'
+        });
+
+    </script>
 
 @endsection
+
+
+
+
+
+
+
+

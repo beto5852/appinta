@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Tecnologia;
+use App\Rubro;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 use Session;
 use Redirect;
 
@@ -23,10 +26,21 @@ class TecnologiasController extends Controller
     public function index()
     {
 
-        $tecnologias =  Tecnologia::orderBy('id','DESC')->paginate(5);
+        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
         // dd($users);
-        return view("admin.tecnologias.index",['tecnologias' => $tecnologias]);
+        return view("admin.tecnologias.index",['rubro' => $rubro]);
     }
+
+    public function datos_tecnologias(){
+
+        return Datatables::of( DB::table('tecnologias')
+            ->join('rubro_tecnologia','tecnologias.id','=','rubro_tecnologia.tecnologia_id')
+            ->join('rubros','rubro_tecnologia.rubro_id','=','rubros.id')
+            ->select('tecnologias.id','tecnologias.nombre_tecnologia','tecnologias.descripcion_tecnologia','rubros.nombre_rubro')
+            ->orderBy('id', 'DESC')
+            ->get())->make(true);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -70,8 +84,13 @@ class TecnologiasController extends Controller
     public function edit($id)
     {
         //
-        $tecnologias = Tecnologia::find($id);
-        return view('admin.tecnologias.edit',compact('tecnologias'));
+        $tecnologia = Tecnologia::find($id);
+        $rubros = Rubro::pluck('nombre_rubro','id')->toArray();
+        $my_rubros   = $tecnologia->rubros()->pluck('id')->toArray();
+
+//        dd($my_rubros);
+
+        return view('admin.tecnologias.edit',compact('tecnologia','rubros','my_rubros'));
         //dd($tecnologias);
     }
     /**

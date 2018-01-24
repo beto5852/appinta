@@ -91,7 +91,7 @@
                     </div>
                     <div class="form-group">
                         {{ Form::label('rubro_id','Rubro al que pertenece') }}
-                        {{ Form::select('rubro_id',$rubro,old('rubro_id',$rubro),['class' => 'form-control','required'])}}
+                        {{ Form::select('rubro_id',$rubro,old('rubro_id',$rubro),['class'=>'form-control select2','required'])}}
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -164,7 +164,13 @@
 
     </script>
 
+    <script>
+        $(".select2").select2({
 
+            width:'100%'
+        });
+
+    </script>
 
 @endsection
 
