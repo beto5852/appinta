@@ -19,6 +19,19 @@
 
 @section('content')
 
+    @if(count($errors) > 0)
+
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <ul>
+                @foreach($errors->all() as $mensaje)
+                    <li>{{$mensaje}}</li>
+                @endforeach
+            </ul>
+        </div>
+
+    @endif
+
     @if(Session::has('message'))
         <div class="alert alert-dismissible alert-success">
             <button type="button" class="close" data-dismiss="alert">×</button>
@@ -29,7 +42,7 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalCultivos"><i class="fa fa-tag" aria-hidden="true"></i> Crear cultivo</button>
+            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalCultivos"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear cultivo</button>
 
         </div>
         <!-- /.box-header -->
@@ -39,6 +52,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Lista de cultivos</th>
+                    <th>Rubro al que pertenece</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -68,6 +82,7 @@
                     <div class="form-group {{$errors->has('nombre_cultivo') ? 'has-error' : ''}}">
                         {!! Form::label('nombre_cultivo','Nombre del cultivo') !!}
                         {!! Form::text('nombre_cultivo',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                        {!! $errors->first('nombre_cultivo','<span class="help-block">:message</span>') !!}
                     </div>
 
                     <div class="form-group">
@@ -101,7 +116,7 @@
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
-                "ordering": true,
+                "ordering": false,
                 "info": true,
                 "autoWidth": false,
                 "pageLength": 10,
@@ -115,6 +130,7 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_cultivo', name: 'nombre_cultivo' },
+                    { data: 'nombre_rubro', name: 'nombre_rubro'},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"

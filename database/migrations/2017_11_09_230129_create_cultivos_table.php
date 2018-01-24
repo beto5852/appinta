@@ -19,7 +19,7 @@ class CreateCultivosTable extends Migration
             $table->increments('id');
             $table->string('nombre_cultivo');
             $table->text('descripcion_cultivo')->nullable();
-            $table->unsignedInteger('rubro_id');
+            $table->unsignedInteger('rubro_id')->nullable();
             
             $table->timestamps();
         });

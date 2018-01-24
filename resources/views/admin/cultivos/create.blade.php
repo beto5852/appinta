@@ -13,22 +13,20 @@
                 <div class="form-group {{$errors->has('nombre_cultivo') ? 'has-error' : ''}}">
                     {!! Form::label('nombre_cultivo','Nombre del cultivo') !!}
                     {!! Form::text('nombre_cultivo',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])!!}
+                    {!! $errors->first('nombre_cultivo','<span class="help-block">:message</span>') !!}
                 </div>
-
-                <div class="form-group">
-                    {!! Form::label('descripcion_cultivo','Descripción de la tecnológia') !!}
-                    {!! Form::textarea('descripcion_cultivo',null,['id' => 'my-editor','class' => 'my-editor','value' => 'old(descripcion_cultivo)'])!!}
-                </div>
-
-
+                {{--<div class="form-group">--}}
+                    {{--{!! Form::label('descripcion_cultivo','Descripción de la tecnológia') !!}--}}
+                    {{--{!! Form::textarea('descripcion_cultivo',null,['class' => 'form-control','placeholder' => ''])!!}--}}
+                {{--</div>--}}
             </div>
             <div class="modal-footer">
                 {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
-                { Form::submit('Guardar Cultivo', ['class' => 'btn btn-primary btn-block']) }}
+                {{ Form::submit('Guardar Cultivo', ['class' => 'btn btn-primary btn-block']) }}
             </div>
         </div>
         {!! Form::close() !!}
     </div>
 
-</div>
 
+</div>

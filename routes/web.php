@@ -108,7 +108,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     
     Route::get('/cultivos/create','CultivosController@create')->name("admin.cultivos.create");
     Route::get('/cultivos/edit/{id}','CultivosController@edit')->name("admin.cultivos.edit");
-    Route::put('cultivos/{id}','CultivosController@update')->name("admin.cultivos.update");
+    Route::put('cultivos/{cultivo}','CultivosController@update')->name("admin.cultivos.update");
     Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
 
 

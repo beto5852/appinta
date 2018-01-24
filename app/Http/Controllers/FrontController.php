@@ -89,8 +89,7 @@ class FrontController extends Controller
         $anio=date("Y");
         $mes=date("m");
         $activities = Activity::users()->get();
-        $tipospublicacion=Tecnologia::all();
-
+      
 //         $activities = Activity::users(1)->get();   // Last 1 minute
         //         $activities = Activity::users(10)->get();  // Last 10 minutes
         //         $activities = Activity::users(60)->get();  // Last 60 minutes
