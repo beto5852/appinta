@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Cultivo;
 use App\Http\Controllers\Controller;
+use App\Rubro;
 use App\Variedad;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
 use Redirect;
 use Session;
 use Storage;
@@ -25,23 +28,29 @@ class CultivosController extends Controller
     public function index()
     {
         //
-        $cultivos = Cultivo::orderBy('id', 'DESC')->paginate(5);
-        // dd($cultivos);
-        return view("admin.cultivos.index", compact('cultivos'));
+        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
+//        dd($rubro);
+        return view("admin.cultivos.index", compact('rubro'));
     }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function datos_cultivos(){
+
+        return Datatables::of( DB::table('cultivos')->select('id','nombre_cultivo')->get())->make(true);
+
+    }
+
     public function create()
     {
-        //
-        $variedades = Variedad::orderBy('nombre_variedad', 'ASC')->pluck('nombre_variedad', 'id');
+        $rubro = Rubro::pluck('nombre_rubro','id');
 
-        // dd($variedades);
+//        dd($rubro);
 
-        return view('admin.cultivos.create', compact('variedades'));
+        return view('admin.cultivos.create',compact('rubro'));
     }
     /**
      * Store a newly created resource in storage.
@@ -51,35 +60,18 @@ class CultivosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $this->validate($request, [
-            'nombre_cultivo' => 'required',
 
+        $this->validate($request , [
+            'nombre_cultivo' => 'required|min:3|max:100',
+            'rubro_id' => 'required',
         ]);
-
-        $cultivo = new Cultivo;
-
-        //$cultivo_id = $request->get('cultivo_id');
-
-        //$variedades = new Variedad($cultivo_id);
-
-//        dd($cultivo[0]->cultivo);
-        // dd($cultivo_id);
-
-        $cultivo->nombre_cultivo      = $request->get('nombre_cultivo');
-        $cultivo->descripcion_cultivo = $request->get('descripcion_cultivo');
+//        dd($request->all());
+        $cultivo = new Cultivo($request->all());
         $cultivo->save();
 
-        //$cultivo->variedades()->create($cultivo_id);
-
-        // dd($cultivo->ToArray());
-
-        // $cultivo->save();
-
-        // $cultivo->variedades()->sync($request->cultivo_id);
 
         Session::flash('message', 'Cultivo registrado correctamente');
-        return redirect::to('admin/cultivos/create');
+        return redirect::to('admin/cultivos/');
 
     }
     /**
@@ -101,6 +93,13 @@ class CultivosController extends Controller
     public function edit($id)
     {
         //
+        //
+//        $variedades = Variedad::orderBy('nombre_variedad', 'ASC')->pluck('nombre_variedad', 'id');
+
+        // dd($variedades);
+        $cultivo    = Cultivo::findOrFail($id);
+
+        return view('admin.cultivos.edit', compact('cultivo'));
     }
     /**
      * Update the specified resource in storage.
@@ -112,6 +111,11 @@ class CultivosController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $cultivo = Cultivo::find($id);
+        $cultivo->fill($request->all());
+        $cultivo->save();
+        Session::flash('message','Cultivo actualizado correctamente');
+        return redirect::to('admin/cultivos');
     }
     /**
      * Remove the specified resource from storage.

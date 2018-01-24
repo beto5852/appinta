@@ -8,12 +8,8 @@ class Cultivo extends Model
 {
 
     protected $guarded = [];
-
-    protected $primary = 'rubro_id';
-
     protected $table = 'cultivos';
-
-    protected $fillable = ['nombre_cultivo'];
+    protected $fillable = ['id','nombre_cultivo','rubro_id'];
 
     public function etapas()
     {

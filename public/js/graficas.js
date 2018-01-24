@@ -21,6 +21,9 @@ var options={
         title: {
             text: 'Numero de Registros en el Mes'
         },
+        credits: {
+            enabled: false
+        },
         subtitle: {
             text: 'APPINTA'
         },
@@ -98,6 +101,9 @@ var options={
             text: 'Numero de Registros en el Mes',
             x: -20 //center
         },
+        credits: {
+            enabled: false
+        },
         subtitle: {
             text: 'APPINTA',
             x: -20
@@ -118,6 +124,7 @@ var options={
         tooltip: {
             valueSuffix: ' registros'
         },
+
         legend: {
             layout: 'vertical',
             align: 'right',
@@ -170,6 +177,9 @@ var options={
             title: {
                 text: 'Tecnológias usadas en prácticas agricolas'
             },
+            credits: {
+                enabled: false
+            },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
@@ -183,6 +193,9 @@ var options={
                     showInLegend: true
                 }
             },
+            credits: {
+                enabled: false
+            },
             series: [{
                 name: 'Total',
                 colorByPoint: true,
@@ -195,7 +208,11 @@ $("#div_grafica_pie").html( $("#cargador_empresa").html() );
 
 var url = "grafica_publicaciones";
 
-
+    navigation: {
+        buttonOptions: {
+            enabled: false
+        }
+    }
 $.get(url,function(result){
 var datos= jQuery.parseJSON(result);
 var tipos=datos.tipos;

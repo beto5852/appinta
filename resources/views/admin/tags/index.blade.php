@@ -22,17 +22,8 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success pull-right" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-tag" aria-hidden="true"></i> Crear etiquetas</button>
-            <div class="col-xs-2">
-                {!! Form::open(['url' => ['admin/tags'], 'method' => 'GET', 'class' => 'navbar-form navbar-rigth']) !!}
+            <button href="#" class="btn btn-raised btn-success " data-toggle="modal" data-target="#myModalTags"><i class="fa fa-tag" aria-hidden="true"></i> Crear etiquetas</button>
 
-                <div class="input-group">
-                    {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','aria-describedby' => 'search'])!!}
-                    <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-                </div>
-
-                {!! Form::close() !!}
-            </div>
 
         </div>
         <!-- /.box-header -->
@@ -47,31 +38,12 @@
                 </thead>
                 <tbody>
 
-               {{--  @foreach($tags  as $tag)
-                    <tr class="info">
-                        <td>{{  $tag->id}}</td>
-                        <td>{{  $tag->nombre_tags}}</td>
-                        <td>
-                            <a href="{{url('admin/tags/'.$tag->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                            <form method="POST" action="{{route('admin.tags.destroy',$tag->id)}}" style="display:inline" >
-                                {{ csrf_field() }} {{method_field('DELETE')}}
-
-                                <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar el tag')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
-                            </form>
-
-                        </td>
-                    </tr>
-                @endforeach
- --}}
                 </tbody>
             </table>
         </div>
         <!-- /.box-body -->
     </div>
-    <!-- /.box -->
-    {{-- <ul class="pager"><center>{{ $tags->links() }}</center></ul> --}}
+
 @endsection
 
 

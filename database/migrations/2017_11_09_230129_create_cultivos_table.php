@@ -18,7 +18,7 @@ class CreateCultivosTable extends Migration
             $table->engine = 'InnoDB';
             $table->increments('id');
             $table->string('nombre_cultivo');
-            $table->text('descripcion_cultivo');
+            $table->text('descripcion_cultivo')->nullable();
             $table->unsignedInteger('rubro_id');
             
             $table->timestamps();
