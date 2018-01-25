@@ -93,7 +93,11 @@ Breadcrumbs::register('cultivos.create', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('crear cultivo', url('admin/cultivos/'));
 });
-
+Breadcrumbs::register('cultivos.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Editar cultivo', url('admin/cultivos/'));
+});
 
 
 

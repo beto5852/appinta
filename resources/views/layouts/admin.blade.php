@@ -171,7 +171,11 @@ desired effect
 <script src="{{asset('/js/highcharts.js')}}"></script>
 <script src="{{asset('/js/graficas.js')}}"></script>
 <script src="{{asset('/js/sistemalaravel.js')}}"></script>
+<!-- date-range-picker -->
+<script src="{{asset('/js/moment.min.js')}}"></script>
 
+<!-- bootstrap color picker -->
+<script src="{{asset('/adminlte/plugins/select2/select2.full.min.js')}}"></script>
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
      Both of these plugins are recommended to enhance the
      user experience. Slimscroll is required when using the
@@ -180,13 +184,15 @@ desired effect
 @yield('script')
 @yield('practicas')
 @yield('tags')
+@yield('cultivos')
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
 {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>--}}
 @include('admin.practicas.create')
-{{-- @include('admin.tecnologias.create') --}}
+
 @include('admin.tags.create')
-{{-- @include('admin.cultivos.create') --}}
+@include('admin.cultivos.create')
+{{--@include('admin.tecnologias.create')--}}
 {{-- @include('admin.caracteristicas.create') --}}
 {{-- @include('admin.users.create') --}}
 {{-- @include('admin.variedades.create') --}}

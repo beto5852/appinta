@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Tecnologia extends Model
 {
     protected $table = 'tecnologias';
-    protected $fillable =['nombre_tecnologia','descripcion_tecnologia'];
+    protected $fillable =['id','nombre_tecnologia','descripcion_tecnologia'];
     
 
     public function practicas(){

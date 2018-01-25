@@ -92,7 +92,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/tecnologias/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear tecnologia
+                    <li><a href="#" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-plus-circle" aria-hidden="true"></i> Crear tecnologia
                     <li><a href="{{url('admin/tecnologias/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar tecnologia</a></li>
                 </ul>
             </li>
@@ -106,7 +106,7 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{url('admin/cultivos/create')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Cultivo</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModalCultivos"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Cultivo</a></li>
                     <li><a href="{{url('admin/cultivos/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar cultivos</a></li>
                     <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
                     <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>

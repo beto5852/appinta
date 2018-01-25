@@ -73,16 +73,26 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
 
-
+/******************************************************************************************************************************/
 
 
     Route::resource('/users','UsersController');
     Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
 
 
+
+/********************************TECNOLOGIA*******************************************************************/
     Route::resource('/tecnologias','TecnologiasController');
+
+    Route::get('tecnologias','TecnologiasController@index')->name("admin.tecnologias.index");
+    Route::get('datos_tecnologias','TecnologiasController@datos_tecnologias')->name("admin.tecnologias.datos.index");
+
+    Route::get('tecnologias/create','TecnologiasController@create')->name("admin.tecnologias.create");
+    Route::get('tecnologias/edit/{id}','TecnologiasController@edit')->name("admin.tecnologias.edit");
+    Route::put('tecnologias/{tecnologia}','TecnologiasController@update')->name("admin.tecnologias.update");
     Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
 
+/**********************************PRACTICAS********************************************************************************************/
 
 
     Route::resource('/practicas','PracticasController');
@@ -100,15 +110,23 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.store");
     Route::delete('fotos/{foto}','FotoController@destroy')->name("admin.fotos.destroy");
 
-
+ /***************************************CULTIVOS***************************************************************************************/
 
     Route::resource('/cultivos','CultivosController');
+
+    Route::get('/cultivos','CultivosController@index')->name('admin.cultivos.index');
+    Route::get('cultivos_datos','CultivosController@datos_cultivos')->name("admin.cultivos.datos.index");
+    
+    Route::get('/cultivos/create','CultivosController@create')->name("admin.cultivos.create");
+    Route::get('/cultivos/edit/{id}','CultivosController@edit')->name("admin.cultivos.edit");
+    Route::put('cultivos/{cultivo}','CultivosController@update')->name("admin.cultivos.update");
     Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
 
+ /************************************VARIEDADES******************************************************************************************/
 
     Route::resource('/variedades','VariedadesController');
 
-
+ /********************************************TAGS**********************************************************************************/
    Route::resource('tags','TagsController');
 
     Route::get('tags','TagsController@index')->name("admin.tags.index");
@@ -117,9 +135,19 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
    Route::get('tags/create','TagsController@create')->name("admin.tags.create");
    Route::get('tags/edit/{id}','TagsController@edit')->name("admin.tags.edit");
    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
-  
 
-    // Route:resource('');
+/******************************REPORTES************************************************************************************************/
+
+    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
+    Route::get('reportes','FrontController@reportes')->name("admin.reportes.index");
+
+    Route::get('listado_graficas', 'GraficasController@index');
+    Route::get('grafica_registros/{anio}/{mes}', 'GraficasController@registros_mes');
+    Route::get('grafica_publicaciones', 'GraficasController@total_publicaciones')->name("total_publicaciones");
+
+
+
+ /******************************************************************************************************************************/
 
     Route::get('/mensajes', 'MensajesController@index');
 
@@ -154,12 +182,6 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as' => 'notificaciones.destroy',
     ]);
 
-    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
-    Route::get('reportes','FrontController@reportes')->name("admin.reportes.index");
-
-    Route::get('listado_graficas', 'GraficasController@index');
-    Route::get('grafica_registros/{anio}/{mes}', 'GraficasController@registros_mes');
-    Route::get('grafica_publicaciones', 'GraficasController@total_publicaciones')->name("total_publicaciones");
 
   
 });
