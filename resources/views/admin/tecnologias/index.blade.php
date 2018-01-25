@@ -31,7 +31,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Tecnológias</th>
-                    <th>Rubro al que pertenece</th>
+                    <th>Rubro de la tecnológia</th>
+                    {{--<th>cultivos de la tecnológia</th>--}}
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -99,14 +100,14 @@
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
-                "ordering": true,
+                "ordering": false,
                 "info": true,
                 "autoWidth": false,
                 "pageLength": 10,
-//                "columnDefs": [{
-//                    "defaultContent": "-",
-//                    "targets": "_all"
-//                }],
+                "columnDefs": [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }],
                 language : {
                     "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
                 },
@@ -117,7 +118,7 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
-                    {data: 'rubros', name: 'rubros', orderable: false, searchable: false},
+                    {data: 'rubros', name: 'rubros', orderable: false, searchable: true},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"

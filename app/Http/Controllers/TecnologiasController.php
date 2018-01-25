@@ -26,7 +26,7 @@ class TecnologiasController extends Controller
      */
     public function index()
     {
-//        $query = Tecnologia::with('rubros')->select('tecnologias.*')->get();
+//       return  $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
 //
 //
 //        return Datatables::of($query)
@@ -62,7 +62,7 @@ class TecnologiasController extends Controller
 //            ->make(true);
 
 
-        $query = Tecnologia::with('rubros')->select('tecnologias.*')->get();
+        $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
 
 
         return Datatables::of($query)
