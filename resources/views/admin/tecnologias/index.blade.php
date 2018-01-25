@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group {{$errors->has('rubro_id') ? 'has-error' : ''}}">
                         {{ Form::label('rubro_id','Rubros  a los que se aplica esta tecnológia') }}
-                        {{ Form::select('rubro_id[]',$rubro,old('rubro_id',$rubro),['class'=>'form-control chosen-select1','multiple']) }}
+                        {{ Form::select('rubro_id[]',$rubros,old('rubro_id',$rubros),['class'=>'form-control chosen-select1','multiple']) }}
                         {!! $errors->first('rubro_id','<span class="help-block">:message</span>') !!}
                     </div>
 
@@ -90,6 +90,8 @@
 
     <script>
 
+
+
         $(function() {
             $('#tags-table').DataTable({
                 "processing": true,
@@ -97,10 +99,14 @@
                 "paging": true,
                 "lengthChange": true,
                 "searching": true,
-                "ordering": false,
+                "ordering": true,
                 "info": true,
                 "autoWidth": false,
                 "pageLength": 10,
+//                "columnDefs": [{
+//                    "defaultContent": "-",
+//                    "targets": "_all"
+//                }],
                 language : {
                     "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
                 },
@@ -111,7 +117,7 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
-                    { data: 'nombre_rubro', name: 'nombre_rubro'},
+                    {data: 'rubros', name: 'rubros', orderable: false, searchable: false},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
@@ -123,9 +129,7 @@
                                 '</form>'+
                                 '</td>'
 
-                    }},
-
-
+                    }}
                 ]
             });
         });

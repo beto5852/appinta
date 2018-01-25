@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Practica;
 use Illuminate\Http\Request;
 use App\Tecnologia;
 use App\Rubro;
@@ -25,20 +26,78 @@ class TecnologiasController extends Controller
      */
     public function index()
     {
+//        $query = Tecnologia::with('rubros')->select('tecnologias.*')->get();
+//
+//
+//        return Datatables::of($query)
+//            ->addColumn('rubros',function(Tecnologia $tecnologia)
+//            {
+//                return $tecnologia->rubros->map( function($rubro) {
+//                    return $rubro->nombre_rubro;
+//                })->implode('<br>');
+//            })->make(true);
+//
 
-        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
+
+//
+//        return Datatables::of($tecnologias)
+//            ->make(true);
+
+//        $tecnologias = Tecnologia::select(['id','nombre_tecnologia','descripcion_tecnologia'])->get();
+
+
+
+
+        $rubros = Rubro::pluck('nombre_rubro','id')->toArray();
         // dd($users);
-        return view("admin.tecnologias.index",['rubro' => $rubro]);
+        $tecnologias = Tecnologia::all();        
+        return view("admin.tecnologias.index",compact('rubros','tecnologias'));
     }
 
     public function datos_tecnologias(){
 
-        return Datatables::of( DB::table('tecnologias')
-            ->join('rubro_tecnologia','tecnologias.id','=','rubro_tecnologia.tecnologia_id')
-            ->join('rubros','rubro_tecnologia.rubro_id','=','rubros.id')
-            ->select('tecnologias.id','tecnologias.nombre_tecnologia','tecnologias.descripcion_tecnologia','rubros.nombre_rubro')
-            ->orderBy('id', 'DESC')
-            ->get())->make(true);
+//        $tecnologias = Tecnologia::with('rubros')->select('tecnologias.*');
+//
+//        return Datatables::of($tecnologias)
+//            ->make(true);
+
+
+        $query = Tecnologia::with('rubros')->select('tecnologias.*')->get();
+
+
+        return Datatables::of($query)
+            ->addColumn('rubros',function(Tecnologia $tecnologia)
+            {
+                return $tecnologia->rubros->map( function($rubro) {
+                    return $rubro->nombre_rubro;
+                })->implode('<br>');
+            })->make(true);
+
+
+
+//
+//        $tecnologias = Tecnologia::select(['id','nombre_tecnologia'])->get();
+//
+//        $rubros = Rubro::all();
+//
+//        return Datatables::of($tecnologias)
+//            ->addColumn('rubros',function($row) use ($rubros)
+//            {
+//                $options = '';
+//                foreach ($rubros as $rubro){
+//                    $options .= '<span>'.$rubro->nombre_rubro.'</span><br>';
+//                }
+//                return $options;
+//            })->make(true);
+
+//        return Datatables::of( DB::table('tecnologias')
+//            ->join('rubro_tecnologia','tecnologias.id','=','rubro_tecnologia.tecnologia_id')
+//            ->join('rubros','rubro_tecnologia.rubro_id','=','rubros.id')
+//            ->select('tecnologias.id','tecnologias.nombre_tecnologia','tecnologias.descripcion_tecnologia','rubros.nombre_rubro')
+//            ->orderBy('id', 'DESC')
+//            ->get())->make(true);
+
+        
     }
 
     /**
@@ -70,6 +129,7 @@ class TecnologiasController extends Controller
         return redirect()->route('admin.tecnologias.edit',$tecnologia);
 
     }
+    
     /**
      * Display the specified resource.
      *
