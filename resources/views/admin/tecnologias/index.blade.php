@@ -21,7 +21,7 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear cultivo</button>
+            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear tecnológia</button>
 
         </div>
         <!-- /.box-header -->
@@ -70,7 +70,7 @@
                     </div>
                     <div class="form-group {{$errors->has('rubro_id') ? 'has-error' : ''}}">
                         {{ Form::label('rubro_id','Rubros  a los que se aplica esta tecnológia') }}
-                        {{ Form::select('rubro_id[]',$rubro,old('rubro_id',$rubro),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los rubros para tu práctica agricola']) }}
+                        {{ Form::select('rubro_id[]',$rubro,old('rubro_id',$rubro),['class'=>'form-control chosen-select1','multiple']) }}
                         {!! $errors->first('rubro_id','<span class="help-block">:message</span>') !!}
                     </div>
 
@@ -147,9 +147,10 @@
 
 
     <script>
-        $(".select2").select2({
-            tags: true,
-            width:'100%'
+        $(".chosen-select1").chosen({
+            placeholder_text_multiple: 'selecciones los rubros',
+            no_results_text: "Sin resultados!",
+            width: "100%"
         });
 
     </script>

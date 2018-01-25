@@ -18,7 +18,7 @@ class CreateTecnologiasTable extends Migration
             $tabla->engine = 'InnoDB';
             $tabla->increments('id');
             $tabla->string('nombre_tecnologia');
-            $tabla->text('descripcion_tecnologia')->nulllable();
+            $tabla->text('descripcion_tecnologia')->nullable();
             $tabla->timestamps();
             
         });

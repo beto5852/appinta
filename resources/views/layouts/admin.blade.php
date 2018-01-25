@@ -192,7 +192,7 @@ desired effect
 
 @include('admin.tags.create')
 @include('admin.cultivos.create')
-{{--@include('admin.tecnologias.create')--}}
+@include('admin.tecnologias.create')
 {{-- @include('admin.caracteristicas.create') --}}
 {{-- @include('admin.users.create') --}}
 {{-- @include('admin.variedades.create') --}}

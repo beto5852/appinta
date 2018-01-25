@@ -150,10 +150,10 @@
 
                                 <tr>
                                     <td class="col-sm-4">
-                                        {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select'])!!}
+                                        {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select1'])!!}
                                     </td>
                                     <td class="col-sm-5">
-                                        {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select'])!!}
+                                        {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select2'])!!}
                                     </td>
                                  </tr>
                                 </tbody>
@@ -162,12 +162,12 @@
 
                         <div class="form-group">
                             {{ Form::label('user_id','Cambiar editor') }}
-                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control chosen-select'])}}
+                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control chosen-select3'])}}
                         </div>
 
                         <div class="form-group">
                             {{ Form::label('tecnologia','Tecnológia') }}
-                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select2'])}}
+                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control chosen-select4',])}}
                         </div>
 
 
@@ -182,10 +182,10 @@
                         </div>
 
             
-                        <div class="form-group {{$errors->has('tag_id') ? 'has-error' : ''}}">
+                        <div class="form-group {{$errors->has('tag_id[]') ? 'has-error' : ''}}">
                             {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                            {{ Form::select('tag_id[]',$tags,old('tag_id',$my_tags),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola']) }}
-                            {!! $errors->first('tag_id','<span class="help-block">:message</span>') !!}
+                            {{ Form::select('tag_id[]',$tags,old('tag_id[]',$my_tags),['class'=>'form-control chosen-select5','multiple']) }}
+                            {!! $errors->first('tag_id[]','<span class="help-block">:message</span>') !!}
                         </div>
 
 
@@ -253,7 +253,30 @@
     </script>
 
     <script>
-        $(".chosen-select").chosen();
+        $(".chosen-select1").chosen({
+            placeholder_text_multiple: 'selecciones los meses',
+            no_results_text: "Sin resultados!",
+        });
+
+        $(".chosen-select2").chosen({
+            placeholder_text_multiple: 'selecciones las semanas',
+            no_results_text: "Sin resultados!",
+        });
+        $(".chosen-select3").chosen({
+            placeholder_text_multiple: 'seleccione el usuario',
+            no_results_text: "Sin resultados!",
+        });
+        $(".chosen-select4").chosen({
+            placeholder_text_multiple: 'seleccione la tecnologia',
+            no_results_text: "Sin resultados!",
+        });
+
+        $(".chosen-select5").chosen({
+            placeholder_text_multiple: 'selecciones las etiquetas',
+            no_results_text: "Sin resultados!",
+        });
+
+
         $(".select2").select2({
             tags: true
             });

@@ -60,10 +60,15 @@ class TecnologiasController extends Controller
     public function store(Request $request)
     {
         //
-        $tecnologias = new Tecnologia($request->all());
-        $tecnologias->save();
-        Session::flash('message','Tecnolóogia registrada correctamente');
-        return redirect::to('admin/tecnologias');
+        $this->validate($request , [
+            'nombre_tecnologia' => 'required|min:3|max:100',
+        ]);
+
+        $tecnologia = Tecnologia::create(['nombre_tecnologia' => $request->get('nombre_tecnologia')]);
+
+        Session::flash('message','Tecnologia Creada');
+        return redirect()->route('admin.tecnologias.edit',$tecnologia);
+
     }
     /**
      * Display the specified resource.
@@ -84,9 +89,10 @@ class TecnologiasController extends Controller
     public function edit($id)
     {
         //
-        $tecnologia = Tecnologia::find($id);
-        $rubros = Rubro::pluck('nombre_rubro','id')->toArray();
-        $my_rubros   = $tecnologia->rubros()->pluck('id')->toArray();
+
+        $tecnologia = Tecnologia::findOrFail($id);
+        $rubros = Rubro::pluck('nombre_rubro','id');        
+        $my_rubros   = $tecnologia->rubros->pluck('nombre_rubro','id')->toArray();
 
 //        dd($my_rubros);
 
@@ -106,6 +112,9 @@ class TecnologiasController extends Controller
         $tecnologia = Tecnologia::find($id);
         $tecnologia->fill($request->all());
         $tecnologia->save();
+
+        $tecnologia->rubros()->sync($request->rubro_id);
+
         Session::flash('message','Usuario actualizado correctamente');
         return redirect::to('admin/tecnologias');
     }
