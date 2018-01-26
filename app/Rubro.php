@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rubro extends Model
 {
     protected $table = 'rubros';
-    protected $fillable =['nombre_rubro','descripcion_rubro'];
+    protected $fillable =['id','nombre_rubro','descripcion_rubro'];
     
     public  function  cultivos()
     {

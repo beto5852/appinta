@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Practica;
 use Illuminate\Http\Request;
 use App\Tecnologia;
 use App\Rubro;
@@ -25,20 +26,78 @@ class TecnologiasController extends Controller
      */
     public function index()
     {
+//       return  $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
+//
+//
+//        return Datatables::of($query)
+//            ->addColumn('rubros',function(Tecnologia $tecnologia)
+//            {
+//                return $tecnologia->rubros->map( function($rubro) {
+//                    return $rubro->nombre_rubro;
+//                })->implode('<br>');
+//            })->make(true);
+//
 
-        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
+
+//
+//        return Datatables::of($tecnologias)
+//            ->make(true);
+
+//        $tecnologias = Tecnologia::select(['id','nombre_tecnologia','descripcion_tecnologia'])->get();
+
+
+
+
+        $rubros = Rubro::pluck('nombre_rubro','id')->toArray();
         // dd($users);
-        return view("admin.tecnologias.index",['rubro' => $rubro]);
+        $tecnologias = Tecnologia::all();        
+        return view("admin.tecnologias.index",compact('rubros','tecnologias'));
     }
 
     public function datos_tecnologias(){
 
-        return Datatables::of( DB::table('tecnologias')
-            ->join('rubro_tecnologia','tecnologias.id','=','rubro_tecnologia.tecnologia_id')
-            ->join('rubros','rubro_tecnologia.rubro_id','=','rubros.id')
-            ->select('tecnologias.id','tecnologias.nombre_tecnologia','tecnologias.descripcion_tecnologia','rubros.nombre_rubro')
-            ->orderBy('id', 'DESC')
-            ->get())->make(true);
+//        $tecnologias = Tecnologia::with('rubros')->select('tecnologias.*');
+//
+//        return Datatables::of($tecnologias)
+//            ->make(true);
+
+
+        $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
+
+
+        return Datatables::of($query)
+            ->addColumn('rubros',function(Tecnologia $tecnologia)
+            {
+                return $tecnologia->rubros->map( function($rubro) {
+                    return $rubro->nombre_rubro;
+                })->implode('<br>');
+            })->make(true);
+
+
+
+//
+//        $tecnologias = Tecnologia::select(['id','nombre_tecnologia'])->get();
+//
+//        $rubros = Rubro::all();
+//
+//        return Datatables::of($tecnologias)
+//            ->addColumn('rubros',function($row) use ($rubros)
+//            {
+//                $options = '';
+//                foreach ($rubros as $rubro){
+//                    $options .= '<span>'.$rubro->nombre_rubro.'</span><br>';
+//                }
+//                return $options;
+//            })->make(true);
+
+//        return Datatables::of( DB::table('tecnologias')
+//            ->join('rubro_tecnologia','tecnologias.id','=','rubro_tecnologia.tecnologia_id')
+//            ->join('rubros','rubro_tecnologia.rubro_id','=','rubros.id')
+//            ->select('tecnologias.id','tecnologias.nombre_tecnologia','tecnologias.descripcion_tecnologia','rubros.nombre_rubro')
+//            ->orderBy('id', 'DESC')
+//            ->get())->make(true);
+
+        
     }
 
     /**
@@ -60,11 +119,17 @@ class TecnologiasController extends Controller
     public function store(Request $request)
     {
         //
-        $tecnologias = new Tecnologia($request->all());
-        $tecnologias->save();
-        Session::flash('message','Tecnolóogia registrada correctamente');
-        return redirect::to('admin/tecnologias');
+        $this->validate($request , [
+            'nombre_tecnologia' => 'required|min:3|max:100',
+        ]);
+
+        $tecnologia = Tecnologia::create(['nombre_tecnologia' => $request->get('nombre_tecnologia')]);
+
+        Session::flash('message','Tecnologia Creada');
+        return redirect()->route('admin.tecnologias.edit',$tecnologia);
+
     }
+    
     /**
      * Display the specified resource.
      *
@@ -84,9 +149,10 @@ class TecnologiasController extends Controller
     public function edit($id)
     {
         //
-        $tecnologia = Tecnologia::find($id);
-        $rubros = Rubro::pluck('nombre_rubro','id')->toArray();
-        $my_rubros   = $tecnologia->rubros()->pluck('id')->toArray();
+
+        $tecnologia = Tecnologia::findOrFail($id);
+        $rubros = Rubro::pluck('nombre_rubro','id');        
+        $my_rubros   = $tecnologia->rubros->pluck('nombre_rubro','id')->toArray();
 
 //        dd($my_rubros);
 
@@ -106,6 +172,9 @@ class TecnologiasController extends Controller
         $tecnologia = Tecnologia::find($id);
         $tecnologia->fill($request->all());
         $tecnologia->save();
+
+        $tecnologia->rubros()->sync($request->rubro_id);
+
         Session::flash('message','Usuario actualizado correctamente');
         return redirect::to('admin/tecnologias');
     }

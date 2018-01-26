@@ -1,4 +1,4 @@
-{{--{{dd($tecnologia)}}--}}
+{{--{{dd($rubro)}}--}}
 
 @extends('layouts.admin')
 
@@ -38,10 +38,14 @@
                          {!! $errors->first('nombre_tecnologia','<span class="help-block">:message</span>') !!}
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('descripcion_tecnologia','Descripción de la tecnológia') !!}
-                        {!! Form::select('descripcion_tecnologia',old('descripcion_cultivo',$tecnologia->descripcion_tecnologia),['id' => 'my-editor1','class' => 'form-control my-editor1','placeholder' => ''])!!}
+
+                    <div class="form-group {{$errors->has('descripcion_tecnologia') ? 'has-error' : ''}}">
+                        {{ Form::label('Descripción de la tecnológia','Descripción de la tecnológia') }}
+                        {{ Form::textarea('descripcion_tecnologia',old('descripcion_cultivo',$tecnologia->descripcion_tecnologia),['id' => 'my-editor1','class' => 'form-control my-editor1','placeholder' => ''])}}
+                        {!! $errors->first('descripcion_tecnologia','<span class="help-block">:message</span>') !!}
                     </div>
+
+
                     <div class="form-group text-right">
 
                         <a href="{{url('admin/tecnologias')}}" class="btn btn-info" >Lista Tecnológias</a>
@@ -58,10 +62,10 @@
             <div class="box box-primary">
                 <div class="box-body">
 
-                    <div class="form-group {{$errors->has('rubro_id') ? 'has-error' : ''}}">
+                    <div class="form-group {{$errors->has('rubro_id[]') ? 'has-error' : ''}}">
                         {{ Form::label('rubro_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('rubro_id[]',$rubros,old('rubro_id',$my_rubros),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los tags para tu práctica agricola']) }}
-                        {!! $errors->first('rubro_id','<span class="help-block">:message</span>') !!}
+                        {{ Form::select('rubro_id[]',$rubros,$my_rubros,['class'=>'form-control chosen-select1','multiple']) }}
+                        {!! $errors->first('rubro_id[]','<span class="help-block">:message</span>') !!}
                     </div>
 
                 </div>
@@ -98,6 +102,14 @@
     </script>
 
     <script>
+
+        $(".chosen-select1").chosen({
+            placeholder_text_multiple: 'selecciones los rubros',
+            no_results_text: "Sin resultados!",
+        });
+
+
+
         $(".select2").select2({
             tags: true,
             width:'100%'
@@ -105,7 +117,7 @@
 
     </script>
 
-    @endsection
+@endsection
 
 
 

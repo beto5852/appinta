@@ -21,7 +21,7 @@
     <div class="box box-primary">
         <div class="box-header">
             {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
-            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear cultivo</button>
+            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalTecnologias"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear tecnológia</button>
 
         </div>
         <!-- /.box-header -->
@@ -31,7 +31,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Tecnológias</th>
-                    <th>Rubro al que pertenece</th>
+                    <th>Rubro de la tecnológia</th>
+                    {{--<th>cultivos de la tecnológia</th>--}}
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -70,7 +71,7 @@
                     </div>
                     <div class="form-group {{$errors->has('rubro_id') ? 'has-error' : ''}}">
                         {{ Form::label('rubro_id','Rubros  a los que se aplica esta tecnológia') }}
-                        {{ Form::select('rubro_id[]',$rubro,old('rubro_id',$rubro),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los rubros para tu práctica agricola']) }}
+                        {{ Form::select('rubro_id[]',$rubros,old('rubro_id',$rubros),['class'=>'form-control chosen-select1','multiple']) }}
                         {!! $errors->first('rubro_id','<span class="help-block">:message</span>') !!}
                     </div>
 
@@ -90,6 +91,8 @@
 
     <script>
 
+
+
         $(function() {
             $('#tags-table').DataTable({
                 "processing": true,
@@ -101,6 +104,10 @@
                 "info": true,
                 "autoWidth": false,
                 "pageLength": 10,
+                "columnDefs": [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }],
                 language : {
                     "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
                 },
@@ -111,7 +118,7 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
-                    { data: 'nombre_rubro', name: 'nombre_rubro'},
+                    {data: 'rubros', name: 'rubros', orderable: false, searchable: true},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
@@ -123,9 +130,7 @@
                                 '</form>'+
                                 '</td>'
 
-                    }},
-
-
+                    }}
                 ]
             });
         });
@@ -147,9 +152,10 @@
 
 
     <script>
-        $(".select2").select2({
-            tags: true,
-            width:'100%'
+        $(".chosen-select1").chosen({
+            placeholder_text_multiple: 'selecciones los rubros',
+            no_results_text: "Sin resultados!",
+            width: "100%"
         });
 
     </script>
