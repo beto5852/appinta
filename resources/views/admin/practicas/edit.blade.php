@@ -1,4 +1,4 @@
-
+{{dd($my_tags)}}
 @extends('layouts.admin')
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Editar Practica')
