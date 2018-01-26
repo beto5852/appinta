@@ -1,4 +1,4 @@
-{{dd($my_tags)}}
+{{--{{dd($my_tags)}}--}}
 @extends('layouts.admin')
 
 @section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Editar Practica')
@@ -143,7 +143,7 @@
                             <table class="table table-bordered">
                                 <thead>
                                 <th>Mes</th>
-                                <th>Semana</th>
+                                <th>Semanas</th>
                                
                                 </thead>
                                 <tbody>
@@ -152,8 +152,13 @@
                                     <td class="col-sm-4">
                                         {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select1'])!!}
                                     </td>
-                                    <td class="col-sm-5">
-                                        {!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select2'])!!}
+                                    <td class="col-sm-5 {{$errors->has('semana_id[]') ? 'has-error' : ''}}">
+
+                                            {{ Form::select('semana_id[]',$semanas,old('semana_id[]',$my_semana),['class'=>'form-control chosen-select5','multiple']) }}
+                                            {!! $errors->first('semana_id[]','<span class="help-block">:message</span>') !!}
+
+
+                                        {{--{!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select2'])!!}--}}
                                     </td>
                                  </tr>
                                 </tbody>
