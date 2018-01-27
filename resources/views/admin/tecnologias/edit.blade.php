@@ -1,4 +1,4 @@
-{{--{{dd($rubro)}}--}}
+{{--{{dd($my_rubros)}}--}}
 
 @extends('layouts.admin')
 
@@ -63,7 +63,7 @@
                 <div class="box-body">
 
                     <div class="form-group {{$errors->has('rubro_id[]') ? 'has-error' : ''}}">
-                        {{ Form::label('rubro_id','Etiquetas agropecuarias') }}
+                        {{ Form::label('rubro_id','Rubros de la tecnológia') }}
                         {{ Form::select('rubro_id[]',$rubros,$my_rubros,['class'=>'form-control chosen-select1','multiple']) }}
                         {!! $errors->first('rubro_id[]','<span class="help-block">:message</span>') !!}
                     </div>

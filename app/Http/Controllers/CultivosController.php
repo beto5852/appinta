@@ -43,7 +43,7 @@ class CultivosController extends Controller
         return Datatables::of( DB::table('cultivos')
             ->join('rubros','cultivos.rubro_id','=','rubros.id')
             ->select('cultivos.*','rubros.nombre_rubro')
-            ->orderBy('id', 'DESC')
+            ->orderBy('rubros.nombre_rubro')
             ->get())->make(true);
     }
 

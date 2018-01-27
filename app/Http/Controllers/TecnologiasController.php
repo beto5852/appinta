@@ -151,10 +151,10 @@ class TecnologiasController extends Controller
         //
 
         $tecnologia = Tecnologia::findOrFail($id);
-        $rubros = Rubro::pluck('nombre_rubro','id');        
-        $my_rubros   = $tecnologia->rubros->pluck('nombre_rubro','id')->toArray();
+        $rubros = Rubro::pluck('nombre_rubro','id');
 
-//        dd($my_rubros);
+        $my_rubros   = $tecnologia->rubros->pluck('id')->toArray();
+
 
         return view('admin.tecnologias.edit',compact('tecnologia','rubros','my_rubros'));
         //dd($tecnologias);
