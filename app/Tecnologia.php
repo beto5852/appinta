@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tecnologia extends Model
 {
+//    protected $guarded = [];
     protected $table = 'tecnologias';
     protected $fillable =['id','nombre_tecnologia','descripcion_tecnologia'];
     

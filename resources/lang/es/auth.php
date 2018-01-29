@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'Sus credenciales no concuerdan con nuestros registros o requiere activar la cuenta.',
+    'failed' => 'Sus credenciales no concuerdan con nuestros registros o requiere crear y activar la cuenta.',
     'throttle' => 'Demasiados intentos de inicio de sesión. Vuelva a intentarlo en :seconds segundos.',
 
 ];

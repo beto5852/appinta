@@ -22,9 +22,9 @@
 |
 */
 Route::get('activate/{token}','ActivationTokenController@activate');
- Auth::routes();
+Auth::routes();
 
- // Authentication Routes...
+// Authentication Routes...
 //        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 //        Route::post('login', 'Auth\LoginController@login');
 //        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");
 
-/******************************************************************************************************************************/
+    /******************************************************************************************************************************/
 
 
     Route::resource('/users','UsersController');
@@ -81,7 +81,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 
 
-/********************************TECNOLOGIA*******************************************************************/
+    /********************************TECNOLOGIA*******************************************************************/
     Route::resource('/tecnologias','TecnologiasController');
 
     Route::get('tecnologias','TecnologiasController@index')->name("admin.tecnologias.index");
@@ -92,7 +92,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::put('tecnologias/{tecnologia}','TecnologiasController@update')->name("admin.tecnologias.update");
     Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
 
-/**********************************PRACTICAS********************************************************************************************/
+    /**********************************PRACTICAS********************************************************************************************/
 
 
     Route::resource('/practicas','PracticasController');
@@ -110,33 +110,33 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::post('practicas/{id}/fotos','FotoController@store')->name("admin.practicas.fotos.store");
     Route::delete('fotos/{foto}','FotoController@destroy')->name("admin.fotos.destroy");
 
- /***************************************CULTIVOS***************************************************************************************/
+    /***************************************CULTIVOS***************************************************************************************/
 
     Route::resource('/cultivos','CultivosController');
 
     Route::get('/cultivos','CultivosController@index')->name('admin.cultivos.index');
     Route::get('cultivos_datos','CultivosController@datos_cultivos')->name("admin.cultivos.datos.index");
-    
+
     Route::get('/cultivos/create','CultivosController@create')->name("admin.cultivos.create");
     Route::get('/cultivos/edit/{id}','CultivosController@edit')->name("admin.cultivos.edit");
     Route::put('cultivos/{cultivo}','CultivosController@update')->name("admin.cultivos.update");
     Route::DELETE('cultivos/{id}','CultivosController@destroy')->name("admin.cultivos.destroy");
 
- /************************************VARIEDADES******************************************************************************************/
+    /************************************VARIEDADES******************************************************************************************/
 
     Route::resource('/variedades','VariedadesController');
 
- /********************************************TAGS**********************************************************************************/
-   Route::resource('tags','TagsController');
+    /********************************************TAGS**********************************************************************************/
+    Route::resource('tags','TagsController');
 
     Route::get('tags','TagsController@index')->name("admin.tags.index");
-   Route::get('tags_datos','TagsController@datos_tags')->name("admin.tags.datos.index");
+    Route::get('tags_datos','TagsController@datos_tags')->name("admin.tags.datos.index");
 
-   Route::get('tags/create','TagsController@create')->name("admin.tags.create");
-   Route::get('tags/edit/{id}','TagsController@edit')->name("admin.tags.edit");
-   Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
+    Route::get('tags/create','TagsController@create')->name("admin.tags.create");
+    Route::get('tags/edit/{id}','TagsController@edit')->name("admin.tags.edit");
+    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
 
-/******************************REPORTES************************************************************************************************/
+    /******************************REPORTES************************************************************************************************/
 
     //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
     Route::get('reportes','FrontController@reportes')->name("admin.reportes.index");
@@ -147,7 +147,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 
 
- /******************************************************************************************************************************/
+    /*********************************MENSAJES Y NOTIFICACIONES******************************************************************************************/
 
     Route::get('/mensajes', 'MensajesController@index');
 
@@ -159,7 +159,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as' => 'mensajes.show',
     ]);
 
-   // Route::get('/mensajes/{id}','MensajesController@show');
+    // Route::get('/mensajes/{id}','MensajesController@show');
 
     Route::post('mensajes/',[
         'uses' => 'MensajesController@store',
@@ -182,8 +182,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as' => 'notificaciones.destroy',
     ]);
 
+/********************************************************************************************************************/
 
-  
 });
 
 //Route::resource('login','LoginController');

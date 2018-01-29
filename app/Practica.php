@@ -74,7 +74,9 @@ class Practica extends Model
         return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
     }
 
-
+    public  function  isPublished(){
+        return (bool) $this->contenido;
+    }
 
 
 

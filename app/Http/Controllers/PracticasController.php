@@ -44,9 +44,11 @@ class PracticasController extends Controller
     public function datos_practicas(){
 
     return Datatables::of( DB::table('practicas')
+        ->whereNotNull('practicas.id')
         ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
         ->join('users', 'practicas.user_id', '=', 'users.id')
         ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
+
         ->get())->make(true);
 }
 
@@ -131,12 +133,13 @@ class PracticasController extends Controller
     public function show($id)
     {
         //Muestra con el id
-
-        //dd($id);
         $practica = Practica::find($id);
+        if($practica->isPublished()){
+            //dd($practica);
+            return view('admin.practicas.show', compact('practica'));
+        }
+        abort(404);
 
-        //dd($practica);
-        return view('admin.practicas.show', compact('practica'));
     }
     /**
      * Show the form for editing the specified resource.
@@ -157,13 +160,13 @@ class PracticasController extends Controller
         $meses       = Mes::pluck('nombre_mes','id');
         $semanas     = Semana::pluck('nombre_semana','id');
 
-    
+
         $my_tags   = $practica->tags->pluck('id')->toArray();
         $my_mes    = $practica->meses->pluck('id')->toArray();
         $my_semana = $practica->semanas->pluck('id')->toArray();
 
 //        $mesactual = [date('m')];
-//         dd($meses);
+//         dd($my_semana);
 
         return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana'));
     }
@@ -214,11 +217,16 @@ class PracticasController extends Controller
             ]
         );
 
-//        return $request->all();
+//        dd($request->all());
         $practica->nombre_practica = $request->get('nombre_practica');
         $practica->textomedio = $request->get('textomedio');
         $practica->contenido = $request->get('contenido');
-        $practica->tecnologia_id = $request->get('tecnologia_id');
+
+        $practica->tecnologia_id = Tecnologia::find($tec = $request->get('tecnologia_id'))
+                                    ? $tec
+                                    : Tecnologia::create(['nombre_tecnologia' => $tec])->id;
+
+//        dd($practica);
         $practica->path = $request->path;
         $practica->user_id = $request->get('user_id');
         $practica->video = $request->get('video');
@@ -227,7 +235,16 @@ class PracticasController extends Controller
         $practica->save();
         // dd($request->get('path'));
 
-        $practica->tags()->sync($request->tag_id);
+        $tags = [];
+
+        foreach ($request->get('tag_id') as $tag)
+        {
+            $tags[] = Tag::find($tag)
+                    ? $tag
+                    : Tag::create(['nombre_tags' => $tag])->id;
+        }
+        $practica->tags()->sync($tags);
+
         $practica->meses()->sync($request->mes_id);
         $practica->semanas()->sync($request->semana_id);
 //

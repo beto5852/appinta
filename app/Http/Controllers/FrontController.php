@@ -35,13 +35,16 @@ class FrontController extends Controller
         // $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
         
 //
-//       $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-//           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
-//
-//       $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
-//           'Miercoles', 'Jueves', 'Viernes', 'Sabado');
-//
-//       $mesactual = $arrayMeses[date('m')-1];
+       $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+           'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
+
+       $arrayDias = array( 'Domingo', 'Lunes', 'Martes',
+           'Miercoles', 'Jueves', 'Viernes', 'Sabado');
+
+       $mesactual = $arrayMeses[date('m')-1];
+
+
+//        dd($mesactual);
 
 //         dd($numeroSemana = date("W"));
 
@@ -57,15 +60,28 @@ class FrontController extends Controller
 
 
 
-        //  dd($practica);           
 
-     $practicas = Practica::with(['meses' => function ($query) {
-               $query->whereNotNull('mes_id')
-                   ->where('mes_id','=',Carbon::now()->format('m')+1);
-           }])->paginate(2);
+        $practicas = Practica::with(['meses' => function ($query) {
+            $query->where('mes_id','=',Carbon::now()->format('m'));
+        },'semanas'])->paginate(3);
 
-       
+
+//        dd($practicas);
+
         return view('admin.home.timeline',compact('practicas'));
+
+
+//
+//
+//     $practicas = Practica::with(['meses' => function ($query) {
+//               $query->whereNotNull('mes_id')
+//               ->where('nombre_mes','=','');
+//           },'semanas'])->get()->toArray();
+//
+//
+//          dd($practicas);
+//       
+//        return view('admin.home.timeline',compact('practicas'));
 
     }
 
