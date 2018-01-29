@@ -137,6 +137,37 @@
                     <div class="box-body">
                         <!-- Date -->
                         <!-- Date and time range -->
+
+                        <!-- Date and time range -->
+                        {{--<div class="form-group">--}}
+
+                            {{--{{ Form::label('Fechas de la practica','Fechas de la practica') }}--}}
+
+                            {{--<table class="table table-bordered">--}}
+                                {{--<thead>--}}
+                                {{--<th>Mes</th>--}}
+                                {{--<th>Semana</th>--}}
+                                {{--<th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>--}}
+                                {{--</thead>--}}
+                                {{--<tbody>--}}
+                                {{--@if(empty($my_semana) > 1)--}}
+                                    {{--@for($i = 0; $i < count($my_semana); $i++)--}}
+                                        {{--<tr>--}}
+                                            {{--<td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i],['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>--}}
+                                            {{--<td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i],['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>--}}
+                                            {{--<td style="display:inline;"><button name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</button></td>--}}
+                                        {{--</tr>--}}
+                                    {{--@endfor--}}
+                                {{--@else--}}
+                                {{----}}
+                               {{--@endif--}}
+                                {{--</tbody>--}}
+                            {{--</table>--}}
+
+                        {{--</div>--}}
+
+
+
                         <div class="form-group">
 
                             {{ Form::label('Fechas de la practica','Fechas de la practica') }}
@@ -145,7 +176,7 @@
                                 <thead>
                                 <th>Mes</th>
                                 <th>Semanas</th>
-                               
+
                                 </thead>
                                 <tbody>
 
@@ -155,11 +186,8 @@
                                         {!! $errors->first('mes_id[]','<span class="help-block">:message</span>') !!}
                                     </td>
                                     <td class="col-sm-5 {{$errors->has('semana_id[]') ? 'has-error' : ''}}">
-
                                             {{ Form::select('semana_id[]',$semanas,$my_semana,['class'=>'form-control select2','multiple']) }}
                                             {!! $errors->first('semana_id[]','<span class="help-block">:message</span>') !!}
-
-                                        {{--{!! Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select2'])!!}--}}
                                     </td>
                                  </tr>
                                 </tbody>
@@ -288,6 +316,49 @@
             });
         
     </script>
+
+    <script>
+
+        //agregar columnas dinamicas
+
+        $(document).ready(function() {
+
+
+            $('.addRow').on('click', function() {
+                /* Act on the event */
+                addRow();
+            });
+
+            function addRow()
+            {
+
+                var i = 1;
+                var tr='<tr id="row'+i+'">'+
+                        '<td style="text-align: center;">'+
+                        '{{ Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])}}'+
+                        '</td>'+
+                        '<td style="text-align: center;">'+
+                        '{{ Form::select('semana_id[]',$semanas,$my_semana,['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])}}'+
+                        '</td>'+
+                        '<td style="display:inline;"><button name="remove" id="'+i+'" class="btn btn-danger btn-remove">X</button></td>'+
+                        '</tr>';
+                $('tbody').append(tr);
+            }
+
+
+            $(document).on('click','.btn-remove' ,function() {
+                /* Act on the event */
+                var button_id= $(this).attr("id");
+                $("#row"+button_id+"").remove();
+
+            });
+
+        });
+
+
+
+    </script>
+
 
     <script>
         //Date picker

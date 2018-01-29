@@ -138,7 +138,21 @@ class TecnologiasController extends Controller
      */
     public function show($id)
     {
-        //
+
+//        return $id;
+
+        $tecnologia = Tecnologia::findOrFail($id)->practicas;
+//        $practicas = $tecnologia->practicas;
+
+        dd($tecnologia);
+
+
+        return view('/',[
+
+            
+        ]);
+
+
     }
     /**
      * Show the form for editing the specified resource.
@@ -149,7 +163,6 @@ class TecnologiasController extends Controller
     public function edit($id)
     {
         //
-
         $tecnologia = Tecnologia::findOrFail($id);
         $rubros = Rubro::pluck('nombre_rubro','id');
 

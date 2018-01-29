@@ -166,7 +166,7 @@ class PracticasController extends Controller
         $my_semana = $practica->semanas->pluck('id')->toArray();
 
 //        $mesactual = [date('m')];
-//         dd($my_semana);
+//         dd(count($my_semana));
 
         return view('admin.practicas.edit', compact('users', 'practica', 'tags', 'meses', 'semanas','tecnologias','my_tags','my_mes','my_semana'));
     }
@@ -245,8 +245,8 @@ class PracticasController extends Controller
         }
         $practica->tags()->sync($tags);
 
-        $practica->meses()->sync($request->mes_id);
-        $practica->semanas()->sync($request->semana_id);
+        $practica->meses()->sync($request->get('mes_id'));
+        $practica->semanas()->sync($request->get('semana_id'));
 //
         return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
 

@@ -91,6 +91,8 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('tecnologias/edit/{id}','TecnologiasController@edit')->name("admin.tecnologias.edit");
     Route::put('tecnologias/{tecnologia}','TecnologiasController@update')->name("admin.tecnologias.update");
     Route::DELETE('tecnologias/{id}','TecnologiasController@destroy')->name("admin.tecnologias.destroy");
+    Route::get('tecnologias/{tecnologia}','TecnologiasController@show')->name("admin.tecnologias.show");
+
 
     /**********************************PRACTICAS********************************************************************************************/
 

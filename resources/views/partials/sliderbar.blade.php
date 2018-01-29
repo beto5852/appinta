@@ -149,11 +149,11 @@
                 <!--  Menu TAGS -->
 
                 <li class="treeview">
-                    <a href="#">
+                    <a href="">
                         <i class="fa fa-fw fa-database"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
+                        <li class="active"><a href="{{asset('admin/reportes')}}" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
                         <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(4,1);" ><i class="fa fa-circle-o"></i> Graficas </a></li>
 
                     </ul>
