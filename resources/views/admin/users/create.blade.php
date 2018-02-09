@@ -111,10 +111,9 @@
                         {{ Form::label('sexo','Sexo') }}
                         {{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}
                     </div>
-                    <div class="form-group {{$errors->has('role_id') ? 'has-error' : ''}}">
-                        {{ Form::label('role_id','Etiquetas agropecuarias') }}
-                        {{ Form::select('role_id[]',$roles,old('role_id'),['class'=>'form-control select2','multiple','data-placeholder' => 'Agrega los rol']) }}
-                        {!! $errors->first('role_id','<span class="help-block">:message</span>') !!}
+                    <div class="form-group">
+                        {{ Form::label('type','Tipo de usuario') }}
+                        {{ Form::select('type',['' => 'Seleccione el tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],null,['class' => 'form-control chosen-select'])}}
                     </div>
 
                     <div class="form-group">

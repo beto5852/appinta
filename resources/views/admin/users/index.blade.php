@@ -54,22 +54,14 @@
                 <td>{{  $user->email}}</td>
 
 
-                <td>
-                    @foreach($user->roles as $role)
-                        @if($role->display_name == 'administrador')
-                            <span class="label label-primary">{{  $role->display_name }}</span>
-                        @elseif($role->display_name == 'miembro')
-                            <span class="label label-danger">{{  $role->display_name }}</span>
-                        @endif
-                    @endforeach
-                </td>
 
 
-                {{--@if($user->hasRoles(['admin']))--}}
-                    {{--<td><span class="label label-primary">{{  $user->type}}</span></td>--}}
-                {{--@elseif($user->hasRoles(['miembro']))--}}
-                    {{--<td><span class="label label-danger">{{  $user->type}}</span></td>--}}
-                {{--@endif--}}
+
+                @if($user->type=='admin')
+                    <td><span class="label label-primary">{{  $user->type}}</span></td>
+                @elseif($user->type=='miembro')
+                    <td><span class="label label-danger">{{  $user->type}}</span></td>
+                @endif
                 <td>
                 @if(empty($user->perfil))
                     @if($user->sexo == 'masculino'   )

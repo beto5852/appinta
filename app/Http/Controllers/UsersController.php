@@ -108,11 +108,10 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-        $roles       = Role::pluck('display_name','id');
 
 //        dd($roles);
 
-        return view('admin.users.edit',compact('user','roles'));
+        return view('admin.users.edit',compact('user'));
         //dd($user);
     }
     /**
@@ -146,7 +145,6 @@ class UsersController extends Controller
         $user->password = bcrypt($request->password);
         $user->update(['perfil']);
         $user->save();
-        $user->roles()->sync($request->roles);
 
         Session::flash('message','Usuario actualizado correctamente');
         return redirect::to('admin/users');

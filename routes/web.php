@@ -188,7 +188,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 });
 
-Route::resource('login','LoginController');
+//Route::resource('login','LoginController');
 //Auth::routes();
 //controlador de recurso
 /* rutas que se generarian
