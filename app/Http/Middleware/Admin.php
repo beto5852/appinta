@@ -30,7 +30,7 @@ class Admin
     {
         if( $this->middleware->user()->type != 'admin'){
             Session::flash('message-error','Accedo denegado usted no es administrador');
-            return redirect('admin/timeline');
+            return redirect('/login');
         }
         return $next($request);
     }

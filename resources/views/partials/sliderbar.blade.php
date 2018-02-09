@@ -53,7 +53,7 @@
                 <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
             <!--  Menu USUARIOS -->
-            @if(Auth::user()->hasRoles(['admin']))
+            @if(Auth::user()->type=='admin')
             <li class="treeview" {{request()->is('admin/users*')? 'active': ''}}>
 
                 <a href="#"><i class="fa fa-users"></i><span>Usuarios</span>

@@ -14,8 +14,8 @@ class MensajesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','roles:admin']);
-        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+        $this->middleware('auth');
+        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
     }
 
     /**
@@ -29,9 +29,9 @@ class MensajesController extends Controller
 
         $users = User::Where('id', '!=', auth()->id())->Where('type','=', 'admin')->pluck('name','id');
 
-       // dd($users);
+        // dd($users);
 
-        return view('admin.mensajes.index',compact('users'));
+        return view('admin.mensajes.index',compact('users'));;
     }
 
     /**

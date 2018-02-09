@@ -39,123 +39,125 @@
           <!--Aqui va el formulario de la practica agricola-->
         {!! Form::open(['url' => ['admin/users',$user], 'method' => 'PUT','files'=> 'true','enctype' => 'multipart/form-data']) !!}
 
-        <div class="col-md-8">
-            <div class="box box-primary">
-               <div class="box-body">
-                    <div class="form-group">
-                        {{ Form::label('name','Nombre') }}
-                        {{ Form::text('name',$user->name,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])}}
-                    </div>
+     <div class="col-md-8">
+         <div class="box box-primary">
+             <div class="box-body">
+                 <div class="form-group">
+                     {{ Form::label('name','Nombre') }}
+                     {{ Form::text('name',$user->name,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])}}
+                 </div>
 
-                    <div class="form-group">
-                        {{ Form::label('email','Correo electrónico') }}
-                        {{ Form::email('email',$user->email,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
-                    </div>
-                   <div class="form-group">
-                       {!! Form::label('nacimiento','Fecha de nacimiento') !!}
+                 <div class="form-group">
+                     {{ Form::label('email','Correo electrónico') }}
+                     {{ Form::email('email',$user->email,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
+                 </div>
+                 <div class="form-group">
+                     {!! Form::label('nacimiento','Fecha de nacimiento') !!}
 
-                       <div class="input-group date">
-                           <div class="input-group-addon">
-                               <i class="fa fa-calendar"></i>
-                           </div>
-                           @if(empty($user->nacimiento))
+                     <div class="input-group date">
+                         <div class="input-group-addon">
+                             <i class="fa fa-calendar"></i>
+                         </div>
+                         @if(empty($user->nacimiento))
 
-                           {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+                             {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
 
-                           @else
+                         @else
 
-                           {!! Form::text('nacimiento',$user->nacimiento,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+                             {!! Form::text('nacimiento',$user->nacimiento,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
 
-                            @endif
+                         @endif
 
-                       </div>
-                       <!-- /.input group -->
-                   </div>
-                    <div class="form-group">
-                        {{ Form::label('password','Contraseña') }}
-                        {{ Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required']) }}
-                    </div>
-                    <div class="form-group">
-                        {{form::label('notas','Acerca de mi:') }}
-                        {{ Form::text('notas',$user->notas,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])}}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="col-md-4">
-            <div class="box box-primary">
-                <div class="box-body">
-                        <div class="form-group">
-                            {!! Form::label('telefono','Telefono') !!}
-                        {!! Form::text('telefono',$user->telefono,['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
-                        </div>
-
-                        <div class="form-group">
-                             {!! Form::label('sexo','Sexo') !!}
-                        {!! Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],$user->sexo,['class' => 'form-control chosen-select']) !!}
-                        </div>
-                        <div class="form-group">
-
-                            {{ Form::label('type','Tipo de usuario') }}
-                            <div class="checkbox">
-
-                              @foreach($roles as $id => $name)
-                                    <label>
-                                        <input
-                                                type="checkbox"
-                                               value="{{$id}}"
-                                                {{$user->roles->pluck('id')->contains($id) ? 'checked' : ''}}
-                                               name="roles[]">
-                                          {{$name}}
-                                    </label>
-
-                              @endforeach
-
-                            </div>
+                     </div>
+                     <!-- /.input group -->
+                 </div>
+                 <div class="form-group">
+                     {{ Form::label('password','Contraseña') }}
+                     {{ Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required']) }}
+                 </div>
+                 <div class="form-group">
+                     {{form::label('notas','Acerca de mi:') }}
+                     {{ Form::text('notas',$user->notas,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])}}
+                 </div>
+             </div>
+         </div>
+     </div>
 
 
-{{--                              {{ Form::label('type','Tipo de usuario') }}--}}
-{{--                            {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],$user->type,['class' => 'form-control chosen-select'])}}--}}
+     <div class="col-md-4">
+         <div class="box box-primary">
+             <div class="box-body">
+                 <div class="form-group">
+                     {!! Form::label('telefono','Telefono') !!}
+                     {!! Form::text('telefono',$user->telefono,['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
+                 </div>
 
+                 <div class="form-group">
+                     {!! Form::label('sexo','Sexo') !!}
+                     {!! Form::select('sexo',['' => 'Seleccione una opción' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],$user->sexo,['class' => 'form-control chosen-select']) !!}
+                 </div>
+                 @if(Auth::user()->hasRoles(['admin']))
+                     <div class="form-group">
 
-                        </div>
+                         {{ Form::label('type','Tipo de usuario') }}
+                         <div class="checkbox">
 
-                        <div class="form-group">
-                            {!! Form::label('ocupacion','Ocupación') !!}
-                            {!! Form::text('ocupacion',$user->ocupacion,['class' =>'form-control', 'placeholder' =>'Nombre Completo']) !!}
-                        </div>
-                        <div class="form-group">
-                             {{ Form::label('pais','Pais') }}
-                             {{ Form::text('pais',$user->pais,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])}}
-                           
+                             @foreach($roles as $id => $name)
+                                 <label>
+                                     <input
+                                             type="checkbox"
+                                             value="{{$id}}"
+                                             {{$user->roles->pluck('id')->contains($id) ? 'checked' : ''}}
+                                             name="roles[]">
+                                     {{$name}}
+                                 </label>
+
+                             @endforeach
+
                          </div>
 
-                    @if(empty($user->perfil))
-                        @if($user->sexo == 'masculino'   )
-                            <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
-                        @else
-                            <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
-                        @endif
-                    @else
-                        <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
-                    @endif
+                         {{--                              {{ Form::label('type','Tipo de usuario') }}--}}
+                         {{--                            {{ Form::select('type',['' => 'Seleccione tipo de usuario' , 'miembro' => 'miembro', 'admin' => 'admin'],$user->type,['class' => 'form-control chosen-select'])}}--}}
 
 
-                    <div class="form-group">
-                        {{ Form::label('imagen','Imagen de perfil') }}
-                        {{ Form::file('perfil')}}
-                    </div>
+                     </div>
+                 @endif
 
 
-                    <div class="form-group text-right">
+                 <div class="form-group">
+                     {!! Form::label('ocupacion','Ocupación') !!}
+                     {!! Form::text('ocupacion',$user->ocupacion,['class' =>'form-control', 'placeholder' =>'Nombre Completo']) !!}
+                 </div>
+                 <div class="form-group">
+                     {{ Form::label('pais','Pais') }}
+                     {{ Form::text('pais',$user->pais,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])}}
 
-                        {{ Form::submit('Actualizar Registro', ['class' => 'btn btn-primary btn-block']) }}
-                    </div>
-                </div>
-           </div>    
-    </div>
+                 </div>
+
+                 @if(empty($user->perfil))
+                     @if($user->sexo == 'masculino'   )
+                         <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
+                     @else
+                         <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
+                     @endif
+                 @else
+                     <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                 @endif
+
+
+                 <div class="form-group">
+                     {{ Form::label('imagen','Imagen de perfil') }}
+                     {{ Form::file('perfil')}}
+                 </div>
+
+
+                 <div class="form-group text-right">
+
+                     {{ Form::submit('Actualizar Registro', ['class' => 'btn btn-primary btn-block']) }}
+                 </div>
+             </div>
+         </div>
+     </div>
     {!! Form::close() !!}
 </div>
 

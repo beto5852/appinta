@@ -34,7 +34,7 @@
         @endif
 
 
-@if(Auth::user()->hasRoles(['admin']))
+@if(Auth::user()->type == 'admin')
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-lg-3 col-xs-6">

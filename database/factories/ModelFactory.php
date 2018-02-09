@@ -12,12 +12,13 @@
 */
 
 /****************************************************************************/
-$factory->defineAs(App\User::class,'admin' ,function (Faker\Generator $faker) {
+$factory->defineAs(App\User::class,'admin', function (Faker\Generator $faker) {
     return [
         'name' => 'Alberto Calero Obando',
         'sexo' => 'masculino',
         'email' => 'alexo2407@gmail.com',
         'password' => bcrypt('secret'),
+        'type'=> 'admin',
         'remember_token' => str_random(10),
     ];
 });
@@ -28,9 +29,11 @@ $factory->defineAs(App\User::class,'miembro', function (Faker\Generator $faker) 
         'name' => $faker->name,
         'email' => $faker->email,
         'password' => bcrypt('secret'),
-         'remember_token' => str_random(10),
+        'type'=> 'miembro',
+        'remember_token' => str_random(10),
     ];
 });
+
 
 /*****************Telefonos****************************************/
 /*$factory->define(App\Telefono::class, function (Faker\Generator $faker) {
