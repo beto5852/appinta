@@ -178,6 +178,7 @@ return [
         Jenssegers\Date\DateServiceProvider::class,
         Rap2hpoutre\LaravelLogViewer\LaravelLogViewerServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
+        ConsoleTVs\Charts\ChartsServiceProvider::class,
 //        RachidLaasri\LaravelInstaller\Providers\LaravelInstallerServiceProvider::class,
 //        Yajra\Datatables\ButtonsServiceProvider::class,
         //
@@ -248,6 +249,7 @@ return [
         'Activity'     => Kim\Activity\ActivityFacade::class,
         'Date' => Jenssegers\Date\Date::class,
        'Datatables' => Yajra\Datatables\Datatables::class,
+        'Charts' => ConsoleTVs\Charts\Facades\Charts::class,
     ],
 
 ];
