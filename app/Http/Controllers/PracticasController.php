@@ -29,7 +29,7 @@ class PracticasController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
+//        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -147,23 +147,8 @@ class PracticasController extends Controller
             return redirect()->back()->withInput()->withErrors($v->errors());
         }
 
-//        $practica = Practica::findOrFail($id);
+        $practica->update($request->all());
 
-        $practica->nombre_practica = $request->get('nombre_practica');
-        $practica->textomedio = $request->get('textomedio');
-        $practica->contenido = $request->get('contenido');
-//         dd($practica);
-        $practica->path = $request->path;
-        $practica->video = $request->get('video');
-        $practica->slug = null;
-        $practica->update(['nombre_practica' => $request->get('nombre_practica')]);
-        $practica->cultivo_id = $request->get('cultivo_id');
-        $practica->rubro_id = $request->get('rubro_id');
-        $practica->tecnologia_id = $request->get('tecnologia_id');
-        $practica->user_id = $request->get('user_id');
-        $practica->variedad_id = $request->get('variedad_id');
-        $practica->save();
-        // dd($request->get('path'));
         $etapas = collect($request->get('etapa_id'))->map(function($etapa){
 
             return Etapa::find($etapa) ? $etapa : Etapa::create(['nombre_etapa' => $etapa])->id;

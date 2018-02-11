@@ -142,8 +142,4 @@
 
       </script>
 
-
-
-
-
 @endsection

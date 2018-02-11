@@ -79,8 +79,8 @@
                               <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
                           @endforeach
 
-                         @foreach( $practica->tags as $tag)
-                        <span class="time pull-right" ><i class="fa fa-tags"></i>{{$tag->nombre_tags}}</span>
+                         @foreach( $practica->etapas as $etapa)
+                        <span class="time pull-right" ><i class="fa fa-tags"></i>{{$etapa->nombre_etapa}}</span>
                         @endforeach
                         <br>
 

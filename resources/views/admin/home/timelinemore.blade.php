@@ -56,8 +56,8 @@
                                     <div class="col-md-4">
                                        
                                          <span class="time pull-right" ><i class="fa fa-tags"></i>
-                                        @foreach( $practicas->tags as $tag)
-                                            #{{$tag->nombre_tags}}
+                                        @foreach( $practicas->etapas as $etapa)
+                                            #{{$etapa->nombre_etapa}}
                                           @endforeach 
                                          </span>
                                    
