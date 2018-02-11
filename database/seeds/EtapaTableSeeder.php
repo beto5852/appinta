@@ -26,6 +26,7 @@ class EtapaTableSeeder extends Seeder
 
                 'nombre_etapa' => $etapas[$i],
                 'descripcion_etapa' => $faker->paragraph,
+
             ));
 
         }

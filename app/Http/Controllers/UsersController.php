@@ -41,8 +41,7 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $roles  = Role::orderBy('display_name', 'ASC')->pluck('display_name', 'id');              
-        return view("admin.users.create",compact('roles'));
+        return view("admin.users.create");
         //return 'esta es una prueba';
     }
     /**
@@ -108,8 +107,6 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-
-//        dd($roles);
 
         return view('admin.users.edit',compact('user'));
         //dd($user);

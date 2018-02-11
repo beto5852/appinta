@@ -23,8 +23,11 @@ class CreatePracticasTable extends Migration
             $tabla->mediumText('video')->nullable();
             $tabla->string('slug');
             $tabla->string('path')->nullable();
+            $tabla->unsignedInteger('cultivo_id')->nullable();
+            $tabla->unsignedInteger('rubro_id')->nullable();
             $tabla->unsignedInteger('tecnologia_id')->nullable();
             $tabla->unsignedInteger('user_id')->nullable();
+            $tabla->unsignedInteger('variedad_id')->nullable();
             $tabla->timestamps();
         });
     }

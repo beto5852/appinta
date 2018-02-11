@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PtTableSeeder extends Seeder
+class EtapaPracticaTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,11 +11,10 @@ class PtTableSeeder extends Seeder
      */
     public function run()
     {
-        //
         for ($i = 1; $i < 10; $i++) {
-            \DB::table('practica_tag')->insert(array(
+            \DB::table('etapa_practica')->insert(array(
+                'etapa_id' => App\Etapa::all()->random()->id,
                 'practica_id' => App\Practica::all()->random()->id,
-                'tag_id'      => App\Tag::all()->random()->id,
             ));
         }
     }

@@ -15,7 +15,7 @@ class CultivoTableSeeder extends Seeder
     {
 
 
-        $cultivos =['Arroz','Maiz', 'Frijol','Sorgo','pasto_n', 'pitaya','repollo', 'Tomate','Musacea','Piña', 'papa','Avicola','Bovino','Porcino'];
+        $cultivos =['Arroz','Maiz', 'Frijol','Sorgo','pasto', 'pitaya','repollo', 'Tomate','Musacea','Piña', 'papa','Avicola','Bovino','Porcino'];
 
         $total = count($cultivos);
         $faker = Faker::create();
@@ -23,10 +23,8 @@ class CultivoTableSeeder extends Seeder
         for ($i = 0 ; $i < $total ; $i++) {
 
             \DB::table('cultivos')->insert(array(
-
                 'nombre_cultivo' => $cultivos[$i],
                 'descripcion_cultivo' => $faker->paragraph,
-                'rubro_id' => App\Rubro::all()->random()->id,
             ));
 
         }

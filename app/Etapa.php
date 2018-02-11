@@ -9,8 +9,8 @@ class Etapa extends Model
     protected $table = 'etapas';
     protected $fillable =['nombre_etapa','descripcion_etapa'];
 
-    public function cultivos()
+    public function practicas()
     {
-        return $this->hasMany(Cultivo::class);
+        return $this->belongsToMany(Practica::class,'etapa_practica');
     }
 }

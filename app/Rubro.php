@@ -8,13 +8,9 @@ class Rubro extends Model
 {
     protected $table = 'rubros';
     protected $fillable =['id','nombre_rubro','descripcion_rubro'];
-    
-    public  function  cultivos()
+
+    public  function practicas()
     {
-        return $this->hasMany(Cultivo::class);
-    }
-    public function tecnologias()
-    {
-        return $this->belongsToMany(Tecnologia::class,'rubro_tecnologia');
+        return $this->hasMany(Practica::class);
     }
 }

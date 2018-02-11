@@ -1,10 +1,10 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
-class CreatePracticaTag extends Migration
+class CreateEtapaPracticaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,13 @@ class CreatePracticaTag extends Migration
      */
     public function up()
     {
-        Schema::create('practica_tag', function (Blueprint $table) {
-
+        Schema::create('etapa_practica', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
+            $table->unsignedInteger('etapa_id');
             $table->unsignedInteger('practica_id');
-            $table->unsignedInteger('tag_id');
             $table->timestamps();
 
-          
         });
     }
 
@@ -32,6 +30,6 @@ class CreatePracticaTag extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('practica_tag');
+        Schema::dropIfExists('etapa_practica');
     }
 }

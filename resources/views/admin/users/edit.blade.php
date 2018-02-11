@@ -58,13 +58,13 @@
                          <div class="input-group-addon">
                              <i class="fa fa-calendar"></i>
                          </div>
-                         @if(empty($user->nacimiento))
+                         @if(empty($user->edad))
 
-                             {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+                             {!! Form::text('edad',null,['class' =>'form-control','placeholder' =>''])!!}
 
                          @else
 
-                             {!! Form::text('nacimiento',$user->nacimiento,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+                             {!! Form::text('edad',$user->edad,['class' =>'form-control', 'placeholder' =>''])!!}
 
                          @endif
 

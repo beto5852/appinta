@@ -18,13 +18,15 @@ class VariedadTableSeeder extends Seeder
         $variedades =['NB-S','NB-6', 'NB-9043','Nutrinta Amarillo','NUTRADER', 'H-INTA 991','Mazorca de oro'];
 
         $total = count($variedades);
-      
-        for ($i = 0 ; $i < $total ; $i++) {
+        $faker = Faker::create();
+
+        for ($i = 0 ; $i < $total; $i++) {
 
             \DB::table('variedades')->insert(array(
 
                 'nombre_variedad' => $variedades[$i],
-                'cultivo_id' => App\Cultivo::all()->random()->id,
+                'caracteristica_agronomica' => $faker->sentence,
+                'descripcion_caracteristica' => $faker->sentence,
             ));
 
         }

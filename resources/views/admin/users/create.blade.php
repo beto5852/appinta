@@ -72,7 +72,7 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
+                            {!! Form::text('nacimiento',null,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 '])!!}
                         </div>
                         <!-- /.input group -->
                     </div>
@@ -196,8 +196,7 @@
             $(".select2").select2({
                 tags: true
             });
-
-        </script>
+       </script>
 
             <script>
 

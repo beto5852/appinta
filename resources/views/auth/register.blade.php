@@ -17,6 +17,8 @@
     <!-- iCheck -->
     <link rel="stylesheet" href={{asset("/adminlte/plugins/iCheck/square/blue.css")}}>
 
+    <link rel="stylesheet" href="{{asset('/chosen/chosen.css')}}">
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -34,46 +36,48 @@
   <div class="register-box-body">
     <p class="login-box-msg">Bienvenido puede registar a un nuevo usuario</p>
 
-    <form method="POST" action="{{ url('/register') }}">
-    {{ csrf_field() }}
+      {!! Form::open(['url' => '/register', 'method' => 'POST']) !!}
+
+     {{ csrf_field() }}
+
       <div class="form-group has-feedback {{ $errors->has('name') ? ' has-error' : '' }}">
-        <input type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus placeholder="Nombre y Apellidos">
-                 <span class="glyphicon glyphicon-user form-control-feedback"></span>
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
+          {!! Form::label('name','Nombre y Apellido') !!}
+          {!! Form::text('name',null,['class' =>'form-control', 'placeholder' =>'Nombre Completo','value' => 'old(name)','required'])!!}
+          {!! $errors->first('name','<span class="help-block">:message</span>') !!}
       </div>
 
+      <div class="form-group has-feedback {{ $errors->has('edad') ? ' has-error' : '' }}">
+          {!! Form::label('edad','Edad') !!}
+          {!! Form::text('edad',null,['class' =>'form-control', 'placeholder' =>'Edad eje: 20, 25, 30, 40','value' => 'old(edad)','required'])!!}
+          {!! $errors->first('edad','<span class="help-block">:message</span>') !!}
+      </div>
+      <div class="form-group has-feedback {{ $errors->has('sexo') ? ' has-error' : '' }}">
+          {{ Form::label('sexo','Sexo') }}
+          {{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}
+          {!! $errors->first('sexo','<span class="help-block">:message</span>') !!}
+      </div>
       <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">
-        <input type="email" class="form-control" name="email" value="{{ old('email') }}" required placeholder="Correo electronico: ejemplo@gmail.com">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
+          {!! Form::label('email','Correo electrónico') !!}
+          {!! Form::email('email',null,['class' =>'form-control', 'placeholder' =>'example@gmail.com','value' => 'old(email)','required'])!!}
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          {!! $errors->first('email','<span class="help-block">:message</span>') !!}
       </div>
-
 
       <div class="form-group has-feedback {{ $errors->has('password') ? ' has-error' : '' }}">
-          <input type="password" class="form-control" name="password" required placeholder="*******">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
+          {!! Form::label('password','Contraseña') !!}
+          {!! Form::password('password',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          {!! $errors->first('password','<span class="help-block">:message</span>') !!}
+
       </div>
 
+      <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+          {!! Form::label('password_confirmation','Contraseña') !!}
+          {!! Form::password('password_confirmation',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
+          <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+          {!! $errors->first('password_confirmation','<span class="help-block">:message</span>') !!}
 
-      <div class="form-group has-feedback">
-        <input type="password" class="form-control" name="password_confirmation" required placeholder="*******">
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
-
-
 
       <div class="row">
         <div class="col-xs-8">
@@ -85,12 +89,11 @@
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Registrarse</button>
+            {{ Form::submit('Registrarse', ['class' => 'btn btn-primary btn-block btn-flat']) }}
         </div>
         <!-- /.col -->
       </div>
-    </form>
-
+      {!! Form::close() !!}
    <!--  <div class="social-auth-links text-center">
       <p>- OR -</p>
       <a href="#" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using
@@ -111,6 +114,8 @@
 <script src="/adminlte//bootstrap/js/bootstrap.min.js"></script>
 <!-- iCheck -->
 <script src="/adminlte/plugins/iCheck/icheck.min.js"></script>
+
+<script src="{{asset('/chosen/chosen.jquery.js')}}"></script>
 <script>
   $(function () {
     $('input').iCheck({
@@ -119,6 +124,9 @@
       increaseArea: '20%' // optional
     });
   });
+</script>
+<script>
+    $(".chosen-select").chosen();
 </script>
 </body>
 </html>
