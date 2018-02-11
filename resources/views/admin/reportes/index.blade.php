@@ -97,7 +97,8 @@
                         {!! $userdia->render() !!}
                         {!! $genero->render() !!}
                         {!! $prac->render() !!}
-                        {!! $rubro->render() !!}
+                        {!! $activ->render() !!}
+                        {!! $chartpract->render() !!}}
                     </div>
                     <div class="box-footer">
                     </div>

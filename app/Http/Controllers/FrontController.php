@@ -86,6 +86,7 @@ class FrontController extends Controller
     {
         $anio=date("Y");
         $mes=date("m");
+
         $users = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y')) ->get();
 
         $chart = Charts::database($users, 'bar', 'highcharts')
@@ -120,11 +121,23 @@ class FrontController extends Controller
             ->leftjoin('etapas','etapa_practica.etapa_id','etapas.id')
             ->distinct()
             ->whereNotNull('nombre_etapa')
-            ->select('etapas.nombre_etapa')
+            ->select('practicas.nombre_practica','etapas.nombre_etapa')
             ->orderBy('nombre_etapa', 'desc')
             ->get();
 
 //        dd($practica);
+        
+        $chartpract = Charts::database($practica, 'bar', 'highcharts')
+            ->title("Etapa de practica")
+            ->elementLabel("etapas por practica")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('nombre_practica');
+
+//        dd($chartpract);
+
+
 
         $prac = Charts::multiDatabase('line', 'material')
             ->dataset('Practicas', Practica::all())
@@ -136,16 +149,22 @@ class FrontController extends Controller
             ->responsive(true)
             ->GroupByDay();
 
-//        dd($prac);
 
-        $rubro = Charts::database(Practica::all(), 'bar', 'highcharts')
-            ->elementLabel("Total")
+
+        $activities = Activity::users()->get();
+        
+        
+        $activ = Charts::database($activities, 'bar', 'highcharts')
+            ->elementLabel("Usuarios en linea")
             ->height(300)
             ->width(300)
             ->responsive(true)
-            ->groupBy('rubro_id');
+            ->groupBy('name');
+        
+       
+        
 
-      return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','rubro'));
+      return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract'));
     }
 
 
@@ -153,6 +172,7 @@ class FrontController extends Controller
     {
         $anio=date("Y");
         $mes=date("m");
+        
         $activities = Activity::users()->get();
       
 //         $activities = Activity::users(1)->get();   // Last 1 minute
@@ -166,6 +186,9 @@ class FrontController extends Controller
         //         $activities = Activity::users()->mostRecent()->get();   // Get active users and sort them by most recent
         //         $activities = Activity::users()->leastRecent()->get();  // Get active users and sort them by least recent
         //         // $numberOfGuests = Activity::guests()->count();
+        
+        
+        
         $totalusers       = User::all();
         $users            = User::orderBy('id', 'DESC')->paginate(8);
         $totaltecnologias = Tecnologia::all();

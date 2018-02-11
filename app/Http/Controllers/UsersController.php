@@ -74,8 +74,7 @@ class UsersController extends Controller
         
         $user->save();
         
-        $user->roles()->sync($request->role_id);
-        
+
 
         Session::flash('message','Usuario registrado correctamente');
         return redirect::to('admin/users');
