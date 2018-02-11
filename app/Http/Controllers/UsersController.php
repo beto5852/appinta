@@ -20,7 +20,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
+        $this->middleware('admin',['only' => ['index','show','create','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -142,8 +142,7 @@ class UsersController extends Controller
         $user->update(['perfil']);
         $user->save();
 
-        Session::flash('message','Usuario actualizado correctamente');
-        return redirect::to('admin/users');
+        return redirect()->route('admin.users.edit',$user)->with('message','Datos actualizados correctamente');
     }
     /**
      * Remove the specified resource from storage.

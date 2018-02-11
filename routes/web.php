@@ -78,6 +78,12 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::resource('/users','UsersController');
     Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
+    Route::get('users/create','UsersController@create')->name("admin.users.create");
+    Route::get('users/edit/{id}','UsersController@edit')->name("admin.users.edit");
+    Route::put('users/{user}','UsersController@update')->name("admin.users.update");
+    Route::DELETE('users/{id}','UsersController@destroy')->name("admin.users.destroy");
+    Route::get('users/{user}','UsersController@show')->name("admin.users.show");
+
 
 
 

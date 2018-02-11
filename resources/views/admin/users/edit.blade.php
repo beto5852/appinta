@@ -33,7 +33,14 @@
             </ul>
         </div>
 
-        @endif
+    @endif
+
+    @if(Session::has('message'))
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {{Session::get('message')}}
+        </div>
+    @endif
  <div class="row">
 
           <!--Aqui va el formulario de la practica agricola-->
