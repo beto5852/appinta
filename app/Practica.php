@@ -83,31 +83,40 @@ class Practica extends Model
 
     public function setCultivoIdAttribute($cultivo)
     {
-        $this->attributes['cultivo_id'] = Cultivo::findOrFail($cultivo)
+        $this->attributes['cultivo_id'] = Cultivo::find($cultivo)
                                         ? $cultivo
-                                        : Cultivo::create(['cultivo_id' => $cultivo])->id;
+                                        : Cultivo::create(['nombre_cultivo' => $cultivo])->id;
     }
 
     public function setRubroIdAttribute($rubro)
     {
-        $this->attributes['rubro_id'] = Rubro::findOrFail($rubro)
+        $this->attributes['rubro_id'] = Rubro::find($rubro)
                                         ? $rubro
-                                        : Rubro::create(['rubro_id' => $rubro])->id;
+                                        : Rubro::create(['nombre_rubro' => $rubro])->id;
     }
     public function setTecnologiaIdAtrribute($tenologia)
     {
         $this->attributes['tecnologia_id']= Tecnologia::find($tenologia)
-                            ? $tenologia
-                            : Tecnologia::create(['tecnologia_id' =>$tenologia])->id;
+                                            ? $tenologia
+                                            : Tecnologia::create(['nombre_tecnologia' =>$tenologia])->id;
 
     }
 
     public function setVariedadIdAttribute($variedad)
     {
-        $this->attributes['variedad_id'] = Variedad::findOrFail($variedad)
-            ? $variedad
-            : Variedad::create(['variedad_id' => $variedad])->id;
+        $this->attributes['variedad_id'] = Variedad::find($variedad)
+                                        ? $variedad
+                                        : Variedad::create(['nombre_variedad' => $variedad])->id;
     }
 
+    public function syncEtapa($etapas){
+
+        $etapaIds = collect($etapas)->map(function($etapa){
+
+            return Etapa::find($etapa) ? $etapa : Etapa::create(['nombre_etapa' => $etapa])->id;
+        });
+
+        return $this->etapas()->sync($etapaIds);
+    }
 
 }

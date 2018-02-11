@@ -1,15 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
-//use Jenssegers\Date\Date;
-use Carbon\Carbon;
-use Activity;
+use App\Etapa;
+use Illuminate\Http\Request;
 use App\Practica;
 use App\Tecnologia;
 use App\User;
+use App\Role;
+use App\Cultivo;
+use App\Rubro;
+use Carbon\Carbon;
+use ConsoleTVs\Charts\Facades\Charts;
+use Activity;
+
 use Illuminate\Support\Facades\DB;
 use Yajra\Datatables\Datatables;
-use Illuminate\Http\Request;
 
 class FrontController extends Controller
 {
@@ -31,9 +36,9 @@ class FrontController extends Controller
     public function timeline()
     {
         //
-        // dd($practicas); 
+        // dd($practicas);
         // $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
-        
+
 //
        $arrayMeses = array('Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre');
@@ -69,20 +74,6 @@ class FrontController extends Controller
 //        dd($practicas);
 
         return view('admin.home.timeline',compact('practicas'));
-
-
-//
-//
-//     $practicas = Practica::with(['meses' => function ($query) {
-//               $query->whereNotNull('mes_id')
-//               ->where('nombre_mes','=','');
-//           },'semanas'])->get()->toArray();
-//
-//
-//          dd($practicas);
-//       
-//        return view('admin.home.timeline',compact('practicas'));
-
     }
 
     public function timelinemore($slug)
@@ -95,8 +86,66 @@ class FrontController extends Controller
     {
         $anio=date("Y");
         $mes=date("m");
+        $users = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y')) ->get();
 
-      return view('admin.reportes.index',compact('anio','mes'));
+        $chart = Charts::database($users, 'bar', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("Total de usuarios registrados")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupByMonth(date('Y'), true);
+
+
+        $genero = Charts::database(User::all(), 'bar', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("total")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('sexo');
+
+
+        $userdia = Charts::database(User::all(), 'line', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("Registro por dia")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupByDay();
+
+
+        $practica = DB::table('practicas')
+            ->leftjoin('etapa_practica','practicas.id','etapa_practica.practica_id')
+            ->leftjoin('etapas','etapa_practica.etapa_id','etapas.id')
+            ->distinct()
+            ->whereNotNull('nombre_etapa')
+            ->select('etapas.nombre_etapa')
+            ->orderBy('nombre_etapa', 'desc')
+            ->get();
+
+//        dd($practica);
+
+        $prac = Charts::multiDatabase('line', 'material')
+            ->dataset('Practicas', Practica::all())
+            ->dataset('Tecnologias', Tecnologia::all())
+            ->dataset('Rubros', Rubro::all())
+            ->dataset('Cultivos', Cultivo::all())
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->GroupByDay();
+
+//        dd($prac);
+
+        $rubro = Charts::database(Practica::all(), 'bar', 'highcharts')
+            ->elementLabel("Total")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('rubro_id');
+
+      return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','rubro'));
     }
 
 

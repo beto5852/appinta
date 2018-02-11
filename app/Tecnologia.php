@@ -8,7 +8,7 @@ class Tecnologia extends Model
 {
     protected $guarded = [];
     protected $table = 'tecnologias';
-    protected $fillable =['id','nombre_tecnologia','descripcion_tecnologia'];
+//    protected $fillable =['id','nombre_tecnologia','descripcion_tecnologia'];
     
 
     public function practicas(){

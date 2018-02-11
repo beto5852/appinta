@@ -18,7 +18,7 @@
             {{Session::get('message')}}
         </div>
     @endif
-
+    {!! Charts::assets() !!}
     <div class="box box-primary">
         <div class="box-header">
 
@@ -66,26 +66,12 @@
                     <div class="box-header">
                     </div>
 
-                    <div class="box-body" id="div_grafica_barras">
-                    </div>
-
-                    <div class="box-footer">
-                    </div>
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <div class="box box-primary">
-                    <div class="box-header">
-                    </div>
-
                     <div class="box-body" id="div_grafica_lineas">
                     </div>
 
                     <div class="box-footer">
                     </div>
                 </div>
-
             </div>
             <div class="col-md-6">
                 <div class="box box-primary">
@@ -101,20 +87,26 @@
 
             </div>
 
-        </div>
-        <div class="col-md-6">
-            <div class="box box-primary">
-                <div class="box-header">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                    </div>
+                    <div class="container">
+
+                        {!! $chart->render() !!}
+                        {!! $userdia->render() !!}
+                        {!! $genero->render() !!}
+                        {!! $prac->render() !!}
+                        {!! $rubro->render() !!}
+                    </div>
+                    <div class="box-footer">
+                    </div>
                 </div>
 
-                <div id="sexo">
-                </div>
-
-                <div class="box-footer">
-                </div>
             </div>
 
         </div>
+
 
     </div>
 

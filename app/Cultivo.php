@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Cultivo extends Model
 {
 
-//    protected $guarded = [];
+    protected $guarded = [];
 
     protected $table = 'cultivos';
     
-    protected $fillable = ['nombre_cultivo','rubro_id'];
+//    protected $fillable = ['nombre_cultivo','rubro_id'];
 
     public  function practicas()
     {

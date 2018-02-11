@@ -157,13 +157,13 @@
                                 <tbody>
 
                                 <tr>
-                                    <td class="col-sm-4 {{$errors->has('mes_id') ? 'has-error' : ''}}">
-                                        {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select1'])!!}
-                                        {!! $errors->first('mes_id','<span class="help-block">:message</span>') !!}
+                                    <td class="col-sm-4 {{$errors->has('mes_id[]') ? 'has-error' : ''}}">
+                                        {!! Form::select('mes_id[]',$meses,old('mes_id',$my_mes),['class' => 'form-control chosen-select1'])!!}
+                                        {!! $errors->first('mes_id[]','<span class="help-block">:message</span>') !!}
                                     </td>
-                                    <td class="col-sm-5 {{$errors->has('semana_id') ? 'has-error' : ''}}">
-                                        {{ Form::select('semana_id[]',$semanas,$my_semana,['class'=>'form-control select2','multiple']) }}
-                                        {!! $errors->first('semana_id','<span class="help-block">:message</span>') !!}
+                                    <td class="col-sm-5 {{$errors->has('semana_id[]') ? 'has-error' : ''}}">
+                                        {{ Form::select('semana_id[]',$semanas,old('semana_id[]',$my_semana),['class'=>'form-control select2','multiple']) }}
+                                        {!! $errors->first('semana_id[]','<span class="help-block">:message</span>') !!}
                                     </td>
                                 </tr>
                                 </tbody>
@@ -197,7 +197,7 @@
 
                         <div class="form-group {{$errors->has('etapa_id') ? 'has-error' : ''}}">
                             {{ Form::label('etapa_id','Etapa en la que se encuentra el cultivo '.$practica->cultivo->nombre_cultivo) }}
-                            {{ Form::select('etapa_id[]',$etapas,old('etapa_id[]',$my_etapas),['class'=>'form-control select2','multiple']) }}
+                            {{ Form::select('etapa_id[]',$etapas,old('etapas',$my_etapas),['class'=>'form-control select2','multiple','value' => 'old($my_etapas)']) }}
                             {!! $errors->first('etapa_id','<span class="help-block">:message</span>') !!}
                         </div>
 

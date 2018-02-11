@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Cultivo;
 use App\Etapa;
+use App\Http\Requests\StorePracticaRequest;
 use App\Practica;
 use App\Mes;
 use App\Rubro;
@@ -131,37 +132,17 @@ class PracticasController extends Controller
 
 
 
-    public function update(Request $request, Practica $practica)
+    public function update(StorePracticaRequest $request, Practica $practica)
     {
-        $v = \Validator::make($request->all(), [
-
-            'nombre_practica' => 'required',
-            'textomedio'       => 'required|min:5|max:900',
-            'contenido'       => 'required|max:100000',
-            'semana_id'       => 'required',
-            'etapa_id'          => 'required',
-        ]);
-
-        if ($v->fails())
-        {
-            return redirect()->back()->withInput()->withErrors($v->errors());
-        }
 
         $practica->update($request->all());
-
-        $etapas = collect($request->get('etapa_id'))->map(function($etapa){
-
-            return Etapa::find($etapa) ? $etapa : Etapa::create(['nombre_etapa' => $etapa])->id;
-        });
-
-        $practica->etapas()->sync($etapas);
+        $practica->syncEtapa($request->get('etapa_id'));
         $practica->meses()->sync($request->get('mes_id'));
         $practica->semanas()->sync($request->get('semana_id'));
 
         return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
 
     }
-
 
 
     public function destroy($id)
@@ -179,4 +160,6 @@ class PracticasController extends Controller
         return redirect::to('admin/practicas');
         //dd($id);
     }
+
+
 }
