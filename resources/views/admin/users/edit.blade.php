@@ -35,7 +35,7 @@
 
         @endif
  <div class="row">
-        
+
           <!--Aqui va el formulario de la practica agricola-->
         {!! Form::open(['url' => ['admin/users',$user], 'method' => 'PUT','files'=> 'true','enctype' => 'multipart/form-data']) !!}
 
@@ -58,13 +58,13 @@
                          <div class="input-group-addon">
                              <i class="fa fa-calendar"></i>
                          </div>
-                         @if(empty($user->edad))
+                         @if(empty($user->nacimiento))
 
-                             {!! Form::text('edad',null,['class' =>'form-control','placeholder' =>''])!!}
+                             {!! Form::text('nacimiento',null,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
 
                          @else
 
-                             {!! Form::text('edad',$user->edad,['class' =>'form-control', 'placeholder' =>''])!!}
+                             {!! Form::text('nacimiento',$user->nacimiento,['class' =>'form-control pull-rigth datepicker','id' => 'datepicker', 'placeholder' =>''])!!}
 
                          @endif
 

@@ -46,49 +46,48 @@
     <div class="row">
 
         <div class="col-md-12">
-         <div class="row">
-                    @if($practica->fotos->count())
+            <div class="row">
+                @if($practica->fotos->count())
                     <div class="col-md-8">
                         <div class="box box-primary">
                             <div class="box-body">
 
 
-                                    @foreach($practica->fotos as $foto)
-                                        <form  method="POST" action="{{route('admin.fotos.destroy',$foto->id)}}">
-                                            {{method_field('DELETE')}}{{csrf_field()}}
-                                            <div class="col-md-2 col-sm-12 co-xs-12 gal-item">
-                                                <button class="btn-danger btn-xs pull-right" style="position: absolute">
-                                                    <i class="fa fa-remove"></i>
-                                                </button>
-                                                <img src="{{$foto->url}}" class="img-responsive">
-                                            </div>
-                                        </form>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    @endif
-
-                            @if(!empty($practica->video))
-                       <div class="col-md-4">
-                        <div class="box box-primary">
-                            <div class="box-body">
-                                  <div class="form-group ">
-                                       <div class="video">
-                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/U-cKfahpP6E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-                                        <iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                @foreach($practica->fotos as $foto)
+                                    <form  method="POST" action="{{route('admin.fotos.destroy',$foto->id)}}">
+                                        {{method_field('DELETE')}}{{csrf_field()}}
+                                        <div class="col-md-2 col-sm-12 co-xs-12 gal-item">
+                                            <button class="btn-danger btn-xs pull-right" style="position: absolute">
+                                                <i class="fa fa-remove"></i>
+                                            </button>
+                                            <img src="{{$foto->url}}" class="img-responsive">
                                         </div>
-                                    </div>
+                                    </form>
+                                @endforeach
                             </div>
                         </div>
                     </div>
-             @endif
+                @endif
 
-         </div>
-       </div>
+                @if(!empty($practica->video))
+                    <div class="col-md-4">
+                        <div class="box box-primary">
+                            <div class="box-body">
+                                <div class="form-group ">
+                                    <div class="video">
+                                        {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/U-cKfahpP6E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                        <iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+            </div>
+        </div>
 
         {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
-        {{csrf_field()}}
         <div class="col-md-8">
             <div class="box box-primary">
 
@@ -108,14 +107,13 @@
                         {!! $errors->first('textomedio','<span class="help-block">:message</span>') !!}
                     </div>
 
-
                     <div class="form-group {{$errors->has('contenido') ? 'has-error' : ''}}">
                         {{ Form::label('Agregue el contenido','Agregue el contenido') }}
                         {{ Form::textarea('contenido',old('contenido',$practica->contenido),['id' => 'my-editor2','class' => 'my-editor2','placeholder' => ''])}}
                         {!! $errors->first('contenido','<span class="help-block">:message</span>') !!}
                     </div>
                 </div>
-            </div>             
+            </div>
         </div>
 
 
@@ -125,48 +123,26 @@
                     <div class="box-body">
                         <div class="form-group {{$errors->has('video') ? 'has-error' : ''}}">
                             {{ Form::label('Agregue el Video','Agregue url de video o audio') }}
-                            {{ Form::textarea('video',old('video',$practica->video),['rows' => '5','class' => 'form-control','placeholder' => ''])}}
+                            {{ Form::textarea('video',old('video',$practica->video),['rows' => '3','class' => 'form-control','placeholder' => ''])}}
                             {!! $errors->first('video','<span class="help-block">:message</span>') !!}
                         </div>
+                        @if(empty($practica->path))
+                            <img src="{{asset('img/no-imagen.jpg')}}" alt="" style="width: 100px;" />
+                        @else
+                            <img src="{{asset('img/')}}/{{$practica->path}}" alt="" style="width: 100px;" />
+                        @endif
+                        <div class="form-group">
+                            {{ Form::label('path','Imagen de la práctica') }}
+                            {{ Form::file('path')}}
+                        </div>
+
                     </div>
                 </div>
-           </div>
+            </div>
 
             <div class="col-md-4">
                 <div class="box box-primary">
                     <div class="box-body">
-                        <!-- Date -->
-                        <!-- Date and time range -->
-
-                        <!-- Date and time range -->
-                        {{--<div class="form-group">--}}
-
-                            {{--{{ Form::label('Fechas de la practica','Fechas de la practica') }}--}}
-
-                            {{--<table class="table table-bordered">--}}
-                                {{--<thead>--}}
-                                {{--<th>Mes</th>--}}
-                                {{--<th>Semana</th>--}}
-                                {{--<th><a href="#" class="addRow" id="addRow"><i class="glyphicon glyphicon-plus" aria-hidden="true"></a></th>--}}
-                                {{--</thead>--}}
-                                {{--<tbody>--}}
-                                {{--@if(empty($my_semana) > 1)--}}
-                                    {{--@for($i = 0; $i < count($my_semana); $i++)--}}
-                                        {{--<tr>--}}
-                                            {{--<td class="col-sm-4">{!! Form::select('mes_id[]',$meses,$my_mes[$i],['class' => 'form-control chosen-select','value' => 'old(mes_id[]) == $meses->id ? selected :'])!!}</td>--}}
-                                            {{--<td class="col-sm-5">{!! Form::select('semana_id[]',$semanas,$my_semana[$i],['class' => 'form-control chosen-select','value' => 'old(semana_id[]) == $semanas->id ? selected :'])!!}</td>--}}
-                                            {{--<td style="display:inline;"><button name="remove" id="{{ $i }}" class="btn btn-danger btn-remove">X</button></td>--}}
-                                        {{--</tr>--}}
-                                    {{--@endfor--}}
-                                {{--@else--}}
-                                {{----}}
-                               {{--@endif--}}
-                                {{--</tbody>--}}
-                            {{--</table>--}}
-
-                        {{--</div>--}}
-
-
 
                         <div class="form-group">
 
@@ -181,15 +157,15 @@
                                 <tbody>
 
                                 <tr>
-                                    <td class="col-sm-4 {{$errors->has('mes_id[]') ? 'has-error' : ''}}">
+                                    <td class="col-sm-4 {{$errors->has('mes_id') ? 'has-error' : ''}}">
                                         {!! Form::select('mes_id[]',$meses,$my_mes,['class' => 'form-control chosen-select1'])!!}
-                                        {!! $errors->first('mes_id[]','<span class="help-block">:message</span>') !!}
+                                        {!! $errors->first('mes_id','<span class="help-block">:message</span>') !!}
                                     </td>
-                                    <td class="col-sm-5 {{$errors->has('semana_id[]') ? 'has-error' : ''}}">
-                                            {{ Form::select('semana_id[]',$semanas,$my_semana,['class'=>'form-control select2','multiple']) }}
-                                            {!! $errors->first('semana_id[]','<span class="help-block">:message</span>') !!}
+                                    <td class="col-sm-5 {{$errors->has('semana_id') ? 'has-error' : ''}}">
+                                        {{ Form::select('semana_id[]',$semanas,$my_semana,['class'=>'form-control select2','multiple']) }}
+                                        {!! $errors->first('semana_id','<span class="help-block">:message</span>') !!}
                                     </td>
-                                 </tr>
+                                </tr>
                                 </tbody>
                             </table>
                         </div>
@@ -199,27 +175,30 @@
                             {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control select2'])}}
                         </div>
 
+
                         <div class="form-group">
                             {{ Form::label('tecnologia','Tecnológia') }}
                             {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select2',])}}
                         </div>
-
-
-                        @if(empty($practica->path))
-                            <img src="{{asset('img/no-imagen.jpg')}}" alt="" style="width: 100px;" />
-                        @else
-                            <img src="{{asset('img/')}}/{{$practica->path}}" alt="" style="width: 100px;" />
-                        @endif
                         <div class="form-group">
-                            {{ Form::label('path','Imagen de la práctica') }}
-                            {{ Form::file('path')}}
+                            {{ Form::label('rubro','Rubro') }}
+                            {{ Form::select('rubro_id',$rubros,old('rubro_id',$practica->rubro_id),['class' => 'form-control select2',])}}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('cultivo','Cultivo') }}
+                            {{ Form::select('cultivo_id',$cultivos,old('cultivo_id',$practica->cultivo_id),['class' => 'form-control select2',])}}
+                        </div>
+                        <div class="form-group">
+                            {{ Form::label('variedad','Variedad  del cultivo') }}
+                            {{ Form::select('variedad_id',$variedades,old('variedad_id',$practica->variedad_id),['class' => 'form-control select2',])}}
                         </div>
 
-            
-                        <div class="form-group {{$errors->has('tag_id[]') ? 'has-error' : ''}}">
-                            {{ Form::label('tag_id','Etiquetas agropecuarias') }}
-                            {{ Form::select('tag_id[]',$tags,old('tag_id[]',$my_tags),['class'=>'form-control select2','multiple']) }}
-                            {!! $errors->first('tag_id[]','<span class="help-block">:message</span>') !!}
+
+
+                        <div class="form-group {{$errors->has('etapa_id') ? 'has-error' : ''}}">
+                            {{ Form::label('etapa_id','Etapa en la que se encuentra el cultivo '.$practica->cultivo->nombre_cultivo) }}
+                            {{ Form::select('etapa_id[]',$etapas,old('etapa_id[]',$my_etapas),['class'=>'form-control select2','multiple']) }}
+                            {!! $errors->first('etapa_id','<span class="help-block">:message</span>') !!}
                         </div>
 
 
@@ -233,7 +212,7 @@
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>
 
         {!! Form::close() !!}
     </div>

@@ -81,15 +81,32 @@ class Practica extends Model
         return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
     }
 
-    public function scopePublicado($query, $nombre_practica)
+    public function setCultivoIdAttribute($cultivo)
     {
-        return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
+        $this->attributes['cultivo_id'] = Cultivo::findOrFail($cultivo)
+                                        ? $cultivo
+                                        : Cultivo::create(['cultivo_id' => $cultivo])->id;
     }
 
-    public  function  isPublished()
+    public function setRubroIdAttribute($rubro)
     {
-        return (bool)$this->contenido;
+        $this->attributes['rubro_id'] = Rubro::findOrFail($rubro)
+                                        ? $rubro
+                                        : Rubro::create(['rubro_id' => $rubro])->id;
+    }
+    public function setTecnologiaIdAtrribute($tenologia)
+    {
+        $this->attributes['tecnologia_id']= Tecnologia::find($tenologia)
+                            ? $tenologia
+                            : Tecnologia::create(['tecnologia_id' =>$tenologia])->id;
 
+    }
+
+    public function setVariedadIdAttribute($variedad)
+    {
+        $this->attributes['variedad_id'] = Variedad::findOrFail($variedad)
+            ? $variedad
+            : Variedad::create(['variedad_id' => $variedad])->id;
     }
 
 

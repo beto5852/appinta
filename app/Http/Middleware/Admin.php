@@ -29,7 +29,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         if( $this->middleware->user()->type != 'admin'){
-            Session::flash('message-error','Accedo denegado usted no es administrador');
+            Session::flash('message','Accedo denegado usted no es administrador');
             return redirect('/login');
         }
         return $next($request);

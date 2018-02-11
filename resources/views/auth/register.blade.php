@@ -71,12 +71,10 @@
 
       </div>
 
-      <div class="form-group has-feedback {{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+      <div class="form-group has-feedback">
           {!! Form::label('password_confirmation','Contraseña') !!}
           {!! Form::password('password_confirmation',['class' =>'form-control', 'placeholder' =>'**************','required'])!!}
           <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-          {!! $errors->first('password_confirmation','<span class="help-block">:message</span>') !!}
-
       </div>
 
       <div class="row">

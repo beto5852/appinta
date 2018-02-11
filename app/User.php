@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded=[];
+//    protected $guarded=[];
     
     protected $table = 'users';
 
@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
        
-    protected $fillable = ['name','edad', 'email', 'sexo','ocupacion','pais','notas', 'telefono','password','type','perfil','active'];
+    protected $fillable = ['name', 'email','password', 'sexo','edad','ocupacion','pais','notas', 'telefono','type','perfil','active'];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -74,11 +74,12 @@ class User extends Authenticatable
         $this->token()->create([
             'token'  => str_random(60),
         ]);
+        
         return $this;
     }
 
 
-     public function sendPasswordResetNotification($token){
-         $this->notify(new ResetPasswordNotification($token));
-     }
+//     public function sendPasswordResetNotification($token){
+//         $this->notify(new ResetPasswordNotification($token));
+//     }
 }

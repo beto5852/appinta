@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Semana extends Model
 {
-//    protected $guarded = [];
+    protected $guarded = [];
     protected $table    = 'semanas';
     protected $fillable = ['nombre_semana'];
 
