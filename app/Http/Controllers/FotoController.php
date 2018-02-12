@@ -29,7 +29,7 @@ class FotoController extends Controller
             ]
         );
 
-        $foto =  request()->file('foto')->store('public');
+        $foto =  request()->file('foto')->store('practicas ','public');
 
 //        return $foto;
 

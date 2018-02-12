@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 class Practica extends Model
 {
 
+    protected  $guarded = [];
+
     protected $table   = 'practicas';
     use Sluggable;
 
@@ -117,6 +119,24 @@ class Practica extends Model
         });
 
         return $this->etapas()->sync($etapaIds);
+    }
+
+
+
+    public function scopeBusqueda($query,$rubro,$tecnologia,$cultivo,$dato =""){
+
+
+//        if(empty($rubro)){
+//            $resultado = $query->where('nombre_practica','like',"%$dato%");
+//
+//        }
+//        else{
+//            $resultado = $query->where('nombre_rubro','=',$rubro)
+//                                ->where( function($q) use ($rubro,$dato){
+//                                $q->where('nombre_practica','like',"%$dato%")
+//                            )};
+//        }
+
     }
 
 }

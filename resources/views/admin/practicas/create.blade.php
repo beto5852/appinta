@@ -20,7 +20,6 @@
                 <div class="form-group">
                     {{ Form::hidden('user_id',Auth::user()->id,null,['class' => 'form-control'])}}
                 </div>
-
             </div>
             <div class="modal-footer">
                 {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}

@@ -98,7 +98,7 @@
                         {!! $genero->render() !!}
                         {!! $prac->render() !!}
                         {!! $activ->render() !!}
-                        {!! $chartpract->render() !!}}
+                        {!! $chartpract->render() !!}
                     </div>
                     <div class="box-footer">
                     </div>

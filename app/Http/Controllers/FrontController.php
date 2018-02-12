@@ -68,7 +68,7 @@ class FrontController extends Controller
 
         $practicas = Practica::with(['meses' => function ($query) {
             $query->where('mes_id','=',Carbon::now()->format('m'));
-        },'semanas'])->paginate(3);
+        },'semanas'])->paginate(6);
 
 
 //        dd($practicas);
@@ -129,7 +129,7 @@ class FrontController extends Controller
         
         $chartpract = Charts::database($practica, 'bar', 'highcharts')
             ->title("Etapa de practica")
-            ->elementLabel("etapas por practica")
+            ->elementLabel("Numero de etapas en esta practica")
             ->height(300)
             ->width(300)
             ->responsive(true)
@@ -160,11 +160,11 @@ class FrontController extends Controller
             ->width(300)
             ->responsive(true)
             ->groupBy('name');
-        
-       
-        
 
-      return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract'));
+      
+
+
+        return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract'));
     }
 
 

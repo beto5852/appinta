@@ -11,83 +11,73 @@ function cambiar_fecha_grafica(){
 
 
 
-function cargar_grafica_barras(anio,mes){
+function cargar_grafica_pie() {
 
-var options={
-	 chart: {
-	 	    renderTo: 'div_grafica_barras',
-            type: 'column'
+    var options={
+        // Build the chart
+
+        chart: {
+            renderTo: 'div_grafica_pie',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
         },
         title: {
-            text: 'Numero de Registros en el Mes'
+            text: 'Tecnológias usadas en prácticas agricolas'
         },
         credits: {
             enabled: false
         },
-        subtitle: {
-            text: 'APPINTA'
-        },
-        xAxis: {
-            categories: [],
-             title: {
-                text: 'dias del mes'
-            },
-            crosshair: true
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'REGISTROS AL DIA'
-            }
-        },
         tooltip: {
-            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-                '<td style="padding:0"><b>{point.y} </b></td></tr>',
-            footerFormat: '</table>',
-            shared: true,
-            useHTML: true
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
         },
         plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
             }
         },
+        credits: {
+            enabled: false
+        },
         series: [{
-            name: 'registros',
+            name: 'Total',
+            colorByPoint: true,
             data: []
-
         }]
+
+    }
+
+    $("#div_grafica_pie").html( $("#cargador_empresa").html() );
+
+    var url = "grafica_publicaciones";
+
+    navigation: {
+        buttonOptions: {
+            enabled: false
+        }
+    }
+    $.get(url,function(result){
+        var datos= jQuery.parseJSON(result);
+        var tipos=datos.tipos;
+        var totattipos=datos.totaltipos;
+        var numeropublicaciones=datos.numerodepract;
+
+        for(i=0;i<=totattipos-1;i++){
+            var idTP=parseInt(tipos[i].id);
+            var objeto= {name: tipos[i].nombre_tecnologia, y:numeropublicaciones[idTP] };
+            options.series[0].data.push( objeto );
+        }
+        //options.title.text="aqui e podria cambiar el titulo dinamicamente";
+        chart = new Highcharts.Chart(options);
+
+    })
 }
-
-$("#div_grafica_barras").html( $("#cargador_empresa").html() );
-
-var url = "grafica_registros/"+anio+"/"+mes+"";
-
-
-$.get(url,function(resul){
-var datos= jQuery.parseJSON(resul);
-var totaldias=datos.totaldias;
-var registrosdia=datos.registrosdia;
-var i=0;
-	for(i=1;i<=totaldias;i++){
-	
-	options.series[0].data.push( registrosdia[i] );
-	options.xAxis.categories.push(i);
-
-
-	}
-
-
- //options.title.text="aqui e podria cambiar el titulo dinamicamente";
- chart = new Highcharts.Chart(options);
-
-})
-
-
-}
-
 
 
 function cargar_grafica_lineas(anio,mes){

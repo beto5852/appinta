@@ -47,7 +47,7 @@
 
         <div class="col-md-12">
             <div class="row">
-                @if($practica->fotos->count())
+                @if($practica->fotos->count() > 1)
                     <div class="col-md-8">
                         <div class="box box-primary">
                             <div class="box-body">
@@ -196,7 +196,7 @@
 
 
                         <div class="form-group {{$errors->has('etapa_id') ? 'has-error' : ''}}">
-                            {{ Form::label('etapa_id','Etapa en la que se encuentra el cultivo '.$practica->cultivo->nombre_cultivo) }}
+                            {{ Form::label('etapa_id','Etapa en la que se encuentra el cultivo ') }}
                             {{ Form::select('etapa_id[]',$etapas,old('etapas',$my_etapas),['class'=>'form-control select2','multiple','value' => 'old($my_etapas)']) }}
                             {!! $errors->first('etapa_id','<span class="help-block">:message</span>') !!}
                         </div>

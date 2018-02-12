@@ -43,11 +43,10 @@ class GraficasController extends Controller
 
     public function total_publicaciones(){
 
-        $tipotecnologia=Tecnologia::all();
+        $tipotecnologia=Tecnologia::all('nombre_tecnologia','id');
         $ctp=count($tipotecnologia);
         $practicas=Practica::all();
         $ct =count($practicas);
-
         for($i=0;$i<=$ctp-1;$i++){
             $idTP=$tipotecnologia[$i]->id;
             $numerodepract[$idTP]=0;
@@ -58,8 +57,8 @@ class GraficasController extends Controller
             $numerodepract[$idTP]++;
         }
 
-        
         $data=array("totaltipos"=>$ctp,"tipos"=>$tipotecnologia, "numerodepract"=>$numerodepract);
+
         return json_encode($data);
 
     }

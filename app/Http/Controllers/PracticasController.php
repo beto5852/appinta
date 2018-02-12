@@ -79,9 +79,7 @@ class PracticasController extends Controller
 
 //        dd($request->all());
 
-        $this->validate($request , [
-            'nombre_practica' => 'required|min:3|max:100',
-        ]);
+        $this->validate($request,['nombre_practica' => 'required|min:3|max:100']);
 
         $practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')]);
 
