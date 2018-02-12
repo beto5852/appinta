@@ -6,6 +6,7 @@ use App\Http\Requests;
 use App\Role;
 use App\Rubro;
 use App\User;
+use App\Policies\UserPolicy;
 use Storage;
 use Session;
 use Redirect;
@@ -107,7 +108,7 @@ class UsersController extends Controller
         //
         $user = User::findOrFail($id);
 
-        $this->authorize($user);
+        $this->authorize('edit',$user);
 
 
         return view('admin.users.edit',compact('user'));

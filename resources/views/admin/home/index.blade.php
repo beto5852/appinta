@@ -254,8 +254,8 @@
                         <div class="timeline-body">
                           {!! substr($practica->contenido,0,200) !!}
                         </div>
-                        @foreach( $practica->tags as $tag)
-                        <span class="time"><i class="fa fa-tags"></i> {{$tag->nombre_tags}}</span>
+                        @foreach( $practica->etapas as $etapa)
+                        <span class="time"><i class="fa fa-tags"></i> {{$etapa->nombre_etapa}}</span>
                         @endforeach
                         <div class="timeline-footer">
                           <a href="{{'admin/timelinemore'}}/{{$practica->slug}}" class="btn btn-primary btn-xs">Leer mas</a>
