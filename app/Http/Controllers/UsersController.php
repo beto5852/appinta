@@ -107,11 +107,20 @@ class UsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
-
         $this->authorize('edit',$user);
 
+        $contador=count($user);
 
-        return view('admin.users.edit',compact('user'));
+        if($contador>0){
+
+            return view('admin.users.edit',compact('user'));
+        }
+        else
+        {
+           return redirect()->route('admin.users.index')->with('message','el usuario con ese id no existe o fue borrado"');
+        }
+
+//        return view('admin.users.edit',compact('user'));
         //dd($user);
     }
     /**

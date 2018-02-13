@@ -123,7 +123,7 @@ class Practica extends Model
 
 
 
-    public function scopeBusqueda($query,$rubro,$tecnologia,$cultivo,$dato =""){
+//    public function scopeBusqueda($query,$rubro,$tecnologia,$cultivo,$dato =""){
 
 
 //        if(empty($rubro)){
@@ -137,6 +137,30 @@ class Practica extends Model
 //                            )};
 //        }
 
+//    }
+
+    public function scopeBusqueda($query,$cultivo,$dato ="")
+    {
+
+        if(empty($rubro)){
+            $resultado= $query->where('nombre_practica','like','%'.$dato.'%')
+                ->orWhere('apellidos','like', '%'.$dato.'%')
+                ->orWhere('email','like', '%'.$dato.'%');
+        }
+        else{
+
+            //select * from users where pais = $pais  and (nombres like %$dato% or apellidos like %$dato%  or email like  %$dato% )
+            $resultado= $query->where("cultivo_id","=",$cultivo)
+                ->Where(function($q) use ($cultivo,$dato)  {
+                    $q->where('nombre_practica','like','%'.$dato.'%')
+                        ->orWhere('apellidos','like', '%'.$dato.'%')
+                        ->orWhere('email','like', '%'.$dato.'%');
+                });
+
+        }
+
+        return  $resultado;
     }
+
 
 }
