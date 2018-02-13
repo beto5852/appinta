@@ -8,15 +8,18 @@
 
             <div class="pull-left image">
 
+
                 @if(empty(Auth::user()->perfil))
                     @if(Auth::user()->sexo == 'masculino')
                         <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                    @elseif(Auth::user()->sexo == 'femenino')
+                    @else
                         <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                     @endif
+                @else
+                    <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">
+                @endif
 
-                 @else
-               <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">    @endif
+
 
             </div>
 
@@ -28,15 +31,28 @@
         </div>
 
         <!-- search form (Optional) -->
+
+
+        @if(Auth::user()->type=='admin')
        <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Busqueda...">
-              <span class="input-group-btn">
+
+                {!! Form::open(['url' => ['admin/busqueda'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
+
+                <div class="input-group pull-right">
+                    {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar practica','aria-describedby' => 'search'])!!}
+                </div>
+
+                  <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
+                {!! Form::close() !!}
+
+
             </div>
         </form>
+        @endif
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
@@ -47,10 +63,10 @@
             <li {{request()->is('admin') ? 'class=active': ''}}>
                 <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
             <!-- Optionally, you can add icons to the links -->
-
+            @if(Auth::user()->type=='admin')
             <li {{request()->is('admin/home/busqueda') ? 'class=active': ''}}>
                 <a href="{{url('admin/busqueda')}}"><i class="fa fa-search"></i> <span>buscar práctica agricola</span></a></li>
-
+            @endif
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
                 <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Práctica del mes</span></a></li>
