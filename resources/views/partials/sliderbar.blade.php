@@ -46,11 +46,14 @@
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin') ? 'class=active': ''}}>
                 <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
+            <!-- Optionally, you can add icons to the links -->
 
+            <li {{request()->is('admin/home/busqueda') ? 'class=active': ''}}>
+                <a href="{{url('admin/busqueda')}}"><i class="fa fa-search"></i> <span>buscar práctica agricola</span></a></li>
 
-             <!-- Optionally, you can add icons to the links -->
+            <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
-                <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
+                <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Práctica del mes</span></a></li>
 
             <!--  Menu USUARIOS -->
             @if(Auth::user()->type=='admin')
@@ -150,11 +153,10 @@
 
                 <li class="treeview">
                     <a href="">
-                        <i class="fa fa-fw fa-database"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-pie-chart"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{asset('admin/reportes')}}" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
-                        <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(4,1);" ><i class="fa fa-circle-o"></i> Graficas </a></li>
+                        <li class="active"><a href="{{asset('admin/reportes')}}"><i class="fa fa-circle-o"></i> Gráficas </a></li>
 
                     </ul>
                 </li>
