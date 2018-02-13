@@ -135,21 +135,6 @@
             </li>
 
 
-            <!--  Menu TAGS -->
-
-            <li class="treeview" {{request()->is('admin/tags') ? 'active': ''}}>
-                <a href="#"><i class="fa fa-tags"></i> <span> Tags</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                     <li><a href="#" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
-                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Tags</a></li>
-                </ul>
-            </li>
-
-                <!--  Menu TAGS -->
 
                 <li class="treeview">
                     <a href="">
