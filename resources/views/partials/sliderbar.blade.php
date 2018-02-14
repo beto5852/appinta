@@ -48,7 +48,12 @@
                 <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
 
 
-             <!-- Optionally, you can add icons to the links -->
+            <!-- Optionally, you can add icons to the links -->
+            <li {{request()->is('admin/home/busqueda') ? 'class=active': ''}}>
+                <a href="{{url('admin/busqueda')}}"><i class="fa  fa-search"></i> <span>Practicas agricolas</span></a></li>
+
+
+            <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
                 <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
