@@ -51,6 +51,7 @@
                     <th>Etapas</th>
                     <th>Mes</th>
                     <th>Semanas</th>
+                    <th>Imagen</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -65,7 +66,25 @@
                         <td>{{  $practica->user['name']}}</td>
 
                         <td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>
-                        @if(empty($practica->path))
+
+                        <td>{{  $practica->rubro['nombre_rubro']}}</td>
+
+                        <td>{{  $practica->cultivo['nombre_cultivo']}}</td>
+
+                        @foreach($practica->etapas as $etapa)
+                        <td> {{$etapa->nombre_etapa}}</td><br>
+                        @endforeach
+
+                        @foreach($practica->meses as $mes)
+                            <td> {{$mes->nombre_mes}}</td><br>
+                        @endforeach
+                        @foreach($practica->semanas as $semana)
+
+                            <td><span class="label label-primary">{{$semana->nombre_semana}}</span></td><br>
+                        @endforeach
+
+
+                      @if(empty($practica->path))
                             <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>
                         @else
                             <td><img src="{{asset('img/')}}/{{$practica->path}}" style = "width: 100px;"></td>
