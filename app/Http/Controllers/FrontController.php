@@ -23,6 +23,13 @@ class FrontController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin',['only' => ['reportes','edit','update','create','destroy']]);
+    }
+
     public function index()
     {
         //
