@@ -88,6 +88,7 @@
         </div>
 
         {!! Form::open(['url' => ['admin/practicas',$practica], 'method' => 'PUT','enctype' => 'multipart/form-data','files'=> 'true']) !!}
+        {{csrf_field()}}
         <div class="col-md-8">
             <div class="box box-primary">
 

@@ -71,7 +71,7 @@ $style = [
                 <tr>
                     <td style="{{ $style['email-masthead'] }}">
                         <a style="{{ $fontFamily }} {{ $style['email-masthead_name'] }}" href="{{ url('/') }}" target="_blank">
-                            {{ config('app.name') }}
+                            Instituto Nicaragüense de Tecnología Agropecuaria (INTA)
                         </a>
                     </td>
                 </tr>
@@ -101,7 +101,7 @@ $style = [
                                                         <a href="{{ route('activation',$user->token) }}"
                                                            style="{{ $fontFamily }} {{ $style['button'] }} {{ $style[$actionColor] }}"
                                                            class="button"
-                                                           target="_blank"><span>Activar Cuenta</span>
+                                                           target="_blank"><span>Activa tu cuenta</span>
                                                         </a>
                                                     </td>
                                                 </tr>
@@ -110,7 +110,7 @@ $style = [
 
                                                                <!-- Salutation -->
                                                 <p style="{{ $style['paragraph'] }}">
-                                                    Saludos,<br>{{ config('app.name') }}
+                                                    Te Saluda ,<br> el Instituto Nicaragüense de Tecnología Agropecuaria (INTA)
                                                 </p>
 
                                                 <!-- Sub Copy -->

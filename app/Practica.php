@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Practica extends Model
 {
 
-    protected  $guarded = [];
+//    protected  $guarded = [];
 
     protected $table   = 'practicas';
     use Sluggable;
@@ -29,7 +29,7 @@ class Practica extends Model
             // dd($path);
             $nombre = $path->getClientOriginalName();
             $this->attributes['path'] = $nombre;
-            Storage::disk('img')->put($nombre, \File::get($path));
+            Storage::disk('local')->put($nombre, \File::get($path));
             /* $nombre_route = time().'_'.$path->getClientOriginalName();
         Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }

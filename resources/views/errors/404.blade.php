@@ -29,9 +29,9 @@
     <div class="login-logo" >
 
         @if(Auth::check())
-           <a href="{{asset('/admin')}}"><b>Error 404 </b> <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
+           <a href="{{asset('/admin')}}"><b>Error 404 </b> Página no encontrada<br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
         @else
-            <a href="{{asset('/')}}"><b>Error 404 </b> <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
+            <a href="{{asset('/')}}"><b>Error 404 </b> Página no encontrada<br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
         @endif
     </div>
 

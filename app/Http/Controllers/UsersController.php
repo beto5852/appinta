@@ -167,10 +167,28 @@ class UsersController extends Controller
     {
         //
         $user = User::find($id);
-        $user->delete();
+
+        $this->authorize('destroy',$user);
+
+        $contador=count($user);
+
+        if($contador>0){
+
+            $user->delete();
+
+            Session::flash('message','Usuario eliminado correctamente');
+            return redirect::to('admin/users');
+        }
+        else
+        {
+            Session::flash('message','Usuario no encontrado');
+            return redirect::to('admin/users');
+        }
+
+
+
         
-        Session::flash('message','Usuario eliminado correctamente');
-        return redirect::to('admin/users');
+
         //dd($id);
     }
 }
