@@ -83,9 +83,11 @@
                 </td>
             </tr>
         @endforeach
+
         </tbody>
+
     </table>
-    <ul class="pager"><center>{{ $users->links() }}</center></ul>
+    <center>{{ $users->links() }}</center>
 
 
 @endsection

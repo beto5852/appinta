@@ -51,9 +51,10 @@
                     <th>Acciones</th>
                 </tr>
                 </thead>
-                <tbody>
 
+                <tbody>
                 @foreach($practicas as $practica)
+
                     <tr class="info">
                         <td>{{  $practica->id }}</td>
                         <td>{{  $practica->nombre_practica}}</td>
@@ -83,8 +84,9 @@
                 </tbody>
 
 
+
             </table>
-            <center>{{ $practicas->links() }}</center>
+          <center>{{ $practicas->links() }}</center>
         </div>
         <!-- /.box-body -->
     </div>
