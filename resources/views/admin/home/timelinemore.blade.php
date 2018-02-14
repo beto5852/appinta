@@ -181,8 +181,8 @@
                             <article>
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
-                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
+                                        <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia['nombre_tecnologia'] }}
+                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user['name']}}
 
                                        
 
