@@ -195,10 +195,8 @@ class FrontController extends Controller
             ->responsive(true)
             ->groupBy('edad');
 
-      
-
-
-        return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract','edad'));
+      return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract','edad'));
+        
     }
 
 
