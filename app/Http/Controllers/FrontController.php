@@ -134,18 +134,26 @@ class FrontController extends Controller
             ->groupByDay();
 
 
-        $practica = DB::table('practicas')
-            ->leftjoin('etapa_practica','practicas.id','etapa_practica.practica_id')
-            ->leftjoin('etapas','etapa_practica.etapa_id','etapas.id')
-            ->distinct()
+
+        $practis = Practica::with(['etapas' => function ($query) {
+            $query->distinct()
             ->whereNotNull('nombre_etapa')
-            ->select('practicas.nombre_practica','etapas.nombre_etapa')
-            ->orderBy('nombre_etapa', 'desc')
-            ->get();
+                ->orderBy('nombre_etapa', 'desc');
+        }])->get();
+
+
+//        $practica = DB::table('practicas')
+//            ->leftjoin('etapa_practica','practicas.id','etapa_practica.practica_id')
+//            ->leftjoin('etapas','etapa_practica.etapa_id','etapas.id')
+//            ->distinct()
+//            ->whereNotNull('nombre_etapa')
+//            ->select('practicas.nombre_practica','etapas.nombre_etapa')
+//            ->orderBy('nombre_etapa', 'desc')
+//            ->get();
 
 //        dd($practica);
         
-        $chartpract = Charts::database($practica, 'bar', 'highcharts')
+        $chartpract = Charts::database($practis, 'bar', 'highcharts')
             ->title("Etapa de practica")
             ->elementLabel("Numero de etapas en esta practica")
             ->height(300)
