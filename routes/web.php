@@ -69,6 +69,9 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
         'as'    => 'administrador',
     ]);
 
+
+    Route::get('busqueda','FrontController@busqueda')->name("admin.home.busqueda");
+    
     Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
 
     Route::get('timelinemore/{slug}','FrontController@timelinemore')->name("admin.home.timelinemore");

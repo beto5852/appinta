@@ -33,6 +33,17 @@ class FrontController extends Controller
         return view('index', compact('practicas'));
     }
 
+    public function busqueda(Request $request)
+    {
+        //mostrar algunas practicas
+
+         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
+
+
+        return view("admin.home.busqueda",['practicas' => $practicas]);
+    }
+
+
     public function timeline()
     {
         //
@@ -222,12 +233,7 @@ class FrontController extends Controller
 
 
 
-    public function searchPracticas($name)
-    {
-        $practicas = Practica::scopeSearchPractica($name)->get();
-        dd($practicas);
-    }
-
+ 
     /**
      * Show the form for creating a new resource.
      *

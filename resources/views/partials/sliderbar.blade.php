@@ -8,18 +8,15 @@
 
             <div class="pull-left image">
 
-
                 @if(empty(Auth::user()->perfil))
                     @if(Auth::user()->sexo == 'masculino')
                         <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                    @else
+                    @elseif(Auth::user()->sexo == 'femenino')
                         <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                     @endif
-                @else
-                    <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">
-                @endif
 
-
+                 @else
+               <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">    @endif
 
             </div>
 
@@ -31,28 +28,15 @@
         </div>
 
         <!-- search form (Optional) -->
-
-
-        @if(Auth::user()->type=='admin')
        <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
-
-                {!! Form::open(['url' => ['admin/busqueda'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
-
-                <div class="input-group pull-right">
-                    {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar practica','aria-describedby' => 'search'])!!}
-                </div>
-
-                  <span class="input-group-btn">
+                <input type="text" name="q" class="form-control" placeholder="Busqueda...">
+              <span class="input-group-btn">
                 <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
                 </button>
               </span>
-                {!! Form::close() !!}
-
-
             </div>
         </form>
-        @endif
         <!-- /.search form -->
 
         <!-- Sidebar Menu -->
@@ -62,14 +46,11 @@
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin') ? 'class=active': ''}}>
                 <a href="/admin"><i class="fa fa-home"></i> <span>INICIO</span></a></li>
-            <!-- Optionally, you can add icons to the links -->
-            @if(Auth::user()->type=='admin')
-            <li {{request()->is('admin/home/busqueda') ? 'class=active': ''}}>
-                <a href="{{url('admin/busqueda')}}"><i class="fa fa-search"></i> <span>buscar práctica agricola</span></a></li>
-            @endif
-            <!-- Optionally, you can add icons to the links -->
+
+
+             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
-                <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Práctica del mes</span></a></li>
+                <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
             <!--  Menu USUARIOS -->
             @if(Auth::user()->type=='admin')
@@ -151,13 +132,29 @@
             </li>
 
 
+            <!--  Menu TAGS -->
+
+            <li class="treeview" {{request()->is('admin/tags') ? 'active': ''}}>
+                <a href="#"><i class="fa fa-tags"></i> <span> Tags</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                </a>
+                <ul class="treeview-menu">
+                     <li><a href="#" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
+                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Tags</a></li>
+                </ul>
+            </li>
+
+                <!--  Menu TAGS -->
 
                 <li class="treeview">
                     <a href="">
-                        <i class="fa fa-pie-chart"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-fw fa-database"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{asset('admin/reportes')}}"><i class="fa fa-circle-o"></i> Gráficas </a></li>
+                        <li class="active"><a href="{{asset('admin/reportes')}}" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
+                        <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(4,1);" ><i class="fa fa-circle-o"></i> Graficas </a></li>
 
                     </ul>
                 </li>

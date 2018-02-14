@@ -78,9 +78,11 @@ class Practica extends Model
         return $this->belongsTo(Variedad::class);
     }
 
-    public function scopeSearch($query, $nombre_practica)
+    public function scopeSearch($query, $dato)
     {
-        return $query->where('nombre_practica', 'LIKE', "%$nombre_practica%");
+        return $query->where('nombre_practica', 'LIKE', "%$dato%")
+                  ->orWhere('textomedio','like', "%$dato%")
+                       ->orWhere('contenido','like', "%$dato%");
     }
 
     public function setCultivoIdAttribute($cultivo)

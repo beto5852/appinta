@@ -159,22 +159,6 @@ class PracticasController extends Controller
         //dd($id);
     }
 
-    public function buscar_practica($cultivo,$dato){
-
-        $practicas= Practica::Busqueda($cultivo,$dato)->paginate(25);
-
-
-        $cultivos=Rubro::all();
-
-        $cultivosel=$cultivos->find($cultivo);
-
-
-
-        return view('home.busqueda')->with("cultivos", $cultivos )->with("cultivosel", $cultivosel )
-            ->with("practicas", $practicas );
-
-
-    }
 
 
 }
