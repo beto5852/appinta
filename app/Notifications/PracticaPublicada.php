@@ -47,7 +47,7 @@ class PracticaPublicada extends Notification
         return (new MailMessage)
                     ->subject('Nueva práctica publicada')
                     ->line($notifiable->name.', Hemos publicado una nueva práctica argricola')
-                    ->action($this->practica->nombre_practica, route('practicas.show',$this->practica))
+                    ->action($this->practica->nombre_practica, route('admin.home.timelinemore',$this->practica->slug))
                     ->line('Gracias por actualizarte con nosotros');
     }
 
@@ -61,7 +61,7 @@ class PracticaPublicada extends Notification
     {
         return [
             //
-            'link' => url('admin/practicas/'.$this->practica->id),
+            'link' => url('admin/timelinemore/'.$this->practica->slug),
             'text' => 'Hemos publicado una práctica agricola: '.$this->practica->nombre_practica,
         ];
     }

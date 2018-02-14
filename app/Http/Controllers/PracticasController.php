@@ -133,12 +133,24 @@ class PracticasController extends Controller
     public function update(StorePracticaRequest $request, Practica $practica)
     {
 
-        $practica->update($request->all());
+        if ($practica->update($request->all())) {
+
+            \Event::fire(new CrearPractica($practica));
+        }
+        
+
+
+
         $practica->syncEtapa($request->get('etapa_id'));
         $practica->meses()->sync($request->get('mes_id'));
         $practica->semanas()->sync($request->get('semana_id'));
 
         return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
+
+
+
+
+
 
     }
 
