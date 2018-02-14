@@ -31,6 +31,7 @@
                         {!! $chart->render() !!}
                         {!! $userdia->render() !!}
                         {!! $genero->render() !!}
+                        {!! $edad->render() !!}
                         {!! $prac->render() !!}
                         {!! $activ->render() !!}
                         {!! $chartpract->render() !!}

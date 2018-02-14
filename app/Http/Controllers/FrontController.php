@@ -178,11 +178,19 @@ class FrontController extends Controller
             ->width(300)
             ->responsive(true)
             ->groupBy('name');
+        
+        $edad = Charts::database( User::all(), 'bar', 'highcharts')
+            ->title("% de usuarios por edad")
+            ->elementLabel("Edad por usuarios")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('edad');
 
       
 
 
-        return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract'));
+        return view('admin.reportes.index',compact('anio','mes','chart','totaluser','genero','userdia','prac','activ','chartpract','edad'));
     }
 
 

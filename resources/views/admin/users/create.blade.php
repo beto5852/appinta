@@ -72,12 +72,12 @@
                             <div class="input-group-addon">
                                 <i class="fa fa-calendar"></i>
                             </div>
-                            {!! Form::text('nacimiento',null,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 '])!!}
+                            {!! Form::text('edad',null,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 '])!!}
                         </div>
                         <!-- /.input group -->
                     </div>
 
-
+j
 
                     <div class="form-group">
                         {!! Form::label('email','Correo electrónico') !!}
