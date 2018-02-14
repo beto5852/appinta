@@ -107,7 +107,7 @@ class UsersController extends Controller
     {
         //
         $user = User::findOrFail($id);
-//        $this->authorize('edit',$user);
+        $this->authorize('edit',$user);
     
         $contador=count($user);
 

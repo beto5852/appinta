@@ -27,9 +27,9 @@ class UserPolicy
         }
     }
 
-    public function edit(User $user, User $user)
+    public function edit(User $authUser, User $user)
     {
-        return $user->id === $user->id;
+        return $authUser->id === $user->id;
     }
     public function update(User $authUser, User $user)
     {
