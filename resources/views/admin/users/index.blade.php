@@ -35,7 +35,7 @@
             {!! Form::close() !!}
         </div>
     </div>
-
+    <center>{{ $users->links() }}</center>
     <table class="table table-striped table-hover" >
         <thead>
         <tr >

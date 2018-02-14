@@ -40,14 +40,17 @@
 
         <!-- /.box-header -->
         <div class="box-body">
+            <center>{{ $practicas->links() }}</center>
             <table id="practicas-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Práctica</th>
-                    {{--<th>creado por:</th>--}}
-                    {{--<th>Tecnológia</th>--}}
-                    <th>Imagen</th>
+                    <th>Tecnológia</th>
+                    <th>Rubro</th>
+                    <th>Cultivo</th>
+                    <th>Etapas</th>
+                    <th>Mes</th>
+                    <th>Semanas</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -56,10 +59,11 @@
                 @foreach($practicas as $practica)
 
                     <tr class="info">
-                        <td>{{  $practica->id }}</td>
+
                         <td>{{  $practica->nombre_practica}}</td>
-                        <!--  <td>{!! $practica->contenido !!}</td>-->
+
                         <td>{{  $practica->user['name']}}</td>
+
                         <td>{{  $practica->tecnologia['nombre_tecnologia']}}</td>
                         @if(empty($practica->path))
                             <td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>
