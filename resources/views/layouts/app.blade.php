@@ -24,7 +24,7 @@
 
     <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
+    <link rel="stylesheet" href="{{asset('/css/fotos.css')}}">
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([

@@ -81,7 +81,14 @@ class PracticasController extends Controller
 
         $this->validate($request,['nombre_practica' => 'required|min:3|max:100']);
 
-        $practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')]);
+
+
+        if ($practica = Practica::create(['nombre_practica' => $request->get('nombre_practica')])) {
+
+            \Event::fire(new CrearPractica($practica));
+        }
+
+
 
         Session::flash('message','Practica Creada');
         return redirect()->route('admin.practicas.edit',$practica->id);
@@ -133,13 +140,7 @@ class PracticasController extends Controller
     public function update(StorePracticaRequest $request, Practica $practica)
     {
 
-        if ($practica->update($request->all())) {
-
-            \Event::fire(new CrearPractica($practica));
-        }
-        
-
-
+        $practica->update($request->all());
 
         $practica->syncEtapa($request->get('etapa_id'));
         $practica->meses()->sync($request->get('mes_id'));

@@ -49,10 +49,11 @@
                             <article>
                                 {{--<h2>{{$practicas->nombre_practica}}</h2>--}}
                                 <div class="row">
-                                   {{--  <div class="col-md-8">
-                                        <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia->nombre_tecnologia}}
-                                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user->name}}
-                                    </div> --}}
+                                     <div class="col-md-8">
+                                         <i class="fa fa-folder-open" aria-hidden="true"></i>{{$practicas->tecnologia['nombre_tecnologia'] }}
+                                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>{{$practicas->user['name']}}
+
+                                     </div>
                                     <div class="col-md-4">
                                        
                                          <span class="time pull-right" ><i class="fa fa-tags"></i>
@@ -84,14 +85,15 @@
 
                     </div>
 
-                      @if(!empty($practicas->video))
-
-                       <div class="form-group ">
-                           <div class="video">
-                            <iframe width="100%" height="470" src="{!! $practicas->video !!}" frameborder="0" allowfullscreen></iframe>
-                           </div>   
-                        </div>  
-                    @endif 
+                    @if(!empty($practicas->video))
+                        <div class="col-md-12">
+                        <div class="video" >
+                            {!! $practicas->video !!}
+                            {{--<iframe width="560" height="315" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                            {{--<iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                        </div>
+                        </div>
+                    @endif
 
                 </div>
             </div>
@@ -108,7 +110,7 @@
                             <section class="content-header">
 
                                 <h1>
-                                    Galeria de fotos
+                                    Multimedia
                                     {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
                                 </h1>
                                 <div class="row margin-bottom">
@@ -125,6 +127,17 @@
                                     Galeria de fotos
                                     {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
                                 </h1>
+
+                                @if(!empty($practicas->video))
+
+                                    <div class="video">
+                                        {!! $practicas->video !!}
+                                        {{--<iframe width="560" height="315" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                        {{--<iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                    </div>
+                                @endif
+
+
                                 <div class="container gal-container">
                                     @foreach($practicas->fotos as $key => $foto)
                                         <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
@@ -203,6 +216,13 @@
                                     <img src="{{asset('img/')}}/{{$practicas->path}}" class="img-responsive" width="100%">
                                 @endif
                                 <br>
+
+                                {{--@if(!empty($practicas->video))--}}
+
+                                    {{--<div class="video">--}}
+                                        {{--{!! $practicas->video !!}--}}
+                                    {{--</div>--}}
+                                {{--@endif--}}
 
                             </article>
                         </section>

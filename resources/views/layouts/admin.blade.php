@@ -160,17 +160,11 @@ desired effect
 <!-- AdminLTE App -->
 <script src="{{asset('/adminlte/js/app.min.js')}}"></script>
 
-<!-- bootstrap datepicker -->
-<script src="{{asset('/adminlte/plugins/datepicker/bootstrap-datepicker.js')}}"></script>
-<!-- Select2 -->
 
 <script src="{{asset('/adminlte/plugins/select2/select2.full.min.js')}}"></script>
 
 <script src="{{asset('/dropzone/dropzone.js')}}"></script>
 
-<script src="{{asset('/js/highcharts.js')}}"></script>
-<script src="{{asset('/js/graficas.js')}}"></script>
-<script src="{{asset('/js/sistemalaravel.js')}}"></script>
 <!-- date-range-picker -->
 <script src="{{asset('/js/moment.min.js')}}"></script>
 

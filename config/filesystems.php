@@ -44,7 +44,7 @@ return [
     'disks' => [
 
 
-       'local' => [
+       'img' => [
             'driver' => 'local',
             'root' => public_path('img'),
         ],

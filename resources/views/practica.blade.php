@@ -36,79 +36,83 @@
 
     </div>
 
-    <div class="jumbotron col-md-4">
 
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Tecnologias</h3>
-            </div>
-            <div class="panel-body">
 
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="circle" src="{{asset('img/cultivomaiz.jpg')}}" alt="icon">
-                        </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading">Tile with avatar</h4>
+    <div class="col-md-4">
 
-                            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus</p>
-                        </div>
-                    </div>
-                    <div class="list-group-separator"></div>
-                    <div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="circle" src="{{asset('img/cultivomaiz.jpg')}}" alt="icon">
-                        </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading">Tile with another avatar</h4>
+        <div class="box box-primary">
 
-                            <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-                        </div>
-                    </div>
-                    <div class="list-group-separator"></div>
+            <div class="box-body">
+
+                <div class="form-group ">
+                    @if($practicas->fotos->count() === 1)
+                        <section class="content-header">
+
+                            <h1>
+                                Multimedia
+                                {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
+                            </h1>
+                            <div class="row margin-bottom">
+                                <div class="col-sm-6">
+                                    <img width="100%" src="{{$practicas->fotos->first()->url }}" alt="Photo">
+                                </div>
+                            </div>
+
+                        </section>
+                    @elseif($practicas->fotos->count() > 1)
+
+                        <section>
+                            <h1>
+                                Galeria de fotos
+                                {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
+                            </h1>
+                            @if(!empty($practicas->video))
+
+                                <div class="video">
+                                    {!! $practicas->video !!}
+                                    {{--<iframe width="560" height="315" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                    {{--<iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                </div>
+                            @endif
+
+
+
+                            <div class="container gal-container">
+                                @foreach($practicas->fotos as $key => $foto)
+                                    <div class="col-md-8 col-sm-12 co-xs-12 gal-item">
+                                        <div class="col-md-5">
+                                            <a href="#" data-toggle="modal" data-target="#{{$key}}">
+
+                                                <img src="{{$foto->url}}" class="img-responsive" width="100%">
+
+                                            </a>
+                                            <div class="modal fade" id="{{$key}}" tabindex="-1" role="dialog">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                        <div class="modal-body">
+                                                            <img src="{{$foto->url}}" class="img-responsive" width="100%">
+                                                        </div>
+                                                        <div class="col-md-12 description">
+                                                            <h4>{{$practicas->nombre_practica}}</h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+
+                        </section>
+
+                    @endif
+
                 </div>
 
             </div>
         </div>
-    </div>
 
-
-    <div class="jumbotron col-md-4">
-
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">Proximas Labores</h3>
-            </div>
-            <div class="panel-body">
-
-                <div class="list-group">
-                    <div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="circle" src="{{asset('img/cultivomaiz.jpg')}}" alt="icon">
-                        </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading">Tile with avatar</h4>
-
-                            <p class="list-group-item-text">Donec id elit non mi porta gravida at eget metus</p>
-                        </div>
-                    </div>
-                    <div class="list-group-separator"></div>
-                    <div class="list-group-item">
-                        <div class="row-picture">
-                            <img class="circle" src="{{asset('img/cultivomaiz.jpg')}}" alt="icon">
-                        </div>
-                        <div class="row-content">
-                            <h4 class="list-group-item-heading">Tile with another avatar</h4>
-
-                            <p class="list-group-item-text">Maecenas sed diam eget risus varius blandit.</p>
-                        </div>
-                    </div>
-                    <div class="list-group-separator"></div>
-                </div>
-
-            </div>
-        </div>
     </div>
 
 

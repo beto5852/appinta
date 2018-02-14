@@ -75,8 +75,9 @@
                             <div class="box-body">
                                 <div class="form-group ">
                                     <div class="video">
-                                        {{--<iframe width="560" height="315" src="https://www.youtube.com/embed/U-cKfahpP6E" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
-                                        <iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        {!! $practica->video !!}
+                                        {{--<iframe width="560" height="315" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
+                                        {{--<iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
                                     </div>
                                 </div>
                             </div>
@@ -122,6 +123,12 @@
             <div class="col-md-4">
                 <div class="box box-primary">
                     <div class="box-body">
+
+                        <div class="form-group text-right">
+                            {{ Form::submit('Actualizar Práctica Agricola', ['class' => 'btn btn-primary btn-block']) }}
+                        </div>
+
+
                         <div class="form-group {{$errors->has('video') ? 'has-error' : ''}}">
                             {{ Form::label('Agregue el Video','Agregue url de video o audio') }}
                             {{ Form::textarea('video',old('video',$practica->video),['rows' => '3','class' => 'form-control','placeholder' => ''])}}
