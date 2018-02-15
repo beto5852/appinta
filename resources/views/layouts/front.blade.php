@@ -9,75 +9,116 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('meta-title','Prácticas | INTA')</title>
+    <!-- Favicons -->
+    <link href="img/favicon.png" rel="icon">
+    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+
+    <link rel="stylesheet" href={{asset("template/lib/bootstrap/css/bootstrap.min.css")}}>
 
 
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="description" content="@yield('meta-content','Esta es la aplicación de prácticas agricolas')">
+    <!-- Libraries CSS Files -->
+    <link rel="stylesheet" href={{asset("template/lib/animate/animate.min.css")}}>
+    <link rel="stylesheet" href={{asset("template/lib/font-awesome/css/font-awesome.min.css")}}>
+    <link rel="stylesheet" href={{asset("template/lib/ionicons/css/ionicons.min.css")}}>
+    <link rel="stylesheet" href={{asset("template/lib/magnific-popup/magnific-popup.css")}}>
 
-    <!-- Styles -->
-    <link href="{{asset('css/app.css')}}" rel="stylesheet" type="text/css" >
 
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/icon?family=Material+Icons">
+    <!-- Main Stylesheet File -->
+    <link rel="stylesheet" href={{asset("template/css/style.css")}}>
 
-    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" >
-    <link href="{{asset('css/bootstrap-material-design.min.css')}}" rel="stylesheet" type="text/css" >
-    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" >
 
-    <link href="{{asset('css/font-awesome.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
-
-    <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
         ]); ?>
     </script>
+
 </head>
 <body>
-    <div id="app">
+
+
+
+<!--==========================
+   Header
+ ============================-->
+<header id="header">
+    <div class="container">
+
+        <div id="logo" class="pull-left">
+            <h1><a href="#intro" class="scrollto">
+                    <img src="template/img/clients/logo-inta.png" width="45%" alt="auto"> </a></h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+            <!-- <a href="#intro"><img src="img/logo.png" alt="" title=""></a> -->
+        </div>
 
         @include('partials.navfront')
 
-        <div class="container">
+        <!-- #nav-menu-container -->
+    </div>
+</header><!-- #header -->
 
-            @yield('breadcrumb')
 
-            <div class="panel panel-primary">
-                <div class="panel-heading">
-                    <h3 class="panel-title"> @yield('title')</h3>
-                </div>
+<!--==========================
+   Intro Section
+ ============================-->
+<section id="intro">
 
-                <div class="panel-body">
-
-                    @yield('content')
-                </div>
-            </div>
-        </div>
+    <div class="intro-text">
+        <h2>Bienvenido</h2>
+        <p>Aplicación web de Prácticas Agrícolas
+        en base el ciclo productivo de Nicaragua</p>
+        <a href="#about" class="btn-get-started scrollto">Iniciemos</a>
     </div>
 
-<!-- Scripts -->
-<script src="https://npmcdn.com/tether@1.2.4/dist/js/tether.min.js"></script>
-<script src="https://npmcdn.com/bootstrap@4.0.0-alpha.5/dist/js/bootstrap.min.js"></script>
+    <div class="product-screens">
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <div class="product-screen-1 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.6s">
+            <img src="template/img/product-screen-1.png" alt="">
+        </div>
 
+        <div class="product-screen-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
+            <img src="template/img/product-screen-2.png" alt="">
+        </div>
 
-<script src="{{ asset('js/jquery-3.2.1.min.js') }}"></script>
+        <div class="product-screen-3 wow fadeInUp" data-wow-duration="0.6s">
+            <img src="template/img/product-screen-3.png" alt="">
+        </div>
+
+    </div>
+
+</section><!-- #intro -->
+
+<main id="main">
+
+    @yield('content')
+
+</main>
+@include('partials.footer')
+
+<a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 <script src="{{ asset('js/app.js') }}"></script>
 
+<!-- JavaScript Libraries -->
+<script src="{{ asset('template/lib/jquery/jquery.min.js') }}"></script>
+<script src="{{ asset('template/lib/jquery/jquery-migrate.min.js') }}"></script>
+<script src="{{ asset('template/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('template/lib/wow/wow.min.js') }}"></script>
+<script src="{{ asset('template/lib/superfish/hoverIntent.js') }}"></script>
+<script src="{{ asset('template/lib/superfish/superfish.min.js') }}"></script>
+<script src="{{ asset('template/lib/magnific-popup/magnific-popup.min.js') }}"></script>
 
+<!-- Contact Form JavaScript File -->
+<script src="{{ asset('template/contactform/contactform.js') }}"></script>
 
-<script src="{{ asset('js/material.min.js') }}"></script>
-<script src="{{ asset('js/ripples.min.js') }}"></script>
-<script src="{{ asset('js/bootstrap.min.js') }}"></script>
+<!-- Template Main Javascript File -->
+<script src="{{ asset('template/js/main.js') }}"></script>
 
-    <script>
-        $(document).ready(function () {
-            $.material.init();
-        })
-    </script>
 
 </body>
 </html>

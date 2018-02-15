@@ -1,62 +1,32 @@
-<div class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="{{url('/')}}">Prácticas Agricolas en Nicaragua</a>
-        </div>
-        <div class="navbar-collapse collapse navbar-inverse-collapse">
-            <ul class="nav navbar-nav">
-                <li class="#"><a href="/">Inicio</a></li>
+<nav id="nav-menu-container">
+    <ul class="nav-menu">
+        <li class="menu-active"><a href="#intro">Inicio</a></li>
+        <li><a href="#about">Acerca de nosotros</a></li>
+        <li><a href="#features">Prácticas Agricolas</a></li>
+        <li><a href="#team">Cultivos</a></li>
+        <li><a href="#gallery">Galeria</a></li>
+        <li class="menu-has-children"><a href="#">Acceder</a>
 
-                <li class="dropdown">
-                    <a href="bootstrap-elements.html" data-target="#" class="dropdown-toggle" data-toggle="dropdown">Tecnologias
-                        <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Tecnologias</a></li>
-                        <li><a href="#">Practicas</a></li>
-                        <li><a href="#">Etapas</a></li>
-                        <li><a href="#">Videos</a></li>
-                    </ul>
-                </li>
+            @if(Auth::check())
 
+            <ul>
+                <li><a href="{{route('administrador')}}"><i class="fa fa-lock" aria-hidden="true"></i> Acceder a la APPINTA</a></li>
 
             </ul>
 
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control col-md-8" placeholder="Buscar">
-                </div>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-                <li class=""><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i> Calendario</a></li>
-                <li class=""><a href="#"><i class="fa fa-play" aria-hidden="true"></i> Videos</a></li>
-                <li><a href="#"><i class="fa fa-phone" aria-hidden="true"></i> Contacto</a></li>
+            @else
 
-                @if(Auth::check())
-                    <li class="dropdown">
-                        <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock" aria-hidden="true"></i> Acceder
-                            <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{route('administrador')}}"><i class="fa fa-lock" aria-hidden="true"></i> Administrar</a></li>
-                            <li><a href="{{url('/login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
-                            <li><a href="#"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse</a></li>
-                        </ul>
-                    </li>
-                @else
-                    <li class="dropdown">
-                        <a href="#" data-target="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-lock" aria-hidden="true"></i> Acceder
-                            <b class="caret"></b></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{url('/login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
-                            <li><a href="{{'/register'}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Registrarse</a></li>
-                        </ul>
-                    </li>
-                @endif
-            </ul>
-        </div>
-    </div>
-</div>
+                <ul>
+                    <li><a href="{{route('administrador')}}"><i class="fa fa-lock" aria-hidden="true"></i> Administrar</a></li>
+                    <li><a href="{{url('/login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
+                    <li><a href="{{'/register'}}"><i class="fa fa-user-plus" aria-hidden="true"></i></i> Registrarse</a></li>
+                </ul>
+            @endif
+
+
+        </li>
+        <li><a href="#contact">Contactanos</a></li>
+
+    </ul>
+</nav>
+

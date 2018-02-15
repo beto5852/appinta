@@ -40,12 +40,12 @@ Auth::routes();
 //        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 //
 
-// Route::get('/', 'HomeController@index');
-
-Route::get('/', [
-    'uses' => 'FrontController@index',
-    'as'    => 'home',
-]);
+ Route::get('/', 'HomeController@index');
+//
+//Route::get('/', [
+//    'uses' => 'FrontController@index',
+//    'as'    => 'home',
+//]);
 
 
 Route::get('practica/{slug}', [

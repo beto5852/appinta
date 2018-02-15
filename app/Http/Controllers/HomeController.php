@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Practica;
 
 use Illuminate\Http\Request;
 
@@ -11,10 +12,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -23,6 +20,12 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('/');
+        //
+        $practicas = Practica::OrderBy('id', 'DESC')->paginate(3);
+
+//        dd($practicas);
+
+        return view('index', compact('practicas'));
     }
+
 }
