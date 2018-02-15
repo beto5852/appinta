@@ -17,7 +17,6 @@
             @else
 
                 <ul>
-                    <li><a href="{{route('administrador')}}"><i class="fa fa-lock" aria-hidden="true"></i> Administrar</a></li>
                     <li><a href="{{url('/login')}}"><i class="fa fa-sign-in" aria-hidden="true"></i> Entrar</a></li>
                     <li><a href="{{'/register'}}"><i class="fa fa-user-plus" aria-hidden="true"></i></i> Registrarse</a></li>
                 </ul>
