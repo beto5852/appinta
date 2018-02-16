@@ -72,7 +72,7 @@
         <h2>Bienvenido</h2>
         <p>Aplicación Web de Prácticas Agrícolas
         Basado el Ciclo Productivo de Nicaragua</p>
-        <a href="#about" class="btn-get-started scrollto">Iniciemos</a>
+        <a href="{{asset('register')}}" class="btn-get-started scrollto">Registrate aqui</a>
     </div>
 
     <div class="product-screens">
