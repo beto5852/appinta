@@ -19,7 +19,7 @@
                                 @if(empty($practicas->path))
                                     <img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/no-imagen.jpg')}}" width="50%" alt="auto">
                                 @else
-                                    <a  href="{{'practica'}}/{{$practicas->slug}}">  <img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/')}}/{{$practicas->path}}"  width="50%" alt="auto"></a>
+                                    <img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/')}}/{{$practicas->path}}"  width="50%" alt="auto">
                                 @endif
 
                                 <div class="wow fadeInLeft">
@@ -123,72 +123,152 @@
 
 
 
-<!--==========================
-         Gallery Section
-       ============================-->
+        <!--==========================
+                 Gallery Section
+               ============================-->
 
-@if($practicas->fotos->count() === 1)
-<section id="gallery">
-    <div class="container-fluid">
-        <div class="section-header">
-            <h3 class="section-title">Galeria {!! $practicas->nombre_practica !!}}</h3>
-            <span class="section-divider"></span>
-            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+        @if($practicas->fotos->count() === 1)
+        <section id="gallery">
+            <div class="container-fluid">
+                <div class="section-header">
+                    <h3 class="section-title">Galeria {!! $practicas->nombre_practica !!}}</h3>
+                    <span class="section-divider"></span>
+                    <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                </div>
+
+                <div class="row no-gutters">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="gallery-item wow fadeInUp">
+                            <a href="template/img/gallery/img1.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img1.jpg" alt="">
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                </div>
+
+            </div>
+        </section><!-- #gallery -->
+        @elseif($practicas->fotos->count() > 1)
+
+
+            @if(!empty($practicas->video))
+
+                <div class="video">
+                    {!! $practicas->video !!}
+                </div>
+            @endif
+
+
+                <section id="gallery">
+                    <div class="container-fluid">
+                        <div class="section-header">
+                            <h3 class="section-title">Galeria</h3>
+                            <span class="section-divider"></span>
+                            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
+                        </div>
+
+                        <div class="row no-gutters">
+                            @foreach($practicas->fotos as $key => $foto)
+                            <div class="col-lg-4 col-md-6">
+                                <div class="gallery-item wow fadeInUp">
+                                    <a href="{{$foto->url}}" class="gallery-popup">
+                                        <img src="{{$foto->url}}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </section><!-- #gallery -->
+        </section>
+        @endif
+
+                <!--==========================
+          amigos
+        ============================-->
+<section id="clients">
+    <div class="container">
+
+        <div class="row wow fadeInUp">
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-1.png" alt="">
+            </div>
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-2.png" alt="">
+            </div>
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-3.png" alt="">
+            </div>
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-4.png" alt="">
+            </div>
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-5.png" alt="">
+            </div>
+
+            <div class="col-md-2">
+                <img src="template/img/clients/client-6.png" alt="">
+            </div>
+
         </div>
+    </div>
+</section><!-- #more-features -->
 
-        <div class="row no-gutters">
 
-            <div class="col-lg-4 col-md-6">
-                <div class="gallery-item wow fadeInUp">
-                    <a href="template/img/gallery/img1.jpg" class="gallery-popup">
-                        <img src="template/img/gallery/img1.jpg" alt="">
-                    </a>
+
+<!--==========================
+  Contact Section
+============================-->
+<section id="contact">
+    <div class="container">
+        <div class="row wow fadeInUp">
+
+            <div class="col-lg-8 col-md-4">
+                <div class="contact-about">
+                    <h3><img src="template/img/clients/logo-inta.png" width="25%" alt="auto"></h3>
+                    <p>Puedes visitar nuestras redes sociales y canales para ver mas contenido del que hacer de nuestra institución.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/intanicaragua" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="https://www.youtube.com/user/INTANICARAGUA" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
+                        <a href="https://plus.google.com/112535730954267366501" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
+                    </div>
                 </div>
             </div>
 
+            <div class="col-lg-4 col-md-4">
+                <div class="info">
+                    <div>
+                        <i class="ion-ios-location-outline"></i>
+                        <p> Contiguo a la Policía Nacional del Distrito 5, Managua</p>
+                    </div>
 
+                    <div>
+                        <i class="ion-ios-email-outline"></i>
+                        <p>oaip@inta.gob.ni </p>
+                    </div>
+
+                    <div>
+                        <i class="ion-ios-telephone-outline"></i>
+                        <p>(505)  22780471</p>
+                    </div>
+
+                </div>
+            </div>
 
         </div>
 
     </div>
-</section><!-- #gallery -->
-@elseif($practicas->fotos->count() > 1)
-
-
-    @if(!empty($practicas->video))
-
-        <div class="video">
-            {!! $practicas->video !!}
-        </div>
-    @endif
-
-
-    <section id="gallery">
-        <div class="container-fluid">
-            <div class="section-header">
-                <h3 class="section-title">Galeria</h3>
-                <span class="section-divider"></span>
-                <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
-            </div>
-
-            <div class="row no-gutters">
-                @foreach($practicas->fotos as $key => $foto)
-                <div class="col-lg-4 col-md-6">
-                    <div class="gallery-item wow fadeInUp">
-                        <a href="{{$foto->url}}" class="gallery-popup">
-                            <img src="{{$foto->url}}" alt="">
-                        </a>
-                    </div>
-                </div>
-
-                @endforeach
-            </div>
-        </div>
-    </section><!-- #gallery -->
-
-@endif
-
-
+</section><!-- #contact -->
 
 @endsection
 
