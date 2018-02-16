@@ -320,7 +320,7 @@
             url : '/admin/practicas/{{$practica->id}}/fotos',
             acceptedFiles : 'image/*',
             maxFilesize: 2,
-            maxFiles: 5,
+            maxFiles: 6,
             paramName: 'foto',
             headers:{
                 'X-CSRF-TOKEN':'{{csrf_token()}}'
