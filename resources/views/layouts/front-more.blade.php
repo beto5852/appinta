@@ -58,40 +58,27 @@
 
         @include('partials.navfront')
 
-        <!-- #nav-menu-container -->
+                <!-- #nav-menu-container -->
     </div>
 </header><!-- #header -->
 
-
 <!--==========================
-   Intro Section
- ============================-->
-<section id="intro">
-
-    <div class="intro-text">
-        <h2>Bienvenido</h2>
-        <p>Aplicación Web de Prácticas Agrícolas
-        Basado el Ciclo Productivo de Nicaragua</p>
-        <a href="#about" class="btn-get-started scrollto">Iniciemos</a>
-    </div>
-
-    <div class="product-screens">
-
-        <div class="product-screen-1 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.6s">
-            <img src="template/img/product-screen-1.png" alt="">
-        </div>
-
-        <div class="product-screen-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
-            <img src="template/img/product-screen-2.png" alt="">
-        </div>
-
-        <div class="product-screen-3 wow fadeInUp" data-wow-duration="0.6s">
-            <img src="template/img/product-screen-3.png" alt="">
+     Call To Action Section
+   ============================-->
+<section id="call-to-action">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 text-center text-lg-left">
+                <h3 class="cta-title">{{$practicas->nombre_practica}}</h3>
+                <p class="cta-text">{{$practicas->textomedio }}</p>
+            </div>
+            <div class="col-lg-3 cta-btn-container text-center">
+                <a class="cta-btn align-middle" href="{{asset('register')}}">Registrate aqui</a>
+            </div>
         </div>
 
     </div>
-
-</section><!-- #intro -->
+</section><!-- #call-to-action -->
 
 <main id="main">
 

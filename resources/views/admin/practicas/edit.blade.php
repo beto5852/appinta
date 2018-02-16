@@ -105,7 +105,7 @@
 
                     <div class="form-group {{$errors->has('textomedio') ? 'has-error' : ''}}">
                         {{ Form::label('Agregue el textomedio','Agregue el extracto del contenido') }}
-                        {{ Form::textarea('textomedio',old('textomedio',$practica->textomedio),['id' => 'my-editor1','class' => 'my-editor1','placeholder' => ''])}}
+                        {{ Form::textarea('textomedio',old('textomedio',$practica->textomedio),['rows' => '15','class' => 'form-control','placeholder' => ''])}}
                         {!! $errors->first('textomedio','<span class="help-block">:message</span>') !!}
                     </div>
 
@@ -266,8 +266,8 @@
 
 
     <script>
-        CKEDITOR.replace('my-editor1', options);
-        CKEDITOR.config.height = 50;
+//        CKEDITOR.replace('my-editor1', options);
+//        CKEDITOR.config.height = 50;
 
         CKEDITOR.replace('my-editor2', options);
         CKEDITOR.config.height = 200;

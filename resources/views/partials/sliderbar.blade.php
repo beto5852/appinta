@@ -11,12 +11,12 @@
                 @if(empty(Auth::user()->perfil))
                     @if(Auth::user()->sexo == 'masculino')
                         <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                    @elseif(Auth::user()->sexo == 'femenino')
+                    @else
                         <img src="{{asset('img/user_femenino.jpg')}}" class="img-circle" alt="User Image">
                     @endif
-
                  @else
-               <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">    @endif
+               <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">
+                    @endif
 
             </div>
 
@@ -26,7 +26,7 @@
                 <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
         </div>
-
+        @if(Auth::user()->type == 'admin')
         <!-- search form (Optional) -->
        <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
@@ -38,7 +38,7 @@
             </div>
         </form>
         <!-- /.search form -->
-
+        @endif
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
             <li class="header">MENU</li>
@@ -49,12 +49,12 @@
 
 
             <!-- Optionally, you can add icons to the links -->
-            <li {{request()->is('admin/home/busqueda') ? 'class=active': ''}}>
+            <li {{request()->is('admin/busqueda') ? 'class=active': ''}}>
                 <a href="{{url('admin/busqueda')}}"><i class="fa  fa-search"></i> <span>Practicas agricolas</span></a></li>
 
 
             <!-- Optionally, you can add icons to the links -->
-            <li {{request()->is('admin/home/timeline') ? 'class=active': ''}}>
+            <li {{request()->is('admin/timeline') ? 'class=active': ''}}>
                 <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
             <!--  Menu USUARIOS -->

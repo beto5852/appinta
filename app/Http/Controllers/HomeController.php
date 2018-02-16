@@ -27,5 +27,16 @@ class HomeController extends Controller
 
         return view('index', compact('practicas'));
     }
+    public function practica($slug)
+    {
+        //$practicas = Practica::find($slug);
+        $practicas = Practica::where('slug', $slug)->first();
+        //dd($practicas);
+        //$practicas = Practica::find()->pluck('slug');
+
+        return view('practica', compact('practicas'));
+    }
+
+
 
 }

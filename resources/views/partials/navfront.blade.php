@@ -1,8 +1,8 @@
 <nav id="nav-menu-container">
     <ul class="nav-menu">
-        <li class="menu-active"><a href="#intro">Inicio</a></li>
+        <li class="menu-active"><a href="/">Inicio</a></li>
         <li><a href="#about">Acerca de nosotros</a></li>
-        <li><a href="#features">Prácticas Agricolas</a></li>
+        <li><a href="#practicas">Prácticas Agricolas</a></li>
         <li><a href="#team">Cultivos</a></li>
         <li><a href="#gallery">Galeria</a></li>
         <li class="menu-has-children"><a href="#">Acceder</a>

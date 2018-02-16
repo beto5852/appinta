@@ -49,15 +49,10 @@ Auth::routes();
 
 
 Route::get('practica/{slug}', [
-    'uses' => 'FrontController@practica',
+    'uses' => 'HomeController@practica',
     'as'    => 'practica',
 ]);
 
-
-Route::get('index/{nombre_practica}', [
-    'uses' => 'FrontController@searchPracticas',
-    'as'    => 'front.search.practicas',
-]);
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 

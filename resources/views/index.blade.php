@@ -1,15 +1,6 @@
 @extends('layouts.front')
 
-@section('title','<i class="fa fa-home" aria-hidden="true"></i>'.' '.'Bienvenido')
-
 @section('content')
-
-            {{--@section('breadcrumb')--}}
-                {{--<ul class="breadcrumb" style="margin-bottom: 5px;">--}}
-                    {{--<li>{!! Breadcrumbs::render('inicio') !!}</li>--}}
-                {{--</ul>--}}
-            {{--@endsection--}}
-
 
 
         <!--==========================
@@ -66,173 +57,44 @@
         <!--==========================
           Product Advanced Featuress Section
         ============================-->
+
+<section id="practicas" class="section-bg">
+    <div class="container-fluid">
+        <div class="section-header">
+            <h3 class="section-title">Labores Agricolas</h3>
+            <span class="section-divider"></span>
+          </div>
+
+    @foreach($practicas as $practica)
+
+
+
         <section id="advanced-features">
 
             <div class="features-row section-bg">
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <img class="advanced-feature-img-right wow fadeInRight" src="template/img/advanced-feature-1.jpg" alt="">
+
+                            @if(empty($practica->path))
+                                <img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/no-imagen.jpg')}}" width="50%" alt="auto">
+                            @else
+                                <a  href="{{'practica'}}/{{$practica->slug}}">  <img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/')}}/{{$practica->path}}"  width="50%" alt="auto"></a>
+                            @endif
+
                             <div class="wow fadeInLeft">
-                                <h2>Duis aute irure dolor in reprehenderit in voluptate velit esse</h2>
-                                <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                                <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <h2>{{$practica->nombre_practica }}</h2>
+                                <p>{!! $practica->textomedio !!}</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <section id="features">
-                <div class="container">
+        @endforeach
 
-                    <div class="row">
-
-                        <div class="col-lg-8 offset-lg-4">
-                            <div class="section-header wow fadeIn" data-wow-duration="1s">
-                                <h3 class="section-title">Prácticas Agricolas</h3>
-                                <span class="section-divider"></span>
-                            </div>
-                        </div>
-
-                        <div class="col-lg-4 col-md-5 features-img">
-                            <img src="template/img/product-features.png" alt="" class="wow fadeInLeft">
-                        </div>
-
-                        <div class="col-lg-8 col-md-7 ">
-
-                            <div class="row">
-
-                                <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                                    <div class="icon"><i class="ion-leaf"></i></div>
-                                    <h4 class="title"><a href="">Rubros</a></h4>
-                                    <p class="description">Denominación genérica de cada uno de los productos de la agricultura, la actividad humana
-                                        que obtiene materias primas de origen vegetal a través del cultivo.</p>
-                                </div>
-                                <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.1s">
-                                    <div class="icon"><i class="ion-android-time"></i></div>
-                                    <h4 class="title"><a href="">Etapas de siembra</a></h4>
-                                    <p class="description">Después de la siembra la semilla empieza a embeber agua a través de la testa y el micrópilo, aumentando gradualmente de tamaño.</p>
-                                </div>
-                                <div class="col-lg-6 col-md-6 box wow fadeInRight data-wow-delay="0.2s">
-                                <div class="icon"><i class="ion-erlenmeyer-flask"></i></div>
-                                <h4 class="title"><a href="">Tecnologias</a></h4>
-                                <p class="description">Saberes y los dispositivos que posibilitan que el conocimiento científico se aplique de forma práctica.
-                                    Agropecuario, por su parte, es aquello que se vincula a la ganadería (la crianza y comercialización de ganado)
-                                    y la agricultura (la actividad que consiste en desarrollar cultivos)..</p>
-                            </div>
-                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
-                                <div class="icon"><i class="ion-ios-flower"></i></div>
-                                <h4 class="title"><a href="">Cultivos</a></h4>
-                                <p class="description">El cultivo es la práctica de sembrar semillas en la tierra y realizar las labores necesarias para obtener frutos de las mismas.
-                                </p>
-                            </div>
-                        </div>
-
-                    </div>
-
-                </div>
-
-                </div>
-
-            </section><!-- #features -->
-
-
-
-            <div class="features-row">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <img class="advanced-feature-img-left" src="template/img/advanced-feature-2.jpg" alt="">
-                            <div class="wow fadeInRight">
-                                <h2>Duis aute irure dolor in reprehenderit in voluptate velit esse</h2>
-                                <i class="ion-ios-paper-outline" class="wow fadeInRight" data-wow-duration="0.5s"></i>
-                                <p class="wow fadeInRight" data-wow-duration="0.5s">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                                <i class="ion-ios-color-filter-outline wow fadeInRight" data-wow-delay="0.2s" data-wow-duration="0.5s"></i>
-                                <p class="wow fadeInRight" data-wow-delay="0.2s" data-wow-duration="0.5s">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                                <i class="ion-ios-barcode-outline wow fadeInRight" data-wow-delay="0.4" data-wow-duration="0.5s"></i>
-                                <p class="wow fadeInRight" data-wow-delay="0.4s" data-wow-duration="0.5s">Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="features-row section-bg">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12">
-                            <img class="advanced-feature-img-right wow fadeInRight" src="template/img/advanced-feature-3.jpg" alt="">
-                            <div class="wow fadeInLeft">
-                                <h2>Duis aute irure dolor in reprehenderit in voluptate velit esse</h2>
-                                <h3>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
-                                <i class="ion-ios-albums-outline"></i>
-                                <p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section><!-- #advanced-features -->
-
-
-       <!--==========================
-          Product Featuress Section
-        ============================-->
-        <section id="features">
-            <div class="container">
-
-                <div class="row">
-
-                    <div class="col-lg-8 offset-lg-4">
-                        <div class="section-header wow fadeIn" data-wow-duration="1s">
-                            <h3 class="section-title">Prácticas Agricolas</h3>
-                            <span class="section-divider"></span>
-                        </div>
-                    </div>
-
-                    <div class="col-lg-4 col-md-5 features-img">
-                        <img src="template/img/product-features.png" alt="" class="wow fadeInLeft">
-                    </div>
-
-                    <div class="col-lg-8 col-md-7 ">
-
-                        <div class="row">
-
-                            <div class="col-lg-6 col-md-6 box wow fadeInRight">
-                                <div class="icon"><i class="ion-leaf"></i></div>
-                                <h4 class="title"><a href="">Rubros</a></h4>
-                                <p class="description">Denominación genérica de cada uno de los productos de la agricultura, la actividad humana
-                                    que obtiene materias primas de origen vegetal a través del cultivo.</p>
-                            </div>
-                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.1s">
-                                <div class="icon"><i class="ion-android-time"></i></div>
-                                <h4 class="title"><a href="">Etapas de siembra</a></h4>
-                                <p class="description">Después de la siembra la semilla empieza a embeber agua a través de la testa y el micrópilo, aumentando gradualmente de tamaño.</p>
-                            </div>
-                            <div class="col-lg-6 col-md-6 box wow fadeInRight data-wow-delay="0.2s">
-                            <div class="icon"><i class="ion-erlenmeyer-flask"></i></div>
-                            <h4 class="title"><a href="">Tecnologias</a></h4>
-                            <p class="description">Saberes y los dispositivos que posibilitan que el conocimiento científico se aplique de forma práctica.
-                                Agropecuario, por su parte, es aquello que se vincula a la ganadería (la crianza y comercialización de ganado)
-                                y la agricultura (la actividad que consiste en desarrollar cultivos)..</p>
-                        </div>
-                        <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
-                            <div class="icon"><i class="ion-ios-flower"></i></div>
-                            <h4 class="title"><a href="">Cultivos</a></h4>
-                            <p class="description">El cultivo es la práctica de sembrar semillas en la tierra y realizar las labores necesarias para obtener frutos de las mismas.
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            </div>
-
-        </section><!-- #features -->
+      <center>{{ $practicas->links()}}</center>
+</div>
+</section>
 
 
 
@@ -251,48 +113,48 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-1.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-1.jpg" alt="">
+                            <a href="template/img/gallery/img1.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img1.jpg" alt="">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-2.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-2.jpg" alt="">
+                            <a href="template/img/gallery/img2.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img2.jpg" alt="">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-3.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-3.jpg" alt="">
+                            <a href="template/img/gallery/img3.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img3.jpg" alt="">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-4.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-4.jpg" alt="">
+                            <a href="template/img/gallery/img4.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img4.jpg" alt="">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-5.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-5.jpg" alt="">
+                            <a href="template/img/gallery/img5.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img5.jpg" alt="">
                             </a>
                         </div>
                     </div>
 
                     <div class="col-lg-4 col-md-6">
                         <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/gallery-6.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/gallery-6.jpg" alt="">
+                            <a href="template/img/gallery/img6.jpg" class="gallery-popup">
+                                <img src="template/img/gallery/img6.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -386,39 +248,5 @@
             </div>
         </section><!-- #contact -->
 
-
-
-
-        {{--<div class="row">--}}
-                {{--<div class="jumbotron col-md-8">--}}
-            {{----}}
-                    {{--@foreach($practicas as $practica)--}}
-                        {{--<article>--}}
-                            {{--<h3>{{$practica->nombre_practica}}</h3>--}}
-                            {{--<div class="row">--}}
-                                {{--<div class="col-md-8">--}}
-                                    {{--<i class="fa fa-folder-open" aria-hidden="true"></i>{{$practica->tecnologia->nombre_tecnologia}}--}}
-                                    {{--<i class="fa fa-user-circle-o" aria-hidden="true"></i>--}}
-                                {{--</div>--}}
-                                {{--<div class="col-md-4">--}}
-                                    {{--<i class="fa fa-calendar-o" aria-hidden="true"></i> {{$practica->created_at->format('M')}}--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
-                            {{--<br>--}}
-                            {{--@if(empty($practica->path))--}}
-                                {{--<img src="{{asset('img/no-imagen.jpg')}}" class="img-responsive" width="100%">--}}
-                            {{--@else--}}
-                                {{--<a  href="{{'practica'}}/{{$practica->slug}}"> <img src="{{asset('img/')}}/{{$practica->path}}" class="img-responsive" width="100%"></a>--}}
-                            {{--@endif--}}
-                            {{--<br>--}}
-                            {{--<p>{!! substr($practica->contenido,0,200) !!} </p>--}}
-                            {{--<p class="text-right"><a class="btn btn-raised btn-primary" href="{{'practica'}}/{{$practica->slug}}">Leer más..</a></p>--}}
-            {{----}}
-                        {{--</article>--}}
-                    {{--@endforeach--}}
-                    {{--<center>{{ $practicas->links()}}</center>--}}
-            {{----}}
-                {{--</div>--}}
-        {{--</div>--}}
 
 @endsection

@@ -242,17 +242,7 @@ class FrontController extends Controller
         return view('admin.home.index', compact('practicas', 'totalusers', 'totaltecnologias', 'totalpracticas', 'totalcultivos', 'users', 'tecnologias', 'activities','anio','mes'));
     }
 
-    public function practica($slug)
-    {
-        //$practicas = Practica::find($slug);
-        $practicas = Practica::where('slug', $slug)->first();
-        //dd($practicas);
-        //$practicas = Practica::find()->pluck('slug');
-
-        return view('practica', compact('practicas'));
-    }
-
-
+   
 
  
     /**
