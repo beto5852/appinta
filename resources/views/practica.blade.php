@@ -83,13 +83,13 @@
 
 
                                     @if(!empty($practicas->tecnologia->nombre_tecnologia))
-                                        <div class="col-lg-6 col-md-6 box wow fadeInRight data-wow-delay="0.2s">
+                                        <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.2s">
                                         <div class="icon"><i class="ion-erlenmeyer-flask"></i></div>
                                         <h4 class="title"><a href="">Tecnologia</a></h4>
                                         <p class="description">{{$practicas->tecnologia->nombre_tecnologia}}</p>
                                 </div>
                                 @else
-                                    <div class="col-lg-6 col-md-6 box wow fadeInRight data-wow-delay="0.2s">
+                                    <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.2s">
                                     <div class="icon"><i class="ion-erlenmeyer-flask"></i></div>
                                     <h4 class="title"><a href="">Tecnologias</a></h4>
                                     <p class="description">Saberes y los dispositivos que posibilitan que el conocimiento científico se aplique de forma práctica.
@@ -117,7 +117,8 @@
                         </div>
 
                     </div>
-
+                </div>
+               </div>
 
          </section><!-- #features -->
 

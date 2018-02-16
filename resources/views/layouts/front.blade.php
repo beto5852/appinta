@@ -26,7 +26,7 @@
     <link rel="stylesheet" href={{asset("template/lib/font-awesome/css/font-awesome.min.css")}}>
     <link rel="stylesheet" href={{asset("template/lib/ionicons/css/ionicons.min.css")}}>
     <link rel="stylesheet" href={{asset("template/lib/magnific-popup/magnific-popup.css")}}>
-
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" >
 
     <!-- Main Stylesheet File -->
     <link rel="stylesheet" href={{asset("template/css/style.css")}}>
@@ -102,12 +102,13 @@
 
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
-<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
 <!-- JavaScript Libraries -->
 <script src={{asset("template/lib/jquery/jquery.min.js")}}></script>
 <script src={{asset("template/lib/jquery/jquery-migrate.min.js")}}></script>
 <script src="{{ asset('template/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('template/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('template/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('template/lib/superfish/hoverIntent.js') }}"></script>
 <script src="{{ asset('template/lib/superfish/superfish.min.js') }}"></script>

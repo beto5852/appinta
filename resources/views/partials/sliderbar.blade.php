@@ -159,7 +159,6 @@
                     </a>
                     <ul class="treeview-menu">
                         <li class="active"><a href="{{asset('admin/reportes')}}" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
-                        <li class="active"><a href="javascript:void(0);" onclick="cargarlistado(4,1);" ><i class="fa fa-circle-o"></i> Graficas </a></li>
 
                     </ul>
                 </li>
