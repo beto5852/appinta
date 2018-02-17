@@ -1,7 +1,7 @@
 @extends('layouts.front-more')
 
 
-@section('content')
+@section('practica')
 
 
 
@@ -42,7 +42,7 @@
                             </div>
 
                             <div class="col-lg-4 col-md-5 features-img">
-                                <img src="template/img/product-features.png" alt="" class="wow fadeInLeft">
+                                <img src="{{asset('template/img/product-features.png')}}" alt="" class="wow fadeInLeft">
                             </div>
 
                             <div class="col-lg-8 col-md-7 ">
@@ -132,24 +132,32 @@
         <section id="gallery">
             <div class="container-fluid">
                 <div class="section-header">
-                    <h3 class="section-title">Galeria {!! $practicas->nombre_practica !!}}</h3>
+                    <h3 class="section-title">Galeria {{$practicas->nombre_practica}}</h3>
                     <span class="section-divider"></span>
-                    <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                 </div>
 
-                <div class="row no-gutters">
 
-                    <div class="col-lg-4 col-md-6">
-                        <div class="gallery-item wow fadeInUp">
-                            <a href="template/img/gallery/img1.jpg" class="gallery-popup">
-                                <img src="template/img/gallery/img1.jpg" alt="">
-                            </a>
+
+
+                <!--==========================
+                     Call To Action Section
+                   ============================-->
+                <section id="call-to-action">
+                    <div class="container">
+                        <div class="row">
+                            @foreach($practicas->fotos as $key => $foto)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="gallery-item wow fadeInUp">
+                                        <a href="{{$foto->url}}" class="gallery-popup">
+                                            <img src="{{$foto->url}}" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
+
                     </div>
-
-
-
-                </div>
+                </section><!-- #call-to-action -->
 
             </div>
         </section><!-- #gallery -->
@@ -167,22 +175,29 @@
                 <section id="gallery">
                     <div class="container-fluid">
                         <div class="section-header">
-                            <h3 class="section-title">Galeria</h3>
+                            <h3 class="section-title">Galeria {{$practicas->nombre_practica}}</h3>
                             <span class="section-divider"></span>
-                            <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                         </div>
 
-                        <div class="row no-gutters">
-                            @foreach($practicas->fotos as $key => $foto)
-                            <div class="col-lg-4 col-md-6">
-                                <div class="gallery-item wow fadeInUp">
-                                    <a href="{{$foto->url}}" class="gallery-popup">
-                                        <img src="{{$foto->url}}" alt="">
-                                    </a>
+                        <!--==========================
+                Call To Action Section
+              ============================-->
+                        <section id="call-to-action">
+                            <div class="container">
+                                <div class="row">
+                                    @foreach($practicas->fotos as $key => $foto)
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="gallery-item wow fadeInUp">
+                                                <a href="{{$foto->url}}" class="gallery-popup">
+                                                    <img src="{{$foto->url}}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    @endforeach
                                 </div>
+
                             </div>
-                            @endforeach
-                        </div>
+                        </section><!-- #call-to-action -->
                     </div>
                 </section><!-- #gallery -->
         </section>
@@ -197,27 +212,27 @@
         <div class="row wow fadeInUp">
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-1.png" alt="">
+                <img src="{{asset('template/img/clients/client-1.png')}}" alt="">
             </div>
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-2.png" alt="">
+                <img src="{{asset('template/img/clients/client-2.png')}}" alt="">
             </div>
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-3.png" alt="">
+                <img src="{{asset('template/img/clients/client-3.png')}}" alt="">
             </div>
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-4.png" alt="">
+                <img src="{{asset('template/img/clients/client-4.png')}}" alt="">
             </div>
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-5.png" alt="">
+                <img src="{{asset('template/img/clients/client-5.png')}}" alt="">
             </div>
 
             <div class="col-md-2">
-                <img src="template/img/clients/client-6.png" alt="">
+                <img src="{{asset('template/img/clients/client-6.png')}}" alt="">
             </div>
 
         </div>
@@ -235,7 +250,7 @@
 
             <div class="col-lg-8 col-md-4">
                 <div class="contact-about">
-                    <h3><img src="template/img/clients/logo-inta.png" width="25%" alt="auto"></h3>
+                    <h3><img src="{{asset('template/img/clients/logo-inta.png')}}" width="25%" alt="auto"></h3>
                     <p>Puedes visitar nuestras redes sociales y canales para ver mas contenido del que hacer de nuestra institución.</p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>

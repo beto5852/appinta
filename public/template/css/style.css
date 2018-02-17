@@ -43,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   background: linear-gradient(45deg, #1de099, #1dc8cd);
   color: #fff;
-  padding: 2px 20px 8px 20px;
+  padding: 31px 52px 19px 46px;
   font-size: 16px;
   border-radius: 4px 4px 0 0;
   right: 15px;
@@ -212,7 +212,7 @@ h1, h2, h3, h4, h5, h6 {
   z-index: 30;
   left: calc(50% + 54px);
   bottom: 0;
-  top: 30px;
+  top: -100px;
 }
 
 #intro .product-screens .product-screen-2 {

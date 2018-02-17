@@ -106,7 +106,6 @@
                 <div class="section-header">
                     <h3 class="section-title">Galeria</h3>
                     <span class="section-divider"></span>
-                    <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>
                 </div>
 
                 <div class="row no-gutters">

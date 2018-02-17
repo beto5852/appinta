@@ -51,7 +51,7 @@
 
         <div id="logo" class="pull-left">
             <h1><a href="/" class="scrollto">
-                    <img src="template/img/clients/logo-inta.png" width="45%" alt="auto"> </a></h1>
+                    <img src="{{asset('template/img/clients/logo-inta.png')}}" width="45%" alt="auto"> </a></h1>
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="#intro"><img src="img/logo.png" alt="" title=""></a> -->
         </div>
@@ -82,7 +82,7 @@
 
 <main id="main">
 
-    @yield('content')
+    @yield('practica')
 
 </main>
 @include('partials.footer')
@@ -95,6 +95,7 @@
 <script src={{asset("template/lib/jquery/jquery.min.js")}}></script>
 <script src={{asset("template/lib/jquery/jquery-migrate.min.js")}}></script>
 <script src="{{ asset('template/lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('template/lib/easing/easing.min.js') }}"></script>
 <script src="{{ asset('template/lib/wow/wow.min.js') }}"></script>
 <script src="{{ asset('template/lib/superfish/hoverIntent.js') }}"></script>
 <script src="{{ asset('template/lib/superfish/superfish.min.js') }}"></script>
@@ -105,6 +106,8 @@
 
 <!-- Template Main Javascript File -->
 <script src="{{ asset('template/js/main.js') }}"></script>
+
+
 
 
 </body>
