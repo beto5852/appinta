@@ -18,9 +18,8 @@ class CreateVariedadesTable extends Migration
 
             $table->increments('id');
             $table->string('nombre_variedad');
-            $table->string('caracteristica_agronomica')->nullables();
-            $table->text('descripcion_caracteristica')->nullables();
-            
+            $table->string('caracteristica_agronomica')->nullable();
+            $table->text('descripcion_caracteristica')->nullable();            
             $table->timestamps();
         });
     }

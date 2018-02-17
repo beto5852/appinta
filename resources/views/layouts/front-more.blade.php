@@ -72,9 +72,17 @@
                 <h3 class="cta-title">{{$practicas->nombre_practica}}</h3>
                 <p class="cta-text">{{$practicas->textomedio }}</p>
             </div>
+            @if(Auth::check())
             <div class="col-lg-3 cta-btn-container text-center">
-                <a class="cta-btn align-middle" href="{{asset('register')}}">Registrate aqui</a>
+                <a class="cta-btn align-middle" href="{{asset('#')}}">Bienvenido</a>
             </div>
+            @else
+                <div class="col-lg-3 cta-btn-container text-center">
+                    <a class="cta-btn align-middle" href="{{asset('register')}}">Registrate aqui</a>
+                </div>
+
+            @endif
+
         </div>
 
     </div>
