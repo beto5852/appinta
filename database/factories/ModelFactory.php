@@ -78,6 +78,5 @@ $factory->define(App\Practica::class, function (Faker\Generator $faker) {
         'rubro_id'=> App\Rubro::all()->random()->id,
         'tecnologia_id'=> App\Tecnologia::all()->random()->id,
         'user_id'=> App\User::all()->random()->id,
-        'variedad_id' => App\Variedad::all()->random()->id,
     ];
 });

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
         $this->call(MesesTableSeeder::class);
         $this->call(SemanasTableSeeder::class);
         $this->call(EtapaPracticaTableSeeder::class);
+        $this->call(PracticaVariedadSeeder::class);
         
         Model::unguard();
 

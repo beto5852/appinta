@@ -1,10 +1,15 @@
 <nav id="nav-menu-container">
     <ul class="nav-menu">
         <li class="menu-active"><a href="/">Inicio</a></li>
-        <li><a href="#about">Acerca de nosotros</a></li>
-        <li><a href="#practicas">Prácticas Agricolas</a></li>
-        <li><a href="#team">Cultivos</a></li>
-        <li><a href="#gallery">Galeria</a></li>
+        {{--<li><a href="#about">Acerca de nosotros</a></li>--}}
+        @if(!empty($practicas->nombre_practica))
+        <li {{request()->is('#advanced-features') ? 'class=active': ''}}><a href="#advanced-features">{{$practicas->nombre_practica }}</a></li>
+        @else
+            <li  {{request()->is('#advanced-features') ? 'class=active': ''}}><a href="#advanced-features">Practicas</a></li>
+        @endif
+
+        <li  {{request()->is('#features') ? 'class=active': ''}}><a href="#features">Información</a></li>
+        <li {{request()->is('#gallery') ? 'class=active': ''}}><a href="#gallery">Galeria</a></li>
         <li class="menu-has-children"><a href="#">Acceder</a>
 
             @if(Auth::check())
@@ -24,7 +29,7 @@
 
 
         </li>
-        <li><a href="#contact">Contactanos</a></li>
+        <li {{request()->is('#contact') ? 'class=active': ''}}><a href="#contact">Contactanos</a></li>
 
     </ul>
 </nav>

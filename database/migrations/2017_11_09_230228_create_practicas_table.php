@@ -27,7 +27,6 @@ class CreatePracticasTable extends Migration
             $tabla->unsignedInteger('rubro_id')->nullable();
             $tabla->unsignedInteger('tecnologia_id')->nullable();
             $tabla->unsignedInteger('user_id')->nullable();
-            $tabla->unsignedInteger('variedad_id')->nullable();
             $tabla->timestamps();
         });
     }

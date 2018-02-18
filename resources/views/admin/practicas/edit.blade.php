@@ -196,16 +196,17 @@
                             {{ Form::label('cultivo','Cultivo') }}
                             {{ Form::select('cultivo_id',$cultivos,old('cultivo_id',$practica->cultivo_id),['class' => 'form-control select2',])}}
                         </div>
-                        <div class="form-group">
-                            {{ Form::label('variedad','Variedad  del cultivo') }}
-                            {{ Form::select('variedad_id',$variedades,old('variedad_id',$practica->variedad_id),['class' => 'form-control select2',])}}
+
+                        <div class="form-group {{$errors->has('variedad_id') ? 'has-error' : ''}}">
+                            {{ Form::label('variedad_id','Variedad  del cultivo') }}
+                            {{ Form::select('variedad_id[]',$variedades,$my_variedades,['class'=>'form-control select2','multiple','value' => 'old($my_variedades)']) }}
+                            {!! $errors->first('variedad_id','<span class="help-block">:message</span>') !!}
                         </div>
 
 
-
-                        <div class="form-group {{$errors->has('etapa_id') ? 'has-error' : ''}}">
+                         <div class="form-group {{$errors->has('etapa_id') ? 'has-error' : ''}}">
                             {{ Form::label('etapa_id','Etapa en la que se encuentra el cultivo ') }}
-                            {{ Form::select('etapa_id[]',$etapas,old('etapas',$my_etapas),['class'=>'form-control select2','multiple','value' => 'old($my_etapas)']) }}
+                            {{ Form::select('etapa_id[]',$etapas,$my_etapas,['class'=>'form-control select2','multiple','value' => 'old($my_etapas)']) }}
                             {!! $errors->first('etapa_id','<span class="help-block">:message</span>') !!}
                         </div>
 

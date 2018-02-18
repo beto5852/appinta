@@ -98,11 +98,15 @@
                             </div>
 
                             @endif
-                            @if(!empty($practicas->cultivo->nombre_cultivo))
+                            @if(!empty($practicas->cultivos))
                                 <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
                                     <div class="icon"><i class="ion-ios-flower"></i></div>
                                     <h4 class="title"><a href="">Cultivos</a></h4>
-                                    <p class="description">{{$practicas->cultivo->nombre_cultivo}}
+                                    <p class="description">
+                                    @foreach( $practicas->cultivos as $cultivo)
+                                        {{$cultivo->nombre_cultivo}}<br>
+                                    @endforeach
+
                                     </p>
                                 </div>
                             @else

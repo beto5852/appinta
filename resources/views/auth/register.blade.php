@@ -29,7 +29,7 @@
 <body class="hold-transition register-page">
 <div class="register-box">
      <div class="login-logo" >
-        <a href="{{asset('/')}}"><b>Resgistro al sistema de </b>prácticas tecnológicas <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
+        <a href="{{asset('/')}}"><b>Resgistro al sistema de </b>prácticas agricolas <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
 
     </div>
 

@@ -34,7 +34,7 @@ class Practica extends Model
         Storage::disk('img')->put($nombre_route, file_get_contents( $path->getRealPath() ) );*/
         }
     }
-    protected $fillable = ['nombre_practica','textomedio','contenido','video','slug','path','cultivo_id','rubro_id','tecnologia_id', 'user_id','variedad_id'];
+    protected $fillable = ['nombre_practica','textomedio','contenido','video','slug','path','cultivo_id','rubro_id','tecnologia_id', 'user_id'];
 
     public function etapas()
     {
@@ -73,9 +73,9 @@ class Practica extends Model
     {
         return $this->belongsTo(User::class);
     }
-    public function variedad()
+    public function variedades()
     {
-        return $this->belongsTo(Variedad::class);
+        return $this->belongsToMany(Variedad::class);
     }
 
     public function scopeSearch($query, $dato)
@@ -123,23 +123,18 @@ class Practica extends Model
         return $this->etapas()->sync($etapaIds);
     }
 
+    public function syncVariedad($variedades){
+
+        $variedadesIds = collect($variedades)->map(function($variedad){
+
+            return Variedad::find($variedad) ? $variedad : Variedad::create(['nombre_variedad' => $variedad])->id;
+        });
+
+        return $this->variedades()->sync($variedadesIds);
+    }
 
 
-//    public function scopeBusqueda($query,$rubro,$tecnologia,$cultivo,$dato =""){
 
-
-//        if(empty($rubro)){
-//            $resultado = $query->where('nombre_practica','like',"%$dato%");
-//
-//        }
-//        else{
-//            $resultado = $query->where('nombre_rubro','=',$rubro)
-//                                ->where( function($q) use ($rubro,$dato){
-//                                $q->where('nombre_practica','like',"%$dato%")
-//                            )};
-//        }
-
-//    }
 
     public function scopeBusqueda($query,$cultivo,$dato ="")
     {

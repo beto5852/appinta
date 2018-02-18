@@ -127,12 +127,13 @@ class PracticasController extends Controller
         $my_etapas    = $practica->etapas->pluck('id')->toArray();
         $my_mes    = $practica->meses->pluck('id')->toArray();
         $my_semana = $practica->semanas->pluck('id')->toArray();
+        $my_variedades = $practica->variedades->pluck('id')->toArray();
 
 //        $mesactual = [date('m')];
 //         dd(count($my_semana));
 
         return view('admin.practicas.edit', compact('users', 'practica','meses', 'semanas',
-            'tecnologias','cultivos','rubros','etapas','variedades','my_etapas','my_mes','my_semana'));
+            'tecnologias','cultivos','rubros','etapas','variedades','my_etapas','my_mes','my_semana','my_variedades'));
     }
 
 
@@ -141,7 +142,7 @@ class PracticasController extends Controller
     {
 
         $practica->update($request->all());
-
+        $practica->syncVariedad($request->get('variedad_id'));
         $practica->syncEtapa($request->get('etapa_id'));
         $practica->meses()->sync($request->get('mes_id'));
         $practica->semanas()->sync($request->get('semana_id'));
@@ -160,9 +161,10 @@ class PracticasController extends Controller
     {
         //elimina la practica con el id que recibe
         $practica = Practica::find($id);
-        $practica->tags()->detach();
         $practica->meses()->detach();
         $practica->semanas()->detach();
+        $practica->etapas()->detach();
+        $practica->variedades()->detach();
 
         $practica->delete();
 

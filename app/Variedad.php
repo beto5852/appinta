@@ -14,7 +14,7 @@ class Variedad extends Model
 
     public function practicas()
     {
-        return $this->hasMany(Practica::class);
+        return $this->belongsToMany(Practica::class);
     }
 
 }
