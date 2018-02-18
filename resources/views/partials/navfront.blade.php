@@ -30,7 +30,19 @@
 
         </li>
         <li {{request()->is('#contact') ? 'class=active': ''}}><a href="#contact">Contactanos</a></li>
+        <li>
+            {!! Form::open(['url' => ['busqueda'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
+
+            <div class="input-group">
+                {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar practica agricola','aria-describedby' => 'search'])!!}
+                <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            </div>
+            {!! Form::close() !!}
+        </li>
 
     </ul>
+
+
+
 </nav>
 

@@ -67,22 +67,6 @@ class FrontController extends Controller
        $mesactual = $arrayMeses[date('m')-1];
 
 
-//        dd($mesactual);
-
-//         dd($numeroSemana = date("W"));
-
-       // dd(Carbon::now()->format('m'));
-
-        // $practica = DB::table('practicas')
-        //             ->join('mes_practica','practicas.id','mes_practica.practica_id')
-        //             ->join('meses','mes_practica.mes_id','meses.id')
-        //             ->select('practicas.*','meses.nombre_mes')
-        //             ->where('nombre_mes', '=', 'Enero')
-        //             ->get();
-
-
-
-
 
         $practicas = Practica::with(['meses' => function ($query) {
             $query->where('mes_id','=',Carbon::now()->format('m'));

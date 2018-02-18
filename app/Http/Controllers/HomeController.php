@@ -38,5 +38,16 @@ class HomeController extends Controller
     }
 
 
+    public function busqueda(Request $request)
+    {
+        //mostrar algunas practicas
+
+        $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(10);
+
+
+        return view('busqueda',['practicas' => $practicas]);
+    }
+
+
 
 }
