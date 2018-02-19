@@ -16,8 +16,8 @@ class TecnologiasController extends Controller
 {
     public function __construct()
     {
-        $this->middleware(['auth','roles:admin']);
-        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+        $this->middleware('auth');
+        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -56,23 +56,23 @@ class TecnologiasController extends Controller
 
     public function datos_tecnologias(){
 
-//        $tecnologias = Tecnologia::with('rubros')->select('tecnologias.*');
+        $tecnologias = Tecnologia::select('tecnologias.*');
+
+        return Datatables::of($tecnologias)
+            ->make(true);
+
+
+//        $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
 //
-//        return Datatables::of($tecnologias)
-//            ->make(true);
-
-
-        $query = Tecnologia::with(['rubros'])->select('tecnologias.*')->get();
-
-
-        return Datatables::of($query)
-            ->addColumn('rubros',function(Tecnologia $tecnologia)
-            {
-                return $tecnologia->rubros->map( function($rubro) {
-                    return $rubro->nombre_rubro;
-                })->implode('<br>');
-            })->make(true);
-
+//
+//        return Datatables::of($query)
+//            ->addColumn('rubros',function(Tecnologia $tecnologia)
+//            {
+//                return $tecnologia->rubros->map( function($rubro) {
+//                    return $rubro->nombre_rubro;
+//                })->implode('<br>');
+//            })->make(true);
+//
 
 
 //
@@ -164,12 +164,8 @@ class TecnologiasController extends Controller
     {
         //
         $tecnologia = Tecnologia::findOrFail($id);
-        $rubros = Rubro::pluck('nombre_rubro','id');
 
-        $my_rubros   = $tecnologia->rubros->pluck('id')->toArray();
-
-
-        return view('admin.tecnologias.edit',compact('tecnologia','rubros','my_rubros'));
+        return view('admin.tecnologias.edit',compact('tecnologia'));
         //dd($tecnologias);
     }
     /**
@@ -186,9 +182,8 @@ class TecnologiasController extends Controller
         $tecnologia->fill($request->all());
         $tecnologia->save();
 
-        $tecnologia->rubros()->sync($request->rubro_id);
 
-        Session::flash('message','Usuario actualizado correctamente');
+        Session::flash('message','Tecnológia actualizada correctamente');
         return redirect::to('admin/tecnologias');
     }
     /**

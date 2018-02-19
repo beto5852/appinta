@@ -113,16 +113,26 @@
                 <ul class="treeview-menu">
                     <li><a href="#" data-toggle="modal" data-target="#myModalCultivos"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Cultivo</a></li>
                     <li><a href="{{url('admin/cultivos/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar cultivos</a></li>
-                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
-                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>
-                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Caracteristica</a></li>
-                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Caracteristica</a></li>
 
                 </ul>
 
             </li>
+                <!--  Menu TAGS -->
 
-            <!--  Menu ETAPAS -->
+                <li class="treeview" {{request()->is('admin/variedades') ? 'active': ''}}>
+                    <a href="#"><i class="fa fa-tags"></i> <span> Variedades</span>
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
+                        <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>
+                    </ul>
+                </li>
+
+
+                <!--  Menu ETAPAS -->
 
             <li class="treeview" {{request()->is('admin/etapas') ? 'active': ''}}>
                 <a href="#"><i class="fa fa-list-alt"></i> <span>Etapas de Siembra</span>
@@ -137,19 +147,6 @@
             </li>
 
 
-            <!--  Menu TAGS -->
-
-            <li class="treeview" {{request()->is('admin/tags') ? 'active': ''}}>
-                <a href="#"><i class="fa fa-tags"></i> <span> Tags</span>
-                    <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                </a>
-                <ul class="treeview-menu">
-                     <li><a href="#" data-toggle="modal" data-target="#myModalTags"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Tags</a></li>
-                    <li><a href="{{url('admin/tags/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Tags</a></li>
-                </ul>
-            </li>
 
                 <!--  Menu TAGS -->
 

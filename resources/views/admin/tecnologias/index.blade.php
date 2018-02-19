@@ -31,8 +31,6 @@
                 <tr>
                     <th>ID</th>
                     <th>Tecnológias</th>
-                    <th>Rubro de la tecnológia</th>
-                    {{--<th>cultivos de la tecnológia</th>--}}
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -118,7 +116,6 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
-                    {data: 'rubros', name: 'rubros', orderable: false, searchable: true},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"
