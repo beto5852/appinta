@@ -201,33 +201,33 @@
 
 
 
-      @if(!empty($practicas->video))
-      </section><!-- #features -->
+                      @if(!empty($practicas->video))
+                      </section><!-- #features -->
 
 
 
-                <div class="features-row">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <img class="advanced-feature-img-left" src="img/advanced-feature-2.jpg" alt="">
-                                <div class="wow fadeInRight">
-                                    <div class="video-container">
+                                <div class="features-row">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <img class="advanced-feature-img-left" src="img/advanced-feature-2.jpg" alt="">
+                                                <div class="wow fadeInRight">
+                                                    <div class="video-container">
 
-                                        {!! $practicas->video !!}
+                                                        {!! $practicas->video !!}
 
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
 
-       </section>
-    <!-- #advanced-features -->
+                       </section>
+                    <!-- #advanced-features -->
 
-    @endif
+                    @endif
 
 
 
@@ -272,27 +272,27 @@
         <div class="row wow fadeInUp">
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-1.png')}}" alt="">
+                <a href="http://www.marena.gob.ni/" target="_blank"> <img src="template/img/clients/client-1.png" alt=""></a>
             </div>
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-2.png')}}" alt="">
+                <a href="http://www.economiafamiliar.gob.ni/" target="_blank"><img src="template/img/clients/client-2.png" alt=""></a>
             </div>
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-3.png')}}" alt="">
+                <a href="http://www.ipsa.gob.ni/" target="_blank"> <img src="template/img/clients/client-3.png" alt=""></a>
             </div>
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-4.png')}}" alt="">
+                <a href="http://www.ineter.gob.ni/" target="_blank"> <img src="template/img/clients/client-4.png" alt=""></a>
             </div>
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-5.png')}}" alt="">
+                <a href="http://canal6.com.ni/" target="_blank"> <img src="template/img/clients/client-5.png" alt=""></a>
             </div>
 
             <div class="col-md-2">
-                <img src="{{asset('template/img/clients/client-6.png')}}" alt="">
+                <a href="https://www.el19digital.com/" target="_blank"> <img src="template/img/clients/client-6.png" alt=""></a>
             </div>
 
         </div>
