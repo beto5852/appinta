@@ -151,12 +151,6 @@ class PracticasController extends Controller
         $practica->semanas()->sync($request->get('semana_id'));
 
         return redirect()->route('admin.practicas.edit',$practica)->with('message','Tu práctica ha sido actualizada correctamente');
-
-
-
-
-
-
     }
 
 

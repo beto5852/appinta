@@ -27,9 +27,7 @@ class StorePracticaRequest extends FormRequest
             'nombre_practica' => 'required',
             'textomedio'       => 'required|min:5|max:50000',
             'contenido'       => 'required|max:100000',
-            'mes_id'       => 'required',
-            'semana_id'       => 'required',
-            'etapa_id'          => 'required',
+       
         ];
     }
 }
