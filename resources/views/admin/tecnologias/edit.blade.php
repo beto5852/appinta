@@ -41,7 +41,7 @@
 
                     <div class="form-group {{$errors->has('descripcion_tecnologia') ? 'has-error' : ''}}">
                         {{ Form::label('Descripción de la tecnológia','Descripción de la tecnológia') }}
-                        {{ Form::textarea('descripcion_tecnologia',old('descripcion_cultivo',$tecnologia->descripcion_tecnologia),['id' => 'my-editor1','class' => 'form-control my-editor1','placeholder' => ''])}}
+                        {{ Form::textarea('descripcion_tecnologia',$tecnologia->descripcion_tecnologia,['id' => 'my-editor1','class' => 'form-control my-editor1','placeholder' => ''])}}
                         {!! $errors->first('descripcion_tecnologia','<span class="help-block">:message</span>') !!}
                     </div>
 
