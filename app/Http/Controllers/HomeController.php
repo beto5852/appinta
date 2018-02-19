@@ -44,6 +44,7 @@ class HomeController extends Controller
 
         $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(10);
 
+//            dd($practicas);
 
         return view('busqueda',['practicas' => $practicas]);
     }

@@ -1,4 +1,4 @@
-@extends('layouts.front-more')
+@extends('layouts.front-practica')
 
 
 @section('practica')

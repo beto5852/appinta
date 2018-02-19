@@ -98,11 +98,11 @@ class Practica extends Model
                                         ? $rubro
                                         : Rubro::create(['nombre_rubro' => $rubro])->id;
     }
-    public function setTecnologiaIdAtrribute($tenologia)
+    public function setTecnologiaIdAtrribute($tecnologia)
     {
-        $this->attributes['tecnologia_id']= Tecnologia::find($tenologia)
-                                            ? $tenologia
-                                            : Tecnologia::create(['nombre_tecnologia' =>$tenologia])->id;
+        $this->attributes['tecnologia_id']= Tecnologia::find($tecnologia)
+                                            ? $tecnologia
+                                            : Tecnologia::create(['nombre_tecnologia' => $tecnologia])->id;
 
     }
 

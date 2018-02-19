@@ -141,6 +141,9 @@ class PracticasController extends Controller
     public function update(StorePracticaRequest $request, Practica $practica)
     {
 
+//        dd($request->all());
+
+        $practica->slug = null;
         $practica->update($request->all());
         $practica->syncVariedad($request->get('variedad_id'));
         $practica->syncEtapa($request->get('etapa_id'));

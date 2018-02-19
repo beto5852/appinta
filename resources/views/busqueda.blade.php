@@ -1,4 +1,4 @@
-@extends('layouts.front-more')
+@extends('layouts.front-busqueda')
 
 
 @section('practica')
@@ -16,15 +16,7 @@
             <div class="row">
                 <div class="col-12">
 
-                    {{--@if(empty($practicas->path))--}}
-                        {{--<img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/no-imagen.jpg')}}" width="50%" alt="auto">--}}
-                    {{--@else--}}
-                        {{--<img class="advanced-feature-img-right wow fadeInRight" src="{{asset('img/')}}/{{$practicas->path}}"  width="50%" alt="auto">--}}
-                    {{--@endif--}}
 
-                    {{--<div class="wow fadeInLeft">--}}
-                        {{--<p>{!! substr($practicas->contenido,0,10000) !!}</p>--}}
-                    {{--</div>--}}
                 </div>
             </div>
         </div>
@@ -47,7 +39,7 @@
                     <th>Mes</th>
                     <th>Semanas</th>
                     <th>Imagen</th>
-                    <th>Acciones</th>
+                    <th>ver</th>
                 </tr>
                 </thead>
 
@@ -86,7 +78,7 @@
                             <td><img src="{{asset('img/')}}/{{$practica->path}}" style = "width: 100px;"></td>
                         @endif
                         <td>
-                            <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                            <a href="{{'practica'}}/{{$practica->slug}}" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
                     </tr>
                 @endforeach

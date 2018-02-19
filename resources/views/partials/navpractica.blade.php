@@ -7,8 +7,10 @@
         @else
             <li  {{request()->is('#advanced-features') ? 'class=active': ''}}><a href="#advanced-features">Prácticas</a></li>
         @endif
-
+        <li  {{request()->is('#features') ? 'class=active': ''}}><a href="#features">Información</a></li>
+        @if(empty($practicas->fotos))
         <li {{request()->is('#gallery') ? 'class=active': ''}}><a href="#gallery">Galeria</a></li>
+        @endif
         <li class="menu-has-children"><a href="#">Acceder</a>
 
             @if(Auth::check())
