@@ -69,8 +69,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-9 text-center text-lg-left">
-                {{--<h3 class="cta-title">{{$practicas->nombre_practica}}</h3>--}}
-                {{--<p class="cta-text">{{$practicas->textomedio }}</p>--}}
+                <h3 class="cta-title">{{$practicas->nombre_practica}}</h3>
+                <p class="cta-text">{{$practicas->textomedio }}</p>
             </div>
             @if(Auth::check())
             <div class="col-lg-3 cta-btn-container text-center">
