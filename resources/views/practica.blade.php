@@ -133,7 +133,39 @@
                ============================-->
 
         @if($practicas->fotos->count() === 1)
-        <section id="gallery">
+
+                  @if(!empty($practicas->video))
+          </section><!-- #features -->
+
+
+
+            <div class="features-row">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12">
+                            <img class="advanced-feature-img-left" src="img/advanced-feature-2.jpg" alt="">
+                            <div class="wow fadeInRight">
+                                <div class="video-container">
+
+                                    {!! $practicas->video !!}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            </section>
+            <!-- #advanced-features -->
+
+        @endif
+
+
+
+
+          <section id="gallery">
             <div class="container-fluid">
                 <div class="section-header">
                     <h3 class="section-title">Galeria {{$practicas->nombre_practica}}</h3>
@@ -168,12 +200,36 @@
         @elseif($practicas->fotos->count() > 1)
 
 
-            @if(!empty($practicas->video))
 
-                <div class="video">
-                    {!! $practicas->video !!}
+      @if(!empty($practicas->video))
+      </section><!-- #features -->
+
+
+
+                <div class="features-row">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-12">
+                                <img class="advanced-feature-img-left" src="img/advanced-feature-2.jpg" alt="">
+                                <div class="wow fadeInRight">
+                                    <div class="video-container">
+
+                                        {!! $practicas->video !!}
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            @endif
+
+
+       </section>
+    <!-- #advanced-features -->
+
+    @endif
+
+
 
 
                 <section id="gallery">

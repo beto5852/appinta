@@ -106,13 +106,7 @@ class Practica extends Model
 
     }
 
-    public function setVariedadIdAttribute($variedad)
-    {
-        $this->attributes['variedad_id'] = Variedad::find($variedad)
-                                        ? $variedad
-                                        : Variedad::create(['nombre_variedad' => $variedad])->id;
-    }
-
+ 
     public function syncEtapa($etapas){
 
         $etapaIds = collect($etapas)->map(function($etapa){
