@@ -19,27 +19,30 @@
         </div>
     @endif
     {!! Charts::assets() !!}
-         <div  class="row" >
+    <div  class="row" >
 
 
-            <div class="col-md-12">
-                <div class="box box-primary">
-                    <div class="box-header">
-                    </div>
-                    <div class="container">
-
-                        {!! $chart->render() !!}
-                        {!! $userdia->render() !!}
-
-                    </div>
-                    <div class="box-footer">
-                    </div>
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header">
                 </div>
-
-              </div>
+                <div class="container">
+                   {!! $chartpract->render() !!}
+                    {!! $prac->render() !!}
+                </div>
+                <div class="box-footer">
+                </div>
+            </div>
 
         </div>
+
+    </div>
 
 
 @endsection
 
+
+@section('script')
+
+
+@endsection

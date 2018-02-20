@@ -152,10 +152,23 @@
 
                 <li class="treeview">
                     <a href="">
-                        <i class="fa fa-fw fa-database"></i> <span>REPORTES</span> <i class="fa fa-angle-left pull-right"></i>
+                        <i class="fa fa-fw fa-pie-chart"></i> <span>Graficas</span> <i class="fa fa-angle-left pull-right"></i>
                     </a>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{asset('admin/reportes')}}" onclick="cargarlistado(3,1);" ><i class="fa fa-circle-o"></i> Reportes </a></li>
+                        <li class="active"><a href="{{asset('admin/reportes')}}"  ><i class="fa fa-circle-o"></i> Registros </a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{asset('admin/edad')}}" ><i class="fa fa-circle-o"></i> Edad </a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{asset('admin/sexo')}}"  ><i class="fa fa-circle-o"></i> Sexo </a></li>
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{asset('admin/online')}}" ><i class="fa fa-circle-o"></i> online </a></li>
+
+                    </ul>
+                    <ul class="treeview-menu">
+                        <li class="active"><a href="{{asset('admin/practicas')}}"  ><i class="fa fa-circle-o"></i>Practicas</a></li>
 
                     </ul>
                 </li>

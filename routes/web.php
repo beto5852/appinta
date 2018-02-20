@@ -24,30 +24,10 @@
 Route::get('activate/{token}','ActivationTokenController@activate')->name('activation');
 Auth::routes();
 
-// Authentication Routes...
-//        Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
-//        Route::post('login', 'Auth\LoginController@login');
-//        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
-//
-//        // Registration Routes...
-//        Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
-//        Route::post('register', 'Auth\RegisterController@register');
-//
-//        // Password Reset Routes...
-//        Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
-//        Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-//        Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
-//        Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-//
+
 
  Route::get('/', 'HomeController@index');
 Route::get('busqueda','HomeController@busqueda')->name("buscar");
-
-//
-//Route::get('/', [
-//    'uses' => 'FrontController@index',
-//    'as'    => 'home',
-//]);
 
 
 Route::get('practica/{slug}', [
@@ -68,7 +48,6 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 
     Route::get('busqueda','FrontController@busqueda')->name("admin.home.busqueda");
-
 
 
     Route::get('timeline','FrontController@timeline')->name("admin.home.timeline");
@@ -136,24 +115,20 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
     Route::resource('/variedades','VariedadesController');
 
-    /********************************************TAGS**********************************************************************************/
-    Route::resource('tags','TagsController');
+    Route::get('variedades','VariedadesController@index')->name("admin.variedades.index");
+    Route::get('variedades_datos','VariedadesController@datos_tags')->name("admin.variedades.datos.index");
 
-    Route::get('tags','TagsController@index')->name("admin.tags.index");
-    Route::get('tags_datos','TagsController@datos_tags')->name("admin.tags.datos.index");
+    Route::get('variedades/create','VariedadesController@create')->name("admin.variedades.create");
+    Route::get('variedades/edit/{id}','VariedadesController@edit')->name("admin.variedades.edit");
+    Route::DELETE('variedades/{id}','VariedadesController@destroy')->name("admin.variedades.destroy");
 
-    Route::get('tags/create','TagsController@create')->name("admin.tags.create");
-    Route::get('tags/edit/{id}','TagsController@edit')->name("admin.tags.edit");
-    Route::DELETE('tags/{id}','TagsController@destroy')->name("admin.tags.destroy");
+    /******************************REPORTES de graficas************************************************************************************************/
 
-    /******************************REPORTES************************************************************************************************/
-
-    //Route::get('api','EventosController@api'); //ruta que nos devuelve los eventos en formato json
-    Route::get('reportes','FrontController@reportes')->name("admin.reportes.index");
-
-    Route::get('listado_graficas', 'GraficasController@index');
-    Route::get('grafica_registros/{anio}/{mes}', 'GraficasController@registros_mes');
-    Route::get('grafica_publicaciones', 'GraficasController@total_publicaciones')->name("total_publicaciones");
+    Route::get('reportes','GraficasController@reportes')->name("admin.reportes.index");
+    Route::get('sexo','GraficasController@reportes_sexo')->name("admin.reportes.sexo");
+    Route::get('edad','GraficasController@reportes_edad')->name("admin.reportes.edad");
+    Route::get('online','GraficasController@reportes_online')->name("admin.reportes.online");
+    Route::get('practicas','GraficasController@reportes_practicas')->name("admin.reportes.practicas");
 
 
 

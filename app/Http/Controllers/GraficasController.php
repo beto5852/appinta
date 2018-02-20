@@ -5,137 +5,122 @@ use App\Practica;
 use App\Tecnologia;
 use App\Cultivo;
 use App\User;
+use App\Rubro;
 use Redirect;
 use Session;
 use Storage;
+
+use ConsoleTVs\Charts\Facades\Charts;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
+use Activity;
 use Illuminate\Http\Request;
 
 class GraficasController extends Controller
 {
-    public function getUltimoDiaMes($elAnio,$elMes) {
-        return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
-    }
-
-
-
-    public function registros_mes($anio,$mes)
+    public function reportes()
     {
-        $primer_dia=1;
-        $ultimo_dia=$this->getUltimoDiaMes($anio,$mes);
-        $fecha_inicial=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$primer_dia) );
-        $fecha_final=date("Y-m-d H:i:s", strtotime($anio."-".$mes."-".$ultimo_dia) );
-        $usuarios=User::whereBetween('created_at', [$fecha_inicial,  $fecha_final])->get();
-        $ct=count($usuarios);
+       
 
-        for($d=1;$d<=$ultimo_dia;$d++){
-            $registros[$d]=0;
-        }
+        $users = User::where(DB::raw("(DATE_FORMAT(created_at,'%Y'))"),date('Y')) ->get();
 
-        foreach($usuarios as $usuario){
-            $diasel=intval(date("d",strtotime($usuario->created_at) ) );
-            $registros[$diasel]++;
-        }
+        $chart = Charts::database($users, 'bar', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("Total de usuarios registrados")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupByMonth(date('Y'), true);
 
-        $data=array("totaldias"=>$ultimo_dia, "registrosdia" =>$registros);
-        return   json_encode($data);
+
+
+        $userdia = Charts::database(User::all(), 'line', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("Registro por dia")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupByDay();
+
+
+        
+
+        return view('admin.reportes.index',compact('chart','totaluser','userdia'));
     }
 
 
-    public function total_publicaciones(){
-
-        $tipotecnologia=Tecnologia::all('nombre_tecnologia','id');
-        $ctp=count($tipotecnologia);
-        $practicas=Practica::all();
-        $ct =count($practicas);
-        for($i=0;$i<=$ctp-1;$i++){
-            $idTP=$tipotecnologia[$i]->id;
-            $numerodepract[$idTP]=0;
-        }
-
-        for($j=0;$j<=$ct-1;$j++){
-            $idTP=$practicas[$j]->tecnologia_id;
-            $numerodepract[$idTP]++;
-        }
-
-        $data=array("totaltipos"=>$ctp,"tipos"=>$tipotecnologia, "numerodepract"=>$numerodepract);
-
-        return json_encode($data);
+    public function reportes_sexo(){
+        
+        $genero = Charts::database(User::all(), 'bar', 'highcharts')
+            ->title("Registro de usuarios por mes")
+            ->elementLabel("total")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('sexo');
+        
+        return view('admin.reportes.sexo',compact('genero'));
 
     }
+    public function reportes_edad(){
+        
+        $edad = Charts::database( User::all(), 'bar', 'highcharts')
+            ->title("% de usuarios por edad")
+            ->elementLabel("Edad por usuarios")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('edad');
+        
+        return view('admin.reportes.edad',compact('edad'));
 
-
-    public function index()
-    {
-        $anio=date("Y");
-        $mes=date("m");
-        return view("partials.listado_graficas")
-            ->with("anio",$anio)
-            ->with("mes",$mes);
     }
+    public function reportes_online(){
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $activities = Activity::users()->get();
+
+
+        $activ = Charts::database($activities, 'bar', 'highcharts')
+            ->elementLabel("Usuarios en linea")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('name');
+
+        return view('admin.reportes.online',compact('activ'));
     }
+    public function reportes_practicas(){
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+        $practis = Practica::with(['etapas' => function ($query) {
+            $query->distinct()
+                ->whereNotNull('nombre_etapa')
+                ->orderBy('nombre_etapa', 'desc');
+        }])->get();
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        $chartpract = Charts::database($practis, 'bar', 'highcharts')
+            ->title("Etapa de practica")
+            ->elementLabel("Numero de etapas en esta practica")
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->groupBy('nombre_practica');
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $prac = Charts::multiDatabase('line', 'material')
+            ->title("Registros de practicas, tecnológia, rubros, cultivos")
+//            ->elementLabel("Edad por usuarios")
+            ->dataset('Practicas', Practica::all())
+            ->dataset('Tecnologias', Tecnologia::all())
+            ->dataset('Rubros', Rubro::all())
+            ->dataset('Cultivos', Cultivo::all())
+            ->height(300)
+            ->width(300)
+            ->responsive(true)
+            ->GroupByDay();
+
+        return view('admin.reportes.practicas',compact('prac','chartpract'));
+
+
     }
 }
