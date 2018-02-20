@@ -180,13 +180,13 @@
 
                         <div class="form-group">
                             {{ Form::label('user_id','Cambiar editor') }}
-                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control select2'])}}
+                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control select1'])}}
                         </div>
 
 
                         <div class="form-group">
                             {{ Form::label('tecnologia','Tecnológia') }}
-                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select2',])}}
+                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select1',])}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('rubro','Rubro') }}
@@ -298,6 +298,8 @@
             no_results_text: "Sin resultados!",
         });
 
+        $(".select1").select2({
+        });
 
         $(".select2").select2({
             tags: true
