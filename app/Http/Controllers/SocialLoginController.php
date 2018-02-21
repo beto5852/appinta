@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use Illuminate\Foundation\Auth\User;
+use App\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\Request;
 
@@ -25,11 +25,13 @@ class SocialLoginController extends Controller
 
        $user =  User::firstOrNew(['facebook_id' => $facebookuser->getId()]);
 
+
+//        dd($facebookuser);
+
         if(! $user->exists){
 
             $user->name = $facebookuser->getName();
             $user->email = $facebookuser->getEmail();
-            $user->sexo = $facebookuser->getGender();
             $user->save();
         }
 
