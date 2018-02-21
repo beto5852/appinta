@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->string('facebook_id')->nullable();
             $table->string('name');
             $table->integer('edad')->nullable();
             $table->string('sexo')->nullable();
@@ -24,7 +25,7 @@ class CreateUsersTable extends Migration
             $table->string('pais')->nullable();
             $table->text('notas')->nullable();
             $table->string('email')->unique();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('telefono')->nullable();
             $table->enum('type',['admin','miembro'])->default('miembro');
             $table->string('perfil')->nullable();
