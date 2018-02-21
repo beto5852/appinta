@@ -24,6 +24,9 @@
 Route::get('activate/{token}','ActivationTokenController@activate')->name('activation');
 Auth::routes();
 
+Route::get('login/facebook','SocialLoginController@redirectToFacebook')->name('login.facebook');
+Route::get('login/facebook/callback','SocialLoginController@handleFacebookCallback');
+
 
 
  Route::get('/', 'HomeController@index');
