@@ -67,10 +67,10 @@
                          </div>
                          @if(empty($user->edad))
 
-                             {!! Form::text('edad',null,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 '])!!}
+                             {!! Form::text('edad',null,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 ','required'])!!}
 
                          @else
-                             {!! Form::text('edad',$user->edad,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 '])!!}
+                             {!! Form::text('edad',$user->edad,['class' =>'form-control','placeholder' =>'Edad ej: 20,  25, 30 ','required'])!!}
 
                          @endif
 
