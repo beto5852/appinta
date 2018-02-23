@@ -38,6 +38,12 @@
                 {{Session::get('info')}}
             </div>
         @endif
+            @if(Session::has('warning'))
+                <div class="alert alert-dismissible alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    {{Session::get('warning')}}
+                </div>
+            @endif
 
         <p class="login-box-msg">Inicia sessión</p>
 
@@ -84,7 +90,7 @@
                 <!-- /.social-auth-links -->
          <div class="social-auth-links text-center">
             <p>- O Tambien -</p>
-            <a href="{{route('login.facebook')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Accede con Facebook</a>
+            <a href="{{route('login.social','facebook')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Accede con Facebook</a>
              <a href="#" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-twitter"></i> Accede con Twitter</a>
              <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Accede con Google+</a>
         </div>

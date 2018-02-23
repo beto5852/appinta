@@ -97,6 +97,7 @@
 
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
+
 <script src="{{ asset('js/app.js') }}"></script>
 
 <!-- JavaScript Libraries -->
@@ -114,6 +115,7 @@
 
 <!-- Template Main Javascript File -->
 <script src="{{ asset('template/js/main.js') }}"></script>
+
 
 
 

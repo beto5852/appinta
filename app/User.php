@@ -78,6 +78,9 @@ class User extends Authenticatable
         return $this;
     }
 
+    public function profiles(){
+        $this->hasMany(SocialProfile::class);
+    }
 
 
 

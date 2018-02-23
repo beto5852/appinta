@@ -9,7 +9,7 @@
         @endif
 
 
-        <li {{request()->is('#gallery') ? 'class=active': ''}}><a href="#gallery">Galeria</a></li>
+        {{--<li {{request()->is('#gallery') ? 'class=active': ''}}><a href="#gallery">Galeria</a></li>--}}
         <li class="menu-has-children"><a href="#">Acceder</a>
 
             @if(Auth::check())
