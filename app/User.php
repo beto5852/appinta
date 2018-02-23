@@ -38,7 +38,7 @@ class User extends Authenticatable
     }
 
        
-    protected $fillable = ['facebook_id','name', 'email','password', 'sexo','edad','ocupacion','pais','notas', 'telefono','type','perfil','active'];
+    protected $fillable = ['name', 'email','password', 'sexo','edad','ocupacion','pais','notas', 'telefono','type','perfil','active'];
     /**
      * The attributes that should be hidden for arrays.
      *

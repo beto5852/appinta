@@ -93,7 +93,6 @@
         @endforeach
 
       <center>{{ $practicas->links()}}</center>
-</div>
 </section>
 
 

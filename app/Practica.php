@@ -36,6 +36,12 @@ class Practica extends Model
     }
     protected $fillable = ['nombre_practica','textomedio','contenido','video','slug','path','cultivo_id','rubro_id','tecnologia_id', 'user_id'];
 
+
+  
+
+
+
+
     public function etapas()
     {
         return $this->belongsToMany(Etapa::class,'etapa_practica');

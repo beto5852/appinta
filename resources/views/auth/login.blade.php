@@ -91,8 +91,8 @@
          <div class="social-auth-links text-center">
             <p>- O Tambien -</p>
             <a href="{{route('login.social','facebook')}}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Accede con Facebook</a>
-             <a href="#" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-twitter"></i> Accede con Twitter</a>
-             <a href="#" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Accede con Google+</a>
+             <a href="{{route('login.social','twitter')}}" class="btn btn-block btn-social btn-twitter btn-flat"><i class="fa fa-twitter"></i> Accede con Twitter</a>
+             <a href="{{route('login.social','google')}}" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Accede con Google+</a>
         </div>
 
 
