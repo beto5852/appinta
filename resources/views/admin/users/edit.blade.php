@@ -127,15 +127,15 @@
                      @if(empty($user->profiles()->first()->perfil))
                          @if(empty($user->perfil))
                              @if($user->sexo == 'masculino'   )
-                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" style="width: 100px;" alt="User profile picture" />
                              @else
-                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" style="width: 100px;" alt="User profile picture" />
                              @endif
                          @else
-                             <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                             <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.$user->perfil)}}" style="width: 100px;" alt="User profile picture"/>
                          @endif
                       @else
-                         <img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" alt="" style="width: 100px;" />
+                         <img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" style="width: 100px;" alt="User profile picture"/>
                       @endif
                  @else
                      <img class="profile-user-img img-responsive img-circle" src="{{Auth::user()->profiles()->first()->perfil}}" style="width: 100px;" alt="User profile picture"/>
