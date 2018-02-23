@@ -83,6 +83,7 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
+                     @if(empty(Auth::user()->profiles()->first()->perfil))
                         @if(empty(Auth::user()->perfil))
                             @if(Auth::user()->sexo == 'masculino')
                                 <img src="{{asset('img/user_masculino.jpg')}}" class="user-image" alt="User Image">
@@ -92,6 +93,9 @@
                         @else
                             <img src="{{asset('img/'.Auth::user()->perfil)}}" class="user-image" alt="User Image">
                         @endif
+                      @else
+                          <img src="{{Auth::user()->profiles()->first()->perfil}}" class="user-image" alt="User Image">
+                       @endif
                                  
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs"> {!! Auth::user()->name !!}</span>
@@ -99,6 +103,7 @@
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
+                         @if(empty(Auth::user()->profiles()->first()->perfil))
                             @if(empty(Auth::user()->perfil))
                                 @if(Auth::user()->sexo == 'masculino'   )
                                     <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture">
@@ -108,6 +113,10 @@
                             @else
                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.Auth::user()->perfil)}}" alt="User profile picture">
                             @endif
+                         @else
+                                <img class="profile-user-img img-responsive img-circle" src="{{Auth::user()->profiles()->first()->perfil}}" alt="User profile picture">
+                         @endif
+
                             <p>
                                 {!! Auth::user()->name !!}
                                 <small>{!! Auth::user()->type !!}</small>

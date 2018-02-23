@@ -82,10 +82,10 @@ class User extends Authenticatable
         return $this->hasMany(SocialProfile::class);
     }
 
-    public function getPerfilAtttribute(){
-
-        return $this->profiles()->first()->avatar();
-    }
+//    public function getPerfilAtttribute(){
+//
+//        return $this->profiles()->first()->perfil();
+//    }
 
 
 //     public function sendPasswordResetNotification($token){

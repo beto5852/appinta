@@ -34,7 +34,7 @@
                 <div class="box-body box-profile">
 
 
-
+                    @if(empty(Auth::user()->profiles()->first()->perfil))
                         @if(empty($user->perfil))
                             @if($user->sexo == 'masculino'   )
                                 <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" style = "width: 100px;"  alt="User Image"></td>
@@ -44,7 +44,9 @@
                         @else
                         <td><img src="{{asset('img/'.$user->perfil)}}" style = "width: 100px;" class="profile-user-img img-responsive img-circle" alt="User Image"></td>
                         @endif
-
+                    @else
+                        <td><img src="{{Auth::user()->profiles()->first()->perfil}}" style = "width: 100px;" class="profile-user-img img-responsive img-circle" alt="User Image"></td>
+                     @endif
 
 
                         <h3 class="profile-username text-center">{{$user->name}}</h3>

@@ -60,14 +60,18 @@
                     <td><span class="label label-danger">{{  $user->type}}</span></td>
                 @endif
                 <td>
-                @if(empty($user->perfil))
-                    @if($user->sexo == 'masculino')
-                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
-                    @elseif($user->sexo == 'femenino')
-                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                @if(empty($user->profiles()->first()->perfil))
+                    @if(empty($user->perfil))
+                        @if($user->sexo == 'masculino')
+                            <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
+                        @elseif($user->sexo == 'femenino')
+                            <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                        @endif
+                    @else
+                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/')}}/{{$user->perfil}}" alt="User profile picture"></td>
                     @endif
                 @else
-                    <td><img src="{{asset('img/')}}/{{$user->perfil}}" style = "width: 100px;" class="img-circle" alt="User Image"></td>
+                    <td><img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" alt="User profile picture"></td>
                 @endif
                 </td>
                 <td>

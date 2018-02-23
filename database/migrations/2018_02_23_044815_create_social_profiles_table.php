@@ -20,7 +20,7 @@ class CreateSocialProfilesTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('social_user_id');
             $table->string('red_social');
-            $table->string('avatar');
+            $table->string('perfil');
 
             $table->timestamps();
         });

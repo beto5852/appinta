@@ -45,6 +45,8 @@ class FrontController extends Controller
     {
         //mostrar algunas practicas
 
+//        dd(Auth::user()->profiles()->first()->perfil);
+
          $practicas = Practica::Search($request->search)->orderBy('id', 'DESC')->paginate(4);
 
 
@@ -91,10 +93,9 @@ class FrontController extends Controller
     public function admin()
     {
                
-//        $activities = Activity::users()->get();
+        $activities = Activity::users()->get();
 
 
-        dd(Auth::user()->profiles);
 
         $totalusers       = User::all();
         $users            = User::orderBy('id', 'DESC')->paginate(8);

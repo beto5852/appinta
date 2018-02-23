@@ -123,15 +123,22 @@
                      {{ Form::text('pais',$user->pais,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])}}
 
                  </div>
-
-                 @if(empty($user->perfil))
-                     @if($user->sexo == 'masculino'   )
-                         <img src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
-                     @else
-                         <img src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
-                     @endif
+                 @if(empty(Auth::user()->profiles()->first()->perfil))
+                     @if(empty($user->profiles()->first()->perfil))
+                         @if(empty($user->perfil))
+                             @if($user->sexo == 'masculino'   )
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="" style="width: 100px;" />
+                             @else
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="" style="width: 100px;" />
+                             @endif
+                         @else
+                             <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                         @endif
+                      @else
+                         <img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" alt="" style="width: 100px;" />
+                      @endif
                  @else
-                     <img src="{{asset('img/'.$user->perfil)}}" alt="" style="width: 100px;" />
+                     <img class="profile-user-img img-responsive img-circle" src="{{Auth::user()->profiles()->first()->perfil}}" style="width: 100px;" alt="User profile picture"/>
                  @endif
 
 

@@ -31,7 +31,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         //
-        $users = User::Search($request->search)->orderBy('id','ASC')->paginate(1);
+        $users = User::Search($request->search)->orderBy('id','ASC')->paginate(10);
         // dd($users);
         return view("admin.users.index",compact('users'));
     }

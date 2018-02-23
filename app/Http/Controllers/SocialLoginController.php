@@ -53,7 +53,7 @@ class SocialLoginController extends Controller
                 $user->name = $socialUser->getName();
                 $user->save();
             }
-            $socialProfile->avatar = $socialUser->getAvatar();
+            $socialProfile->perfil = $socialUser->getAvatar();
             $user->profiles()->save($socialProfile);
         }
 
