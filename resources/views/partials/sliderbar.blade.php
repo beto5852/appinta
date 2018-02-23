@@ -1,3 +1,4 @@
+
 <aside class="main-sidebar">
 
     <!-- sidebar: style can be found in sidebar.less -->
@@ -8,6 +9,8 @@
 
             <div class="pull-left image">
 
+             @if(empty(Auth::user()->profiles))
+
                 @if(empty(Auth::user()->perfil))
                     @if(Auth::user()->sexo == 'masculino')
                         <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
@@ -16,7 +19,10 @@
                     @endif
                  @else
                <img src="{{asset('img/'.Auth::user()->perfil)}}" class="img-circle" alt="User Image">
-                    @endif
+               @endif
+             @else
+              <img src="https://graph.facebook.com/v2.8/2131017863591261/picture?type=normal" class="img-circle" alt="User Image">
+             @endif
 
             </div>
 

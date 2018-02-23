@@ -14,11 +14,13 @@ class CreateSocialProfilesTable extends Migration
     public function up()
     {
         Schema::create('social_profiles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->unsignedInteger('user_id');
             $table->string('social_user_id');
             $table->string('red_social');
-            $table->string('avatar')->nullable();
+            $table->string('avatar');
 
             $table->timestamps();
         });

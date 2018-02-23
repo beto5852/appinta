@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Etapa;
+use Auth;
 use Illuminate\Http\Request;
 use App\Practica;
 use App\Tecnologia;
@@ -90,9 +91,11 @@ class FrontController extends Controller
     public function admin()
     {
                
-        $activities = Activity::users()->get();
+//        $activities = Activity::users()->get();
 
-                
+
+        dd(Auth::user()->profiles);
+
         $totalusers       = User::all();
         $users            = User::orderBy('id', 'DESC')->paginate(8);
         $totaltecnologias = Tecnologia::all();
