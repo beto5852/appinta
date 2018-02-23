@@ -22,11 +22,19 @@ class SocialLoginController extends Controller
     public function handleredesSocialesCallback($redesSociales)
     {
 
-        if(! request('code')){
-            return redirect()->route('login')->with('warning','Hubo un error');
-        }
+//        if(! request('code')){
+//            return redirect()->route('login')->with('warning','Hubo un error');
+//        }
 
-        $socialUser = Socialite::driver($redesSociales)->user();
+
+         try{
+             $socialUser = Socialite::driver($redesSociales)->user();
+
+         }catch (\Exception $exception){
+             return redirect()->route('login')->with('warning','Hubo un error en el login');
+         }
+
+
 
        $socialProfile = SocialProfile::firstOrNew([
             'red_social' => $redesSociales,
@@ -45,7 +53,7 @@ class SocialLoginController extends Controller
                 $user->name = $socialUser->getName();
                 $user->save();
             }
-
+            $socialProfile->avatar = $socialUser->getAvatar();
             $user->profiles()->save($socialProfile);
         }
 
@@ -53,6 +61,6 @@ class SocialLoginController extends Controller
 
        Auth::login($socialProfile->user);
 
-       return redirect()->route('admin.home.busqueda')->with('message','Bienvenido'.$socialProfile->user->name);
+       return redirect()->route('admin.home.busqueda')->with('message','Bienvenido '.$socialProfile->user->name);
     }
 }

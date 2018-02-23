@@ -27,7 +27,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo" >
-        <a href="{{asset('/')}}"><b>Acceso a prácticas </b>tecnológicas <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
+        <a href="{{asset('/')}}"><b>Acceso a labores </b>agricolas <br><div align="center"><img src="{{asset('img/logo-inta.png')}}" class="img-responsive" width="50%"></div></a>
 
     </div>
     <!-- /.login-logo -->
