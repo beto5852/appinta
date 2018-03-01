@@ -53,7 +53,6 @@ class PracticasController extends Controller
             ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
             ->join('users', 'practicas.user_id', '=', 'users.id')
             ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
-
             ->get())->make(true);
     }
 

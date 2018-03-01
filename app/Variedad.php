@@ -10,7 +10,7 @@ class Variedad extends Model
     
     protected $table = 'variedades';
 
-//    protected $fillable = ['nombre_variedad','caracteristica_agronomica','descripcion_caracteristica'];
+    protected $fillable = ['nombre_variedad','caracteristica_agronomica','descripcion_caracteristica'];
 
     public function practicas()
     {

@@ -119,7 +119,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::resource('/variedades','VariedadesController');
 
     Route::get('variedades','VariedadesController@index')->name("admin.variedades.index");
-    Route::get('variedades_datos','VariedadesController@datos_tags')->name("admin.variedades.datos.index");
+    Route::get('variedades_datos','VariedadesController@datos_variedades')->name("admin.variedades.datos.index");
 
     Route::get('variedades/create','VariedadesController@create')->name("admin.variedades.create");
     Route::get('variedades/edit/{id}','VariedadesController@edit')->name("admin.variedades.edit");
@@ -131,7 +131,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('sexo','GraficasController@reportes_sexo')->name("admin.reportes.sexo");
     Route::get('edad','GraficasController@reportes_edad')->name("admin.reportes.edad");
     Route::get('online','GraficasController@reportes_online')->name("admin.reportes.online");
-    Route::get('practicas','GraficasController@reportes_practicas')->name("admin.reportes.practicas");
+    Route::get('reportes_practicas','GraficasController@reportes_practicas')->name("admin.reportes.practicas");
 
 
 

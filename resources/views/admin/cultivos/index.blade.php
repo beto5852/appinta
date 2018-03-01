@@ -47,12 +47,11 @@
         </div>
         <!-- /.box-header -->
         <div class="box-body">
-            <table id="tags-table" class="table table-bordered table-striped">
+            <table id="cultivos-table" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                     <th>ID</th>
                     <th>Lista de cultivos</th>
-                    <th>Rubro al que pertenece</th>
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -85,15 +84,7 @@
                         {!! $errors->first('nombre_cultivo','<span class="help-block">:message</span>') !!}
                     </div>
 
-                    <div class="form-group">
-                        {!! Form::label('descripcion_cultivo','Descripción de la tecnológia') !!}
-                        {!! Form::textarea('descripcion_cultivo',null,['class' => 'form-control','placeholder' => ''])!!}
-                    </div>
-                    <div class="form-group">
-                        {{ Form::label('rubro_id','Rubro al que pertenece') }}
-                        {{ Form::select('rubro_id',$rubro,old('rubro_id',$rubro),['class'=>'form-control select2','required'])}}
-                    </div>
-                </div>
+                            </div>
                 <div class="modal-footer">
                     {{--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>--}}
                     {{ Form::submit('Guardar Cultivo', ['class' => 'btn btn-primary btn-block']) }}
@@ -110,7 +101,7 @@
     <script>
 
         $(function() {
-            $('#tags-table').DataTable({
+            $('#cultivos-table').DataTable({
                 "processing": true,
                 "serverSide": true,
                 "paging": true,
@@ -130,7 +121,6 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_cultivo', name: 'nombre_cultivo' },
-                    { data: 'nombre_rubro', name: 'nombre_rubro'},
                     { data: null, render: function (data, type ,row) {
 
 //                     return  "<td><a href='#' class='btn btn-raised btn-success' role='button'><i class='fa fa-pencil' aria-hidden='true'></i></a></td>"

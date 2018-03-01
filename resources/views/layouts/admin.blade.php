@@ -117,6 +117,7 @@ desired effect
             @if(session()->has('flahs'))
                     <div class="alert alert-success">{{session('flash')}}</div>
             @endif
+
                       <!-- Your Page Content Here -->
             @yield('content')
 
@@ -138,6 +139,7 @@ desired effect
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+<script src="{{ asset('js/app.js') }}"></script>
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 2.2.3 -->
@@ -176,15 +178,17 @@ desired effect
      fixed layout. -->
 <!-- page script -->
 @yield('script')
-@yield('practicas')
-@yield('tags')
+@yield('practicas_index')
+@yield('etapas')
 @yield('cultivos')
+@yield('variedades')
+@yield('tecnologias_index')
 
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
 {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>--}}
 @include('admin.practicas.create')
 
-@include('admin.tags.create')
+@include('admin.etapas.create')
 @include('admin.cultivos.create')
 @include('admin.tecnologias.create')
 {{-- @include('admin.caracteristicas.create') --}}

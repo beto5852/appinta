@@ -122,7 +122,7 @@
                         <ul class="users-list clearfix">
                             @foreach($users as $user)
                                 <li>
-
+                               @if(empty($user->profiles()->first()->perfil))
                                     @if(empty($user->perfil))
 
                                         @if($user->sexo == 'masculino')
@@ -133,6 +133,9 @@
                                     @else
                                         <img src="{{asset('img/'.$user->perfil)}}" class="img-circle" alt="User Image">
                                     @endif
+                               @else
+                                        <img src="{{$user->profiles()->first()->perfil}}" class="img-circle" alt="User Image">
+                               @endif
 
                                     <a class="users-list-name" href="{{url('admin/users/'.$user->id)}}">{{  $user->name}}</a>
                                     <span class="users-list-date">{{  $user->created_at->format('M d')}}</span>
@@ -217,7 +220,7 @@
         </div>
 
 
-        @else
+ @else
                 <!-- row -->
         <div class="row">
 

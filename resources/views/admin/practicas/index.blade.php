@@ -98,9 +98,7 @@
 @endsection
 
 
-
-
-@section('practicas')
+@section('practicas_index')
 
 
         <!-- Modal -->

@@ -43,7 +43,7 @@
     </div>
 @endsection
 
-@section('cultivos')
+@section('tecnologias_index')
             <!-- Modal -->
     <!-- Modal -->
     <div class="modal fade" id="myModalTecnologias" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

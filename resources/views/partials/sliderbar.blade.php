@@ -132,8 +132,8 @@
                     </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
-                        <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#myModalVariedades"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar Variedad</a></li>
+                        <li><a href="{{url('admin/variedades/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar Variedades</a></li>
                     </ul>
                 </li>
 
@@ -174,7 +174,7 @@
 
                     </ul>
                     <ul class="treeview-menu">
-                        <li class="active"><a href="{{asset('admin/practicas')}}"  ><i class="fa fa-circle-o"></i>Practicas</a></li>
+                        <li class="active"><a href="{{asset('admin/reportes_practicas')}}"  ><i class="fa fa-circle-o"></i>Practicas</a></li>
 
                     </ul>
                 </li>

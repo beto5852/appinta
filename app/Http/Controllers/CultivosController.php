@@ -27,10 +27,8 @@ class CultivosController extends Controller
      */
     public function index()
     {
-        //
-        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
-//        dd($rubro);
-        return view("admin.cultivos.index", compact('rubro'));
+
+        return view("admin.cultivos.index");
     }
     /**
      * Show the form for creating a new resource.
@@ -40,11 +38,10 @@ class CultivosController extends Controller
 
     public function datos_cultivos(){
 
-        return Datatables::of( DB::table('cultivos')
-            ->join('rubros','cultivos.rubro_id','=','rubros.id')
-            ->select('cultivos.*','rubros.nombre_rubro')
-            ->orderBy('rubros.nombre_rubro')
-            ->get())->make(true);
+        $cultivos = Cultivo::select('cultivos.id','cultivos.nombre_cultivo');
+
+        return Datatables::of($cultivos)
+            ->make(true);
     }
 
     public function create()

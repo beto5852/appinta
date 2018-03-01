@@ -1,19 +1,19 @@
 @extends('layouts.admin')
 
-@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Lista de usuarios ')
 
+@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Lista de variedades agricolas')
 @section('header')
     <section class="content-header">
         <h1>
-            Variedades generadas
-            <small>Listado de las variedades de semillas generadas por el INTA</small>
+            Variedades Agricolas
+            <small>Listado de las variedades agricolas</small>
         </h1>
 
     </section>
 @endsection
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('variedades') !!}</li>
+        <li>{!! Breadcrumbs::render('tecnologias') !!}</li>
     </ul>
 @endsection
 
@@ -26,54 +26,124 @@
         </div>
     @endif
 
-    <div class="row">
-        <div class="col-xs-8">
-            <div class="form-group">
-                <a href="{{url('admin/variedades/create')}}" class="btn btn-raised btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Crear Usuario</a>
-            </div>
-        </div>
-        <div class="col-xs-2">
-            {!! Form::open(['url' => ['admin/variedades'], 'method' => 'GET', 'class' => 'navbar-form navbar-left', 'aria-describedby' => 'search']) !!}
+    <div class="box box-primary">
+        <div class="box-header">
+            {{--<h3 class="box-title">Listado de prácticas agricolas</h3>--}}
+            <button href="#" class="btn btn-raised btn-success" data-toggle="modal" data-target="#myModalVariedades"><i class="fa fa-pagelines" aria-hidden="true"></i> Crear variedad</button>
 
-            <div class="input-group">
-                {!! Form::text('search',null,['class' =>'form-control', 'placeholder' =>'Buscar','aria-describedby' => 'search'])!!}
-                <span id="search" class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+            <table id="variedades-table" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Variedad </th>
+                    <th>Acciones</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- /.box-body -->
+    </div>
+    @endsection
+
+    @section('variedades')
+            <!-- Modal -->
+    <!-- Modal -->
+    <div class="modal fade" id="myModalVariedades" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            {!! Form::open(['url' => 'admin/variedades', 'method' => 'POST']) !!}
+
+            {{csrf_field()}}
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Agregar variedad agricola</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group {{$errors->has('nombre_variedad') ? 'has-error' : ''}}">
+                        {{ Form::label('nombre_variedad','Nombre de la variedad agricola') }}
+                        {{ Form::text('nombre_variedad',null,['class' =>'form-control', 'placeholder' =>'Nombre de la variedad agricola','required'])}}
+                        {!! $errors->first('nombre_variedad','<span class="help-block">:message</span>') !!}
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    {{ Form::submit('Guardar Variedad', ['class' => 'btn btn-primary btn-block']) }}
+                </div>
             </div>
             {!! Form::close() !!}
         </div>
+
     </div>
 
-    <table class="table table-striped table-hover" >
-        <thead>
-        <tr >
 
-            <th>Nombre de la variedad</th>
-            <th>Correo</th>
-            <th>Tipo usuario</th>
-            <th>Acciones</th>
 
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($users as $user)
-            <tr class="info">
-                <td>{{  $user->name}}</td>
-                <td>{{  $user->email}}</td>
-                @if($user->type == 'admin')
-                    <td><span class="label label-primary">{{  $user->type}}</span></td>
-                @else
-                    <td><span class="label label-danger">{{  $user->type}}</span></td>
-                @endif
-                <td>
-                    <a href="{{url('admin/users/'.$user->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href="{{url('users/'.$user->id)}}" class="btn btn-raised btn-warning" role="button"
-                       onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
-    <ul class="pager"><center>{{ $users->links() }}</center></ul>
+    <script>
 
+        $(function() {
+            $('#variedades-table').DataTable({
+                "processing": true,
+                "serverSide": true,
+                "paging": true,
+                "lengthChange": true,
+                "searching": true,
+                "ordering": false,
+                "info": true,
+                "autoWidth": false,
+                "pageLength": 5,
+                "columnDefs": [{
+                    "defaultContent": "-",
+                    "targets": "_all"
+                }],
+                language : {
+                    "url": '{!! asset('/adminlte/plugins/datatables/latino.json') !!}'
+                },
+                ajax: '{!! route('admin.variedades.datos.index') !!}',
+                headers:{
+                    'X-CSRF-TOKEN':'{{csrf_token()}}'
+                },
+                columns: [
+                    { data: 'id', name: 'id'},
+                    { data: 'nombre_variedad', name: 'nombre_variedad' },
+                    { data: null, render: function (data, type ,row) {
+                        return  '<td>'+
+                                '<a href="{{url("admin/variedades/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
+                                '<form method="POST" action="{{url("admin/variedades")}}/'+data.id+'" style="display:inline" >'+
+                                '{{ csrf_field() }} {{method_field("DELETE")}}'+
+                                '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la variedad")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                                '</form>'+
+                                '</td>'
+
+                    }}
+                ]
+            });
+        });
+    </script>
+
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
+        };
+
+        CKEDITOR.replace('my-editor1', options);
+        CKEDITOR.config.height = 150;
+
+    </script>
 
 @endsection
+
+
+
+
+
+
+
+
