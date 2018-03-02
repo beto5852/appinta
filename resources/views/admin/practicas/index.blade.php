@@ -4,6 +4,7 @@
 @section('meta-title','Lista de Practicas')
 
 
+
 @section('header')
     <section class="content-header">
         <h1>
@@ -13,15 +14,11 @@
 
     </section>
 @endsection
-
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
         <li>{!! Breadcrumbs::render('practicas') !!}</li>
     </ul>
 @endsection
-
-
-
 
 @section('content')
 

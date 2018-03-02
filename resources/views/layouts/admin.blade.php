@@ -110,7 +110,6 @@ desired effect
                 @yield('breadcrumb')
 
         </section>
-
         <!-- Main content -->
         <section class="content">
 
