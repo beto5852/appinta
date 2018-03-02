@@ -27,6 +27,10 @@
 
         <!-- /.box-header -->
         <div class="box-body">
+
+
+            @if(!empty($practicas))
+
             <center>{{ $practicas->links() }}</center>
             <table id="practicas-table" class="table table-bordered table-striped">
                 <thead>
@@ -35,9 +39,9 @@
                     <th>Tecnológia</th>
                     <th>Rubro</th>
                     <th>Cultivo</th>
-                    <th>Etapas</th>
-                    <th>Mes</th>
-                    <th>Semanas</th>
+                    {{--<th>Etapas</th>--}}
+                    {{--<th>Mes</th>--}}
+                    {{--<th>Semanas</th>--}}
                     <th>Imagen</th>
                     <th>ver</th>
                 </tr>
@@ -55,21 +59,21 @@
                         <td>{{  $practica->rubro['nombre_rubro']}}</td>
 
                         <td>{{  $practica->cultivo['nombre_cultivo']}}</td>
-                        <td>
-                            @foreach($practica->etapas as $etapa)
-                                <span class="label label-success">{{$etapa->nombre_etapa}}</span><br>
-                            @endforeach
-                        </td>
-                        @foreach($practica->meses as $mes)
-                            <td> {{$mes->nombre_mes}}</td><br>
-                        @endforeach
+                        {{--<td>--}}
+                            {{--@foreach($practica->etapas as $etapa)--}}
+                                {{--<span class="label label-success">{{$etapa->nombre_etapa}}</span><br>--}}
+                            {{--@endforeach--}}
+                        {{--</td>--}}
+                        {{--@foreach($practica->meses as $mes)--}}
+                            {{--<td> {{$mes->nombre_mes}}</td><br>--}}
+                        {{--@endforeach--}}
 
-                        <td>
-                            @foreach($practica->semanas as $semana)
+                        {{--<td>--}}
+                            {{--@foreach($practica->semanas as $semana)--}}
 
-                                <span class="label label-primary">{{$semana->nombre_semana}}</span><br>
-                            @endforeach
-                        </td>
+                                {{--<span class="label label-primary">{{$semana->nombre_semana}}</span><br>--}}
+                            {{--@endforeach--}}
+                        {{--</td>--}}
 
 
                         @if(empty($practica->path))
@@ -90,6 +94,11 @@
 
             </table>
             <center>{{ $practicas->links() }}</center>
+        @else
+
+            <h1>Ningun reultado vuelva a intentarlo!!!</h1>
+
+         @endif
         </div>
         <!-- /.box-body -->
     </div>
@@ -144,12 +153,12 @@
                 <div class="contact-about">
                     <h3><img src="{{asset('template/img/clients/logo-inta.png')}}" width="25%" alt="auto"></h3>
                     <p>Puedes visitar nuestras redes sociales y canales para ver mas contenido del que hacer de nuestra institución.</p>
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                        <a href="https://twitter.com/intanicaragua" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                        <a href="https://www.youtube.com/user/INTANICARAGUA" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                        <a href="https://plus.google.com/112535730954267366501" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
-                    </div>
+                    {{--<div class="social-links">--}}
+                        {{--<a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
+                        {{--<a href="https://twitter.com/intanicaragua" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
+                        {{--<a href="https://www.youtube.com/user/INTANICARAGUA" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>--}}
+                        {{--<a href="https://plus.google.com/112535730954267366501" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
+                    {{--</div>--}}
                 </div>
             </div>
 
@@ -174,7 +183,7 @@
             </div>
 
         </div>
-
+        </div>
     </div>
 </section><!-- #contact -->
 

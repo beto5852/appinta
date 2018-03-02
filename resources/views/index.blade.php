@@ -85,6 +85,7 @@
                             <div class="wow fadeInLeft">
                                 <h2>{{$practica->nombre_practica }}</h2>
                                 <p>{!! $practica->textomedio !!}</p>
+                                <a href="{{asset('register')}}" class="btn-get-started scrollto">Leer mas</a>
                             </div>
                         </div>
                     </div>
@@ -212,12 +213,12 @@
                         <div class="contact-about">
                             <h3><img src="template/img/clients/logo-inta.png" width="25%" alt="auto"></h3>
                             <p>Puedes visitar nuestras redes sociales y canales para ver mas contenido del que hacer de nuestra institución.</p>
-                            <div class="social-links">
-                                <a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a href="https://twitter.com/intanicaragua" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a href="https://www.youtube.com/user/INTANICARAGUA" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>
-                                <a href="https://plus.google.com/112535730954267366501" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>
-                            </div>
+                            {{--<div class="social-links">--}}
+                                {{--<a href="https://www.facebook.com/inta.nicaragua" class="facebook" target="_blank"><i class="fa fa-facebook"></i></a>--}}
+                                {{--<a href="https://twitter.com/intanicaragua" class="twitter" target="_blank"><i class="fa fa-twitter"></i></a>--}}
+                                {{--<a href="https://www.youtube.com/user/INTANICARAGUA" class="youtube" target="_blank"><i class="fa fa-youtube"></i></a>--}}
+                                {{--<a href="https://plus.google.com/112535730954267366501" class="google-plus" target="_blank"><i class="fa fa-google-plus"></i></a>--}}
+                            {{--</div>--}}
                         </div>
                     </div>
 
