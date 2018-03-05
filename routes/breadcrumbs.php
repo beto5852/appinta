@@ -71,10 +71,10 @@ Breadcrumbs::register('inicio', function($breadcrumbs)
     $breadcrumbs->push('inicio', url('/'));
 });
 // Home > Tags
-Breadcrumbs::register('tags', function($breadcrumbs)
+Breadcrumbs::register('busqueda', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
-    $breadcrumbs->push('Lista tags', url('admin/tags/'));
+    $breadcrumbs->push('buscar práctica', url('admin/home/busqueda'));
 });
 Breadcrumbs::register('tags.create', function($breadcrumbs)
 {

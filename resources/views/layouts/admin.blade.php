@@ -138,7 +138,7 @@ desired effect
     <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
-<script src="{{ asset('js/app.js') }}"></script>
+{{--<script src="{{ asset('js/app.js') }}"></script>--}}
 
 <!-- REQUIRED JS SCRIPTS -->
 <!-- jQuery 2.2.3 -->
@@ -178,6 +178,7 @@ desired effect
 <!-- page script -->
 @yield('script')
 @yield('practicas_index')
+@yield('practicas_edit')
 @yield('etapas')
 @yield('cultivos')
 @yield('variedades')

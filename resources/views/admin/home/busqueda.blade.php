@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('tags') !!}</li>
+        <li>{!! Breadcrumbs::render('busqueda') !!}</li>
     </ul>
 @endsection
 

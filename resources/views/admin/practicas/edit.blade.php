@@ -227,7 +227,7 @@
     </div>
     @endsection
 
-    @section('practicas')
+ @section('practicas_edit')
             <!-- date-range-picker -->
     <script src="{{asset('/js/moment.min.js')}}"></script>
 
