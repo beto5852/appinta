@@ -170,7 +170,7 @@
                                         {!! $errors->first('mes_id[]','<span class="help-block">:message</span>') !!}
                                     </td>
                                     <td class="col-sm-5 {{$errors->has('semana_id[]') ? 'has-error' : ''}}">
-                                        {{ Form::select('semana_id[]',$semanas,old('semana_id[]',$my_semana),['class'=>'form-control select2','multiple']) }}
+                                        {{ Form::select('semana_id[]',$semanas,old('semana_id[]',$my_semana),['class'=>'form-control chosen-select2','multiple']) }}
                                         {!! $errors->first('semana_id[]','<span class="help-block">:message</span>') !!}
                                     </td>
                                 </tr>
@@ -180,13 +180,13 @@
 
                         <div class="form-group">
                             {{ Form::label('user_id','Cambiar editor') }}
-                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control select1'])}}
+                            {{ Form::select('user_id',$users,old('user_id',$practica->user_id),['class' => 'form-control select2'])}}
                         </div>
 
 
                         <div class="form-group">
                             {{ Form::label('tecnologia','Tecnológia') }}
-                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select1',])}}
+                            {{ Form::select('tecnologia_id',$tecnologias,old('tecnologia_id',$practica->tecnologia_id),['class' => 'form-control select2',])}}
                         </div>
                         <div class="form-group">
                             {{ Form::label('rubro','Rubro') }}
@@ -284,22 +284,8 @@
             placeholder_text_multiple: 'selecciones las semanas',
             no_results_text: "Sin resultados!",
         });
-        $(".chosen-select3").chosen({
-            placeholder_text_multiple: 'seleccione el usuario',
-            no_results_text: "Sin resultados!",
-        });
-        $(".chosen-select4").chosen({
-            placeholder_text_multiple: 'seleccione la tecnologia',
-            no_results_text: "Sin resultados!",
-        });
 
-        $(".chosen-select5").chosen({
-            placeholder_text_multiple: 'selecciones las etiquetas',
-            no_results_text: "Sin resultados!",
-        });
 
-        $(".select1").select2({
-        });
 
         $(".select2").select2({
             tags: true

@@ -52,7 +52,7 @@ class PracticasController extends Controller
             ->whereNotNull('practicas.id')
             ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
             ->join('users', 'practicas.user_id', '=', 'users.id')
-            ->select('practicas.*', 'tecnologias.nombre_tecnologia', 'users.name')
+            ->select('practicas.*', 'tecnologias.*', 'users.*')
             ->get())->make(true);
     }
 
@@ -131,6 +131,7 @@ class PracticasController extends Controller
 //        $mesactual = [date('m')];
 //         dd(count($my_semana));
 
+       
         return view('admin.practicas.edit', compact('users', 'practica','meses', 'semanas',
             'tecnologias','cultivos','rubros','etapas','variedades','my_etapas','my_mes','my_semana','my_variedades'));
     }
