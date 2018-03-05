@@ -81,6 +81,7 @@ class GraficasController extends Controller
 
 
         $activ = Charts::database($activities, 'bar', 'highcharts')
+            ->title("Usuarios en línea")
             ->elementLabel("Usuarios en linea")
             ->height(300)
             ->width(300)
@@ -101,7 +102,7 @@ class GraficasController extends Controller
 
         $chartpract = Charts::database($practis, 'bar', 'highcharts')
             ->title("Etapa de practica")
-            ->elementLabel("Numero de etapas en esta practica")
+            ->elementLabel("Número de etapas en esta práctica")
             ->height(300)
             ->width(300)
             ->responsive(true)

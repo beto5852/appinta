@@ -43,6 +43,7 @@
             <th>Nombre y Apellidos</th>
             <th>Correo</th>
             <th>Tipo usuario</th>
+            <th>Foto de perfil</th>
             <th>Acciones</th>
 
         </tr>
@@ -63,15 +64,15 @@
                 @if(empty($user->profiles()->first()->perfil))
                     @if(empty($user->perfil))
                         @if($user->sexo == 'masculino')
-                            <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture"></td>
+                           <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" alt="User profile picture">
                         @elseif($user->sexo == 'femenino')
-                            <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture"></td>
+                            <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" alt="User profile picture">
                         @endif
                     @else
-                        <td><img class="profile-user-img img-responsive img-circle" src="{{asset('img/')}}/{{$user->perfil}}" alt="User profile picture"></td>
+                        <img class="profile-user-img img-responsive img-circle" src="{{asset('img/')}}/{{$user->perfil}}" alt="User profile picture">
                     @endif
                 @else
-                    <td><img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" alt="User profile picture"></td>
+                    <img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" alt="User profile picture">
                 @endif
                 </td>
                 <td>

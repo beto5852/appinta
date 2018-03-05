@@ -5,7 +5,7 @@
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('tags') !!}</li>
+        <li>{!! Breadcrumbs::render('reporteonline') !!}</li>
     </ul>
 @endsection
 
@@ -27,9 +27,7 @@
                 <div class="box-header">
                 </div>
                 <div class="container">
-
-                    {!! $edad->render() !!}
-
+                    {!! $activ->render() !!}
                 </div>
                 <div class="box-footer">
                 </div>

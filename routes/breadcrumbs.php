@@ -76,11 +76,19 @@ Breadcrumbs::register('busqueda', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('buscar práctica', url('admin/home/busqueda'));
 });
-Breadcrumbs::register('tags.create', function($breadcrumbs)
+Breadcrumbs::register('reporteregistros', function($breadcrumbs)
 {
-    $breadcrumbs->parent('tags');
-    $breadcrumbs->push('Crear tags', url('admin/tags/create'));
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Gráfica de registros', url('admin/reportes/'));
 });
+
+Breadcrumbs::register('reporteonline', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Gráfica online', url('admin/reportes/online'));
+});
+
+
 // Home > cultivos
 Breadcrumbs::register('cultivos', function($breadcrumbs)
 {

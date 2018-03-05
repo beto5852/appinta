@@ -49,7 +49,6 @@ class PracticasController extends Controller
     public function datos_practicas(){
 
         return Datatables::of( DB::table('practicas')
-            ->whereNotNull('practicas.id')
             ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
             ->join('users', 'practicas.user_id', '=', 'users.id')
             ->select('practicas.*', 'tecnologias.*', 'users.*')
@@ -158,11 +157,6 @@ class PracticasController extends Controller
     {
         //elimina la practica con el id que recibe
         $practica = Practica::find($id);
-        $practica->meses()->detach();
-        $practica->semanas()->detach();
-        $practica->etapas()->detach();
-        $practica->variedades()->detach();
-
         $practica->delete();
 
 
