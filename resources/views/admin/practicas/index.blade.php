@@ -78,7 +78,7 @@
                     <th>Práctica</th>
                     <th>creado por:</th>
                     <th>Tecnológia</th>
-                    <th>Imagen</th>
+                    {{--<th>Imagen</th>--}}
                     <th>Acciones</th>
                 </tr>
                 </thead>
@@ -159,17 +159,17 @@ $(function() {
                  { data: 'nombre_practica', name: 'nombre_practica' },
                  { data: 'name', name: 'name' },
                  { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
-                 { data: 'path', render: function (data, type ,row) {
+                 {{--{ data: 'path', render: function (data, type ,row) {--}}
 
                      {{--return '<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'--}}
 
-                     return  '@if(empty($practica->path))'+
-                             '<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'+
-                             '@else'+
-                             '<td><img src="{{asset('img/')}}/'+data.path+'" style = "width: 100px;"></td>'+
-                             '@endif'
+                     {{--return  '@if(empty($practica->path))'+--}}
+                             {{--'<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'+--}}
+                             {{--'@else'+--}}
+                             {{--'<td><img src="{{asset('img/')}}/'+data.path+'" style = "width: 100px;"></td>'+--}}
+                             {{--'@endif'--}}
 
-                 }},
+                 {{--}},--}}
                  { data: null, render: function (data, type ,row) {
 
                  return  '<td>'+
