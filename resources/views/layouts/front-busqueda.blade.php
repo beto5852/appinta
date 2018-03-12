@@ -98,8 +98,6 @@
 <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
 
 
-<script src="{{ asset('js/app.js') }}"></script>
-
 <!-- JavaScript Libraries -->
 <script src={{asset("template/lib/jquery/jquery.min.js")}}></script>
 <script src={{asset("template/lib/jquery/jquery-migrate.min.js")}}></script>

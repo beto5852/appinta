@@ -61,7 +61,7 @@ class VariedadesController extends Controller
         $vatiedades = Variedad::create(['nombre_variedad' => $request->get('nombre_variedad')]);
 
         Session::flash('message','Variedad agricola creada con exito');
-        return redirect()->route('admin.variedades.edit',$vatiedades);
+        return redirect()->route('admin.variedades.index');
     }
 
     /**

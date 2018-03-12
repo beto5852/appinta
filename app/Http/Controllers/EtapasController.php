@@ -1,7 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Etapa;
+use Illuminate\Support\Facades\DB;
+use Yajra\Datatables\Datatables;
+use Session;
+use Redirect;
 use Illuminate\Http\Request;
 
 class EtapasController extends Controller
@@ -9,8 +13,8 @@ class EtapasController extends Controller
 
     public function __construct()
     {
-        $this->middleware(['auth','roles:admin']);
-        $this->middleware('roles:admin', ['only' => ['index', 'edit', 'update', 'create', 'destroy']]);
+        $this->middleware('auth');
+        $this->middleware('admin',['only' => ['index','show','edit','update','create','destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -20,16 +24,22 @@ class EtapasController extends Controller
     public function index()
     {
         //
+         return view("admin.etapas.index");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function datos_etapas(){
+
+        $etapas = Etapa::select('etapas.id','etapas.nombre_etapa');
+
+        return Datatables::of($etapas)
+            ->make(true);
+    }
+    
+    
+    
     public function create()
     {
-        //
+        return view('admin.etapas.create');
     }
 
     /**
@@ -40,7 +50,15 @@ class EtapasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request , [
+            'nombre_etapa' => 'required|min:3|max:200',
+        ]);
+
+        $etapa = Etapa::create(['nombre_etapa' => $request->get('nombre_etapa')]);
+
+
+        Session::flash('message','Etapa agricola creada con exito');
+        return redirect()->route('admin.etapas.index');
     }
 
     /**
@@ -63,6 +81,9 @@ class EtapasController extends Controller
     public function edit($id)
     {
         //
+        $etapa = Etapa::findOrFail($id);
+
+        return view('admin.etapas.edit',compact('etapa'));
     }
 
     /**
@@ -74,7 +95,13 @@ class EtapasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $etapa = Etapa::find($id);
+        $etapa->fill($request->all());
+        $etapa->save();
+
+
+        Session::flash('message','Etapa actualizada correctamente');
+        return redirect::to('admin/etapas');
     }
 
     /**
@@ -85,6 +112,10 @@ class EtapasController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        $etapa = Etapa::find($id);
+        $etapa->delete();
+        Session::flash('message','Etapa eliminada correctamente');
+        return redirect::to('admin/Etapas');
     }
 }

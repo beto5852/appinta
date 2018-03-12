@@ -1,7 +1,15 @@
 @extends('layouts.admin')
 
-@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Editar Practica')
+@section('title','<i class="fa fa-list" aria-hidden="true"></i>'.' '.'Editar Cultivo')
+@section('header')
+    <section class="content-header">
+        <h1>
+            Cultivios Agricolas
+            <small>Edita el cultivo agricolas</small>
+        </h1>
 
+    </section>
+@endsection
 
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
@@ -59,16 +67,7 @@
 
                 </div>
           </div>
-        <div class="col-md-4">
-            <div class="box box-primary">
-                <div class="box-body">
-                    <div class="form-group">
-                        {{ Form::label('rubro_id','Rubro al que pertenece') }}
-                        {{ Form::select('rubro_id',$rubro,old('rubro_id',$cultivo->rubro_id),['class' => 'form-control select2','required'])}}
-                    </div>
-                </div>
-            </div>
-        </div>
+
         {!! Form::close() !!}
      </div>
 

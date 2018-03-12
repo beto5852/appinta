@@ -82,13 +82,4 @@ class User extends Authenticatable
         return $this->hasMany(SocialProfile::class);
     }
 
-//    public function getPerfilAtttribute(){
-//
-//        return $this->profiles()->first()->perfil();
-//    }
-
-
-//     public function sendPasswordResetNotification($token){
-//         $this->notify(new ResetPasswordNotification($token));
-//     }
 }

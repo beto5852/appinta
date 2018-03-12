@@ -13,7 +13,7 @@
 @endsection
 @section('breadcrumb')
     <ul class="breadcrumb" style="margin-bottom: 5px;">
-        <li>{!! Breadcrumbs::render('tecnologias') !!}</li>
+        <li>{!! Breadcrumbs::render('variedades') !!}</li>
     </ul>
 @endsection
 

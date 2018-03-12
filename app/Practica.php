@@ -37,9 +37,6 @@ class Practica extends Model
     protected $fillable = ['nombre_practica','textomedio','contenido','video','slug','path','cultivo_id','rubro_id','tecnologia_id', 'user_id'];
 
 
-  
-
-
 
 
     public function etapas()
@@ -112,7 +109,6 @@ class Practica extends Model
 
     }
 
- 
     public function syncEtapa($etapas){
 
         $etapaIds = collect($etapas)->map(function($etapa){
@@ -134,30 +130,6 @@ class Practica extends Model
     }
 
 
-
-
-    public function scopeBusqueda($query,$cultivo,$dato ="")
-    {
-
-        if(empty($rubro)){
-            $resultado= $query->where('nombre_practica','like','%'.$dato.'%')
-                ->orWhere('apellidos','like', '%'.$dato.'%')
-                ->orWhere('email','like', '%'.$dato.'%');
-        }
-        else{
-
-            //select * from users where pais = $pais  and (nombres like %$dato% or apellidos like %$dato%  or email like  %$dato% )
-            $resultado= $query->where("cultivo_id","=",$cultivo)
-                ->Where(function($q) use ($cultivo,$dato)  {
-                    $q->where('nombre_practica','like','%'.$dato.'%')
-                        ->orWhere('apellidos','like', '%'.$dato.'%')
-                        ->orWhere('email','like', '%'.$dato.'%');
-                });
-
-        }
-
-        return  $resultado;
-    }
 
 
 }

@@ -125,6 +125,18 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
     Route::get('variedades/edit/{id}','VariedadesController@edit')->name("admin.variedades.edit");
     Route::DELETE('variedades/{id}','VariedadesController@destroy')->name("admin.variedades.destroy");
 
+    /************************************ETAPAS******************************************************************************************/
+
+    Route::resource('/etapas','EtapasController');
+
+    Route::get('etapas','EtapasController@index')->name("admin.etapas.index");
+    Route::get('etapas_datos','EtapasController@datos_etapas')->name("admin.etapas.datos.index");
+
+    Route::get('etapas/create','EtapasController@create')->name("admin.etapas.create");
+    Route::get('etapas/edit/{id}','EtapasController@edit')->name("admin.etapas.edit");
+    Route::DELETE('etapas/{id}','EtapasController@destroy')->name("admin.etapas.destroy");
+
+
     /******************************REPORTES de graficas************************************************************************************************/
 
     Route::get('reportes','GraficasController@reportes')->name("admin.reportes.index");

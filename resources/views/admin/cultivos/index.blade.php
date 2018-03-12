@@ -128,7 +128,7 @@
                                 '<a href="{{url("admin/cultivos/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+
                                 '<form method="POST" action="{{url("admin/cultivos")}}/'+data.id+'" style="display:inline" >'+
                                 '{{ csrf_field() }} {{method_field("DELETE")}}'+
-                                '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar la práctica")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
+                                '<button class="btn btn-raised btn-danger" onclick="return confirm("Esta seguro de eliminar el cultivo")"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>'+
                                 '</form>'+
                                 '</td>'
 

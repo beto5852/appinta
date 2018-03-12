@@ -70,7 +70,7 @@ Breadcrumbs::register('inicio', function($breadcrumbs)
     $breadcrumbs->parent('home');
     $breadcrumbs->push('inicio', url('/'));
 });
-// Home > Tags
+// Home > busqueda
 Breadcrumbs::register('busqueda', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');
@@ -135,4 +135,43 @@ Breadcrumbs::register('timelinemore', function($breadcrumbs)
 {   
     $breadcrumbs->parent('timeline');
     $breadcrumbs->push('Practica', url('admin/timelinemore/'));
+});
+
+
+// Home > etapas
+Breadcrumbs::register('etapas', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Lista de etapas', url('admin/etapas/'));
+});
+
+Breadcrumbs::register('etapas.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('crear etapa', url('admin/etapas/'));
+});
+Breadcrumbs::register('etapas.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Editar etapa', url('admin/etapas/'));
+});
+
+
+
+// Home > variedades
+Breadcrumbs::register('variedades', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Lista de variedades', url('admin/variedades/'));
+});
+
+Breadcrumbs::register('variedades.create', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('crear variedad', url('admin/variedades/'));
+});
+Breadcrumbs::register('variedades.edit', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Editar variedad', url('admin/variedades/'));
 });

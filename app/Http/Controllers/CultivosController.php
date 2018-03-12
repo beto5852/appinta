@@ -88,14 +88,10 @@ class CultivosController extends Controller
      */
     public function edit($id)
     {
-        //
-        //
-//        $variedades = Variedad::orderBy('nombre_variedad', 'ASC')->pluck('nombre_variedad', 'id');
-        $rubro = Rubro::pluck('nombre_rubro','id')->toArray();
-        // dd($variedades);
+
         $cultivo    = Cultivo::findOrFail($id);
 
-        return view('admin.cultivos.edit', compact('cultivo','rubro'));
+        return view('admin.cultivos.edit', compact('cultivo'));
     }
     /**
      * Update the specified resource in storage.

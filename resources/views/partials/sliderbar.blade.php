@@ -34,15 +34,15 @@
         </div>
         @if(Auth::user()->type == 'admin')
         <!-- search form (Optional) -->
-       <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Busqueda...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-            </div>
-        </form>
+       {{--<form action="#" method="get" class="sidebar-form">--}}
+            {{--<div class="input-group">--}}
+                {{--<input type="text" name="q" class="form-control" placeholder="Busqueda...">--}}
+              {{--<span class="input-group-btn">--}}
+                {{--<button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>--}}
+                {{--</button>--}}
+              {{--</span>--}}
+            {{--</div>--}}
+        {{--</form>--}}
         <!-- /.search form -->
         @endif
         <!-- Sidebar Menu -->
@@ -147,8 +147,8 @@
                     </span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar etapa de siembra</a></li>
-                    <li><a href="#"><i class="fa fa-list" aria-hidden="true"></i> Listar etapas de siembra</a></li>
+                    <li><a href="#" data-toggle="modal" data-target="#myModalEtapas"><i class="fa fa-plus-circle" aria-hidden="true"></i> Agregar etapa de siembra</a></li>
+                    <li><a href="{{url('admin/etapas/')}}"><i class="fa fa-list" aria-hidden="true"></i> Listar etapas de siembra</a></li>
                 </ul>
             </li>
 

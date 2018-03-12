@@ -47,7 +47,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{asset('/adminlte/plugins/datepicker/datepicker3.css')}}">
 
     <!-- Dropzone-->
-    <link rel="stylesheet" href="{{asset('/dropzone/dropzone.css')}}">
+    <link rel="stylesheet" href="{{asset('dropzone/dropzone.css')}}">
     <!-- Dropzone-->
 
     <link rel="stylesheet" href="{{asset('/css/fotos.css')}}">
@@ -164,7 +164,7 @@ desired effect
 
 <script src="{{asset('/adminlte/plugins/select2/select2.full.min.js')}}"></script>
 
-<script src="{{asset('/dropzone/dropzone.js')}}"></script>
+<script src="{{asset('dropzone/dropzone.js')}}"></script>
 
 <!-- date-range-picker -->
 <script src="{{asset('/js/moment.min.js')}}"></script>
@@ -184,10 +184,12 @@ desired effect
 @yield('variedades')
 @yield('tecnologias_index')
 
+@yield('etapas_index')
+@include('admin.etapas.create')
         <!-- Go to www.addthis.com/dashboard to customize your tools -->
 {{--<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5a538b776181597d"></script>--}}
 @include('admin.practicas.create')
-
+@include('admin.variedades.create')
 @include('admin.etapas.create')
 @include('admin.cultivos.create')
 @include('admin.tecnologias.create')

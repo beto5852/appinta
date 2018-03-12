@@ -2,6 +2,16 @@
 
 @section('title','<i class="fa fa-home" aria-hidden="true"></i>'.' '.'Notificaciones')
 
+@section('header')
+    <section class="content-header">
+        <h1>
+            Sección de Notificaciones
+            <small>Lista de notificaciones leídas y no leídas</small>
+        </h1>
+
+    </section>
+@endsection
+
 @section('breadcrumb')
 
 
@@ -35,7 +45,7 @@
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Notificaciones no leidas</h3>
+                            <h3 class="box-title">Notificaciones no leídas</h3>
 
                             {{--<div class="box-tools pull-right">--}}
                             {{--<div class="has-feedback">--}}
@@ -87,7 +97,7 @@
                 <div class="col-md-6">
                     <div class="box box-primary">
                         <div class="box-header with-border">
-                            <h3 class="box-title">Notificaciones leidas</h3>
+                            <h3 class="box-title">Notificaciones leídas</h3>
 
                             {{--<div class="box-tools pull-right">--}}
                             {{--<div class="has-feedback">--}}

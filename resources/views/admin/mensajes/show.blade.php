@@ -2,6 +2,16 @@
 
 @section('title','<i class="fa fa-home" aria-hidden="true"></i>'.' '.'Ver Mensajes')
 
+@section('header')
+    <section class="content-header">
+        <h1>
+           Mensaje
+            <small>Ver mensaje</small>
+        </h1>
+
+    </section>
+@endsection
+
 @section('breadcrumb')
 
 
