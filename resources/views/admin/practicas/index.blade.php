@@ -76,8 +76,8 @@
                 <tr>
                     <th>ID</th>
                     <th>Práctica</th>
-                    <th>creado por:</th>
-                    <th>Tecnológia</th>
+                    <th>Contenido</th>
+                    {{--<th>Tecnológia</th>--}}
                     {{--<th>Imagen</th>--}}
                     <th>Acciones</th>
                 </tr>
@@ -157,8 +157,7 @@ $(function() {
              columns: [
                  { data: 'id', name: 'id'},
                  { data: 'nombre_practica', name: 'nombre_practica' },
-                 { data: 'name', name: 'name' },
-                 { data: 'nombre_tecnologia', name: 'nombre_tecnologia' },
+                 { data: 'textomedio', name: 'textomedio' },
                  {{--{ data: 'path', render: function (data, type ,row) {--}}
 
                      {{--return '<td><img src="{{asset('img/no-imagen.jpg')}}" style = "width: 100px;"></td>'--}}

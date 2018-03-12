@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class Practica extends Model
 {
 
-//    protected  $guarded = [];
+    protected  $guarded = [];
 
     protected $table   = 'practicas';
     use Sluggable;

@@ -49,9 +49,7 @@ class PracticasController extends Controller
     public function datos_practicas(){
 
         return Datatables::of( DB::table('practicas')
-            ->join('tecnologias', 'practicas.tecnologia_id', '=', 'tecnologias.id')
-            ->join('users', 'practicas.user_id', '=', 'users.id')
-            ->select('practicas.*', 'tecnologias.*', 'users.*')
+            ->select('practicas.id', 'practicas.nombre_practica', 'practicas.textomedio')
             ->get())->make(true);
     }
 
@@ -85,7 +83,6 @@ class PracticasController extends Controller
 
             \Event::fire(new CrearPractica($practica));
         }
-
 
 
         Session::flash('message','Practica Creada');
