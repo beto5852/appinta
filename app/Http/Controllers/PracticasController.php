@@ -156,9 +156,20 @@ class PracticasController extends Controller
     public function destroy($id)
     {
         //elimina la practica con el id que recibe
-        $practica = Practica::find($id);
-        $practica->delete();
 
+        $practica =Practica::where('id',$id)->first();
+
+        if ($practica != null) {
+            $practica->delete();
+            return redirect()->route('admin.practicas.index')->with(['message'=> 'práctica eliminada correctamente!!']);
+        }
+
+        return redirect()->route('admin.practicas.index')->with(['message'=> 'práctica agricola no encontrada!!']);
+
+
+
+        $practica = Practica::firstOrFail($id);
+        $practica->delete();
 
         Session::flash('message', 'Práctica eliminada correctamente');
         return redirect::to('admin/practicas');

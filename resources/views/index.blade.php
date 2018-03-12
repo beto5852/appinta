@@ -85,7 +85,7 @@
                             <div class="wow fadeInLeft">
                                 <h2>{{$practica->nombre_practica }}</h2>
                                 <p>{!! $practica->textomedio !!}</p>
-                                <a href="{{asset('register')}}" class="btn-get-started scrollto">Leer mas</a>
+                                <a href="{{'practica'}}/{{$practica->slug}}" class="btn btn-primary">Leer mas</a>
                             </div>
                         </div>
                     </div>
