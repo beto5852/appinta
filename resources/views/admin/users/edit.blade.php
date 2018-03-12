@@ -51,12 +51,12 @@
              <div class="box-body">
                  <div class="form-group">
                      {{ Form::label('name','Nombre') }}
-                     {{ Form::text('name',$user->name,['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])}}
+                     {{ Form::text('name',old('name',$user->name),['class' =>'form-control', 'placeholder' =>'Nombre Completo','required'])}}
                  </div>
 
                  <div class="form-group">
                      {{ Form::label('email','Correo electrónico') }}
-                     {{ Form::email('email',$user->email,['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
+                     {{ Form::email('email',old('email',$user->email),['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
                  </div>
                  <div class="form-group">
                      {!! Form::label('nacimiento','Fecha de nacimiento') !!}
@@ -83,7 +83,7 @@
                  </div>
                  <div class="form-group">
                      {{form::label('notas','Acerca de mi:') }}
-                     {{ Form::text('notas',$user->notas,['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])}}
+                     {{ Form::text('notas',old('notas',$user->notas),['id' => 'my-editor','class' => 'my-editor', 'placeholder' =>'Describete para conocerte'])}}
                  </div>
              </div>
          </div>
@@ -94,8 +94,8 @@
          <div class="box box-primary">
              <div class="box-body">
                  <div class="form-group">
-                     {!! Form::label('telefono','Telefono') !!}
-                     {!! Form::text('telefono',$user->telefono,['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
+                     {!! Form::label('telefono','Teléfono') !!}
+                     {!! Form::text('telefono',old('telefono',$user->telefono),['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
                  </div>
 
                  <div class="form-group">
@@ -108,22 +108,22 @@
                          {{ Form::label('type','Tipo de usuario') }}
                          {{ Form::select('type',['' => 'Seleccione tipo de usuario' ,'admin' => 'admin', 'miembro' => 'miembro'],$user->type,['class' => 'form-control chosen-select'])}}
 
-
-
                      </div>
                  @endif
 
 
                  <div class="form-group">
                      {!! Form::label('ocupacion','Ocupación') !!}
-                     {!! Form::text('ocupacion',$user->ocupacion,['class' =>'form-control', 'placeholder' =>'Nombre Completo']) !!}
+                     {!! Form::text('ocupacion',old('ocupacion',$user->ocupacion),['class' =>'form-control', 'placeholder' =>'Ocupación']) !!}
                  </div>
                  <div class="form-group">
                      {{ Form::label('pais','Pais') }}
-                     {{ Form::text('pais',$user->pais,['class' =>'form-control', 'placeholder' =>'Nombre Completo'])}}
+                     {{ Form::text('pais',old('pais',$user->pais),['class' =>'form-control', 'placeholder' =>'Nombre del pais'])}}
 
                  </div>
-                 @if(empty(Auth::user()->profiles()->first()->perfil))
+
+                 @if(Auth::user()->type=='admin')
+                 @if(!empty(Auth::user()->profiles()->first()->perfil))
                      @if(empty($user->profiles()->first()->perfil))
                          @if(empty($user->perfil))
                              @if($user->sexo == 'masculino'   )
@@ -139,6 +139,22 @@
                       @endif
                  @else
                      <img class="profile-user-img img-responsive img-circle" src="{{Auth::user()->profiles()->first()->perfil}}" style="width: 100px;" alt="User profile picture"/>
+                 @endif
+
+                 @else
+                     @if(empty($user->profiles()->first()->perfil))
+                         @if(empty($user->perfil))
+                             @if($user->sexo == 'masculino'   )
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" style="width: 100px;" alt="User profile picture" />
+                             @else
+                                 <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_femenino.jpg')}}" style="width: 100px;" alt="User profile picture" />
+                             @endif
+                         @else
+                             <img class="profile-user-img img-responsive img-circle" src="{{asset('img/'.$user->perfil)}}" style="width: 100px;" alt="User profile picture"/>
+                         @endif
+                     @else
+                         <img class="profile-user-img img-responsive img-circle" src="{{$user->profiles()->first()->perfil}}" style="width: 100px;" alt="User profile picture"/>
+                     @endif
                  @endif
 
 

@@ -20,7 +20,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-//    protected $guarded=[];
+    protected $guarded=[];
     
     protected $table = 'users';
 

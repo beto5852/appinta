@@ -103,7 +103,7 @@ j
                 <div class="box-body">
 
                     <div class="form-group">
-                        {!! Form::label('telefono','Telefono') !!}
+                        {!! Form::label('telefono','Teléfono') !!}
                         {!! Form::text('telefono',null,['class' =>'form-control', 'placeholder' =>'+505-9999-9999'])!!}
                     </div>
 
