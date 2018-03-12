@@ -58,13 +58,13 @@
             <li {{request()->is('admin/busqueda') ? 'class=active': ''}}>
                 <a href="{{url('admin/busqueda')}}"><i class="fa  fa-search"></i> <span>Practicas agricolas</span></a></li>
 
-
+            @if(Auth::user()->type == 'admin')
             <!-- Optionally, you can add icons to the links -->
             <li {{request()->is('admin/timeline') ? 'class=active': ''}}>
                 <a href="{{url('admin/timeline')}}"><i class="fa fa-calendar"></i> <span>Labores del mes</span></a></li>    
 
             <!--  Menu USUARIOS -->
-            @if(Auth::user()->type=='admin')
+
             <li class="treeview" {{request()->is('admin/users*')? 'active': ''}}>
 
                 <a href="#"><i class="fa fa-users"></i><span>Usuarios</span>

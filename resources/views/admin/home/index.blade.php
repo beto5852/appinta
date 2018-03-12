@@ -221,7 +221,8 @@
 
 
  @else
-                <!-- row -->
+
+         <!-- row -->
         <div class="row">
 
             <div class="col-md-12">
@@ -233,36 +234,66 @@
 
                     @foreach($practica->meses as $mes)
 
-
                             <!-- timeline time label -->
                     {{-- @if($mes->nombre_mes == 'admin') --}}
 
                     <li class="time-label">
                           <span class="bg-red">
-                            {{$mes->nombre_mes}}
+
+                             {{$mes->nombre_mes}}
                           </span>
+
                     </li>
 
-                    <!-- /.timeline-label -->
-                    <!-- timeline item -->
+
                     <li>
+                        <i class="fa fa-camera bg-purple"></i>
+
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
                         <i class="fa  fa-calendar-check-o bg-blue"></i>
 
+
+
                         <div class="timeline-item">
+
+
+
+                            <h1 ><a href="{{'timelinemore'}}/{{$practica->slug}}">{{$practica->nombre_practica}}</a></h1>
+                            <br>
                             @foreach($practica->semanas as $semana)
                                 <span class="time"><i class="fa fa-clock-o"></i> {{$semana->nombre_semana}}</span>
                             @endforeach
-                            <h3 class="timeline-header"><a href="#">{{$practica->nombre_practica}}</a></h3>
+
+                            @foreach( $practica->etapas as $etapa)
+                                <span class="time pull-right" ><i class="fa fa-tags"></i>{{$etapa->nombre_etapa}}</span>
+                            @endforeach
+                            <br>
 
                             <div class="timeline-body">
-                                {!! substr($practica->contenido,0,200) !!}
-                            </div>
-                            @foreach( $practica->etapas as $etapa)
-                                <span class="time"><i class="fa fa-tags"></i> {{$etapa->nombre_etapa}}</span>
-                            @endforeach
+
+                                <p>{!! $practica->textomedio!!}</p><br>
+
+                                @if($practica->fotos->count() === 1)
+
+                                    <div class="col-sm-6 ">
+                                        <img class="img-responsive" width="100%" src="{{$practica->fotos->first()->url }}" alt="Photo">
+                                    </div>
+
+                                @elseif($practica->fotos->count() > 1)
+                                    <div class="timeline-body pull-right">
+                                        @foreach($practica->fotos as $key => $foto)
+                                            <img src="{{$foto->url }}" style = "width: 100px;" >
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div><br><br><br>
+
+
+
+
                             <div class="timeline-footer">
-                                <a href="{{'admin/timelinemore'}}/{{$practica->slug}}" class="btn btn-primary btn-xs">Leer mas</a>
-                                {{-- <a class="btn btn-danger btn-xs">Delete</a> --}}
+                                <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-primary">Leer mas</a>
                             </div>
 
                         </div>

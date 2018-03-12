@@ -83,17 +83,17 @@
 
                     <hr>
 
-                    <strong><i class="fa fa-pencil margin-r-5"></i> Interes</strong>
+                    <strong><i class="fa fa-pencil margin-r-5"></i> Teléfono</strong>
 
                     <p>
 
-                        <span class="label label-primary">Node.js</span>
+                        <span class="label label-primary">{{$user->telefono}}</span>
 
                     </p>
 
                     <hr>
 
-                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notas</strong>
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Más de mi</strong>
 
                     <p>{{$user->notas}}</p>
                 </div>
