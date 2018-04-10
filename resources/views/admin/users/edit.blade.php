@@ -59,7 +59,7 @@
                      {{ Form::email('email',old('email',$user->email),['class' =>'form-control', 'placeholder' =>'example@gmail.com','required'])}}
                  </div>
                  <div class="form-group">
-                     {!! Form::label('nacimiento','Fecha de nacimiento') !!}
+                     {!! Form::label('edad','Edad') !!}
 
                      <div class="input-group date">
                          <div class="input-group-addon">
