@@ -31,7 +31,15 @@ class EtapasController extends Controller
 
         $etapas = Etapa::select('etapas.id','etapas.nombre_etapa');
 
+       $buttonDelete='<i class="fa fa-trash-o"></i>{{ trans("admin/modal.delete") }}';
+
         return Datatables::of($etapas)
+//            ->add_column('action','
+//            <form action="{{ route(\'admin.etapas.destroy\', $id) }}" method="POST">
+//            <input type="hidden" name="_method" value="DELETE">
+//            {{ csrf_field() }} {{method_field("DELETE")}}
+//            <button class="btn btn-raised btn-danger" onclick=""><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
+//            </form>')
             ->make(true);
     }
     
@@ -116,6 +124,6 @@ class EtapasController extends Controller
         $etapa = Etapa::find($id);
         $etapa->delete();
         Session::flash('message','Etapa eliminada correctamente');
-        return redirect::to('admin/Etapas');
+        return redirect::to('admin/etapas');
     }
 }

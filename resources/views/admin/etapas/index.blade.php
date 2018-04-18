@@ -81,6 +81,8 @@
 
 
 
+
+
     <script>
 
         $(function() {
@@ -108,6 +110,7 @@
                 columns: [
                     { data: 'id', name: 'id'},
                     { data: 'nombre_etapa', name: 'nombre_etapa' },
+//                    { data: 'action', name: 'action' },
                     { data: null, render: function (data, type ,row) {
                         return  '<td>'+
                                 '<a href="{{url("admin/etapas/edit")}}/'+data.id+'" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>'+

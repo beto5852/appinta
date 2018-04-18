@@ -77,7 +77,6 @@
                         <!-- /.input group -->
                     </div>
 
-j
 
                     <div class="form-group">
                         {!! Form::label('email','Correo electrónico') !!}

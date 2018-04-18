@@ -27,9 +27,7 @@
                 <div class="box-header">
                 </div>
                 <div class="container">
-
-
-                    {!! $activ->render() !!}
+                    {!! $genero->render() !!}
                 </div>
                 <div class="box-footer">
                 </div>

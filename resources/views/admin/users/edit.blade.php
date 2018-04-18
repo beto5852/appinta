@@ -123,7 +123,7 @@
                  </div>
 
                  @if(Auth::user()->type=='admin')
-                 @if(!empty(Auth::user()->profiles()->first()->perfil))
+                 @if(empty(Auth::user()->profiles()->first()->perfil))
                      @if(empty($user->profiles()->first()->perfil))
                          @if(empty($user->perfil))
                              @if($user->sexo == 'masculino'   )
@@ -142,7 +142,7 @@
                  @endif
 
                  @else
-                     @if(empty($user->profiles()->first()->perfil))
+                     @if(!empty($user->profiles()->first()->perfil))
                          @if(empty($user->perfil))
                              @if($user->sexo == 'masculino'   )
                                  <img class="profile-user-img img-responsive img-circle" src="{{asset('img/user_masculino.jpg')}}" style="width: 100px;" alt="User profile picture" />
