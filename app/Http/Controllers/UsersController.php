@@ -57,6 +57,7 @@ class UsersController extends Controller
         $v = \Validator::make($request->all(), [
 
             'name' => 'required',
+            'edad' => 'required|Integer|Min:5|Max:100',
             'password' => 'required',
             'email'    => 'required|email',
             'sexo' => 'required_if:masculino,femenino',
@@ -136,6 +137,7 @@ class UsersController extends Controller
         $v = \Validator::make($request->all(), [
 
             'name' => 'required',
+            'edad' => 'required|Integer|Min:5|Max:100',
             'password' => 'required',
             'email'    => 'required|email',
             'sexo' => 'required_if:masculino,femenino',

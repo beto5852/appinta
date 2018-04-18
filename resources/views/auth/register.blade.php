@@ -47,13 +47,33 @@
       </div>
 
       <div class="form-group has-feedback {{ $errors->has('edad') ? ' has-error' : '' }}">
-          {!! Form::label('edad','Edad') !!}
-          {!! Form::text('edad',null,['class' =>'form-control', 'placeholder' =>'Edad eje: 20, 25, 30, 40','value' => 'old(edad)','required'])!!}
+
+          {!! Form::label('edad','Rango de años de edad') !!}<br>
+
+          {{ Form::radio('edad', '20',true) }}
+          {!! Form::label('edad','10-20') !!}
+          {{ Form::radio('edad', '30') }}
+          {!! Form::label('edad','21-30') !!}
+          {{ Form::radio('edad', '40') }}
+          {!! Form::label('edad','31-40') !!}
+          {{ Form::radio('edad', '50') }}
+          {!! Form::label('edad','41-50') !!}
+          {{ Form::radio('edad', '60') }}
+          {!! Form::label('edad','51-60') !!}
+
+
+          {{--{!! Form::label('edad','Edad') !!}--}}
+          {{--{!! Form::text('edad',null,['class' =>'form-control', 'placeholder' =>'Edad eje: 20, 25, 30, 40','value' => 'old(edad)','required'])!!}--}}
           {!! $errors->first('edad','<span class="help-block">:message</span>') !!}
       </div>
       <div class="form-group has-feedback {{ $errors->has('sexo') ? ' has-error' : '' }}">
-          {{ Form::label('sexo','Sexo') }}
-          {{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}
+          {{ Form::label('sexo','Seleccione su genero') }}<br>
+          {{ Form::radio('sexo', 'masculino', true) }}
+          {!! Form::label('sexo','mascúlino') !!}
+          {{ Form::radio('sexo', 'femenino') }}
+          {!! Form::label('sexo','femenino') !!}
+
+          {{--{{ Form::select('sexo',['' => 'Seleccione su genero' , 'masculino' => 'mascúlino', 'femenino' => 'femenino'],null,['class' => 'form-control chosen-select'])}}--}}
           {!! $errors->first('sexo','<span class="help-block">:message</span>') !!}
       </div>
       <div class="form-group has-feedback {{ $errors->has('email') ? ' has-error' : '' }}">

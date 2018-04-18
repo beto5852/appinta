@@ -51,7 +51,7 @@
 
         <div id="logo" class="pull-left">
             <h1><a href="/" class="scrollto">
-                    <img src="template/img/clients/logo-inta.png" width="45%" alt="auto"> </a></h1>
+                    {{--<img src="template/img/clients/logo-inta.png" width="20%" alt="auto"> </a></h1>--}}
             <!-- Uncomment below if you prefer to use an image logo -->
             <!-- <a href="#intro"><img src="img/logo.png" alt="" title=""></a> -->
         </div>
