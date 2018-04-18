@@ -54,7 +54,6 @@
                 <td>{{  $user->name}}</td>
                 <td>{{  $user->email}}</td>
 
-
                 @if($user->type=='admin')
                     <td><span class="label label-primary">{{  $user->type}}</span></td>
                 @elseif($user->type=='miembro')
