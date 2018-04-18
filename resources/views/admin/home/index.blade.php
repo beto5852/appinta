@@ -137,7 +137,7 @@
                                         <img src="{{$user->profiles()->first()->perfil}}" class="img-circle" alt="User Image">
                                @endif
 
-                                    <a class="users-list-name" href="{{url('admin/users/'.$user->id)}}">{{  $user->name}}</a>
+                                    <a class="users-list-name" href="{{url('admin/users/'.$user->id.'/edit')}}">{{  $user->name}}</a>
                                     <span class="users-list-date">{{  $user->created_at->format('M d')}}</span>
                                 </li>
                             @endforeach
@@ -178,7 +178,7 @@
 
                                         @if(Auth::user()->sexo == 'masculino')
                                             <img src="{{asset('img/user_masculino.jpg')}}" class="img-circle" alt="User Image">
-                                            <a class="users-list-name" href="{{url('admin/users/'.$activity->user->id)}}">{{  $activity->user->name}}</a>
+                                            <a class="users-list-name" href="{{url('admin/users/'.$activity->user->id.'/edit')}}">{{  $activity->user->name}}</a>
 
                                             <span class="users-list-date">{{ $activity->user->type}}</span>
                                             <a href="{{url('admin/users/'.$activity->user->id)}}"><i class="fa fa-circle text-success"></i> Online</a>
