@@ -54,12 +54,15 @@
 
 
                                 @foreach($practica->fotos as $foto)
-                                    <form  method="POST" action="{{route('admin.fotos.destroy',$foto->id)}}">
-                                        {{method_field('DELETE')}}{{csrf_field()}}
+                                    {{--<form  method="POST" action="{{route('admin.fotos.destroy',$foto->id)}}">--}}
+{{--                                        {{method_field('DELETE')}}{{csrf_field()}}--}}
                                         <div class="col-md-2 col-sm-12 co-xs-12 gal-item">
-                                            <button class="btn-danger btn-xs pull-right" style="position: absolute">
-                                                <i class="fa fa-remove"></i>
-                                            </button>
+
+                                            <a class="btn-danger btn-xs pull-right" data-toggle="modal" style="position: absolute" data-url="{!! URL::route('admin.fotos.destroy', $foto->id) !!}" data-id="{{$foto->id}}" data-target="#custom-width-modal">X</a>
+                                            {{--<button class="btn-danger btn-xs pull-right" style="position: absolute">--}}
+                                                {{--<i class="fa fa-remove"></i>--}}
+                                            {{--</button>--}}
+
                                             <img src="{{$foto->url}}" class="img-responsive">
                                         </div>
                                     </form>
@@ -84,6 +87,30 @@
                         </div>
                     </div>
                 @endif
+
+                        <!-- Delete Model -->
+                        <form action="{{route('admin.fotos.destroy',$foto->id)}}" method="POST" class="remove-record-model">
+                            {{method_field('DELETE')}}{{csrf_field()}}
+                            <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                                <div class="modal-dialog" style="width:30%;">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                            <h4 class="modal-title" id="custom-width-modalLabel">Eliminar Imagen de la práctica agricola</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <h4>Estas seguro de eliminar la imagen?</h4>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">Cancelar</button>
+                                            <button type="submit" class="btn btn-danger waves-effect waves-light">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
 
             </div>
         </div>
