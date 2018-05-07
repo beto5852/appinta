@@ -68,7 +68,7 @@
       </div>
       <div class="form-group has-feedback {{ $errors->has('sexo') ? ' has-error' : '' }}">
           {{ Form::label('sexo','Seleccione su genero') }}<br>
-          {{ Form::radio('sexo', 'masculino', true) }}
+          {{ Form::radio('sexo', 'mascúlino', true) }}
           {!! Form::label('sexo','mascúlino') !!}
           {{ Form::radio('sexo', 'femenino') }}
           {!! Form::label('sexo','femenino') !!}

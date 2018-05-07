@@ -76,13 +76,32 @@
                 </td>
                 <td>
                     <a href="{{url('admin/users/'.$user->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <button class="btn btn-raised btn-danger" data-toggle="modal" style="position: absolute" data-url="{!! URL::route('admin.users.destroy', $user->id) !!}" data-id="{{$user->id}}" data-target="#custom-width-modal" ><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
 
-                    <form method="POST" action="{{route('admin.users.destroy',$user->id)}}" style="display:inline" >
-                        {{ csrf_field() }} {{method_field('DELETE')}}
-
-                        <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar al usuario')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
+                    <!-- Delete Model -->
+                    <form action="{{url('admin/users/'.$user->id)}}" method="POST" class="remove-record-model">
+                        {{method_field('DELETE')}}{{csrf_field()}}
+                        <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+                            <div class="modal-dialog" style="width:30%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                        <h4 class="modal-title" id="custom-width-modalLabel">Eliminar Usuario</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <h4>Esta seguro de eliminar al usuario?</h4>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">Cancelar</button>
+                                        <button type="submit" class="btn btn-danger waves-effect waves-light">Eliminar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </form>
+
+
+
 
                 </td>
             </tr>
@@ -92,6 +111,7 @@
 
     </table>
     <center>{{ $users->links() }}</center>
+
 
 
 @endsection

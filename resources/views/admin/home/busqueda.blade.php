@@ -94,13 +94,8 @@
                             @if(Auth::user()->type == 'admin')
 
                             <a href="{{url('admin/practicas/'.$practica->id.'/edit')}}" class="btn btn-raised btn-success" role="button"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-
-                            <form method="POST" action="{{route('admin.practicas.destroy',$practica->id)}}" style="display:inline" >
-                                {{ csrf_field() }} {{method_field('DELETE')}}
-
-                                <button class="btn btn-raised btn-danger" onclick="return confirm('Esta seguro de eliminar la práctica')"><i class="fa fa-trash-o" aria-hidden="true" ></i></button>
-
-                            </form>
+                                <a class="btn btn-raised btn-danger" data-toggle="modal" style="position: absolute" data-url="{!! URL::route('admin.practicas.destroy',$practica->id) !!}" data-id="{{$practica->id}}" data-target="#custom-width-modal" ><i class="fa fa-trash-o" aria-hidden="true" ></i></a>
+                            <br>
                             @endif
                             <a href="{{'timelinemore'}}/{{$practica->slug}}" class="btn btn-raised btn-info" role="button" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
                         </td>
@@ -119,6 +114,26 @@
     </div>
     <!-- /.box -->
 
-
+    <!-- Delete Model -->
+    <form action="{{url('admin/practicas/'.$practica->id)}}" method="POST" class="remove-record-model">
+        {{method_field('DELETE')}}{{csrf_field()}}
+        <div id="custom-width-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="custom-width-modalLabel" aria-hidden="true" style="display: none;">
+            <div class="modal-dialog" style="width:30%;">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title" id="custom-width-modalLabel">Eliminar Práctica Agricola</h4>
+                    </div>
+                    <div class="modal-body">
+                        <h4>Esta seguro de eliminar la práctica agricola?</h4>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default waves-effect remove-data-from-delete-form" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-danger waves-effect waves-light">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 @endsection

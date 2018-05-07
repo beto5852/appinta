@@ -40,10 +40,7 @@ class GraficasController extends Controller
             ->height(300)
             ->width(300)
             ->responsive(true)
-            ->groupByDay();
-
-
-        
+            ->groupByDay();        
 
         return view('admin.reportes.index',compact('chart','totaluser','userdia'));
     }

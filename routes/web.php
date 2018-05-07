@@ -41,7 +41,7 @@ Route::get('practica/{slug}', [
 
 Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
-    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
+//    Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
 
 
     Route::get('/', [
@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin','middleware' => 'auth'], function () {
 
 
     /********************************TECNOLOGIA*******************************************************************/
+
     Route::resource('/tecnologias','TecnologiasController');
 
     Route::get('tecnologias','TecnologiasController@index')->name("admin.tecnologias.index");

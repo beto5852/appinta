@@ -128,15 +128,6 @@
                                     {{--<small>Revisa el timeline segun la epoca de siembra</small>--}}
                                 </h1>
 
-                                @if(!empty($practicas->video))
-
-                                    <div class="video">
-                                        {!! $practicas->video !!}
-                                        {{--<iframe width="560" height="315" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
-                                        {{--<iframe width="100%" height="50%" src="{!! $practica->video !!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>--}}
-                                    </div>
-                                @endif
-
 
                                 <div class="container gal-container">
                                     @foreach($practicas->fotos as $key => $foto)
